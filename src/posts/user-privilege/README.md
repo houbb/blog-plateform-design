@@ -12,11 +12,11 @@
 
 ## 第二章：核心理论基础与开放标准
 
-- [1-2-core-theory-basis-open-standards.md](1-2-core-theory-basis-open-standards.md) - 核心理论基础与开放标准（概述）
-- [1-2-1-authentication-vs-authorization-protocols.md](1-2-1-authentication-vs-authorization-protocols.md) - 认证（Authentication）vs. 授权（Authorization）：OAuth 2.0、OIDC、SAML 2.0 核心原理详解
-- [1-2-2-permission-models-foundations.md](1-2-2-permission-models-foundations.md) - 权限模型基石：自主访问控制（DAC）、强制访问控制（MAC）、基于角色的访问控制（RBAC）、基于属性的访问控制（ABAC）
-- [1-2-3-directory-services-ldap-ad.md](1-2-3-directory-services-ldap-ad.md) - 目录服务：LDAP协议与Active Directory的深度解读
-- [1-2-4-modern-security-best-practices.md](1-2-4-modern-security-best-practices.md) - 现代安全最佳实践：多因子认证（MFA）、无密码认证、风险感知认证
+- [2-0-core-theory-basis-open-standards.md](2-0-core-theory-basis-open-standards.md) - 核心理论基础与开放标准（概述）
+- [2-1-authentication-vs-authorization-protocols.md](2-1-authentication-vs-authorization-protocols.md) - 认证（Authentication）vs. 授权（Authorization）：OAuth 2.0、OIDC、SAML 2.0 核心原理详解
+- [2-2-permission-models-foundations.md](2-2-permission-models-foundations.md) - 权限模型基石：自主访问控制（DAC）、强制访问控制（MAC）、基于角色的访问控制（RBAC）、基于属性的访问控制（ABAC）
+- [2-3-directory-services-ldap-ad.md](2-3-directory-services-ldap-ad.md) - 目录服务：LDAP协议与Active Directory的深度解读
+- [2-4-modern-security-best-practices.md](2-4-modern-security-best-practices.md) - 现代安全最佳实践：多因子认证（MFA）、无密码认证、风险感知认证
 
 ## 第三章：平台建设前的战略规划与设计原则
 
