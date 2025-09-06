@@ -1,8 +1,8 @@
 ---
-title: 分布式调度的核心价值：资源效率、任务编排、故障隔离与自动化
+title: 1.2 分布式调度的核心价值：资源效率、任务编排、故障隔离与自动化
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [Schedule]
+tags: [schedule, distributed, efficiency, automation]
 published: true
 ---
 

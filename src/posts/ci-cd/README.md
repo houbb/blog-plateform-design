@@ -25,11 +25,36 @@
 
 ### 第二部分：平台架构与核心引擎篇
 
-（此部分的文章将在后续生成）
+- [2-1 平台总体架构设计](2-1-platform-architecture-design.md)
+  - [2-1-1 分层架构：接入层、调度层、执行层、存储层、可视化层](2-1-1-layered-architecture.md)
+  - [2-1-2 核心服务设计：流水线服务、代码仓库服务、制品库服务、环境管理服务](2-1-2-core-services.md)
+  - [2-1-3 高可用与弹性设计：Master/Worker架构、基于Kubernetes的动态弹性伸缩](2-1-3-high-availability-elasticity.md)
+  - [2-1-4 API-first与插件化设计](2-1-4-api-first-plugin-design.md)
+
+- [2-2 流水线引擎设计与实现](2-2-pipeline-engine-design.md)
+  - [2-2-1 流水线即代码（Pipeline as Code）：DSL vs YAML vs GUI](2-2-1-pipeline-as-code.md)
+  - [2-2-2 流水线核心模型：阶段（Stage）、任务（Job）、步骤（Step）](2-2-2-pipeline-core-model.md)
+  - [2-2-3 执行环境隔离：容器化（Docker/Kubernetes Pod）作为标准执行单元](2-2-3-execution-environment-isolation.md)
+  - [2-2-4 流水线控制流：并行、串行、手动审批、重试、超时控制](2-2-4-pipeline-control-flow.md)
+
+- [2-3 代码管理与集成](2-3-code-management-integration.md)
+  - [2-3-1 与Git的深度集成：Webhook、Checkout策略、多仓库管理](2-3-1-git-integration.md)
+  - [2-3-2 分支策略与流水线触发：Git Flow, GitHub Flow, Trunk-Based Development](2-3-2-branch-strategy-pipeline-trigger.md)
+  - [2-3-3 代码扫描与质量门禁：SonarQube集成、代码规范检查](2-3-3-code-scanning-quality-gate.md)
+  - [2-3-4 变更关联：将提交、流水线、构建、部署与需求/缺陷关联](2-3-4-change-correlation.md)
 
 ### 第三部分：功能与交付篇
 
-（此部分的文章将在后续生成）
+- [3-1 构建与制品管理](3-1-build-artifact-management.md)
+  - [3-1-1 多语言构建支持：Java, Go, Python, Node.js, .NET的标准化构建环境](3-1-1-multi-language-build.md)
+  - [3-1-2 构建加速策略：缓存优化（依赖缓存、增量构建）、分布式构建](3-1-2-build-acceleration.md)
+  - [3-1-3 制品仓库管理：管理Jar, Docker Image, Npm等制品，生命周期管理](3-1-3-artifact-repository.md)
+  - [3-1-4 不可变制品与晋升流程：构建一次，多处部署](3-1-4-immutable-artifacts-promotion.md)
+
+- [4-1 自动化测试集成](4-1-automated-testing-integration.md)
+  - [4-1-1 测试金字塔在流水线中的落地：单元测试、集成测试、端到端测试](4-1-1-test-pyramid-implementation.md)
+  - [4-1-2 自动化测试管理与执行：测试环境准备、测试用例筛选、测试报告分析](4-1-2-test-management-execution.md)
+  - [4-1-3 质量门禁设置：测试覆盖率、通过率作为流水线推进的硬性条件](4-1-3-quality-gate-settings.md)
 
 ### 第四部分：运维、观测与落地篇
 

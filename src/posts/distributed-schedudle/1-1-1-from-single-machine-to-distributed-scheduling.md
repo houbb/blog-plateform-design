@@ -1,8 +1,8 @@
 ---
-title: 从单机定时任务到分布式调度：驱动力与演进
+title: 1.1 从单机定时任务到分布式调度：驱动力与演进
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [Schedule]
+tags: [schedule, distributed, cron]
 published: true
 ---
 
