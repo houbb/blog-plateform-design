@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 测试平台建设全生命周期指南
 
 本目录包含《构建可落地的全生命周期测试平台：从理论到实践》一书的完整内容，按照章节组织，方便查阅。

@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 分布式文件存储平台设计与实现
 
 本仓库包含分布式文件存储平台的完整技术文档，涵盖了从理论基础到实践实现的各个方面。

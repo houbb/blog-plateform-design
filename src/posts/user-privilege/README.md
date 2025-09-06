@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 企业级统一身份治理平台：可落地的用户、权限与SSO全生命周期建设
 
 本文档系列基于同名书籍，深入探讨企业级统一身份治理平台的设计与实现。

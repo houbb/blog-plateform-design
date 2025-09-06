@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 企业级统一通知通道平台建设项目总结报告
 
 ## 项目概述

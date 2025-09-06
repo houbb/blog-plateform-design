@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 运维基石：可落地的CMDB平台全生命周期建设与实践
 
 这是为《运维基石：可落地的CMDB平台全生命周期建设与实践》一书生成的系列文章索引。

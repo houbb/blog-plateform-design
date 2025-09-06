@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 我将针对 index.md 中的内容，为每一章生成专业、科学、有趣、可以落地的技术文章。
 
 帮我生成对应的文章，每章包含：

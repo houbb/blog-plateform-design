@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 数据库平台（或称DBPaaS, Database Platform as a Service）是连接开发效率与数据资产安全、性能、稳定性的核心枢纽。
 
 本书的定位是帮助**DBA、架构师、研发负责人、SRE**系统地设计、构建和运营一个既能赋能开发者自助操作，又能保障企业数据资产安全、合规与高效的一体化数据库管理平台。

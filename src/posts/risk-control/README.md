@@ -1,3 +1,12 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
+
 # 企业级智能风控平台建设：从规则引擎到AI驱动的全生命周期实战
 
 ## 目录
@@ -66,3 +75,9 @@
 - [9-2-common-risk-control-models.md](9-2-common-risk-control-models.md) - 常用风控模型：GBDT（XGBoost/LightGBM）、深度学习、异常检测（Isolation Forest）
 - [9-3-online-model-serving.md](9-3-online-model-serving.md) - 在线模型服务（Model Serving）：低延迟、高并发的模型预测
 - [9-4-model-monitoring-and-iteration.md](9-4-model-monitoring-and-iteration.md) - 模型监控与迭代：模型性能衰减预警、概念漂移检测、持续学习
+
+#### 第10章：图计算与关系网络
+
+- [10-1-graph-data-modeling.md](10-1-graph-data-modeling.md) - 图数据建模：点、边、属性的设计
+- [10-2-real-time-graph-computing.md](10-2-real-time-graph-computing.md) - 实时图计算：识别关联欺诈、社区发现、风险传播
+- [10-3-graph-application-scenarios.md](10-3-graph-application-scenarios.md) - 图计算应用场景：挖掘欺诈团伙、识别中介、发现传销结构

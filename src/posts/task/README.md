@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 企业级一体化作业平台：设计、实现与落地实践
 
 本文档包含了《企业级一体化作业平台：设计、实现与落地实践》一书的完整内容，按照章节组织，方便读者查阅。

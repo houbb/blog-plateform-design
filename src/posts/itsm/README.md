@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 企业级ITSM平台建设：从流程自动化到价值共创的全生命周期实践
 
 ITSM（IT服务管理）平台是IT与业务之间的战略连接点，其建设远不止是工具落地，更是流程、人员和技术的全面融合。

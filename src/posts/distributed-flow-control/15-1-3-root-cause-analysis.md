@@ -1,1631 +1,1791 @@
 ---
-title: 根因分析：限流发生后，自动分析并定位下游故障服务
+title: 根因分析：限流发生后的自动根因定位与故障诊断
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, root-cause-analysis, troubleshooting, diagnostics]
+tags: [flow-control, distributed, aiops, root-cause-analysis, troubleshooting]
 published: true
 ---
 
-在复杂的分布式系统中，限流事件的发生往往是多种因素共同作用的结果。当限流被触发时，仅仅知道哪个接口或服务被限流是远远不够的，更重要的是要快速定位导致限流的根本原因。根因分析（Root Cause Analysis, RCA）技术能够帮助我们自动分析限流事件，识别并定位下游故障服务，从而快速解决问题，减少系统故障时间。本章将深入探讨分布式限流系统中的根因分析技术实现、核心算法以及最佳实践。
+在分布式系统中，当限流事件发生时，快速准确地定位根因对于系统恢复和问题解决至关重要。传统的手动排查方式效率低下且容易遗漏关键信息。通过引入智能化的根因分析技术，我们可以自动识别限流事件的根本原因，大幅缩短故障诊断时间，提高系统的可维护性。本章将深入探讨如何构建自动化的根因分析系统，实现限流事件的快速诊断和处理。
 
 ## 根因分析概述
 
-### 限流触发的常见原因
+### 限流事件的复杂性
 
-限流事件的触发通常由以下原因导致：
+限流事件的发生往往不是单一因素导致的，可能涉及多个维度的原因：
 
-1. **下游服务故障**：依赖的服务出现性能下降或不可用
-2. **资源瓶颈**：CPU、内存、网络、数据库连接等资源不足
-3. **异常流量激增**：突发的正常或异常流量超过系统处理能力
-4. **配置错误**：限流阈值设置不合理或配置变更错误
-5. **系统Bug**：应用程序中的缺陷导致处理效率下降
-6. **基础设施问题**：网络延迟、磁盘I/O性能下降等
+1. **业务流量激增**：促销活动、热点事件等导致正常业务流量突增
+2. **系统性能下降**：数据库慢查询、缓存失效、GC频繁等导致处理能力下降
+3. **资源配置不足**：CPU、内存、网络带宽等资源瓶颈
+4. **依赖服务异常**：下游服务响应慢或不可用
+5. **配置错误**：限流规则配置不当、阈值设置过低
+6. **恶意攻击**：DDoS攻击、CC攻击等异常流量
 
 ### 根因分析的价值
 
-自动根因分析在限流场景中具有重要价值：
+自动化的根因分析能够带来以下价值：
 
-1. **快速故障定位**：缩短故障排查时间，提高MTTR（平均修复时间）
-2. **减少人工干预**：自动化分析减少对运维人员的依赖
-3. **预防性维护**：通过分析历史数据识别潜在问题
-4. **优化系统设计**：基于根因分析结果优化系统架构和配置
+1. **快速响应**：大幅缩短故障诊断时间
+2. **准确定位**：提高根因识别的准确性
+3. **降低影响**：减少故障对业务的影响时间
+4. **经验积累**：形成知识库，提升团队整体故障处理能力
+5. **预防机制**：基于历史数据建立预警机制
 
-## 限流事件数据收集
+## 多维度根因分析器
 
-### 限流事件上下文信息
+### 系统指标分析器
 
 ```java
-// 限流事件数据收集器
+// 系统指标根因分析器
 @Component
-public class RateLimitEventCollector {
-    private final MetricsQueryService metricsService;
-    private final TracingService tracingService;
-    private final SystemMetricsCollector systemMetricsCollector;
-    private final DependencyGraphService dependencyGraphService;
-    private final AlertNotificationService alertService;
+public class SystemMetricsRootCauseAnalyzer {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final SystemMetricsCollector metricsCollector;
     
-    public RateLimitEventCollector(MetricsQueryService metricsService,
-                                 TracingService tracingService,
-                                 SystemMetricsCollector systemMetricsCollector,
-                                 DependencyGraphService dependencyGraphService,
-                                 AlertNotificationService alertService) {
-        this.metricsService = metricsService;
-        this.tracingService = tracingService;
-        this.systemMetricsCollector = systemMetricsCollector;
-        this.dependencyGraphService = dependencyGraphService;
-        this.alertService = alertService;
+    public SystemMetricsRootCauseAnalyzer(RedisTemplate<String, String> redisTemplate,
+                                        SystemMetricsCollector metricsCollector) {
+        this.redisTemplate = redisTemplate;
+        this.metricsCollector = metricsCollector;
     }
     
-    public RateLimitEventContext collectEventContext(String resource, 
-                                                   RateLimitTriggerInfo triggerInfo) {
-        RateLimitEventContext context = new RateLimitEventContext();
-        context.setResource(resource);
-        context.setTriggerInfo(triggerInfo);
-        context.setTimestamp(System.currentTimeMillis());
+    public List<RootCause> analyze(RateLimitEvent event) {
+        List<RootCause> rootCauses = new ArrayList<>();
         
-        // 收集关键上下文信息
-        collectMetricsContext(context);
-        collectTracingContext(context);
-        collectSystemContext(context);
-        collectDependencyContext(context);
-        collectConfigurationContext(context);
-        
-        return context;
-    }
-    
-    private void collectMetricsContext(RateLimitEventContext context) {
         try {
-            String resource = context.getResource();
-            long startTime = context.getTimestamp() - 300000; // 5分钟前
-            long endTime = context.getTimestamp();
+            // 获取系统指标数据
+            SystemMetrics currentMetrics = metricsCollector.collect();
+            SystemMetrics baselineMetrics = getBaselineMetrics();
             
-            // 收集资源相关的指标数据
-            context.setQpsHistory(metricsService.getQpsHistory(resource, startTime, endTime));
-            context.setErrorRateHistory(metricsService.getErrorRateHistory(resource, startTime, endTime));
-            context.setLatencyHistory(metricsService.getLatencyHistory(resource, startTime, endTime));
-            context.setConcurrencyHistory(metricsService.getConcurrencyHistory(resource, startTime, endTime));
+            // 分析CPU使用率
+            analyzeCpuUsage(currentMetrics, baselineMetrics, rootCauses);
             
-            // 收集全局指标数据
-            context.setGlobalQps(metricsService.getGlobalQps(startTime, endTime));
-            context.setGlobalErrorRate(metricsService.getGlobalErrorRate(startTime, endTime));
+            // 分析内存使用率
+            analyzeMemoryUsage(currentMetrics, baselineMetrics, rootCauses);
+            
+            // 分析GC情况
+            analyzeGcMetrics(currentMetrics, baselineMetrics, rootCauses);
+            
+            // 分析线程池状态
+            analyzeThreadPoolMetrics(currentMetrics, baselineMetrics, rootCauses);
+            
         } catch (Exception e) {
-            log.warn("Failed to collect metrics context for resource: " + context.getResource(), e);
+            log.error("Failed to analyze system metrics for rate limit event: " + event, e);
         }
-    }
-    
-    private void collectTracingContext(RateLimitEventContext context) {
-        try {
-            String resource = context.getResource();
-            long startTime = context.getTimestamp() - 300000; // 5分钟前
-            long endTime = context.getTimestamp();
-            
-            // 收集慢请求追踪信息
-            context.setSlowTraces(tracingService.getSlowTraces(resource, startTime, endTime, 50));
-            
-            // 收集错误请求追踪信息
-            context.setErrorTraces(tracingService.getErrorTraces(resource, startTime, endTime, 50));
-            
-            // 分析调用链中的异常模式
-            context.setTraceAnalysisResult(analyzeTracePatterns(context));
-        } catch (Exception e) {
-            log.warn("Failed to collect tracing context for resource: " + context.getResource(), e);
-        }
-    }
-    
-    private TraceAnalysisResult analyzeTracePatterns(RateLimitEventContext context) {
-        TraceAnalysisResult result = new TraceAnalysisResult();
         
-        // 分析慢请求的共同特征
-        List<TraceInfo> slowTraces = context.getSlowTraces();
-        if (slowTraces != null && !slowTraces.isEmpty()) {
-            // 识别最常见的下游服务
-            Map<String, Integer> serviceCount = new HashMap<>();
-            for (TraceInfo trace : slowTraces) {
-                List<SpanInfo> spans = trace.getSpans();
-                if (spans != null) {
-                    for (SpanInfo span : spans) {
-                        if (span.getDuration() > 1000) { // 超过1秒的span
-                            serviceCount.merge(span.getServiceName(), 1, Integer::sum);
-                        }
-                    }
-                }
-            }
-            
-            // 找出最慢的服务
-            String slowestService = serviceCount.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse(null);
+        return rootCauses;
+    }
+    
+    private void analyzeCpuUsage(SystemMetrics current, SystemMetrics baseline, 
+                               List<RootCause> rootCauses) {
+        double currentCpu = current.getCpuUsage();
+        double baselineCpu = baseline.getCpuUsage();
+        double cpuVariance = currentCpu - baselineCpu;
+        
+        // 如果CPU使用率显著高于基线值
+        if (cpuVariance > 20.0) { // 超过20%的差异
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.SYSTEM_PERFORMANCE)
+                .category("CPU Usage")
+                .description(String.format("CPU usage increased by %.2f%% from baseline", cpuVariance))
+                .confidence(calculateConfidence(cpuVariance, 20.0))
+                .severity(calculateSeverity(cpuVariance, 30.0))
+                .details(Map.of(
+                    "current_cpu", String.valueOf(currentCpu),
+                    "baseline_cpu", String.valueOf(baselineCpu),
+                    "difference", String.valueOf(cpuVariance)
+                ))
+                .build();
                 
-            result.setSlowestService(slowestService);
-            result.setServiceCallCounts(serviceCount);
+            rootCauses.add(cause);
         }
+    }
+    
+    private void analyzeMemoryUsage(SystemMetrics current, SystemMetrics baseline, 
+                                  List<RootCause> rootCauses) {
+        double currentMemory = current.getMemoryUsage();
+        double baselineMemory = baseline.getMemoryUsage();
+        double memoryVariance = currentMemory - baselineMemory;
         
-        return result;
-    }
-    
-    private void collectSystemContext(RateLimitEventContext context) {
-        try {
-            // 收集系统级别的指标
-            context.setSystemMetrics(systemMetricsCollector.collectCurrentMetrics());
-            
-            // 收集JVM指标
-            context.setJvmMetrics(systemMetricsCollector.collectJvmMetrics());
-            
-            // 收集线程池状态
-            context.setThreadPoolMetrics(systemMetricsCollector.collectThreadPoolMetrics());
-        } catch (Exception e) {
-            log.warn("Failed to collect system context", e);
-        }
-    }
-    
-    private void collectDependencyContext(RateLimitEventContext context) {
-        try {
-            String resource = context.getResource();
-            
-            // 获取服务依赖图
-            DependencyGraph dependencyGraph = dependencyGraphService.getDependencyGraph(resource);
-            context.setDependencyGraph(dependencyGraph);
-            
-            // 分析依赖服务的健康状态
-            Map<String, ServiceHealthStatus> dependencyHealth = new HashMap<>();
-            if (dependencyGraph != null) {
-                for (String dependency : dependencyGraph.getDependencies()) {
-                    ServiceHealthStatus healthStatus = metricsService.getServiceHealth(dependency);
-                    dependencyHealth.put(dependency, healthStatus);
-                }
-            }
-            context.setDependencyHealth(dependencyHealth);
-        } catch (Exception e) {
-            log.warn("Failed to collect dependency context for resource: " + context.getResource(), e);
-        }
-    }
-    
-    private void collectConfigurationContext(RateLimitEventContext context) {
-        try {
-            String resource = context.getResource();
-            
-            // 获取当前的限流配置
-            context.setCurrentRateLimitConfig(metricsService.getRateLimitConfig(resource));
-            
-            // 获取最近的配置变更历史
-            context.setConfigChangeHistory(metricsService.getConfigChangeHistory(resource, 
-                context.getTimestamp() - 3600000)); // 1小时前
+        // 如果内存使用率显著高于基线值
+        if (memoryVariance > 15.0) { // 超过15%的差异
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.SYSTEM_PERFORMANCE)
+                .category("Memory Usage")
+                .description(String.format("Memory usage increased by %.2f%% from baseline", memoryVariance))
+                .confidence(calculateConfidence(memoryVariance, 15.0))
+                .severity(calculateSeverity(memoryVariance, 25.0))
+                .details(Map.of(
+                    "current_memory", String.valueOf(currentMemory),
+                    "baseline_memory", String.valueOf(baselineMemory),
+                    "difference", String.valueOf(memoryVariance)
+                ))
+                .build();
                 
-            // 获取服务部署信息
-            context.setDeploymentInfo(metricsService.getDeploymentInfo(resource));
+            rootCauses.add(cause);
+        }
+    }
+    
+    private void analyzeGcMetrics(SystemMetrics current, SystemMetrics baseline, 
+                                List<RootCause> rootCauses) {
+        long currentGcCount = current.getGcCount();
+        long baselineGcCount = baseline.getGcCount();
+        long gcCountDiff = currentGcCount - baselineGcCount;
+        
+        long currentGcTime = current.getGcTime();
+        long baselineGcTime = baseline.getGcTime();
+        long gcTimeDiff = currentGcTime - baselineGcTime;
+        
+        // 如果GC频率或时间显著增加
+        if (gcCountDiff > 10 || gcTimeDiff > 5000) { // 10次GC或5秒GC时间增加
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.SYSTEM_PERFORMANCE)
+                .category("Garbage Collection")
+                .description("Frequent or long GC pauses detected")
+                .confidence(calculateGcConfidence(gcCountDiff, gcTimeDiff))
+                .severity(calculateGcSeverity(gcCountDiff, gcTimeDiff))
+                .details(Map.of(
+                    "current_gc_count", String.valueOf(currentGcCount),
+                    "baseline_gc_count", String.valueOf(baselineGcCount),
+                    "current_gc_time", String.valueOf(currentGcTime),
+                    "baseline_gc_time", String.valueOf(baselineGcTime)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        }
+    }
+    
+    private void analyzeThreadPoolMetrics(SystemMetrics current, SystemMetrics baseline, 
+                                        List<RootCause> rootCauses) {
+        double currentPoolUsage = current.getThreadPoolUsage();
+        double baselinePoolUsage = baseline.getThreadPoolUsage();
+        double poolUsageDiff = currentPoolUsage - baselinePoolUsage;
+        
+        // 如果线程池使用率过高
+        if (currentPoolUsage > 90.0) {
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.SYSTEM_PERFORMANCE)
+                .category("Thread Pool")
+                .description(String.format("Thread pool usage is extremely high: %.2f%%", currentPoolUsage))
+                .confidence(0.9)
+                .severity(RootCauseSeverity.CRITICAL)
+                .details(Map.of(
+                    "current_pool_usage", String.valueOf(currentPoolUsage),
+                    "baseline_pool_usage", String.valueOf(baselinePoolUsage)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        } else if (poolUsageDiff > 20.0) { // 使用率显著增加
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.SYSTEM_PERFORMANCE)
+                .category("Thread Pool")
+                .description(String.format("Thread pool usage increased by %.2f%% from baseline", poolUsageDiff))
+                .confidence(calculateConfidence(poolUsageDiff, 20.0))
+                .severity(calculateSeverity(poolUsageDiff, 30.0))
+                .details(Map.of(
+                    "current_pool_usage", String.valueOf(currentPoolUsage),
+                    "baseline_pool_usage", String.valueOf(baselinePoolUsage),
+                    "difference", String.valueOf(poolUsageDiff)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        }
+    }
+    
+    private double calculateConfidence(double variance, double threshold) {
+        // 置信度随着差异的增加而增加
+        double ratio = Math.abs(variance) / threshold;
+        return Math.min(0.95, 0.5 + ratio * 0.1);
+    }
+    
+    private RootCauseSeverity calculateSeverity(double variance, double criticalThreshold) {
+        double ratio = Math.abs(variance) / criticalThreshold;
+        if (ratio > 1.5) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (ratio > 1.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (ratio > 0.5) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private double calculateGcConfidence(long gcCountDiff, long gcTimeDiff) {
+        double countConfidence = Math.min(0.9, Math.abs(gcCountDiff) / 20.0);
+        double timeConfidence = Math.min(0.9, Math.abs(gcTimeDiff) / 10000.0);
+        return Math.max(countConfidence, timeConfidence);
+    }
+    
+    private RootCauseSeverity calculateGcSeverity(long gcCountDiff, long gcTimeDiff) {
+        double countSeverity = Math.abs(gcCountDiff) / 30.0;
+        double timeSeverity = Math.abs(gcTimeDiff) / 15000.0;
+        double maxSeverity = Math.max(countSeverity, timeSeverity);
+        
+        if (maxSeverity > 1.5) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (maxSeverity > 1.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (maxSeverity > 0.5) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private SystemMetrics getBaselineMetrics() {
+        try {
+            // 从Redis获取基线指标数据
+            String key = "system_metrics:baseline";
+            String json = redisTemplate.opsForValue().get(key);
+            
+            if (json != null && !json.isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                return mapper.readValue(json, SystemMetrics.class);
+            }
         } catch (Exception e) {
-            log.warn("Failed to collect configuration context for resource: " + context.getResource(), e);
-        }
-    }
-    
-    // 限流触发信息
-    public static class RateLimitTriggerInfo {
-        private long triggerTime;
-        private int currentLimit;
-        private int actualTraffic;
-        private String triggerReason;
-        private Map<String, Object> additionalInfo;
-        
-        // 构造函数和getter/setter方法
-        public RateLimitTriggerInfo(long triggerTime, int currentLimit, 
-                                  int actualTraffic, String triggerReason) {
-            this.triggerTime = triggerTime;
-            this.currentLimit = currentLimit;
-            this.actualTraffic = actualTraffic;
-            this.triggerReason = triggerReason;
-            this.additionalInfo = new HashMap<>();
+            log.warn("Failed to get baseline metrics", e);
         }
         
-        // getter和setter方法
-        public long getTriggerTime() { return triggerTime; }
-        public void setTriggerTime(long triggerTime) { this.triggerTime = triggerTime; }
-        public int getCurrentLimit() { return currentLimit; }
-        public void setCurrentLimit(int currentLimit) { this.currentLimit = currentLimit; }
-        public int getActualTraffic() { return actualTraffic; }
-        public void setActualTraffic(int actualTraffic) { this.actualTraffic = actualTraffic; }
-        public String getTriggerReason() { return triggerReason; }
-        public void setTriggerReason(String triggerReason) { this.triggerReason = triggerReason; }
-        public Map<String, Object> getAdditionalInfo() { return additionalInfo; }
-        public void setAdditionalInfo(Map<String, Object> additionalInfo) { this.additionalInfo = additionalInfo; }
-        public void addAdditionalInfo(String key, Object value) { this.additionalInfo.put(key, value); }
-    }
-    
-    // 限流事件上下文
-    public static class RateLimitEventContext {
-        private String resource;
-        private RateLimitTriggerInfo triggerInfo;
-        private long timestamp;
-        
-        // 指标上下文
-        private List<MetricPoint> qpsHistory;
-        private List<MetricPoint> errorRateHistory;
-        private List<MetricPoint> latencyHistory;
-        private List<MetricPoint> concurrencyHistory;
-        private double globalQps;
-        private double globalErrorRate;
-        
-        // 追踪上下文
-        private List<TraceInfo> slowTraces;
-        private List<TraceInfo> errorTraces;
-        private TraceAnalysisResult traceAnalysisResult;
-        
-        // 系统上下文
-        private SystemMetrics systemMetrics;
-        private JvmMetrics jvmMetrics;
-        private ThreadPoolMetrics threadPoolMetrics;
-        
-        // 依赖上下文
-        private DependencyGraph dependencyGraph;
-        private Map<String, ServiceHealthStatus> dependencyHealth;
-        
-        // 配置上下文
-        private RateLimitConfig currentRateLimitConfig;
-        private List<ConfigChangeRecord> configChangeHistory;
-        private DeploymentInfo deploymentInfo;
-        
-        // getter和setter方法
-        public String getResource() { return resource; }
-        public void setResource(String resource) { this.resource = resource; }
-        public RateLimitTriggerInfo getTriggerInfo() { return triggerInfo; }
-        public void setTriggerInfo(RateLimitTriggerInfo triggerInfo) { this.triggerInfo = triggerInfo; }
-        public long getTimestamp() { return timestamp; }
-        public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
-        public List<MetricPoint> getQpsHistory() { return qpsHistory; }
-        public void setQpsHistory(List<MetricPoint> qpsHistory) { this.qpsHistory = qpsHistory; }
-        public List<MetricPoint> getErrorRateHistory() { return errorRateHistory; }
-        public void setErrorRateHistory(List<MetricPoint> errorRateHistory) { this.errorRateHistory = errorRateHistory; }
-        public List<MetricPoint> getLatencyHistory() { return latencyHistory; }
-        public void setLatencyHistory(List<MetricPoint> latencyHistory) { this.latencyHistory = latencyHistory; }
-        public List<MetricPoint> getConcurrencyHistory() { return concurrencyHistory; }
-        public void setConcurrencyHistory(List<MetricPoint> concurrencyHistory) { this.concurrencyHistory = concurrencyHistory; }
-        public double getGlobalQps() { return globalQps; }
-        public void setGlobalQps(double globalQps) { this.globalQps = globalQps; }
-        public double getGlobalErrorRate() { return globalErrorRate; }
-        public void setGlobalErrorRate(double globalErrorRate) { this.globalErrorRate = globalErrorRate; }
-        public List<TraceInfo> getSlowTraces() { return slowTraces; }
-        public void setSlowTraces(List<TraceInfo> slowTraces) { this.slowTraces = slowTraces; }
-        public List<TraceInfo> getErrorTraces() { return errorTraces; }
-        public void setErrorTraces(List<TraceInfo> errorTraces) { this.errorTraces = errorTraces; }
-        public TraceAnalysisResult getTraceAnalysisResult() { return traceAnalysisResult; }
-        public void setTraceAnalysisResult(TraceAnalysisResult traceAnalysisResult) { this.traceAnalysisResult = traceAnalysisResult; }
-        public SystemMetrics getSystemMetrics() { return systemMetrics; }
-        public void setSystemMetrics(SystemMetrics systemMetrics) { this.systemMetrics = systemMetrics; }
-        public JvmMetrics getJvmMetrics() { return jvmMetrics; }
-        public void setJvmMetrics(JvmMetrics jvmMetrics) { this.jvmMetrics = jvmMetrics; }
-        public ThreadPoolMetrics getThreadPoolMetrics() { return threadPoolMetrics; }
-        public void setThreadPoolMetrics(ThreadPoolMetrics threadPoolMetrics) { this.threadPoolMetrics = threadPoolMetrics; }
-        public DependencyGraph getDependencyGraph() { return dependencyGraph; }
-        public void setDependencyGraph(DependencyGraph dependencyGraph) { this.dependencyGraph = dependencyGraph; }
-        public Map<String, ServiceHealthStatus> getDependencyHealth() { return dependencyHealth; }
-        public void setDependencyHealth(Map<String, ServiceHealthStatus> dependencyHealth) { this.dependencyHealth = dependencyHealth; }
-        public RateLimitConfig getCurrentRateLimitConfig() { return currentRateLimitConfig; }
-        public void setCurrentRateLimitConfig(RateLimitConfig currentRateLimitConfig) { this.currentRateLimitConfig = currentRateLimitConfig; }
-        public List<ConfigChangeRecord> getConfigChangeHistory() { return configChangeHistory; }
-        public void setConfigChangeHistory(List<ConfigChangeRecord> configChangeHistory) { this.configChangeHistory = configChangeHistory; }
-        public DeploymentInfo getDeploymentInfo() { return deploymentInfo; }
-        public void setDeploymentInfo(DeploymentInfo deploymentInfo) { this.deploymentInfo = deploymentInfo; }
+        // 返回默认基线值
+        return SystemMetrics.builder()
+            .cpuUsage(30.0)
+            .memoryUsage(45.0)
+            .gcCount(100)
+            .gcTime(5000)
+            .threadPoolUsage(60.0)
+            .build();
     }
 }
 ```
 
-## 根因分析算法实现
-
-### 基于指标异常的根因分析
+### 业务指标分析器
 
 ```java
-// 基于指标异常的根因分析器
+// 业务指标根因分析器
 @Component
-public class MetricBasedRootCauseAnalyzer {
-    private final MetricsQueryService metricsService;
-    private final CorrelationAnalyzer correlationAnalyzer;
+public class BusinessMetricsRootCauseAnalyzer {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final BusinessMetricsCollector metricsCollector;
     
-    public MetricBasedRootCauseAnalyzer(MetricsQueryService metricsService,
-                                      CorrelationAnalyzer correlationAnalyzer) {
-        this.metricsService = metricsService;
-        this.correlationAnalyzer = correlationAnalyzer;
+    public BusinessMetricsRootCauseAnalyzer(RedisTemplate<String, String> redisTemplate,
+                                          BusinessMetricsCollector metricsCollector) {
+        this.redisTemplate = redisTemplate;
+        this.metricsCollector = metricsCollector;
     }
     
-    public RootCauseAnalysisResult analyze(RateLimitEventContext context) {
-        RootCauseAnalysisResult result = new RootCauseAnalysisResult();
-        result.setResource(context.getResource());
-        result.setAnalysisTime(System.currentTimeMillis());
+    public List<RootCause> analyze(RateLimitEvent event) {
+        List<RootCause> rootCauses = new ArrayList<>();
         
         try {
-            // 分析指标异常
-            analyzeMetricAnomalies(context, result);
+            // 分析限流资源的业务指标
+            analyzeResourceMetrics(event, rootCauses);
             
-            // 分析相关性
-            analyzeCorrelations(context, result);
+            // 分析用户行为模式
+            analyzeUserBehavior(event, rootCauses);
             
-            // 识别最可能的根因
-            identifyRootCause(context, result);
+            // 分析业务趋势
+            analyzeBusinessTrends(event, rootCauses);
             
-            // 计算置信度
-            calculateConfidence(result);
         } catch (Exception e) {
-            log.error("Failed to perform metric-based root cause analysis", e);
-            result.setAnalysisStatus(AnalysisStatus.FAILED);
-            result.setErrorMessage(e.getMessage());
+            log.error("Failed to analyze business metrics for rate limit event: " + event, e);
         }
         
-        return result;
+        return rootCauses;
     }
     
-    private void analyzeMetricAnomalies(RateLimitEventContext context, 
-                                      RootCauseAnalysisResult result) {
-        List<MetricAnomaly> anomalies = new ArrayList<>();
-        
-        // 分析QPS异常
-        MetricAnomaly qpsAnomaly = analyzeQpsAnomaly(context);
-        if (qpsAnomaly != null) {
-            anomalies.add(qpsAnomaly);
-        }
-        
-        // 分析错误率异常
-        MetricAnomaly errorRateAnomaly = analyzeErrorRateAnomaly(context);
-        if (errorRateAnomaly != null) {
-            anomalies.add(errorRateAnomaly);
-        }
-        
-        // 分析延迟异常
-        MetricAnomaly latencyAnomaly = analyzeLatencyAnomaly(context);
-        if (latencyAnomaly != null) {
-            anomalies.add(latencyAnomaly);
-        }
-        
-        // 分析并发异常
-        MetricAnomaly concurrencyAnomaly = analyzeConcurrencyAnomaly(context);
-        if (concurrencyAnomaly != null) {
-            anomalies.add(concurrencyAnomaly);
-        }
-        
-        result.setMetricAnomalies(anomalies);
-    }
-    
-    private MetricAnomaly analyzeQpsAnomaly(RateLimitEventContext context) {
-        List<MetricPoint> qpsHistory = context.getQpsHistory();
-        if (qpsHistory == null || qpsHistory.size() < 10) {
-            return null;
-        }
-        
-        // 计算历史平均值和标准差
-        double avg = qpsHistory.stream()
-            .mapToDouble(MetricPoint::getValue)
-            .average()
-            .orElse(0);
-            
-        double stdDev = Math.sqrt(qpsHistory.stream()
-            .mapToDouble(point -> Math.pow(point.getValue() - avg, 2))
-            .average()
-            .orElse(0));
-        
-        // 获取当前QPS值
-        double currentQps = qpsHistory.get(qpsHistory.size() - 1).getValue();
-        
-        // 判断是否为异常（超过2个标准差）
-        if (Math.abs(currentQps - avg) > 2 * stdDev) {
-            MetricAnomaly anomaly = new MetricAnomaly();
-            anomaly.setMetricType("QPS");
-            anomaly.setCurrentValue(currentQps);
-            anomaly.setExpectedValue(avg);
-            anomaly.setDeviation(Math.abs(currentQps - avg));
-            anomaly.setAnomalyType(currentQps > avg ? AnomalyType.SURGE : AnomalyType.DROP);
-            return anomaly;
-        }
-        
-        return null;
-    }
-    
-    private MetricAnomaly analyzeErrorRateAnomaly(RateLimitEventContext context) {
-        List<MetricPoint> errorRateHistory = context.getErrorRateHistory();
-        if (errorRateHistory == null || errorRateHistory.size() < 10) {
-            return null;
-        }
-        
-        // 计算历史平均值和标准差
-        double avg = errorRateHistory.stream()
-            .mapToDouble(MetricPoint::getValue)
-            .average()
-            .orElse(0);
-            
-        double stdDev = Math.sqrt(errorRateHistory.stream()
-            .mapToDouble(point -> Math.pow(point.getValue() - avg, 2))
-            .average()
-            .orElse(0));
-        
-        // 获取当前错误率
-        double currentErrorRate = errorRateHistory.get(errorRateHistory.size() - 1).getValue();
-        
-        // 判断是否为异常（超过2个标准差且错误率较高）
-        if (currentErrorRate > 0.05 && Math.abs(currentErrorRate - avg) > 2 * stdDev) {
-            MetricAnomaly anomaly = new MetricAnomaly();
-            anomaly.setMetricType("ERROR_RATE");
-            anomaly.setCurrentValue(currentErrorRate);
-            anomaly.setExpectedValue(avg);
-            anomaly.setDeviation(Math.abs(currentErrorRate - avg));
-            anomaly.setAnomalyType(AnomalyType.SURGE);
-            return anomaly;
-        }
-        
-        return null;
-    }
-    
-    private MetricAnomaly analyzeLatencyAnomaly(RateLimitEventContext context) {
-        List<MetricPoint> latencyHistory = context.getLatencyHistory();
-        if (latencyHistory == null || latencyHistory.size() < 10) {
-            return null;
-        }
-        
-        // 计算历史平均值和标准差
-        double avg = latencyHistory.stream()
-            .mapToDouble(MetricPoint::getValue)
-            .average()
-            .orElse(0);
-            
-        double stdDev = Math.sqrt(latencyHistory.stream()
-            .mapToDouble(point -> Math.pow(point.getValue() - avg, 2))
-            .average()
-            .orElse(0));
-        
-        // 获取当前延迟
-        double currentLatency = latencyHistory.get(latencyHistory.size() - 1).getValue();
-        
-        // 判断是否为异常（超过2个标准差且延迟较高）
-        if (currentLatency > 1000 && Math.abs(currentLatency - avg) > 2 * stdDev) {
-            MetricAnomaly anomaly = new MetricAnomaly();
-            anomaly.setMetricType("LATENCY");
-            anomaly.setCurrentValue(currentLatency);
-            anomaly.setExpectedValue(avg);
-            anomaly.setDeviation(Math.abs(currentLatency - avg));
-            anomaly.setAnomalyType(AnomalyType.SURGE);
-            return anomaly;
-        }
-        
-        return null;
-    }
-    
-    private MetricAnomaly analyzeConcurrencyAnomaly(RateLimitEventContext context) {
-        List<MetricPoint> concurrencyHistory = context.getConcurrencyHistory();
-        if (concurrencyHistory == null || concurrencyHistory.size() < 10) {
-            return null;
-        }
-        
-        // 计算历史平均值和标准差
-        double avg = concurrencyHistory.stream()
-            .mapToDouble(MetricPoint::getValue)
-            .average()
-            .orElse(0);
-            
-        double stdDev = Math.sqrt(concurrencyHistory.stream()
-            .mapToDouble(point -> Math.pow(point.getValue() - avg, 2))
-            .average()
-            .orElse(0));
-        
-        // 获取当前并发数
-        double currentConcurrency = concurrencyHistory.get(concurrencyHistory.size() - 1).getValue();
-        
-        // 判断是否为异常（超过2个标准差）
-        if (Math.abs(currentConcurrency - avg) > 2 * stdDev) {
-            MetricAnomaly anomaly = new MetricAnomaly();
-            anomaly.setMetricType("CONCURRENCY");
-            anomaly.setCurrentValue(currentConcurrency);
-            anomaly.setExpectedValue(avg);
-            anomaly.setDeviation(Math.abs(currentConcurrency - avg));
-            anomaly.setAnomalyType(currentConcurrency > avg ? AnomalyType.SURGE : AnomalyType.DROP);
-            return anomaly;
-        }
-        
-        return null;
-    }
-    
-    private void analyzeCorrelations(RateLimitEventContext context, 
-                                   RootCauseAnalysisResult result) {
-        try {
-            List<MetricCorrelation> correlations = new ArrayList<>();
-            
-            // 分析QPS与其他指标的相关性
-            if (context.getQpsHistory() != null && context.getErrorRateHistory() != null) {
-                double correlation = correlationAnalyzer.calculateCorrelation(
-                    context.getQpsHistory(), context.getErrorRateHistory());
-                correlations.add(new MetricCorrelation("QPS", "ERROR_RATE", correlation));
-            }
-            
-            if (context.getQpsHistory() != null && context.getLatencyHistory() != null) {
-                double correlation = correlationAnalyzer.calculateCorrelation(
-                    context.getQpsHistory(), context.getLatencyHistory());
-                correlations.add(new MetricCorrelation("QPS", "LATENCY", correlation));
-            }
-            
-            result.setMetricCorrelations(correlations);
-        } catch (Exception e) {
-            log.warn("Failed to analyze metric correlations", e);
-        }
-    }
-    
-    private void identifyRootCause(RateLimitEventContext context, 
-                                 RootCauseAnalysisResult result) {
-        List<PotentialRootCause> potentialCauses = new ArrayList<>();
-        
-        // 基于指标异常识别潜在根因
-        for (MetricAnomaly anomaly : result.getMetricAnomalies()) {
-            PotentialRootCause cause = identifyCauseFromAnomaly(anomaly, context);
-            if (cause != null) {
-                potentialCauses.add(cause);
-            }
-        }
-        
-        // 基于依赖健康状态识别潜在根因
-        Map<String, ServiceHealthStatus> dependencyHealth = context.getDependencyHealth();
-        if (dependencyHealth != null) {
-            for (Map.Entry<String, ServiceHealthStatus> entry : dependencyHealth.entrySet()) {
-                String service = entry.getKey();
-                ServiceHealthStatus health = entry.getValue();
-                
-                if (!health.isHealthy()) {
-                    PotentialRootCause cause = new PotentialRootCause();
-                    cause.setCauseType(CauseType.DEPENDENCY_FAILURE);
-                    cause.setCauseDescription("Dependency service " + service + " is unhealthy");
-                    cause.setAffectedService(service);
-                    cause.setConfidence(0.8);
-                    potentialCauses.add(cause);
-                }
-            }
-        }
-        
-        // 基于配置变更识别潜在根因
-        List<ConfigChangeRecord> configChanges = context.getConfigChangeHistory();
-        if (configChanges != null && !configChanges.isEmpty()) {
-            ConfigChangeRecord recentChange = configChanges.get(configChanges.size() - 1);
-            if (System.currentTimeMillis() - recentChange.getChangeTime() < 300000) { // 5分钟内
-                PotentialRootCause cause = new PotentialRootCause();
-                cause.setCauseType(CauseType.CONFIGURATION_CHANGE);
-                cause.setCauseDescription("Recent configuration change at " + 
-                    new Date(recentChange.getChangeTime()));
-                cause.setConfidence(0.7);
-                potentialCauses.add(cause);
-            }
-        }
-        
-        result.setPotentialRootCauses(potentialCauses);
-    }
-    
-    private PotentialRootCause identifyCauseFromAnomaly(MetricAnomaly anomaly,
-                                                      RateLimitEventContext context) {
-        PotentialRootCause cause = new PotentialRootCause();
-        
-        switch (anomaly.getMetricType()) {
-            case "QPS":
-                if (anomaly.getAnomalyType() == AnomalyType.SURGE) {
-                    cause.setCauseType(CauseType.TRAFFIC_SURGE);
-                    cause.setCauseDescription("Traffic surge detected");
-                    cause.setConfidence(0.9);
-                } else {
-                    cause.setCauseType(CauseType.SERVICE_DEGRADATION);
-                    cause.setCauseDescription("Service degradation detected");
-                    cause.setConfidence(0.6);
-                }
-                break;
-                
-            case "ERROR_RATE":
-                cause.setCauseType(CauseType.SERVICE_ERROR);
-                cause.setCauseDescription("High error rate detected");
-                cause.setConfidence(0.8);
-                break;
-                
-            case "LATENCY":
-                cause.setCauseType(CauseType.PERFORMANCE_DEGRADATION);
-                cause.setCauseDescription("Performance degradation detected");
-                cause.setConfidence(0.85);
-                break;
-                
-            case "CONCURRENCY":
-                if (anomaly.getAnomalyType() == AnomalyType.SURGE) {
-                    cause.setCauseType(CauseType.RESOURCE_EXHAUSTION);
-                    cause.setCauseDescription("Resource exhaustion detected");
-                    cause.setConfidence(0.75);
-                }
-                break;
-        }
-        
-        return cause;
-    }
-    
-    private void calculateConfidence(RootCauseAnalysisResult result) {
-        List<PotentialRootCause> causes = result.getPotentialRootCauses();
-        if (causes != null && !causes.isEmpty()) {
-            // 简单的置信度计算：取最高置信度的根因
-            PotentialRootCause mostLikelyCause = causes.stream()
-                .max(Comparator.comparingDouble(PotentialRootCause::getConfidence))
-                .orElse(null);
-                
-            if (mostLikelyCause != null) {
-                result.setRootCause(mostLikelyCause);
-                result.setOverallConfidence(mostLikelyCause.getConfidence());
-            }
-        }
-        
-        result.setAnalysisStatus(AnalysisStatus.COMPLETED);
-    }
-    
-    // 指标异常
-    public static class MetricAnomaly {
-        private String metricType;
-        private double currentValue;
-        private double expectedValue;
-        private double deviation;
-        private AnomalyType anomalyType;
-        
-        // getter和setter方法
-        public String getMetricType() { return metricType; }
-        public void setMetricType(String metricType) { this.metricType = metricType; }
-        public double getCurrentValue() { return currentValue; }
-        public void setCurrentValue(double currentValue) { this.currentValue = currentValue; }
-        public double getExpectedValue() { return expectedValue; }
-        public void setExpectedValue(double expectedValue) { this.expectedValue = expectedValue; }
-        public double getDeviation() { return deviation; }
-        public void setDeviation(double deviation) { this.deviation = deviation; }
-        public AnomalyType getAnomalyType() { return anomalyType; }
-        public void setAnomalyType(AnomalyType anomalyType) { this.anomalyType = anomalyType; }
-    }
-    
-    // 异常类型枚举
-    public enum AnomalyType {
-        SURGE, // 激增
-        DROP   // 下降
-    }
-    
-    // 指标相关性
-    public static class MetricCorrelation {
-        private String metric1;
-        private String metric2;
-        private double correlation;
-        
-        public MetricCorrelation(String metric1, String metric2, double correlation) {
-            this.metric1 = metric1;
-            this.metric2 = metric2;
-            this.correlation = correlation;
-        }
-        
-        // getter和setter方法
-        public String getMetric1() { return metric1; }
-        public void setMetric1(String metric1) { this.metric1 = metric1; }
-        public String getMetric2() { return metric2; }
-        public void setMetric2(String metric2) { this.metric2 = metric2; }
-        public double getCorrelation() { return correlation; }
-        public void setCorrelation(double correlation) { this.correlation = correlation; }
-    }
-    
-    // 潜在根因
-    public static class PotentialRootCause {
-        private CauseType causeType;
-        private String causeDescription;
-        private String affectedService;
-        private double confidence;
-        
-        // getter和setter方法
-        public CauseType getCauseType() { return causeType; }
-        public void setCauseType(CauseType causeType) { this.causeType = causeType; }
-        public String getCauseDescription() { return causeDescription; }
-        public void setCauseDescription(String causeDescription) { this.causeDescription = causeDescription; }
-        public String getAffectedService() { return affectedService; }
-        public void setAffectedService(String affectedService) { this.affectedService = affectedService; }
-        public double getConfidence() { return confidence; }
-        public void setConfidence(double confidence) { this.confidence = confidence; }
-    }
-    
-    // 根因类型枚举
-    public enum CauseType {
-        TRAFFIC_SURGE,           // 流量激增
-        SERVICE_ERROR,           // 服务错误
-        PERFORMANCE_DEGRADATION, // 性能下降
-        RESOURCE_EXHAUSTION,     // 资源耗尽
-        DEPENDENCY_FAILURE,      // 依赖故障
-        CONFIGURATION_CHANGE,    // 配置变更
-        SYSTEM_OVERLOAD          // 系统过载
-    }
-    
-    // 根因分析结果
-    public static class RootCauseAnalysisResult {
-        private String resource;
-        private long analysisTime;
-        private AnalysisStatus analysisStatus;
-        private String errorMessage;
-        private List<MetricAnomaly> metricAnomalies;
-        private List<MetricCorrelation> metricCorrelations;
-        private List<PotentialRootCause> potentialRootCauses;
-        private PotentialRootCause rootCause;
-        private double overallConfidence;
-        
-        // 构造函数
-        public RootCauseAnalysisResult() {
-            this.metricAnomalies = new ArrayList<>();
-            this.metricCorrelations = new ArrayList<>();
-            this.potentialRootCauses = new ArrayList<>();
-            this.analysisStatus = AnalysisStatus.PENDING;
-        }
-        
-        // getter和setter方法
-        public String getResource() { return resource; }
-        public void setResource(String resource) { this.resource = resource; }
-        public long getAnalysisTime() { return analysisTime; }
-        public void setAnalysisTime(long analysisTime) { this.analysisTime = analysisTime; }
-        public AnalysisStatus getAnalysisStatus() { return analysisStatus; }
-        public void setAnalysisStatus(AnalysisStatus analysisStatus) { this.analysisStatus = analysisStatus; }
-        public String getErrorMessage() { return errorMessage; }
-        public void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
-        public List<MetricAnomaly> getMetricAnomalies() { return metricAnomalies; }
-        public void setMetricAnomalies(List<MetricAnomaly> metricAnomalies) { this.metricAnomalies = metricAnomalies; }
-        public List<MetricCorrelation> getMetricCorrelations() { return metricCorrelations; }
-        public void setMetricCorrelations(List<MetricCorrelation> metricCorrelations) { this.metricCorrelations = metricCorrelations; }
-        public List<PotentialRootCause> getPotentialRootCauses() { return potentialRootCauses; }
-        public void setPotentialRootCauses(List<PotentialRootCause> potentialRootCauses) { this.potentialRootCauses = potentialRootCauses; }
-        public PotentialRootCause getRootCause() { return rootCause; }
-        public void setRootCause(PotentialRootCause rootCause) { this.rootCause = rootCause; }
-        public double getOverallConfidence() { return overallConfidence; }
-        public void setOverallConfidence(double overallConfidence) { this.overallConfidence = overallConfidence; }
-    }
-    
-    // 分析状态枚举
-    public enum AnalysisStatus {
-        PENDING,   // 待处理
-        PROCESSING, // 处理中
-        COMPLETED,  // 已完成
-        FAILED      // 失败
-    }
-}
-```
-
-### 基于调用链的根因分析
-
-```java
-// 基于调用链的根因分析器
-@Component
-public class TraceBasedRootCauseAnalyzer {
-    private final TracingService tracingService;
-    private final DependencyGraphService dependencyGraphService;
-    
-    public TraceBasedRootCauseAnalyzer(TracingService tracingService,
-                                     DependencyGraphService dependencyGraphService) {
-        this.tracingService = tracingService;
-        this.dependencyGraphService = dependencyGraphService;
-    }
-    
-    public TraceRootCauseAnalysisResult analyze(RateLimitEventContext context) {
-        TraceRootCauseAnalysisResult result = new TraceRootCauseAnalysisResult();
-        result.setResource(context.getResource());
-        result.setAnalysisTime(System.currentTimeMillis());
+    private void analyzeResourceMetrics(RateLimitEvent event, List<RootCause> rootCauses) {
+        String resource = event.getResource();
         
         try {
-            // 分析慢请求调用链
-            analyzeSlowTraces(context, result);
+            // 获取资源的业务指标
+            ResourceMetrics currentMetrics = metricsCollector.getResourceMetrics(resource);
+            ResourceMetrics baselineMetrics = getBaselineResourceMetrics(resource);
             
-            // 分析错误请求调用链
-            analyzeErrorTraces(context, result);
+            // 分析请求量变化
+            analyzeRequestVolume(currentMetrics, baselineMetrics, resource, rootCauses);
             
-            // 识别故障服务
-            identifyFaultyServices(context, result);
+            // 分析错误率变化
+            analyzeErrorRate(currentMetrics, baselineMetrics, resource, rootCauses);
             
-            // 计算服务影响度
-            calculateServiceImpact(context, result);
+            // 分析响应时间变化
+            analyzeResponseTime(currentMetrics, baselineMetrics, resource, rootCauses);
             
-            result.setAnalysisStatus(AnalysisStatus.COMPLETED);
         } catch (Exception e) {
-            log.error("Failed to perform trace-based root cause analysis", e);
-            result.setAnalysisStatus(AnalysisStatus.FAILED);
-            result.setErrorMessage(e.getMessage());
+            log.warn("Failed to analyze resource metrics for resource: " + resource, e);
         }
-        
-        return result;
     }
     
-    private void analyzeSlowTraces(RateLimitEventContext context, 
-                                 TraceRootCauseAnalysisResult result) {
-        List<TraceInfo> slowTraces = context.getSlowTraces();
-        if (slowTraces == null || slowTraces.isEmpty()) {
-            return;
-        }
+    private void analyzeRequestVolume(ResourceMetrics current, ResourceMetrics baseline, 
+                                    String resource, List<RootCause> rootCauses) {
+        long currentRequests = current.getRequestCount();
+        long baselineRequests = baseline.getRequestCount();
         
-        Map<String, ServicePerformanceStats> serviceStats = new HashMap<>();
-        
-        // 统计每个服务的性能数据
-        for (TraceInfo trace : slowTraces) {
-            List<SpanInfo> spans = trace.getSpans();
-            if (spans != null) {
-                for (SpanInfo span : spans) {
-                    String serviceName = span.getServiceName();
-                    ServicePerformanceStats stats = serviceStats.computeIfAbsent(
-                        serviceName, k -> new ServicePerformanceStats(serviceName));
+        if (baselineRequests > 0) {
+            double volumeIncrease = (double) (currentRequests - baselineRequests) / baselineRequests * 100;
+            
+            // 如果请求量显著增加
+            if (volumeIncrease > 50.0) { // 增加超过50%
+                RootCause cause = RootCause.builder()
+                    .type(RootCauseType.BUSINESS_TRAFFIC)
+                    .category("Request Volume")
+                    .description(String.format("Request volume for %s increased by %.2f%%", resource, volumeIncrease))
+                    .confidence(calculateVolumeConfidence(volumeIncrease))
+                    .severity(calculateVolumeSeverity(volumeIncrease))
+                    .details(Map.of(
+                        "resource", resource,
+                        "current_requests", String.valueOf(currentRequests),
+                        "baseline_requests", String.valueOf(baselineRequests),
+                        "increase_percentage", String.format("%.2f%%", volumeIncrease)
+                    ))
+                    .build();
                     
-                    stats.addDuration(span.getDuration());
-                    stats.incrementCallCount();
+                rootCauses.add(cause);
+            }
+        }
+    }
+    
+    private void analyzeErrorRate(ResourceMetrics current, ResourceMetrics baseline, 
+                                String resource, List<RootCause> rootCauses) {
+        double currentErrorRate = current.getErrorRate();
+        double baselineErrorRate = baseline.getErrorRate();
+        double errorRateIncrease = currentErrorRate - baselineErrorRate;
+        
+        // 如果错误率显著增加
+        if (errorRateIncrease > 5.0) { // 增加超过5%
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.BUSINESS_PERFORMANCE)
+                .category("Error Rate")
+                .description(String.format("Error rate for %s increased by %.2f%%", resource, errorRateIncrease))
+                .confidence(calculateErrorRateConfidence(errorRateIncrease))
+                .severity(calculateErrorRateSeverity(errorRateIncrease))
+                .details(Map.of(
+                    "resource", resource,
+                    "current_error_rate", String.format("%.2f%%", currentErrorRate),
+                    "baseline_error_rate", String.format("%.2f%%", baselineErrorRate),
+                    "increase", String.format("%.2f%%", errorRateIncrease)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        }
+    }
+    
+    private void analyzeResponseTime(ResourceMetrics current, ResourceMetrics baseline, 
+                                   String resource, List<RootCause> rootCauses) {
+        double currentResponseTime = current.getAverageResponseTime();
+        double baselineResponseTime = baseline.getAverageResponseTime();
+        double responseTimeIncrease = currentResponseTime - baselineResponseTime;
+        
+        // 如果响应时间显著增加
+        if (responseTimeIncrease > 100.0) { // 增加超过100ms
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.BUSINESS_PERFORMANCE)
+                .category("Response Time")
+                .description(String.format("Response time for %s increased by %.2fms", resource, responseTimeIncrease))
+                .confidence(calculateResponseTimeConfidence(responseTimeIncrease))
+                .severity(calculateResponseTimeSeverity(responseTimeIncrease))
+                .details(Map.of(
+                    "resource", resource,
+                    "current_response_time", String.format("%.2fms", currentResponseTime),
+                    "baseline_response_time", String.format("%.2fms", baselineResponseTime),
+                    "increase", String.format("%.2fms", responseTimeIncrease)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        }
+    }
+    
+    private void analyzeUserBehavior(RateLimitEvent event, List<RootCause> rootCauses) {
+        try {
+            String resource = event.getResource();
+            Map<String, String> dimensions = event.getDimensions();
+            
+            // 分析用户类型分布
+            analyzeUserTypeDistribution(resource, dimensions, rootCauses);
+            
+            // 分析地理位置分布
+            analyzeGeoDistribution(resource, dimensions, rootCauses);
+            
+        } catch (Exception e) {
+            log.warn("Failed to analyze user behavior", e);
+        }
+    }
+    
+    private void analyzeUserTypeDistribution(String resource, Map<String, String> dimensions, 
+                                           List<RootCause> rootCauses) {
+        try {
+            // 获取用户类型分布数据
+            Map<String, Long> currentUserTypeDistribution = 
+                metricsCollector.getUserTypeDistribution(resource);
+            Map<String, Long> baselineUserTypeDistribution = 
+                getBaselineUserTypeDistribution(resource);
+            
+            // 比较分布变化
+            for (Map.Entry<String, Long> entry : currentUserTypeDistribution.entrySet()) {
+                String userType = entry.getKey();
+                Long currentCount = entry.getValue();
+                Long baselineCount = baselineUserTypeDistribution.getOrDefault(userType, 0L);
+                
+                if (baselineCount > 0) {
+                    double increase = (double) (currentCount - baselineCount) / baselineCount * 100;
                     
-                    // 记录慢调用
-                    if (span.getDuration() > 1000) { // 超过1秒
-                        stats.incrementSlowCallCount();
+                    // 如果某种用户类型的请求量显著增加
+                    if (increase > 100.0) { // 增加超过100%
+                        RootCause cause = RootCause.builder()
+                            .type(RootCauseType.USER_BEHAVIOR)
+                            .category("User Type Distribution")
+                            .description(String.format("Requests from %s users increased by %.2f%%", userType, increase))
+                            .confidence(calculateDistributionConfidence(increase))
+                            .severity(calculateDistributionSeverity(increase))
+                            .details(Map.of(
+                                "user_type", userType,
+                                "current_count", String.valueOf(currentCount),
+                                "baseline_count", String.valueOf(baselineCount),
+                                "increase_percentage", String.format("%.2f%%", increase)
+                            ))
+                            .build();
+                            
+                        rootCauses.add(cause);
                     }
                 }
             }
+        } catch (Exception e) {
+            log.warn("Failed to analyze user type distribution", e);
         }
-        
-        result.setServicePerformanceStats(new ArrayList<>(serviceStats.values()));
     }
     
-    private void analyzeErrorTraces(RateLimitEventContext context, 
-                                  TraceRootCauseAnalysisResult result) {
-        List<TraceInfo> errorTraces = context.getErrorTraces();
-        if (errorTraces == null || errorTraces.isEmpty()) {
-            return;
+    private void analyzeGeoDistribution(String resource, Map<String, String> dimensions, 
+                                      List<RootCause> rootCauses) {
+        try {
+            // 检查是否包含地理位置维度
+            if (dimensions.containsKey("geo")) {
+                String geo = dimensions.get("geo");
+                
+                // 获取该地理位置的历史请求数据
+                long currentGeoRequests = metricsCollector.getGeoRequests(resource, geo);
+                long baselineGeoRequests = getBaselineGeoRequests(resource, geo);
+                
+                if (baselineGeoRequests > 0) {
+                    double increase = (double) (currentGeoRequests - baselineGeoRequests) / baselineGeoRequests * 100;
+                    
+                    // 如果某个地理位置的请求量显著增加
+                    if (increase > 200.0) { // 增加超过200%
+                        RootCause cause = RootCause.builder()
+                            .type(RootCauseType.USER_BEHAVIOR)
+                            .category("Geographic Distribution")
+                            .description(String.format("Requests from %s increased by %.2f%%", geo, increase))
+                            .confidence(calculateGeoConfidence(increase))
+                            .severity(calculateGeoSeverity(increase))
+                            .details(Map.of(
+                                "geo", geo,
+                                "current_requests", String.valueOf(currentGeoRequests),
+                                "baseline_requests", String.valueOf(baselineGeoRequests),
+                                "increase_percentage", String.format("%.2f%%", increase)
+                            ))
+                            .build();
+                            
+                        rootCauses.add(cause);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Failed to analyze geographic distribution", e);
         }
-        
-        Map<String, ServiceErrorStats> serviceErrorStats = new HashMap<>();
-        
-        // 统计每个服务的错误数据
-        for (TraceInfo trace : errorTraces) {
-            List<SpanInfo> spans = trace.getSpans();
-            if (spans != null) {
-                for (SpanInfo span : spans) {
-                    if (span.isError()) {
-                        String serviceName = span.getServiceName();
-                        ServiceErrorStats stats = serviceErrorStats.computeIfAbsent(
-                            serviceName, k -> new ServiceErrorStats(serviceName));
+    }
+    
+    private void analyzeBusinessTrends(RateLimitEvent event, List<RootCause> rootCauses) {
+        try {
+            String resource = event.getResource();
+            
+            // 分析时间趋势
+            analyzeTimeTrends(resource, rootCauses);
+            
+            // 分析周期性模式
+            analyzePeriodicPatterns(resource, rootCauses);
+            
+        } catch (Exception e) {
+            log.warn("Failed to analyze business trends", e);
+        }
+    }
+    
+    private void analyzeTimeTrends(String resource, List<RootCause> rootCauses) {
+        try {
+            // 获取最近的请求趋势数据
+            List<TimeSeriesData> recentTrend = metricsCollector.getRequestTrend(resource, 60); // 最近60分钟
+            List<TimeSeriesData> baselineTrend = getBaselineRequestTrend(resource, 60);
+            
+            // 检查是否存在明显的上升趋势
+            double recentAverage = recentTrend.stream()
+                .mapToDouble(TimeSeriesData::getValue)
+                .average()
+                .orElse(0);
+                
+            double baselineAverage = baselineTrend.stream()
+                .mapToDouble(TimeSeriesData::getValue)
+                .average()
+                .orElse(0);
+                
+            if (baselineAverage > 0) {
+                double trendIncrease = (recentAverage - baselineAverage) / baselineAverage * 100;
+                
+                if (trendIncrease > 30.0) { // 趋势增加超过30%
+                    RootCause cause = RootCause.builder()
+                        .type(RootCauseType.BUSINESS_TREND)
+                        .category("Traffic Trend")
+                        .description(String.format("Overall traffic trend for %s increased by %.2f%%", resource, trendIncrease))
+                        .confidence(calculateTrendConfidence(trendIncrease))
+                        .severity(calculateTrendSeverity(trendIncrease))
+                        .details(Map.of(
+                            "resource", resource,
+                            "recent_average", String.format("%.2f", recentAverage),
+                            "baseline_average", String.format("%.2f", baselineAverage),
+                            "increase_percentage", String.format("%.2f%%", trendIncrease)
+                        ))
+                        .build();
                         
-                        stats.incrementErrorCount();
-                        stats.addErrorCode(span.getErrorCode());
-                    }
+                    rootCauses.add(cause);
                 }
             }
-        }
-        
-        result.setServiceErrorStats(new ArrayList<>(serviceErrorStats.values()));
-    }
-    
-    private void identifyFaultyServices(RateLimitEventContext context, 
-                                      TraceRootCauseAnalysisResult result) {
-        List<FaultyService> faultyServices = new ArrayList<>();
-        
-        // 基于性能统计识别故障服务
-        List<ServicePerformanceStats> perfStats = result.getServicePerformanceStats();
-        if (perfStats != null) {
-            for (ServicePerformanceStats stats : perfStats) {
-                // 如果慢调用比例超过10%，认为是潜在故障服务
-                double slowCallRatio = (double) stats.getSlowCallCount() / stats.getCallCount();
-                if (slowCallRatio > 0.1) {
-                    FaultyService faultyService = new FaultyService();
-                    faultyService.setServiceName(stats.getServiceName());
-                    faultyService.setFaultType(FaultType.PERFORMANCE_DEGRADATION);
-                    faultyService.setSlowCallRatio(slowCallRatio);
-                    faultyService.setAverageDuration(stats.getAverageDuration());
-                    faultyService.setConfidence(calculatePerformanceConfidence(stats));
-                    faultyServices.add(faultyService);
-                }
-            }
-        }
-        
-        // 基于错误统计识别故障服务
-        List<ServiceErrorStats> errorStats = result.getServiceErrorStats();
-        if (errorStats != null) {
-            for (ServiceErrorStats stats : errorStats) {
-                // 如果错误率超过5%，认为是故障服务
-                double errorRate = (double) stats.getErrorCount() / 100; // 假设基数为100
-                if (errorRate > 0.05) {
-                    FaultyService faultyService = new FaultyService();
-                    faultyService.setServiceName(stats.getServiceName());
-                    faultyService.setFaultType(FaultType.SERVICE_ERROR);
-                    faultyService.setErrorRate(errorRate);
-                    faultyService.setErrorCodeDistribution(stats.getErrorCodeDistribution());
-                    faultyService.setConfidence(calculateErrorConfidence(stats));
-                    faultyServices.add(faultyService);
-                }
-            }
-        }
-        
-        result.setFaultyServices(faultyServices);
-    }
-    
-    private double calculatePerformanceConfidence(ServicePerformanceStats stats) {
-        // 基于慢调用比例和调用次数计算置信度
-        double slowRatio = (double) stats.getSlowCallCount() / stats.getCallCount();
-        double callCountFactor = Math.min(1.0, (double) stats.getCallCount() / 100);
-        return slowRatio * callCountFactor;
-    }
-    
-    private double calculateErrorConfidence(ServiceErrorStats stats) {
-        // 基于错误率和错误次数计算置信度
-        double errorRate = (double) stats.getErrorCount() / 100;
-        double errorCountFactor = Math.min(1.0, (double) stats.getErrorCount() / 50);
-        return errorRate * errorCountFactor;
-    }
-    
-    private void calculateServiceImpact(RateLimitEventContext context, 
-                                      TraceRootCauseAnalysisResult result) {
-        try {
-            String resource = context.getResource();
-            DependencyGraph dependencyGraph = context.getDependencyGraph();
-            
-            if (dependencyGraph == null) {
-                return;
-            }
-            
-            List<ServiceImpact> serviceImpacts = new ArrayList<>();
-            
-            // 计算每个依赖服务对当前服务的影响度
-            for (String dependency : dependencyGraph.getDependencies()) {
-                ServiceImpact impact = new ServiceImpact();
-                impact.setServiceName(dependency);
-                
-                // 获取依赖服务的健康状态
-                ServiceHealthStatus healthStatus = context.getDependencyHealth().get(dependency);
-                if (healthStatus != null) {
-                    impact.setHealthScore(healthStatus.getHealthScore());
-                }
-                
-                // 计算调用频率
-                double callFrequency = dependencyGraph.getCallFrequency(resource, dependency);
-                impact.setCallFrequency(callFrequency);
-                
-                // 计算依赖度（调用频率 * 健康分数的倒数）
-                double dependencyScore = callFrequency * (1.0 / Math.max(0.1, 
-                    healthStatus != null ? healthStatus.getHealthScore() : 1.0));
-                impact.setDependencyScore(dependencyScore);
-                
-                serviceImpacts.add(impact);
-            }
-            
-            // 按依赖度排序
-            serviceImpacts.sort(Comparator.comparingDouble(ServiceImpact::getDependencyScore).reversed());
-            result.setServiceImpacts(serviceImpacts);
         } catch (Exception e) {
-            log.warn("Failed to calculate service impact", e);
+            log.warn("Failed to analyze time trends", e);
         }
     }
     
-    // 服务性能统计
-    public static class ServicePerformanceStats {
-        private String serviceName;
-        private long totalDuration;
-        private int callCount;
-        private int slowCallCount;
-        private List<Long> durations;
-        
-        public ServicePerformanceStats(String serviceName) {
-            this.serviceName = serviceName;
-            this.durations = new ArrayList<>();
-        }
-        
-        public void addDuration(long duration) {
-            durations.add(duration);
-            totalDuration += duration;
-        }
-        
-        public void incrementCallCount() {
-            callCount++;
-        }
-        
-        public void incrementSlowCallCount() {
-            slowCallCount++;
-        }
-        
-        public double getAverageDuration() {
-            return durations.isEmpty() ? 0 : (double) totalDuration / durations.size();
-        }
-        
-        // getter方法
-        public String getServiceName() { return serviceName; }
-        public long getTotalDuration() { return totalDuration; }
-        public int getCallCount() { return callCount; }
-        public int getSlowCallCount() { return slowCallCount; }
-        public List<Long> getDurations() { return durations; }
+    private double calculateVolumeConfidence(double increase) {
+        return Math.min(0.95, 0.3 + increase / 200.0);
     }
     
-    // 服务错误统计
-    public static class ServiceErrorStats {
-        private String serviceName;
-        private int errorCount;
-        private Map<String, Integer> errorCodeDistribution;
-        
-        public ServiceErrorStats(String serviceName) {
-            this.serviceName = serviceName;
-            this.errorCodeDistribution = new HashMap<>();
+    private RootCauseSeverity calculateVolumeSeverity(double increase) {
+        if (increase > 200.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 100.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 50.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
         }
-        
-        public void incrementErrorCount() {
-            errorCount++;
-        }
-        
-        public void addErrorCode(String errorCode) {
-            errorCodeDistribution.merge(errorCode, 1, Integer::sum);
-        }
-        
-        // getter方法
-        public String getServiceName() { return serviceName; }
-        public int getErrorCount() { return errorCount; }
-        public Map<String, Integer> getErrorCodeDistribution() { return errorCodeDistribution; }
     }
     
-    // 故障服务
-    public static class FaultyService {
-        private String serviceName;
-        private FaultType faultType;
-        private double slowCallRatio;
-        private double averageDuration;
-        private double errorRate;
-        private Map<String, Integer> errorCodeDistribution;
-        private double confidence;
-        
-        // getter和setter方法
-        public String getServiceName() { return serviceName; }
-        public void setServiceName(String serviceName) { this.serviceName = serviceName; }
-        public FaultType getFaultType() { return faultType; }
-        public void setFaultType(FaultType faultType) { this.faultType = faultType; }
-        public double getSlowCallRatio() { return slowCallRatio; }
-        public void setSlowCallRatio(double slowCallRatio) { this.slowCallRatio = slowCallRatio; }
-        public double getAverageDuration() { return averageDuration; }
-        public void setAverageDuration(double averageDuration) { this.averageDuration = averageDuration; }
-        public double getErrorRate() { return errorRate; }
-        public void setErrorRate(double errorRate) { this.errorRate = errorRate; }
-        public Map<String, Integer> getErrorCodeDistribution() { return errorCodeDistribution; }
-        public void setErrorCodeDistribution(Map<String, Integer> errorCodeDistribution) { this.errorCodeDistribution = errorCodeDistribution; }
-        public double getConfidence() { return confidence; }
-        public void setConfidence(double confidence) { this.confidence = confidence; }
+    private double calculateErrorRateConfidence(double increase) {
+        return Math.min(0.95, 0.4 + increase / 20.0);
     }
     
-    // 故障类型枚举
-    public enum FaultType {
-        PERFORMANCE_DEGRADATION, // 性能下降
-        SERVICE_ERROR            // 服务错误
+    private RootCauseSeverity calculateErrorRateSeverity(double increase) {
+        if (increase > 15.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 10.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 5.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
     }
     
-    // 服务影响度
-    public static class ServiceImpact {
-        private String serviceName;
-        private double healthScore;
-        private double callFrequency;
-        private double dependencyScore;
-        
-        // getter和setter方法
-        public String getServiceName() { return serviceName; }
-        public void setServiceName(String serviceName) { this.serviceName = serviceName; }
-        public double getHealthScore() { return healthScore; }
-        public void setHealthScore(double healthScore) { this.healthScore = healthScore; }
-        public double getCallFrequency() { return callFrequency; }
-        public void setCallFrequency(double callFrequency) { this.callFrequency = callFrequency; }
-        public double getDependencyScore() { return dependencyScore; }
-        public void setDependencyScore(double dependencyScore) { this.dependencyScore = dependencyScore; }
+    private double calculateResponseTimeConfidence(double increase) {
+        return Math.min(0.95, 0.3 + increase / 500.0);
     }
     
-    // 基于调用链的根因分析结果
-    public static class TraceRootCauseAnalysisResult {
-        private String resource;
-        private long analysisTime;
-        private AnalysisStatus analysisStatus;
-        private String errorMessage;
-        private List<ServicePerformanceStats> servicePerformanceStats;
-        private List<ServiceErrorStats> serviceErrorStats;
-        private List<FaultyService> faultyServices;
-        private List<ServiceImpact> serviceImpacts;
-        
-        public TraceRootCauseAnalysisResult() {
-            this.servicePerformanceStats = new ArrayList<>();
-            this.serviceErrorStats = new ArrayList<>();
-            this.faultyServices = new ArrayList<>();
-            this.serviceImpacts = new ArrayList<>();
-            this.analysisStatus = AnalysisStatus.PENDING;
+    private RootCauseSeverity calculateResponseTimeSeverity(double increase) {
+        if (increase > 500.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 300.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 100.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private double calculateDistributionConfidence(double increase) {
+        return Math.min(0.95, 0.2 + increase / 300.0);
+    }
+    
+    private RootCauseSeverity calculateDistributionSeverity(double increase) {
+        if (increase > 300.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 200.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 100.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private double calculateGeoConfidence(double increase) {
+        return Math.min(0.95, 0.3 + increase / 400.0);
+    }
+    
+    private RootCauseSeverity calculateGeoSeverity(double increase) {
+        if (increase > 400.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 300.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 200.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private double calculateTrendConfidence(double increase) {
+        return Math.min(0.95, 0.2 + increase / 100.0);
+    }
+    
+    private RootCauseSeverity calculateTrendSeverity(double increase) {
+        if (increase > 100.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 60.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 30.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private ResourceMetrics getBaselineResourceMetrics(String resource) {
+        try {
+            String key = "business_metrics:baseline:" + resource;
+            String json = redisTemplate.opsForValue().get(key);
+            
+            if (json != null && !json.isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                return mapper.readValue(json, ResourceMetrics.class);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to get baseline resource metrics for: " + resource, e);
         }
         
-        // getter和setter方法
-        public String getResource() { return resource; }
-        public void setResource(String resource) { this.resource = resource; }
-        public long getAnalysisTime() { return analysisTime; }
-        public void setAnalysisTime(long analysisTime) { this.analysisTime = analysisTime; }
-        public AnalysisStatus getAnalysisStatus() { return analysisStatus; }
-        public void setAnalysisStatus(AnalysisStatus analysisStatus) { this.analysisStatus = analysisStatus; }
-        public String getErrorMessage() { return errorMessage; }
-        public void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
-        public List<ServicePerformanceStats> getServicePerformanceStats() { return servicePerformanceStats; }
-        public void setServicePerformanceStats(List<ServicePerformanceStats> servicePerformanceStats) { this.servicePerformanceStats = servicePerformanceStats; }
-        public List<ServiceErrorStats> getServiceErrorStats() { return serviceErrorStats; }
-        public void setServiceErrorStats(List<ServiceErrorStats> serviceErrorStats) { this.serviceErrorStats = serviceErrorStats; }
-        public List<FaultyService> getFaultyServices() { return faultyServices; }
-        public void setFaultyServices(List<FaultyService> faultyServices) { this.faultyServices = faultyServices; }
-        public List<ServiceImpact> getServiceImpacts() { return serviceImpacts; }
-        public void setServiceImpacts(List<ServiceImpact> serviceImpacts) { this.serviceImpacts = serviceImpacts; }
+        return ResourceMetrics.builder()
+            .requestCount(1000)
+            .errorRate(1.0)
+            .averageResponseTime(50.0)
+            .build();
+    }
+    
+    private Map<String, Long> getBaselineUserTypeDistribution(String resource) {
+        try {
+            String key = "business_metrics:baseline:user_type:" + resource;
+            String json = redisTemplate.opsForValue().get(key);
+            
+            if (json != null && !json.isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                JavaType type = mapper.getTypeFactory()
+                    .constructMapType(Map.class, String.class, Long.class);
+                return mapper.readValue(json, type);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to get baseline user type distribution for: " + resource, e);
+        }
+        
+        Map<String, Long> defaultDistribution = new HashMap<>();
+        defaultDistribution.put("normal", 800L);
+        defaultDistribution.put("vip", 150L);
+        defaultDistribution.put("guest", 50L);
+        return defaultDistribution;
+    }
+    
+    private long getBaselineGeoRequests(String resource, String geo) {
+        try {
+            String key = "business_metrics:baseline:geo:" + resource + ":" + geo;
+            String value = redisTemplate.opsForValue().get(key);
+            
+            if (value != null && !value.isEmpty()) {
+                return Long.parseLong(value);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to get baseline geo requests for: " + resource + ", " + geo, e);
+        }
+        
+        return 100L; // 默认值
+    }
+    
+    private List<TimeSeriesData> getBaselineRequestTrend(String resource, int minutes) {
+        List<TimeSeriesData> trend = new ArrayList<>();
+        long currentTime = System.currentTimeMillis();
+        
+        // 生成默认的基线趋势数据
+        for (int i = minutes - 1; i >= 0; i--) {
+            long timestamp = currentTime - i * 60000L; // 每分钟一个点
+            double value = 1000.0 + Math.random() * 200.0; // 1000 ± 200的随机值
+            trend.add(new TimeSeriesData(timestamp, value));
+        }
+        
+        return trend;
     }
 }
 ```
 
-## 综合根因分析
+### 依赖服务分析器
 
-### 多维度根因分析器
+```java
+// 依赖服务根因分析器
+@Component
+public class DependencyRootCauseAnalyzer {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final DependencyMetricsCollector metricsCollector;
+    
+    public DependencyRootCauseAnalyzer(RedisTemplate<String, String> redisTemplate,
+                                     DependencyMetricsCollector metricsCollector) {
+        this.redisTemplate = redisTemplate;
+        this.metricsCollector = metricsCollector;
+    }
+    
+    public List<RootCause> analyze(RateLimitEvent event) {
+        List<RootCause> rootCauses = new ArrayList<>();
+        
+        try {
+            // 分析直接依赖服务
+            analyzeDirectDependencies(event, rootCauses);
+            
+            // 分析间接依赖服务
+            analyzeIndirectDependencies(event, rootCauses);
+            
+        } catch (Exception e) {
+            log.error("Failed to analyze dependencies for rate limit event: " + event, e);
+        }
+        
+        return rootCauses;
+    }
+    
+    private void analyzeDirectDependencies(RateLimitEvent event, List<RootCause> rootCauses) {
+        try {
+            String resource = event.getResource();
+            
+            // 获取该资源依赖的服务列表
+            List<String> dependentServices = getDependentServices(resource);
+            
+            for (String service : dependentServices) {
+                // 分析服务健康状态
+                analyzeServiceHealth(service, rootCauses);
+                
+                // 分析服务性能指标
+                analyzeServicePerformance(service, rootCauses);
+                
+                // 分析服务调用链路
+                analyzeServiceCallChain(service, resource, rootCauses);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to analyze direct dependencies", e);
+        }
+    }
+    
+    private void analyzeIndirectDependencies(RateLimitEvent event, List<RootCause> rootCauses) {
+        try {
+            String resource = event.getResource();
+            
+            // 获取间接依赖服务
+            List<String> indirectDependencies = getIndirectDependencies(resource);
+            
+            for (String service : indirectDependencies) {
+                // 分析间接依赖的健康状态
+                analyzeServiceHealth(service, rootCauses);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to analyze indirect dependencies", e);
+        }
+    }
+    
+    private void analyzeServiceHealth(String service, List<RootCause> rootCauses) {
+        try {
+            // 获取服务健康状态
+            ServiceHealth health = metricsCollector.getServiceHealth(service);
+            
+            // 检查服务是否不健康
+            if (!health.isHealthy()) {
+                RootCause cause = RootCause.builder()
+                    .type(RootCauseType.DEPENDENCY_FAILURE)
+                    .category("Service Health")
+                    .description(String.format("Dependency service %s is unhealthy", service))
+                    .confidence(0.9)
+                    .severity(RootCauseSeverity.HIGH)
+                    .details(Map.of(
+                        "service", service,
+                        "status", health.getStatus(),
+                        "message", health.getMessage()
+                    ))
+                    .build();
+                    
+                rootCauses.add(cause);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to analyze service health for: " + service, e);
+        }
+    }
+    
+    private void analyzeServicePerformance(String service, List<RootCause> rootCauses) {
+        try {
+            // 获取服务性能指标
+            ServiceMetrics currentMetrics = metricsCollector.getServiceMetrics(service);
+            ServiceMetrics baselineMetrics = getBaselineServiceMetrics(service);
+            
+            // 分析响应时间
+            analyzeServiceResponseTime(currentMetrics, baselineMetrics, service, rootCauses);
+            
+            // 分析错误率
+            analyzeServiceErrorRate(currentMetrics, baselineMetrics, service, rootCauses);
+            
+            // 分析吞吐量
+            analyzeServiceThroughput(currentMetrics, baselineMetrics, service, rootCauses);
+        } catch (Exception e) {
+            log.warn("Failed to analyze service performance for: " + service, e);
+        }
+    }
+    
+    private void analyzeServiceResponseTime(ServiceMetrics current, ServiceMetrics baseline, 
+                                         String service, List<RootCause> rootCauses) {
+        double currentResponseTime = current.getAverageResponseTime();
+        double baselineResponseTime = baseline.getAverageResponseTime();
+        double responseTimeIncrease = currentResponseTime - baselineResponseTime;
+        
+        // 如果响应时间显著增加
+        if (responseTimeIncrease > 200.0) { // 增加超过200ms
+            double increasePercentage = (responseTimeIncrease / baselineResponseTime) * 100;
+            
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.DEPENDENCY_PERFORMANCE)
+                .category("Service Response Time")
+                .description(String.format("Dependency service %s response time increased by %.2fms (%.2f%%)", 
+                    service, responseTimeIncrease, increasePercentage))
+                .confidence(calculateResponseTimeConfidence(responseTimeIncrease, baselineResponseTime))
+                .severity(calculateResponseTimeSeverity(responseTimeIncrease))
+                .details(Map.of(
+                    "service", service,
+                    "current_response_time", String.format("%.2fms", currentResponseTime),
+                    "baseline_response_time", String.format("%.2fms", baselineResponseTime),
+                    "increase", String.format("%.2fms", responseTimeIncrease),
+                    "increase_percentage", String.format("%.2f%%", increasePercentage)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        }
+    }
+    
+    private void analyzeServiceErrorRate(ServiceMetrics current, ServiceMetrics baseline, 
+                                       String service, List<RootCause> rootCauses) {
+        double currentErrorRate = current.getErrorRate();
+        double baselineErrorRate = baseline.getErrorRate();
+        double errorRateIncrease = currentErrorRate - baselineErrorRate;
+        
+        // 如果错误率显著增加
+        if (errorRateIncrease > 3.0) { // 增加超过3%
+            RootCause cause = RootCause.builder()
+                .type(RootCauseType.DEPENDENCY_PERFORMANCE)
+                .category("Service Error Rate")
+                .description(String.format("Dependency service %s error rate increased by %.2f%%", 
+                    service, errorRateIncrease))
+                .confidence(calculateErrorRateConfidence(errorRateIncrease))
+                .severity(calculateErrorRateSeverity(errorRateIncrease))
+                .details(Map.of(
+                    "service", service,
+                    "current_error_rate", String.format("%.2f%%", currentErrorRate),
+                    "baseline_error_rate", String.format("%.2f%%", baselineErrorRate),
+                    "increase", String.format("%.2f%%", errorRateIncrease)
+                ))
+                .build();
+                
+            rootCauses.add(cause);
+        }
+    }
+    
+    private void analyzeServiceThroughput(ServiceMetrics current, ServiceMetrics baseline, 
+                                        String service, List<RootCause> rootCauses) {
+        double currentThroughput = current.getThroughput();
+        double baselineThroughput = baseline.getThroughput();
+        
+        if (baselineThroughput > 0) {
+            double throughputDecrease = baselineThroughput - currentThroughput;
+            double decreasePercentage = (throughputDecrease / baselineThroughput) * 100;
+            
+            // 如果吞吐量显著下降
+            if (decreasePercentage > 20.0) { // 下降超过20%
+                RootCause cause = RootCause.builder()
+                    .type(RootCauseType.DEPENDENCY_PERFORMANCE)
+                    .category("Service Throughput")
+                    .description(String.format("Dependency service %s throughput decreased by %.2f%%", 
+                        service, decreasePercentage))
+                    .confidence(calculateThroughputConfidence(decreasePercentage))
+                    .severity(calculateThroughputSeverity(decreasePercentage))
+                    .details(Map.of(
+                        "service", service,
+                        "current_throughput", String.format("%.2f", currentThroughput),
+                        "baseline_throughput", String.format("%.2f", baselineThroughput),
+                        "decrease_percentage", String.format("%.2f%%", decreasePercentage)
+                    ))
+                    .build();
+                    
+                rootCauses.add(cause);
+            }
+        }
+    }
+    
+    private void analyzeServiceCallChain(String service, String resource, List<RootCause> rootCauses) {
+        try {
+            // 分析调用链路中的异常
+            List<CallChainSpan> spans = metricsCollector.getCallChainSpans(resource, service);
+            
+            // 检查是否存在异常的调用模式
+            for (CallChainSpan span : spans) {
+                if (span.getDuration() > 5000) { // 调用超过5秒
+                    RootCause cause = RootCause.builder()
+                        .type(RootCauseType.DEPENDENCY_PERFORMANCE)
+                        .category("Call Chain Analysis")
+                        .description(String.format("Slow call to service %s detected in call chain", service))
+                        .confidence(0.8)
+                        .severity(RootCauseSeverity.MEDIUM)
+                        .details(Map.of(
+                            "service", service,
+                            "resource", resource,
+                            "duration", String.valueOf(span.getDuration()),
+                            "trace_id", span.getTraceId()
+                        ))
+                        .build();
+                        
+                    rootCauses.add(cause);
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Failed to analyze service call chain for: " + service, e);
+        }
+    }
+    
+    private double calculateResponseTimeConfidence(double increase, double baseline) {
+        if (baseline <= 0) return 0.5;
+        double ratio = increase / baseline;
+        return Math.min(0.95, 0.4 + ratio * 0.2);
+    }
+    
+    private RootCauseSeverity calculateResponseTimeSeverity(double increase) {
+        if (increase > 1000.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 500.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 200.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private double calculateErrorRateConfidence(double increase) {
+        return Math.min(0.95, 0.3 + increase / 10.0);
+    }
+    
+    private RootCauseSeverity calculateErrorRateSeverity(double increase) {
+        if (increase > 10.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (increase > 6.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (increase > 3.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private double calculateThroughputConfidence(double decreasePercentage) {
+        return Math.min(0.95, 0.2 + decreasePercentage / 50.0);
+    }
+    
+    private RootCauseSeverity calculateThroughputSeverity(double decreasePercentage) {
+        if (decreasePercentage > 50.0) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (decreasePercentage > 35.0) {
+            return RootCauseSeverity.HIGH;
+        } else if (decreasePercentage > 20.0) {
+            return RootCauseSeverity.MEDIUM;
+        } else {
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private List<String> getDependentServices(String resource) {
+        try {
+            String key = "dependencies:direct:" + resource;
+            return redisTemplate.opsForList().range(key, 0, -1);
+        } catch (Exception e) {
+            log.warn("Failed to get dependent services for: " + resource, e);
+            return new ArrayList<>();
+        }
+    }
+    
+    private List<String> getIndirectDependencies(String resource) {
+        try {
+            String key = "dependencies:indirect:" + resource;
+            return redisTemplate.opsForList().range(key, 0, -1);
+        } catch (Exception e) {
+            log.warn("Failed to get indirect dependencies for: " + resource, e);
+            return new ArrayList<>();
+        }
+    }
+    
+    private ServiceMetrics getBaselineServiceMetrics(String service) {
+        try {
+            String key = "service_metrics:baseline:" + service;
+            String json = redisTemplate.opsForValue().get(key);
+            
+            if (json != null && !json.isEmpty()) {
+                ObjectMapper mapper = new ObjectMapper();
+                return mapper.readValue(json, ServiceMetrics.class);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to get baseline service metrics for: " + service, e);
+        }
+        
+        return ServiceMetrics.builder()
+            .averageResponseTime(100.0)
+            .errorRate(0.5)
+            .throughput(1000.0)
+            .build();
+    }
+}
+```
+
+## 综合根因分析器
+
+### 多维度分析融合
 
 ```java
 // 综合根因分析器
 @Component
 public class ComprehensiveRootCauseAnalyzer {
-    private final MetricBasedRootCauseAnalyzer metricAnalyzer;
-    private final TraceBasedRootCauseAnalyzer traceAnalyzer;
-    private final SystemMetricsAnalyzer systemAnalyzer;
-    private final AlertNotificationService alertService;
+    private final SystemMetricsRootCauseAnalyzer systemAnalyzer;
+    private final BusinessMetricsRootCauseAnalyzer businessAnalyzer;
+    private final DependencyRootCauseAnalyzer dependencyAnalyzer;
+    private final RedisTemplate<String, String> redisTemplate;
     
-    public ComprehensiveRootCauseAnalyzer(MetricBasedRootCauseAnalyzer metricAnalyzer,
-                                       TraceBasedRootCauseAnalyzer traceAnalyzer,
-                                       SystemMetricsAnalyzer systemAnalyzer,
-                                       AlertNotificationService alertService) {
-        this.metricAnalyzer = metricAnalyzer;
-        this.traceAnalyzer = traceAnalyzer;
+    public ComprehensiveRootCauseAnalyzer(SystemMetricsRootCauseAnalyzer systemAnalyzer,
+                                        BusinessMetricsRootCauseAnalyzer businessAnalyzer,
+                                        DependencyRootCauseAnalyzer dependencyAnalyzer,
+                                        RedisTemplate<String, String> redisTemplate) {
         this.systemAnalyzer = systemAnalyzer;
-        this.alertService = alertService;
+        this.businessAnalyzer = businessAnalyzer;
+        this.dependencyAnalyzer = dependencyAnalyzer;
+        this.redisTemplate = redisTemplate;
     }
     
-    public ComprehensiveRootCauseAnalysisResult analyze(RateLimitEventContext context) {
-        ComprehensiveRootCauseAnalysisResult result = new ComprehensiveRootCauseAnalysisResult();
-        result.setResource(context.getResource());
-        result.setAnalysisTime(System.currentTimeMillis());
+    public RootCauseAnalysisResult analyze(RateLimitEvent event) {
+        long startTime = System.currentTimeMillis();
         
         try {
-            // 执行多维度分析
-            performMultiDimensionalAnalysis(context, result);
+            // 1. 并行执行各维度分析
+            List<RootCause> systemRootCauses = systemAnalyzer.analyze(event);
+            List<RootCause> businessRootCauses = businessAnalyzer.analyze(event);
+            List<RootCause> dependencyRootCauses = dependencyAnalyzer.analyze(event);
             
-            // 融合分析结果
-            fuseAnalysisResults(context, result);
+            // 2. 合并所有根因
+            List<RootCause> allRootCauses = new ArrayList<>();
+            allRootCauses.addAll(systemRootCauses);
+            allRootCauses.addAll(businessRootCauses);
+            allRootCauses.addAll(dependencyRootCauses);
             
-            // 生成根因报告
-            generateRootCauseReport(context, result);
+            // 3. 根因去重和合并
+            List<RootCause> mergedRootCauses = mergeRootCauses(allRootCauses);
             
-            // 发送告警
-            sendRootCauseAlert(context, result);
+            // 4. 根因排序
+            List<RootCause> sortedRootCauses = sortRootCauses(mergedRootCauses);
             
-            result.setAnalysisStatus(AnalysisStatus.COMPLETED);
+            // 5. 生成分析报告
+            RootCauseAnalysisResult result = generateAnalysisResult(event, sortedRootCauses, startTime);
+            
+            // 6. 记录分析结果
+            recordAnalysisResult(result);
+            
+            return result;
         } catch (Exception e) {
-            log.error("Failed to perform comprehensive root cause analysis", e);
-            result.setAnalysisStatus(AnalysisStatus.FAILED);
-            result.setErrorMessage(e.getMessage());
-        }
-        
-        return result;
-    }
-    
-    private void performMultiDimensionalAnalysis(RateLimitEventContext context, 
-                                               ComprehensiveRootCauseAnalysisResult result) {
-        // 执行基于指标的分析
-        RootCauseAnalysisResult metricResult = metricAnalyzer.analyze(context);
-        result.setMetricAnalysisResult(metricResult);
-        
-        // 执行基于调用链的分析
-        TraceRootCauseAnalysisResult traceResult = traceAnalyzer.analyze(context);
-        result.setTraceAnalysisResult(traceResult);
-        
-        // 执行系统级别分析
-        SystemRootCauseAnalysisResult systemResult = systemAnalyzer.analyze(context);
-        result.setSystemAnalysisResult(systemResult);
-    }
-    
-    private void fuseAnalysisResults(RateLimitEventContext context, 
-                                   ComprehensiveRootCauseAnalysisResult result) {
-        List<FusedRootCause> fusedCauses = new ArrayList<>();
-        
-        // 融合指标分析结果
-        RootCauseAnalysisResult metricResult = result.getMetricAnalysisResult();
-        if (metricResult != null && metricResult.getRootCause() != null) {
-            FusedRootCause cause = new FusedRootCause();
-            cause.setCauseType(metricResult.getRootCause().getCauseType());
-            cause.setDescription(metricResult.getRootCause().getCauseDescription());
-            cause.setConfidence(metricResult.getRootCause().getConfidence());
-            cause.setSource(AnalysisSource.METRIC);
-            fusedCauses.add(cause);
-        }
-        
-        // 融合调用链分析结果
-        TraceRootCauseAnalysisResult traceResult = result.getTraceAnalysisResult();
-        if (traceResult != null && traceResult.getFaultyServices() != null) {
-            for (FaultyService faultyService : traceResult.getFaultyServices()) {
-                FusedRootCause cause = new FusedRootCause();
-                cause.setCauseType(CauseType.DEPENDENCY_FAILURE);
-                cause.setDescription("Faulty service: " + faultyService.getServiceName());
-                cause.setConfidence(faultyService.getConfidence());
-                cause.setSource(AnalysisSource.TRACE);
-                cause.setAffectedService(faultyService.getServiceName());
-                fusedCauses.add(cause);
-            }
-        }
-        
-        // 融合系统分析结果
-        SystemRootCauseAnalysisResult systemResult = result.getSystemAnalysisResult();
-        if (systemResult != null && systemResult.getSystemBottlenecks() != null) {
-            for (SystemBottleneck bottleneck : systemResult.getSystemBottlenecks()) {
-                FusedRootCause cause = new FusedRootCause();
-                cause.setCauseType(CauseType.RESOURCE_EXHAUSTION);
-                cause.setDescription("System bottleneck: " + bottleneck.getResourceType());
-                cause.setConfidence(bottleneck.getConfidence());
-                cause.setSource(AnalysisSource.SYSTEM);
-                fusedCauses.add(cause);
-            }
-        }
-        
-        result.setFusedRootCauses(fusedCauses);
-    }
-    
-    private void generateRootCauseReport(RateLimitEventContext context, 
-                                       ComprehensiveRootCauseAnalysisResult result) {
-        RootCauseReport report = new RootCauseReport();
-        report.setResource(context.getResource());
-        report.setTriggerTime(context.getTriggerInfo().getTriggerTime());
-        report.setGeneratedTime(System.currentTimeMillis());
-        
-        // 确定最可能的根因
-        List<FusedRootCause> causes = result.getFusedRootCauses();
-        if (causes != null && !causes.isEmpty()) {
-            FusedRootCause mostLikelyCause = causes.stream()
-                .max(Comparator.comparingDouble(FusedRootCause::getConfidence))
-                .orElse(null);
-                
-            if (mostLikelyCause != null) {
-                report.setRootCause(mostLikelyCause);
-                report.setConfidence(mostLikelyCause.getConfidence());
-            }
-        }
-        
-        // 添加详细分析信息
-        report.setMetricAnomalies(getMetricAnomalies(context));
-        report.setFaultyServices(getFaultyServices(context));
-        report.setSystemBottlenecks(getSystemBottlenecks(context));
-        report.setRecommendations(generateRecommendations(report));
-        
-        result.setRootCauseReport(report);
-    }
-    
-    private List<MetricAnomaly> getMetricAnomalies(RateLimitEventContext context) {
-        // 从上下文中提取指标异常信息
-        return new ArrayList<>(); // 简化实现
-    }
-    
-    private List<FaultyService> getFaultyServices(RateLimitEventContext context) {
-        // 从上下文中提取故障服务信息
-        return new ArrayList<>(); // 简化实现
-    }
-    
-    private List<SystemBottleneck> getSystemBottlenecks(RateLimitEventContext context) {
-        // 从上下文中提取系统瓶颈信息
-        return new ArrayList<>(); // 简化实现
-    }
-    
-    private List<String> generateRecommendations(RootCauseReport report) {
-        List<String> recommendations = new ArrayList<>();
-        
-        FusedRootCause rootCause = report.getRootCause();
-        if (rootCause != null) {
-            switch (rootCause.getCauseType()) {
-                case TRAFFIC_SURGE:
-                    recommendations.add("Consider increasing rate limit threshold temporarily");
-                    recommendations.add("Implement auto-scaling for the service");
-                    break;
-                case SERVICE_ERROR:
-                    recommendations.add("Check the error logs of the affected service");
-                    recommendations.add("Verify service dependencies and configurations");
-                    break;
-                case PERFORMANCE_DEGRADATION:
-                    recommendations.add("Profile the service to identify performance bottlenecks");
-                    recommendations.add("Check database queries and external API calls");
-                    break;
-                case RESOURCE_EXHAUSTION:
-                    recommendations.add("Scale up the service resources (CPU, memory, etc.)");
-                    recommendations.add("Optimize resource usage in the application");
-                    break;
-                case DEPENDENCY_FAILURE:
-                    recommendations.add("Check the health of dependency service: " + 
-                                      rootCause.getAffectedService());
-                    recommendations.add("Implement circuit breaker for the dependency");
-                    break;
-                case CONFIGURATION_CHANGE:
-                    recommendations.add("Review recent configuration changes");
-                    recommendations.add("Consider rolling back the configuration if needed");
-                    break;
-                case SYSTEM_OVERLOAD:
-                    recommendations.add("Distribute load across multiple instances");
-                    recommendations.add("Implement request queuing or batching");
-                    break;
-            }
-        }
-        
-        return recommendations;
-    }
-    
-    private void sendRootCauseAlert(RateLimitEventContext context, 
-                                  ComprehensiveRootCauseAnalysisResult result) {
-        try {
-            RootCauseReport report = result.getRootCauseReport();
-            if (report == null) {
-                return;
-            }
+            log.error("Failed to perform comprehensive root cause analysis for event: " + event, e);
             
-            AlertEvent alert = new AlertEvent();
-            alert.setTitle("Root Cause Analysis Completed for Rate Limit Event");
-            alert.setMessage(generateAlertMessage(report));
-            alert.setLevel("INFO");
-            alert.setTimestamp(System.currentTimeMillis());
-            
-            Map<String, Object> details = new HashMap<>();
-            details.put("resource", report.getResource());
-            details.put("rootCause", report.getRootCause() != null ? 
-                       report.getRootCause().getDescription() : "Unknown");
-            details.put("confidence", report.getConfidence());
-            details.put("recommendations", report.getRecommendations());
-            alert.setDetails(details);
-            
-            alertService.sendAlert(alert);
-        } catch (Exception e) {
-            log.warn("Failed to send root cause alert", e);
+            // 返回默认分析结果
+            return RootCauseAnalysisResult.builder()
+                .eventId(event.getId())
+                .timestamp(System.currentTimeMillis())
+                .rootCauses(new ArrayList<>())
+                .confidence(0.0)
+                .processingTime(System.currentTimeMillis() - startTime)
+                .status(AnalysisStatus.FAILED)
+                .errorMessage(e.getMessage())
+                .build();
         }
     }
     
-    private String generateAlertMessage(RootCauseReport report) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Rate limit event for resource '").append(report.getResource())
-          .append("' has been analyzed. ");
-          
-        FusedRootCause rootCause = report.getRootCause();
-        if (rootCause != null) {
-            sb.append("Most likely root cause: ").append(rootCause.getDescription())
-              .append(" (confidence: ").append(String.format("%.2f", report.getConfidence()))
-              .append(")");
+    private List<RootCause> mergeRootCauses(List<RootCause> rootCauses) {
+        Map<String, RootCause> mergedMap = new HashMap<>();
+        
+        for (RootCause cause : rootCauses) {
+            String key = generateCauseKey(cause);
+            
+            if (mergedMap.containsKey(key)) {
+                // 合并相同类型的根因
+                RootCause existing = mergedMap.get(key);
+                RootCause merged = mergeRootCause(existing, cause);
+                mergedMap.put(key, merged);
+            } else {
+                mergedMap.put(key, cause);
+            }
+        }
+        
+        return new ArrayList<>(mergedMap.values());
+    }
+    
+    private String generateCauseKey(RootCause cause) {
+        return cause.getType().name() + ":" + cause.getCategory() + ":" + 
+               cause.getDescription().hashCode();
+    }
+    
+    private RootCause mergeRootCause(RootCause existing, RootCause newCause) {
+        // 合并置信度（取最大值）
+        double mergedConfidence = Math.max(existing.getConfidence(), newCause.getConfidence());
+        
+        // 合并严重程度（取较高值）
+        RootCauseSeverity mergedSeverity = getHigherSeverity(existing.getSeverity(), newCause.getSeverity());
+        
+        // 合并详情信息
+        Map<String, String> mergedDetails = new HashMap<>(existing.getDetails());
+        mergedDetails.putAll(newCause.getDetails());
+        
+        return RootCause.builder()
+            .type(existing.getType())
+            .category(existing.getCategory())
+            .description(existing.getDescription())
+            .confidence(mergedConfidence)
+            .severity(mergedSeverity)
+            .details(mergedDetails)
+            .build();
+    }
+    
+    private RootCauseSeverity getHigherSeverity(RootCauseSeverity s1, RootCauseSeverity s2) {
+        if (s1 == RootCauseSeverity.CRITICAL || s2 == RootCauseSeverity.CRITICAL) {
+            return RootCauseSeverity.CRITICAL;
+        } else if (s1 == RootCauseSeverity.HIGH || s2 == RootCauseSeverity.HIGH) {
+            return RootCauseSeverity.HIGH;
+        } else if (s1 == RootCauseSeverity.MEDIUM || s2 == RootCauseSeverity.MEDIUM) {
+            return RootCauseSeverity.MEDIUM;
         } else {
-            sb.append("Root cause could not be determined.");
+            return RootCauseSeverity.LOW;
+        }
+    }
+    
+    private List<RootCause> sortRootCauses(List<RootCause> rootCauses) {
+        return rootCauses.stream()
+            .sorted((c1, c2) -> {
+                // 首先按严重程度排序
+                int severityComparison = c2.getSeverity().compareTo(c1.getSeverity());
+                if (severityComparison != 0) {
+                    return severityComparison;
+                }
+                
+                // 然后按置信度排序
+                return Double.compare(c2.getConfidence(), c1.getConfidence());
+            })
+            .collect(Collectors.toList());
+    }
+    
+    private RootCauseAnalysisResult generateAnalysisResult(RateLimitEvent event, 
+                                                         List<RootCause> rootCauses,
+                                                         long startTime) {
+        // 计算整体置信度
+        double overallConfidence = calculateOverallConfidence(rootCauses);
+        
+        // 确定分析状态
+        AnalysisStatus status = rootCauses.isEmpty() ? 
+            AnalysisStatus.NO_ROOT_CAUSE_FOUND : AnalysisStatus.SUCCESS;
+        
+        return RootCauseAnalysisResult.builder()
+            .eventId(event.getId())
+            .timestamp(System.currentTimeMillis())
+            .rootCauses(rootCauses)
+            .confidence(overallConfidence)
+            .processingTime(System.currentTimeMillis() - startTime)
+            .status(status)
+            .build();
+    }
+    
+    private double calculateOverallConfidence(List<RootCause> rootCauses) {
+        if (rootCauses.isEmpty()) {
+            return 0.0;
         }
         
-        return sb.toString();
-    }
-    
-    // 融合根因
-    public static class FusedRootCause {
-        private CauseType causeType;
-        private String description;
-        private String affectedService;
-        private double confidence;
-        private AnalysisSource source;
+        // 计算加权平均置信度
+        double totalWeightedConfidence = 0.0;
+        double totalWeight = 0.0;
         
-        // getter和setter方法
-        public CauseType getCauseType() { return causeType; }
-        public void setCauseType(CauseType causeType) { this.causeType = causeType; }
-        public String getDescription() { return description; }
-        public void setDescription(String description) { this.description = description; }
-        public String getAffectedService() { return affectedService; }
-        public void setAffectedService(String affectedService) { this.affectedService = affectedService; }
-        public double getConfidence() { return confidence; }
-        public void setConfidence(double confidence) { this.confidence = confidence; }
-        public AnalysisSource getSource() { return source; }
-        public void setSource(AnalysisSource source) { this.source = source; }
-    }
-    
-    // 分析来源枚举
-    public enum AnalysisSource {
-        METRIC,  // 指标分析
-        TRACE,   // 调用链分析
-        SYSTEM   // 系统分析
-    }
-    
-    // 综合根因分析结果
-    public static class ComprehensiveRootCauseAnalysisResult {
-        private String resource;
-        private long analysisTime;
-        private AnalysisStatus analysisStatus;
-        private String errorMessage;
-        private RootCauseAnalysisResult metricAnalysisResult;
-        private TraceRootCauseAnalysisResult traceAnalysisResult;
-        private SystemRootCauseAnalysisResult systemAnalysisResult;
-        private List<FusedRootCause> fusedRootCauses;
-        private RootCauseReport rootCauseReport;
-        
-        public ComprehensiveRootCauseAnalysisResult() {
-            this.fusedRootCauses = new ArrayList<>();
-            this.analysisStatus = AnalysisStatus.PENDING;
+        for (RootCause cause : rootCauses) {
+            double weight = getSeverityWeight(cause.getSeverity());
+            totalWeightedConfidence += cause.getConfidence() * weight;
+            totalWeight += weight;
         }
         
-        // getter和setter方法
-        public String getResource() { return resource; }
-        public void setResource(String resource) { this.resource = resource; }
-        public long getAnalysisTime() { return analysisTime; }
-        public void setAnalysisTime(long analysisTime) { this.analysisTime = analysisTime; }
-        public AnalysisStatus getAnalysisStatus() { return analysisStatus; }
-        public void setAnalysisStatus(AnalysisStatus analysisStatus) { this.analysisStatus = analysisStatus; }
-        public String getErrorMessage() { return errorMessage; }
-        public void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
-        public RootCauseAnalysisResult getMetricAnalysisResult() { return metricAnalysisResult; }
-        public void setMetricAnalysisResult(RootCauseAnalysisResult metricAnalysisResult) { this.metricAnalysisResult = metricAnalysisResult; }
-        public TraceRootCauseAnalysisResult getTraceAnalysisResult() { return traceAnalysisResult; }
-        public void setTraceAnalysisResult(TraceRootCauseAnalysisResult traceAnalysisResult) { this.traceAnalysisResult = traceAnalysisResult; }
-        public SystemRootCauseAnalysisResult getSystemAnalysisResult() { return systemAnalysisResult; }
-        public void setSystemAnalysisResult(SystemRootCauseAnalysisResult systemAnalysisResult) { this.systemAnalysisResult = systemAnalysisResult; }
-        public List<FusedRootCause> getFusedRootCauses() { return fusedRootCauses; }
-        public void setFusedRootCauses(List<FusedRootCause> fusedRootCauses) { this.fusedRootCauses = fusedRootCauses; }
-        public RootCauseReport getRootCauseReport() { return rootCauseReport; }
-        public void setRootCauseReport(RootCauseReport rootCauseReport) { this.rootCauseReport = rootCauseReport; }
+        return totalWeight > 0 ? totalWeightedConfidence / totalWeight : 0.0;
     }
     
-    // 根因报告
-    public static class RootCauseReport {
-        private String resource;
-        private long triggerTime;
-        private long generatedTime;
-        private FusedRootCause rootCause;
-        private double confidence;
-        private List<MetricAnomaly> metricAnomalies;
-        private List<FaultyService> faultyServices;
-        private List<SystemBottleneck> systemBottlenecks;
-        private List<String> recommendations;
-        
-        public RootCauseReport() {
-            this.metricAnomalies = new ArrayList<>();
-            this.faultyServices = new ArrayList<>();
-            this.systemBottlenecks = new ArrayList<>();
-            this.recommendations = new ArrayList<>();
+    private double getSeverityWeight(RootCauseSeverity severity) {
+        switch (severity) {
+            case CRITICAL: return 4.0;
+            case HIGH: return 3.0;
+            case MEDIUM: return 2.0;
+            case LOW: return 1.0;
+            default: return 1.0;
         }
-        
-        // getter和setter方法
-        public String getResource() { return resource; }
-        public void setResource(String resource) { this.resource = resource; }
-        public long getTriggerTime() { return triggerTime; }
-        public void setTriggerTime(long triggerTime) { this.triggerTime = triggerTime; }
-        public long getGeneratedTime() { return generatedTime; }
-        public void setGeneratedTime(long generatedTime) { this.generatedTime = generatedTime; }
-        public FusedRootCause getRootCause() { return rootCause; }
-        public void setRootCause(FusedRootCause rootCause) { this.rootCause = rootCause; }
-        public double getConfidence() { return confidence; }
-        public void setConfidence(double confidence) { this.confidence = confidence; }
-        public List<MetricAnomaly> getMetricAnomalies() { return metricAnomalies; }
-        public void setMetricAnomalies(List<MetricAnomaly> metricAnomalies) { this.metricAnomalies = metricAnomalies; }
-        public List<FaultyService> getFaultyServices() { return faultyServices; }
-        public void setFaultyServices(List<FaultyService> faultyServices) { this.faultyServices = faultyServices; }
-        public List<SystemBottleneck> getSystemBottlenecks() { return systemBottlenecks; }
-        public void setSystemBottlenecks(List<SystemBottleneck> systemBottlenecks) { this.systemBottlenecks = systemBottlenecks; }
-        public List<String> getRecommendations() { return recommendations; }
-        public void setRecommendations(List<String> recommendations) { this.recommendations = recommendations; }
+    }
+    
+    private void recordAnalysisResult(RootCauseAnalysisResult result) {
+        try {
+            String key = "root_cause_analysis:result:" + result.getEventId();
+            String value = serializeResult(result);
+            
+            // 保存分析结果
+            redisTemplate.opsForValue().set(key, value, Duration.ofHours(24));
+            
+            // 记录到历史分析记录中
+            String historyKey = "root_cause_analysis:history";
+            redisTemplate.opsForList().leftPush(historyKey, value);
+            redisTemplate.opsForList().trim(historyKey, 0, 999); // 保留最近1000条记录
+        } catch (Exception e) {
+            log.warn("Failed to record analysis result", e);
+        }
+    }
+    
+    private String serializeResult(RootCauseAnalysisResult result) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(result);
+        } catch (Exception e) {
+            log.warn("Failed to serialize analysis result", e);
+            return "";
+        }
     }
 }
 ```
 
-## 根因分析监控与告警
+## 根因分析结果处理
 
-### 根因分析监控面板
+### 自动化处理机制
 
 ```java
-// 根因分析监控控制器
-@RestController
-@RequestMapping("/api/v1/root-cause-analysis")
-public class RootCauseAnalysisMonitoringController {
-    private final ComprehensiveRootCauseAnalyzer rootCauseAnalyzer;
-    private final RateLimitEventCollector eventCollector;
-    private final RootCauseAnalysisHistoryService historyService;
+// 根因分析结果处理器
+@Component
+public class RootCauseAnalysisResultProcessor {
+    private final NotificationService notificationService;
+    private final IncidentManagementService incidentService;
+    private final ConfigurationService configurationService;
+    private final RedisTemplate<String, String> redisTemplate;
     
-    public RootCauseAnalysisMonitoringController(ComprehensiveRootCauseAnalyzer rootCauseAnalyzer,
-                                               RateLimitEventCollector eventCollector,
-                                               RootCauseAnalysisHistoryService historyService) {
-        this.rootCauseAnalyzer = rootCauseAnalyzer;
-        this.eventCollector = eventCollector;
-        this.historyService = historyService;
+    public RootCauseAnalysisResultProcessor(NotificationService notificationService,
+                                          IncidentManagementService incidentService,
+                                          ConfigurationService configurationService,
+                                          RedisTemplate<String, String> redisTemplate) {
+        this.notificationService = notificationService;
+        this.incidentService = incidentService;
+        this.configurationService = configurationService;
+        this.redisTemplate = redisTemplate;
     }
     
-    @PostMapping("/analyze")
-    public ResponseEntity<ComprehensiveRootCauseAnalysisResult> analyzeRateLimitEvent(
-            @RequestBody RateLimitEventRequest request) {
-        
+    public void processAnalysisResult(RootCauseAnalysisResult result) {
         try {
-            // 收集限流事件上下文
-            RateLimitEventContext context = eventCollector.collectEventContext(
-                request.getResource(), request.getTriggerInfo());
+            // 1. 发送通知
+            sendNotifications(result);
             
-            // 执行根因分析
-            ComprehensiveRootCauseAnalysisResult result = rootCauseAnalyzer.analyze(context);
+            // 2. 创建或更新事件单
+            createOrUpdateIncident(result);
             
-            // 保存分析历史
-            historyService.saveAnalysisResult(result);
+            // 3. 自动调整配置（如果适用）
+            autoAdjustConfiguration(result);
             
-            return ResponseEntity.ok(result);
+            // 4. 记录处理历史
+            recordProcessingHistory(result);
+            
         } catch (Exception e) {
-            log.error("Failed to analyze rate limit event", e);
-            return ResponseEntity.status(500).build();
+            log.error("Failed to process root cause analysis result: " + result, e);
         }
     }
     
-    @GetMapping("/history")
-    public ResponseEntity<List<RootCauseAnalysisHistory>> getAnalysisHistory(
-            @RequestParam(required = false) String resource,
-            @RequestParam(defaultValue = "100") int limit) {
+    private void sendNotifications(RootCauseAnalysisResult result) {
+        try {
+            if (result.getStatus() == AnalysisStatus.SUCCESS && !result.getRootCauses().isEmpty()) {
+                // 获取高严重程度的根因
+                List<RootCause> highSeverityCauses = result.getRootCauses().stream()
+                    .filter(cause -> cause.getSeverity() == RootCauseSeverity.CRITICAL || 
+                                   cause.getSeverity() == RootCauseSeverity.HIGH)
+                    .collect(Collectors.toList());
+                
+                if (!highSeverityCauses.isEmpty()) {
+                    // 发送紧急通知
+                    Notification notification = Notification.builder()
+                        .type(NotificationType.URGENT)
+                        .title("High Severity Root Cause Detected")
+                        .content(generateNotificationContent(result, highSeverityCauses))
+                        .recipients(getNotificationRecipients())
+                        .timestamp(System.currentTimeMillis())
+                        .build();
+                    
+                    notificationService.sendNotification(notification);
+                }
+                
+                // 发送常规通知给相关人员
+                Notification regularNotification = Notification.builder()
+                    .type(NotificationType.REGULAR)
+                    .title("Root Cause Analysis Completed")
+                    .content(generateRegularNotificationContent(result))
+                    .recipients(getRegularNotificationRecipients())
+                    .timestamp(System.currentTimeMillis())
+                    .build();
+                
+                notificationService.sendNotification(regularNotification);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to send notifications for analysis result: " + result, e);
+        }
+    }
+    
+    private void createOrUpdateIncident(RootCauseAnalysisResult result) {
+        try {
+            if (result.getStatus() == AnalysisStatus.SUCCESS && !result.getRootCauses().isEmpty()) {
+                // 检查是否已存在相关事件单
+                String existingIncidentId = findExistingIncident(result);
+                
+                if (existingIncidentId != null) {
+                    // 更新现有事件单
+                    incidentService.updateIncident(existingIncidentId, result);
+                } else {
+                    // 创建新事件单
+                    Incident incident = Incident.builder()
+                        .id(UUID.randomUUID().toString())
+                        .title("Rate Limit Root Cause Analysis")
+                        .description(generateIncidentDescription(result))
+                        .severity(calculateIncidentSeverity(result))
+                        .status(IncidentStatus.OPEN)
+                        .rootCauseAnalysis(result)
+                        .createdAt(System.currentTimeMillis())
+                        .build();
+                    
+                    incidentService.createIncident(incident);
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Failed to create or update incident for analysis result: " + result, e);
+        }
+    }
+    
+    private void autoAdjustConfiguration(RootCauseAnalysisResult result) {
+        try {
+            if (result.getConfidence() > 0.8) { // 高置信度才进行自动调整
+                for (RootCause cause : result.getRootCauses()) {
+                    if (cause.getSeverity() == RootCauseSeverity.CRITICAL) {
+                        // 根据根因类型自动调整配置
+                        switch (cause.getType()) {
+                            case SYSTEM_PERFORMANCE:
+                                adjustSystemConfiguration(cause);
+                                break;
+                            case BUSINESS_TRAFFIC:
+                                adjustRateLimitConfiguration(cause);
+                                break;
+                            case DEPENDENCY_FAILURE:
+                                adjustDependencyConfiguration(cause);
+                                break;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Failed to auto-adjust configuration based on analysis result: " + result, e);
+        }
+    }
+    
+    private void adjustSystemConfiguration(RootCause cause) {
+        try {
+            String category = cause.getCategory();
+            
+            if ("CPU Usage".equals(category) || "Memory Usage".equals(category)) {
+                // 增加资源配额
+                configurationService.increaseResourceQuota(cause.getDetails());
+                log.info("Auto-adjusted system configuration for: " + category);
+            } else if ("Thread Pool".equals(category)) {
+                // 调整线程池大小
+                configurationService.adjustThreadPoolSize(cause.getDetails());
+                log.info("Auto-adjusted thread pool configuration");
+            }
+        } catch (Exception e) {
+            log.warn("Failed to adjust system configuration for cause: " + cause, e);
+        }
+    }
+    
+    private void adjustRateLimitConfiguration(RootCause cause) {
+        try {
+            String category = cause.getCategory();
+            
+            if ("Request Volume".equals(category)) {
+                // 临时提高限流阈值
+                configurationService.increaseRateLimitThreshold(cause.getDetails());
+                log.info("Auto-adjusted rate limit configuration for high traffic");
+            }
+        } catch (Exception e) {
+            log.warn("Failed to adjust rate limit configuration for cause: " + cause, e);
+        }
+    }
+    
+    private void adjustDependencyConfiguration(RootCause cause) {
+        try {
+            String category = cause.getCategory();
+            
+            if ("Service Health".equals(category)) {
+                // 启用备用服务或降级策略
+                configurationService.enableFallbackStrategy(cause.getDetails());
+                log.info("Auto-enabled fallback strategy for unhealthy dependency");
+            }
+        } catch (Exception e) {
+            log.warn("Failed to adjust dependency configuration for cause: " + cause, e);
+        }
+    }
+    
+    private String generateNotificationContent(RootCauseAnalysisResult result, 
+                                             List<RootCause> highSeverityCauses) {
+        StringBuilder content = new StringBuilder();
+        content.append("High severity root cause detected in rate limit event.\n\n");
+        content.append("Event ID: ").append(result.getEventId()).append("\n");
+        content.append("Overall Confidence: ").append(String.format("%.2f%%", result.getConfidence() * 100)).append("\n\n");
+        content.append("High Severity Root Causes:\n");
         
-        try {
-            List<RootCauseAnalysisHistory> history = historyService.getAnalysisHistory(
-                resource, limit);
-            return ResponseEntity.ok(history);
-        } catch (Exception e) {
-            log.error("Failed to get analysis history", e);
-            return ResponseEntity.status(500).build();
+        for (RootCause cause : highSeverityCauses) {
+            content.append("- ").append(cause.getDescription())
+                   .append(" (Severity: ").append(cause.getSeverity())
+                   .append(", Confidence: ").append(String.format("%.2f%%", cause.getConfidence() * 100))
+                   .append(")\n");
         }
-    }
-    
-    @GetMapping("/statistics")
-    public ResponseEntity<RootCauseAnalysisStatistics> getAnalysisStatistics() {
-        try {
-            RootCauseAnalysisStatistics statistics = historyService.getAnalysisStatistics();
-            return ResponseEntity.ok(statistics);
-        } catch (Exception e) {
-            log.error("Failed to get analysis statistics", e);
-            return ResponseEntity.status(500).build();
-        }
-    }
-    
-    @GetMapping("/common-patterns")
-    public ResponseEntity<List<RootCausePattern>> getCommonPatterns() {
-        try {
-            List<RootCausePattern> patterns = historyService.getCommonRootCausePatterns();
-            return ResponseEntity.ok(patterns);
-        } catch (Exception e) {
-            log.error("Failed to get common patterns", e);
-            return ResponseEntity.status(500).build();
-        }
-    }
-    
-    // 限流事件请求
-    public static class RateLimitEventRequest {
-        private String resource;
-        private RateLimitEventCollector.RateLimitTriggerInfo triggerInfo;
         
-        // getter和setter方法
-        public String getResource() { return resource; }
-        public void setResource(String resource) { this.resource = resource; }
-        public RateLimitEventCollector.RateLimitTriggerInfo getTriggerInfo() { return triggerInfo; }
-        public void setTriggerInfo(RateLimitEventCollector.RateLimitTriggerInfo triggerInfo) { this.triggerInfo = triggerInfo; }
+        return content.toString();
+    }
+    
+    private String generateRegularNotificationContent(RootCauseAnalysisResult result) {
+        StringBuilder content = new StringBuilder();
+        content.append("Root cause analysis completed for rate limit event.\n\n");
+        content.append("Event ID: ").append(result.getEventId()).append("\n");
+        content.append("Status: ").append(result.getStatus()).append("\n");
+        content.append("Processing Time: ").append(result.getProcessingTime()).append("ms\n");
+        content.append("Overall Confidence: ").append(String.format("%.2f%%", result.getConfidence() * 100)).append("\n");
+        content.append("Root Causes Found: ").append(result.getRootCauses().size()).append("\n");
+        
+        return content.toString();
+    }
+    
+    private String generateIncidentDescription(RootCauseAnalysisResult result) {
+        StringBuilder description = new StringBuilder();
+        description.append("Root cause analysis for rate limit event completed.\n\n");
+        
+        if (!result.getRootCauses().isEmpty()) {
+            description.append("Identified Root Causes:\n");
+            for (RootCause cause : result.getRootCauses()) {
+                description.append("- ").append(cause.getDescription())
+                           .append(" (").append(cause.getType()).append(", ")
+                           .append(cause.getSeverity()).append(", ")
+                           .append(String.format("%.2f%%", cause.getConfidence() * 100)).append(")\n");
+            }
+        } else {
+            description.append("No root causes identified.\n");
+        }
+        
+        return description.toString();
+    }
+    
+    private IncidentSeverity calculateIncidentSeverity(RootCauseAnalysisResult result) {
+        for (RootCause cause : result.getRootCauses()) {
+            if (cause.getSeverity() == RootCauseSeverity.CRITICAL) {
+                return IncidentSeverity.CRITICAL;
+            }
+        }
+        
+        for (RootCause cause : result.getRootCauses()) {
+            if (cause.getSeverity() == RootCauseSeverity.HIGH) {
+                return IncidentSeverity.HIGH;
+            }
+        }
+        
+        return IncidentSeverity.MEDIUM;
+    }
+    
+    private String findExistingIncident(RootCauseAnalysisResult result) {
+        try {
+            // 简化实现：检查最近24小时内的事件单
+            String key = "incidents:recent";
+            List<String> recentIncidents = redisTemplate.opsForList().range(key, 0, 99);
+            
+            // 实际实现中需要更复杂的匹配逻辑
+            return null;
+        } catch (Exception e) {
+            log.warn("Failed to find existing incident", e);
+            return null;
+        }
+    }
+    
+    private List<String> getNotificationRecipients() {
+        // 获取紧急通知接收者列表
+        return Arrays.asList("ops-team@example.com", "sre-team@example.com");
+    }
+    
+    private List<String> getRegularNotificationRecipients() {
+        // 获取常规通知接收者列表
+        return Arrays.asList("dev-team@example.com", "platform-team@example.com");
+    }
+    
+    private void recordProcessingHistory(RootCauseAnalysisResult result) {
+        try {
+            String key = "root_cause_analysis:processing_history";
+            String value = serializeResult(result);
+            
+            redisTemplate.opsForList().leftPush(key, value);
+            redisTemplate.opsForList().trim(key, 0, 999); // 保留最近1000条记录
+        } catch (Exception e) {
+            log.warn("Failed to record processing history", e);
+        }
+    }
+    
+    private String serializeResult(RootCauseAnalysisResult result) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(result);
+        } catch (Exception e) {
+            log.warn("Failed to serialize result", e);
+            return "";
+        }
     }
 }
 ```
 
-### 根因分析告警规则
+## 根因分析系统集成
 
-```yaml
-# 根因分析相关告警规则
-alerting:
-  rules:
-    - name: "Root Cause Analysis Completed"
-      metric: "root_cause_analysis.completed"
-      condition: "root_cause_analysis_completed > 0"
-      duration: "1m"
-      severity: "info"
-      message: "Root cause analysis completed for resource {{resource}}. Root cause: {{root_cause}}"
-      
-    - name: "High Confidence Root Cause"
-      metric: "root_cause_analysis.confidence"
-      condition: "root_cause_analysis_confidence > 0.9"
-      duration: "1m"
-      severity: "warning"
-      message: "High confidence root cause detected: {{root_cause}} (confidence: {{confidence}})"
-      
-    - name: "Repeated Root Causes"
-      metric: "root_cause_analysis.repeated"
-      condition: "root_cause_analysis_repeated > 3"
-      duration: "30m"
-      severity: "critical"
-      message: "Same root cause detected repeatedly: {{root_cause}}. Requires immediate attention."
-      
-    - name: "Unknown Root Cause"
-      metric: "root_cause_analysis.unknown"
-      condition: "root_cause_analysis_unknown > 5"
-      duration: "1h"
-      severity: "warning"
-      message: "Multiple rate limit events with unknown root cause. Manual investigation required."
+### 统一根因分析服务
+
+```java
+// 统一根因分析服务
+@Service
+public class UnifiedRootCauseAnalysisService {
+    private final ComprehensiveRootCauseAnalyzer analyzer;
+    private final RootCauseAnalysisResultProcessor resultProcessor;
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ScheduledExecutorService analysisScheduler = Executors.newScheduledThreadPool(2);
+    
+    public UnifiedRootCauseAnalysisService(ComprehensiveRootCauseAnalyzer analyzer,
+                                         RootCauseAnalysisResultProcessor resultProcessor,
+                                         RedisTemplate<String, String> redisTemplate) {
+        this.analyzer = analyzer;
+        this.resultProcessor = resultProcessor;
+        this.redisTemplate = redisTemplate;
+        
+        // 启动定期分析任务
+        startPeriodicAnalysis();
+    }
+    
+    public CompletableFuture<RootCauseAnalysisResult> analyzeAsync(RateLimitEvent event) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                // 执行根因分析
+                RootCauseAnalysisResult result = analyzer.analyze(event);
+                
+                // 异步处理分析结果
+                CompletableFuture.runAsync(() -> resultProcessor.processAnalysisResult(result));
+                
+                return result;
+            } catch (Exception e) {
+                log.error("Failed to analyze root cause for event: " + event, e);
+                
+                // 返回失败的分析结果
+                return RootCauseAnalysisResult.builder()
+                    .eventId(event.getId())
+                    .timestamp(System.currentTimeMillis())
+                    .rootCauses(new ArrayList<>())
+                    .confidence(0.0)
+                    .processingTime(0)
+                    .status(AnalysisStatus.FAILED)
+                    .errorMessage(e.getMessage())
+                    .build();
+            }
+        });
+    }
+    
+    public RootCauseAnalysisResult analyzeSync(RateLimitEvent event) {
+        try {
+            // 执行根因分析
+            RootCauseAnalysisResult result = analyzer.analyze(event);
+            
+            // 处理分析结果
+            resultProcessor.processAnalysisResult(result);
+            
+            return result;
+        } catch (Exception e) {
+            log.error("Failed to analyze root cause for event: " + event, e);
+            
+            return RootCauseAnalysisResult.builder()
+                .eventId(event.getId())
+                .timestamp(System.currentTimeMillis())
+                .rootCauses(new ArrayList<>())
+                .confidence(0.0)
+                .processingTime(0)
+                .status(AnalysisStatus.FAILED)
+                .errorMessage(e.getMessage())
+                .build();
+        }
+    }
+    
+    public List<RootCauseAnalysisResult> getRecentAnalysisResults(int count) {
+        try {
+            String key = "root_cause_analysis:history";
+            List<String> results = redisTemplate.opsForList().range(key, 0, count - 1);
+            
+            return results.stream()
+                .map(this::deserializeResult)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.warn("Failed to get recent analysis results", e);
+            return new ArrayList<>();
+        }
+    }
+    
+    public RootCauseAnalysisResult getAnalysisResult(String eventId) {
+        try {
+            String key = "root_cause_analysis:result:" + eventId;
+            String json = redisTemplate.opsForValue().get(key);
+            
+            if (json != null && !json.isEmpty()) {
+                return deserializeResult(json);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to get analysis result for event: " + eventId, e);
+        }
+        
+        return null;
+    }
+    
+    private void startPeriodicAnalysis() {
+        // 定期分析未处理的限流事件
+        analysisScheduler.scheduleAtFixedRate(this::analyzePendingEvents, 
+            60, 300, TimeUnit.SECONDS); // 启动后1分钟执行，之后每5分钟执行一次
+    }
+    
+    private void analyzePendingEvents() {
+        try {
+            log.info("Analyzing pending rate limit events...");
+            
+            // 获取未分析的限流事件
+            List<RateLimitEvent> pendingEvents = getPendingEvents(100);
+            
+            for (RateLimitEvent event : pendingEvents) {
+                try {
+                    // 异步分析事件
+                    analyzeAsync(event);
+                    
+                    // 标记事件为已处理
+                    markEventAsProcessed(event);
+                } catch (Exception e) {
+                    log.warn("Failed to analyze pending event: " + event.getId(), e);
+                }
+            }
+            
+            log.info("Finished analyzing {} pending events", pendingEvents.size());
+        } catch (Exception e) {
+            log.error("Failed to analyze pending events", e);
+        }
+    }
+    
+    private List<RateLimitEvent> getPendingEvents(int count) {
+        try {
+            String key = "rate_limit_events:pending";
+            List<String> events = redisTemplate.opsForList().range(key, 0, count - 1);
+            
+            return events.stream()
+                .map(this::deserializeEvent)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.warn("Failed to get pending events", e);
+            return new ArrayList<>();
+        }
+    }
+    
+    private void markEventAsProcessed(RateLimitEvent event) {
+        try {
+            String pendingKey = "rate_limit_events:pending";
+            String processedKey = "rate_limit_events:processed";
+            
+            // 从待处理队列中移除
+            redisTemplate.opsForList().remove(pendingKey, 1, serializeEvent(event));
+            
+            // 添加到已处理队列
+            redisTemplate.opsForList().leftPush(processedKey, serializeEvent(event));
+            redisTemplate.opsForList().trim(processedKey, 0, 999); // 保留最近1000条记录
+        } catch (Exception e) {
+            log.warn("Failed to mark event as processed: " + event.getId(), e);
+        }
+    }
+    
+    private RateLimitEvent deserializeEvent(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json, RateLimitEvent.class);
+        } catch (Exception e) {
+            log.warn("Failed to deserialize event: " + json, e);
+            return null;
+        }
+    }
+    
+    private String serializeEvent(RateLimitEvent event) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(event);
+        } catch (Exception e) {
+            log.warn("Failed to serialize event", e);
+            return "";
+        }
+    }
+    
+    private RootCauseAnalysisResult deserializeResult(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json, RootCauseAnalysisResult.class);
+        } catch (Exception e) {
+            log.warn("Failed to deserialize result: " + json, e);
+            return null;
+        }
+    }
+}
 ```
 
-## 最佳实践与经验总结
+## 最佳实践总结
 
-### 实施建议
+### 1. 多维度分析策略
 
-1. **多维度分析**：结合指标、调用链、系统状态等多维度信息进行综合分析
-2. **实时性要求**：根因分析应在限流事件发生后尽快完成，通常在几分钟内
-3. **可视化展示**：提供直观的可视化界面展示分析结果和推荐解决方案
-4. **持续优化**：基于历史分析结果不断优化分析算法和规则
+- **系统指标分析**：监控CPU、内存、GC、线程池等系统级指标
+- **业务指标分析**：分析请求量、错误率、响应时间等业务级指标
+- **依赖服务分析**：检查下游服务的健康状态和性能表现
+- **用户行为分析**：识别异常的用户行为模式
 
-### 注意事项
+### 2. 智能化处理机制
 
-1. **数据质量**：确保收集的指标和追踪数据准确完整
-2. **性能影响**：根因分析过程不应显著影响正常业务处理
-3. **误报处理**：建立误报反馈机制，持续改进分析准确性
-4. **隐私保护**：在分析过程中注意保护用户和业务数据隐私
+- **自动通知**：根据根因严重程度自动发送相应级别的通知
+- **事件单管理**：自动创建和更新故障事件单
+- **配置调整**：在高置信度情况下自动调整相关配置
+- **历史记录**：维护完整的分析和处理历史记录
 
-通过以上实现，我们构建了一个完整的分布式限流根因分析系统。该系统能够在限流事件发生后自动收集相关数据，通过多维度分析识别并定位下游故障服务，为快速解决问题提供有力支持。在实际应用中，需要根据具体的业务场景和系统架构调整分析算法和策略，以达到最佳的分析效果。
+### 3. 性能与可扩展性
+
+- **并行处理**：各维度分析并行执行以提高效率
+- **异步处理**：使用异步方式处理分析结果避免阻塞
+- **缓存机制**：合理使用Redis缓存提高数据访问速度
+- **定期任务**：通过定时任务处理积压的分析任务
+
+### 4. 监控与优化
+
+- **分析准确性监控**：跟踪分析结果的准确性并持续优化
+- **处理时效性监控**：监控根因分析和处理的时效性
+- **系统性能监控**：监控分析系统自身的性能表现
+- **反馈机制**：建立人工反馈机制持续改进分析算法
+
+通过以上实现，我们可以构建一个完整的根因分析系统，实现限流事件的自动诊断和处理，大幅提高故障处理效率和系统稳定性。

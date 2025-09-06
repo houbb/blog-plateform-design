@@ -1,3 +1,11 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
 # 智能报警平台建设：从告警降噪到自愈闭环的全生命周期实践
 
 一个现代化的报警平台早已超越了"发通知"的范畴，它是AIOps的核心，是连接监控、运维、开发乃至业务的神经网络。

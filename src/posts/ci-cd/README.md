@@ -1,3 +1,12 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
+
 # 企业级CI/CD平台建设：从代码提交到无缝交付的全生命周期实践
 
 本文档索引了《企业级CI/CD平台建设：从代码提交到无缝交付的全生命周期实践》一书的所有章节内容。

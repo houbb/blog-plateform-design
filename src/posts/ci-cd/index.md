@@ -1,3 +1,12 @@
+---
+title: README
+date: 2025-09-07
+categories: [Alarm]
+tags: [alarm]
+published: true
+---
+
+
 CI/CD是现代软件工程的支柱，是DevOps文化的技术体现。
 
 本书的目录将围绕如何构建一个**高效、可靠、安全、可观测**的企业级CI/CD平台，并真正融入研发全生命周期。
