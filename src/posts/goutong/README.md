@@ -107,3 +107,12 @@
 2. [与统一认证平台集成：构建安全的权限管理体系](11-1-2-unified-authentication-integration.md)
 3. [与监控报警平台集成：构建全面的系统可观测性](11-1-3-monitoring-platform-integration.md)
 4. [与CI/CD集成：构建自动化的部署与测试体系](11-1-4-cicd-integration.md)
+
+## 第十二章：平台实施与推广
+
+### 12.1 平滑上线与迁移：如何让业务方从旧通道迁移到新平台？
+
+1. [平滑上线与迁移：确保业务无缝过渡到新平台](12-1-1-smooth-launch-migration.md)
+2. [开发者支持：构建完善的技术服务体系](12-1-2-developer-support.md)
+3. [推广与布道：构建平台影响力与用户生态](12-1-3-promotion-advocacy.md)
+4. [建立反馈渠道与运营SOP：构建高效的问题响应机制](12-1-4-feedback-channels-sop.md)
