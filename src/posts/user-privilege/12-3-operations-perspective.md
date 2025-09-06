@@ -2,40 +2,40 @@
 title: 运维视角：配置管理、系统监控、日志查询
 date: 2025-09-07
 categories: [UMS]
-tags: [ums, operations, monitoring, logging]
+tags: [ums, operations, monitoring, configuration]
 published: true
 ---
 
-在企业级统一身份治理平台中，运维人员负责确保系统的稳定运行、性能优化和故障排查。一个完善的运维支持体系需要提供强大的配置管理、实时的系统监控和详尽的日志查询功能。本文将深入探讨运维视角下的核心功能设计与实现。
+在企业级统一身份治理平台中，运维团队负责确保系统的稳定性、安全性和高性能。一个优秀的运维体验需要完善的配置管理、实时的系统监控和高效的日志查询能力。本文将深入探讨如何为运维人员提供强大的工具和功能，确保平台的可靠运行。
 
 ## 引言
 
-运维视角是统一身份治理平台中不可或缺的重要组成部分。随着系统规模的扩大和复杂性的增加，运维人员需要更加精细化的工具来管理配置、监控系统状态和分析日志信息。通过构建完善的运维支持体系，可以显著提升系统的可靠性、可维护性和故障响应速度。
+运维视角是统一身份治理平台不可或缺的一部分。随着系统规模的扩大和复杂性的增加，运维团队需要能够快速诊断问题、调整配置参数、监控系统性能并分析日志数据。通过提供专业的运维工具和功能，可以显著提高系统的可维护性和可靠性。
 
-## 配置管理体系
+## 配置管理
 
-### 配置管理架构
+### 配置中心设计
 
-配置管理是运维工作的基础，需要支持灵活的配置项管理、版本控制和环境隔离：
+配置管理是运维工作的核心，需要支持动态配置、版本控制和环境隔离：
 
 ```mermaid
 graph TD
-    A[配置管理体系] --> B[配置存储]
+    A[配置管理中心] --> B[配置存储]
     A --> C[配置分发]
-    A --> D[配置版本]
+    A --> D[配置版本控制]
     A --> E[环境管理]
     
     B --> B1[数据库存储]
-    B --> B2[文件存储]
-    B --> B3[密钥管理]
+    B --> B2[文件系统存储]
+    B --> B3[分布式缓存]
     
     C --> C1[实时推送]
-    C --> C2[批量更新]
-    C --> C3[灰度发布]
+    C --> C2[定时拉取]
+    C --> C3[变更通知]
     
-    D --> D1[版本控制]
-    D --> D2[变更审计]
-    D --> D3[回滚机制]
+    D --> D1[版本历史]
+    D --> D2[回滚机制]
+    D --> D3[变更审计]
     
     E --> E1[开发环境]
     E --> E2[测试环境]
@@ -48,194 +48,205 @@ graph TD
     style E fill:#fb9,stroke:#333
 ```
 
-### 配置项管理实现
+### 配置管理实现
 
 ```java
-public class ConfigurationManagementService {
-    private final ConfigRepository configRepository;
+public class ConfigurationManagement {
+    private final ConfigService configService;
     private final AuditService auditService;
     private final NotificationService notificationService;
-    private final ConfigCacheService configCacheService;
     
-    // 配置项模型
-    public class ConfigItem {
-        private String id;
-        private String key;
-        private String value;
-        private String description;
-        private String category;
-        private String environment;
-        private ConfigValueType valueType;
-        private boolean encrypted;
-        private boolean sensitive;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
-        private String createdBy;
-        private String updatedBy;
-    }
-    
-    // 配置项类型枚举
-    public enum ConfigValueType {
-        STRING, INTEGER, BOOLEAN, JSON, YAML
-    }
-    
-    // 获取配置项
-    public ConfigItem getConfigItem(String key, String environment) {
-        // 首先从缓存获取
-        ConfigItem cachedItem = configCacheService.get(key, environment);
-        if (cachedItem != null) {
-            return cachedItem;
+    // 配置项管理
+    public class ConfigItemManager {
+        
+        // 获取配置项
+        public ConfigItem getConfigItem(String key) {
+            return configService.getConfigItem(key);
         }
         
-        // 从数据库获取
-        ConfigItem item = configRepository.findByKeyAndEnvironment(key, environment);
-        if (item != null) {
-            // 放入缓存
-            configCacheService.put(key, environment, item);
+        // 更新配置项
+        public ConfigItem updateConfigItem(String key, Object value, String updatedBy) {
+            // 记录变更前的值
+            ConfigItem oldItem = configService.getConfigItem(key);
+            
+            // 更新配置
+            ConfigItem newItem = configService.updateConfigItem(key, value);
+            
+            // 记录审计日志
+            auditService.logConfigChange(oldItem, newItem, updatedBy);
+            
+            // 发送变更通知
+            notificationService.sendConfigChangeNotification(key, oldItem, newItem);
+            
+            return newItem;
         }
         
-        return item;
-    }
-    
-    // 更新配置项
-    public ConfigItem updateConfigItem(String key, String environment, Object value, String updatedBy) {
-        // 获取旧配置项
-        ConfigItem oldItem = getConfigItem(key, environment);
-        
-        // 创建新配置项
-        ConfigItem newItem = new ConfigItem();
-        if (oldItem != null) {
-            newItem.setId(oldItem.getId());
-            newItem.setCreatedAt(oldItem.getCreatedAt());
-            newItem.setCreatedBy(oldItem.getCreatedBy());
-        } else {
-            newItem.setId(UUID.randomUUID().toString());
-            newItem.setCreatedAt(LocalDateTime.now());
-            newItem.setCreatedBy(updatedBy);
+        // 批量更新配置
+        public List<ConfigItem> bulkUpdateConfig(Map<String, Object> configUpdates, String updatedBy) {
+            List<ConfigItem> updatedItems = new ArrayList<>();
+            
+            for (Map.Entry<String, Object> entry : configUpdates.entrySet()) {
+                ConfigItem item = updateConfigItem(entry.getKey(), entry.getValue(), updatedBy);
+                updatedItems.add(item);
+            }
+            
+            return updatedItems;
         }
         
-        newItem.setKey(key);
-        newItem.setEnvironment(environment);
-        newItem.setValue(convertValueToString(value, oldItem != null ? oldItem.getValueType() : ConfigValueType.STRING));
-        newItem.setDescription(oldItem != null ? oldItem.getDescription() : "");
-        newItem.setCategory(oldItem != null ? oldItem.getCategory() : "DEFAULT");
-        newItem.setValueType(oldItem != null ? oldItem.getValueType() : ConfigValueType.STRING);
-        newItem.setEncrypted(oldItem != null ? oldItem.isEncrypted() : false);
-        newItem.setSensitive(oldItem != null ? oldItem.isSensitive() : false);
-        newItem.setUpdatedAt(LocalDateTime.now());
-        newItem.setUpdatedBy(updatedBy);
-        
-        // 保存配置项
-        ConfigItem savedItem = configRepository.save(newItem);
-        
-        // 更新缓存
-        configCacheService.put(key, environment, savedItem);
-        
-        // 记录审计日志
-        auditService.logConfigChange(oldItem, savedItem, updatedBy);
-        
-        // 发送变更通知
-        notificationService.sendConfigChangeNotification(savedItem);
-        
-        return savedItem;
+        // 回滚配置项
+        public ConfigItem rollbackConfigItem(String key, String version, String updatedBy) {
+            ConfigItem rolledBackItem = configService.rollbackConfigItem(key, version);
+            
+            // 记录审计日志
+            auditService.logConfigRollback(key, version, updatedBy);
+            
+            return rolledBackItem;
+        }
     }
     
-    // 批量更新配置
-    public List<ConfigItem> bulkUpdateConfig(Map<String, Object> configUpdates, String environment, String updatedBy) {
-        List<ConfigItem> updatedItems = new ArrayList<>();
+    // 配置模板管理
+    public class ConfigTemplateManager {
         
-        for (Map.Entry<String, Object> entry : configUpdates.entrySet()) {
-            ConfigItem item = updateConfigItem(entry.getKey(), environment, entry.getValue(), updatedBy);
-            updatedItems.add(item);
+        // 创建配置模板
+        public ConfigTemplate createConfigTemplate(String name, Map<String, Object> templateData) {
+            ConfigTemplate template = new ConfigTemplate();
+            template.setName(name);
+            template.setTemplateData(templateData);
+            template.setCreatedAt(Instant.now());
+            
+            return configService.saveConfigTemplate(template);
         }
         
-        return updatedItems;
+        // 应用配置模板
+        public List<ConfigItem> applyConfigTemplate(String templateId, String environment) {
+            ConfigTemplate template = configService.getConfigTemplate(templateId);
+            Map<String, Object> templateData = template.getTemplateData();
+            
+            List<ConfigItem> appliedConfigs = new ArrayList<>();
+            
+            for (Map.Entry<String, Object> entry : templateData.entrySet()) {
+                String configKey = environment + "." + entry.getKey();
+                ConfigItem item = configService.updateConfigItem(configKey, entry.getValue(), "TEMPLATE_APPLY");
+                appliedConfigs.add(item);
+            }
+            
+            return appliedConfigs;
+        }
+        
+        // 导出配置模板
+        public String exportConfigTemplate(String templateId) {
+            ConfigTemplate template = configService.getConfigTemplate(templateId);
+            return configService.exportTemplateAsJson(template);
+        }
+        
+        // 导入配置模板
+        public ConfigTemplate importConfigTemplate(String templateJson) {
+            ConfigTemplate template = configService.importTemplateFromJson(templateJson);
+            return configService.saveConfigTemplate(template);
+        }
     }
     
-    // 配置项加密处理
-    private String encryptConfigValue(String value) {
-        // 使用AES加密
-        return encryptionService.encrypt(value);
-    }
-    
-    // 配置项解密处理
-    private String decryptConfigValue(String encryptedValue) {
-        // 使用AES解密
-        return encryptionService.decrypt(encryptedValue);
+    // 配置验证
+    public class ConfigValidation {
+        
+        // 验证配置项
+        public ValidationResult validateConfigItem(String key, Object value) {
+            ConfigSchema schema = configService.getConfigSchema(key);
+            if (schema == null) {
+                return ValidationResult.invalid("未找到配置项的验证规则: " + key);
+            }
+            
+            try {
+                schema.validate(value);
+                return ValidationResult.valid();
+            } catch (ValidationException e) {
+                return ValidationResult.invalid(e.getMessage());
+            }
+        }
+        
+        // 批量验证配置
+        public Map<String, ValidationResult> validateConfigBatch(Map<String, Object> configItems) {
+            Map<String, ValidationResult> results = new HashMap<>();
+            
+            for (Map.Entry<String, Object> entry : configItems.entrySet()) {
+                ValidationResult result = validateConfigItem(entry.getKey(), entry.getValue());
+                results.put(entry.getKey(), result);
+            }
+            
+            return results;
+        }
     }
 }
 ```
 
-### 配置模板与环境管理
+### 配置存储设计
 
 ```sql
 -- 配置管理数据库设计
 CREATE TABLE config_items (
     id VARCHAR(50) PRIMARY KEY,
-    config_key VARCHAR(200) NOT NULL,
-    config_value TEXT,
+    config_key VARCHAR(200) NOT NULL UNIQUE,
+    config_value JSON NOT NULL,
+    config_type VARCHAR(50) NOT NULL,  -- STRING, NUMBER, BOOLEAN, JSON, etc.
     description TEXT,
-    category VARCHAR(100),
-    environment VARCHAR(50) NOT NULL,  -- DEV, TEST, PROD
-    value_type VARCHAR(20) DEFAULT 'STRING',  -- STRING, INTEGER, BOOLEAN, JSON, YAML
-    is_encrypted BOOLEAN DEFAULT FALSE,
+    environment VARCHAR(50),  -- DEV, TEST, PROD
     is_sensitive BOOLEAN DEFAULT FALSE,
+    version INT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_by VARCHAR(100),
-    updated_by VARCHAR(100),
+    updated_by VARCHAR(50),
     
-    UNIQUE KEY unique_config (config_key, environment),
+    INDEX idx_config_key (config_key),
     INDEX idx_environment (environment),
-    INDEX idx_category (category),
-    INDEX idx_created_at (created_at)
+    INDEX idx_config_type (config_type),
+    INDEX idx_updated_at (updated_at)
+);
+
+-- 配置历史表
+CREATE TABLE config_history (
+    id VARCHAR(50) PRIMARY KEY,
+    config_item_id VARCHAR(50) NOT NULL,
+    config_value JSON NOT NULL,
+    version INT NOT NULL,
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    changed_by VARCHAR(50),
+    change_reason TEXT,
+    
+    FOREIGN KEY (config_item_id) REFERENCES config_items(id),
+    INDEX idx_config_item_id (config_item_id),
+    INDEX idx_version (version),
+    INDEX idx_changed_at (changed_at)
 );
 
 -- 配置模板表
 CREATE TABLE config_templates (
     id VARCHAR(50) PRIMARY KEY,
     template_name VARCHAR(200) NOT NULL,
-    description TEXT,
     template_data JSON NOT NULL,
-    version VARCHAR(20) NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE,
+    description TEXT,
+    tags JSON,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_by VARCHAR(100),
+    created_by VARCHAR(50),
     
     INDEX idx_template_name (template_name),
-    INDEX idx_version (version),
-    INDEX idx_is_active (is_active)
+    INDEX idx_created_at (created_at)
 );
 
--- 配置变更历史表
-CREATE TABLE config_change_history (
+-- 配置变更日志表
+CREATE TABLE config_change_logs (
     id VARCHAR(50) PRIMARY KEY,
-    config_item_id VARCHAR(50) NOT NULL,
-    old_value TEXT,
-    new_value TEXT,
-    change_type VARCHAR(20) NOT NULL,  -- CREATE, UPDATE, DELETE
+    config_key VARCHAR(200) NOT NULL,
+    old_value JSON,
+    new_value JSON,
     changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    changed_by VARCHAR(100),
-    change_reason VARCHAR(500),
+    changed_by VARCHAR(50),
+    change_type VARCHAR(50),  -- UPDATE, DELETE, ROLLBACK
+    affected_services JSON,
     
-    FOREIGN KEY (config_item_id) REFERENCES config_items(id),
-    INDEX idx_config_item (config_item_id),
+    INDEX idx_config_key (config_key),
     INDEX idx_changed_at (changed_at),
     INDEX idx_changed_by (changed_by)
-);
-
--- 环境配置映射表
-CREATE TABLE environment_config_mapping (
-    id VARCHAR(50) PRIMARY KEY,
-    environment VARCHAR(50) NOT NULL,
-    config_key VARCHAR(200) NOT NULL,
-    template_id VARCHAR(50),
-    override_value TEXT,
-    is_overridden BOOLEAN DEFAULT FALSE,
-    
-    FOREIGN KEY (template_id) REFERENCES config_templates(id),
-    UNIQUE KEY unique_env_config (environment, config_key)
 );
 
 -- 创建配置统计视图
@@ -243,392 +254,377 @@ CREATE VIEW config_statistics AS
 SELECT 
     environment,
     COUNT(*) as total_configs,
-    COUNT(CASE WHEN is_encrypted = TRUE THEN 1 END) as encrypted_configs,
     COUNT(CASE WHEN is_sensitive = TRUE THEN 1 END) as sensitive_configs,
-    COUNT(CASE WHEN category = 'SECURITY' THEN 1 END) as security_configs,
-    COUNT(CASE WHEN category = 'PERFORMANCE' THEN 1 END) as performance_configs,
-    MAX(updated_at) as last_updated
+    COUNT(CASE WHEN config_type = 'JSON' THEN 1 END) as json_configs,
+    MAX(updated_at) as last_updated,
+    COUNT(DISTINCT updated_by) as unique_updaters
 FROM config_items
 GROUP BY environment;
 ```
 
-### 配置分发与同步
+## 系统监控
+
+### 监控指标体系
 
 ```python
-class ConfigDistributionManager:
-    def __init__(self, config_service, message_queue_service, cache_service):
-        self.config_service = config_service
-        self.message_queue_service = message_queue_service
-        self.cache_service = cache_service
-        self.subscribers = {}
+class SystemMonitoring:
+    def __init__(self, metrics_service, alert_service, notification_service):
+        self.metrics_service = metrics_service
+        self.alert_service = alert_service
+        self.notification_service = notification_service
+        self.monitors = {}
     
-    def subscribe_to_config_changes(self, service_id, config_keys, callback):
-        """订阅配置变更"""
-        if service_id not in self.subscribers:
-            self.subscribers[service_id] = {
-                'config_keys': set(),
-                'callbacks': []
-            }
+    def setup_performance_monitors(self):
+        """设置性能监控器"""
+        self.monitors['authentication_latency'] = self.create_monitor(
+            'authentication_latency',
+            '认证延迟监控',
+            self.metrics_service.get_auth_latency,
+            threshold=2000,  # 2秒阈值
+            alert_level='HIGH'
+        )
         
-        self.subscribers[service_id]['config_keys'].update(config_keys)
-        self.subscribers[service_id]['callbacks'].append(callback)
+        self.monitors['authorization_success_rate'] = self.create_monitor(
+            'authorization_success_rate',
+            '授权成功率监控',
+            self.metrics_service.get_authz_success_rate,
+            threshold=0.99,  # 99%阈值
+            alert_level='MEDIUM'
+        )
         
-        # 注册到消息队列
-        for key in config_keys:
-            self.message_queue_service.subscribe(f"config.{key}", self._handle_config_change)
-    
-    def _handle_config_change(self, message):
-        """处理配置变更消息"""
-        config_key = message['config_key']
-        new_value = message['new_value']
-        environment = message['environment']
+        self.monitors['active_sessions'] = self.create_monitor(
+            'active_sessions',
+            '活跃会话数监控',
+            self.metrics_service.get_active_sessions,
+            threshold=10000,  # 1万会话阈值
+            alert_level='LOW'
+        )
         
-        # 更新本地缓存
-        self.cache_service.set(f"config.{environment}.{config_key}", new_value)
+        self.monitors['database_connection_pool'] = self.create_monitor(
+            'database_connection_pool',
+            '数据库连接池监控',
+            self.metrics_service.get_db_connection_usage,
+            threshold=0.8,  # 80%阈值
+            alert_level='MEDIUM'
+        )
         
-        # 通知订阅者
-        for service_id, subscriber in self.subscribers.items():
-            if config_key in subscriber['config_keys']:
-                for callback in subscriber['callbacks']:
-                    try:
-                        callback(config_key, new_value, environment)
-                    except Exception as e:
-                        logger.error(f"配置变更回调失败: {e}")
-    
-    def push_config_to_service(self, service_id, config_data):
-        """推送配置到服务"""
-        # 通过消息队列推送配置
-        self.message_queue_service.send_message(
-            f"service.{service_id}.config",
-            {
-                'type': 'CONFIG_PUSH',
-                'config_data': config_data,
-                'timestamp': datetime.utcnow().isoformat()
-            }
+        self.monitors['cache_hit_rate'] = self.create_monitor(
+            'cache_hit_rate',
+            '缓存命中率监控',
+            self.metrics_service.get_cache_hit_rate,
+            threshold=0.95,  # 95%阈值
+            alert_level='LOW'
         )
     
-    def sync_config_across_instances(self, config_key, environment):
-        """在实例间同步配置"""
-        # 获取最新配置
-        config_item = self.config_service.get_config_item(config_key, environment)
-        
-        # 构造变更消息
-        message = {
-            'config_key': config_key,
-            'new_value': config_item.value if config_item else None,
-            'environment': environment,
-            'timestamp': datetime.utcnow().isoformat()
+    def create_monitor(self, name, description, metric_function, threshold, alert_level):
+        """创建监控器"""
+        monitor = {
+            'name': name,
+            'description': description,
+            'metric_function': metric_function,
+            'threshold': threshold,
+            'alert_level': alert_level,
+            'enabled': True,
+            'last_check': None,
+            'last_value': None
         }
         
-        # 发布到所有实例
-        self.message_queue_service.publish("config.change", message)
+        # 启动定时检查
+        self.schedule_monitoring(monitor)
+        
+        return monitor
     
-    def get_service_config(self, service_id, environment):
-        """获取服务配置"""
-        # 从缓存获取
-        cached_config = self.cache_service.get(f"service.{service_id}.config.{environment}")
-        if cached_config:
-            return cached_config
+    def check_monitor(self, monitor):
+        """检查监控指标"""
+        try:
+            current_value = monitor['metric_function']()
+            monitor['last_check'] = datetime.utcnow()
+            monitor['last_value'] = current_value
+            
+            # 检查是否超过阈值
+            if self.is_threshold_exceeded(current_value, monitor['threshold']):
+                self.trigger_alert(monitor, current_value)
+                
+        except Exception as e:
+            logger.error(f"监控检查失败 {monitor['name']}: {e}")
+    
+    def trigger_alert(self, monitor, current_value):
+        """触发告警"""
+        alert = {
+            'monitor_name': monitor['name'],
+            'description': monitor['description'],
+            'current_value': current_value,
+            'threshold': monitor['threshold'],
+            'level': monitor['alert_level'],
+            'timestamp': datetime.utcnow()
+        }
         
-        # 从数据库获取服务相关配置
-        service_configs = self.config_service.get_service_configs(service_id, environment)
+        self.alert_service.send_alert(alert)
         
-        # 放入缓存
-        self.cache_service.set(f"service.{service_id}.config.{environment}", service_configs, ttl=300)
+        # 发送通知
+        self.notification_service.send_alert_notification(alert)
+    
+    def get_system_health_report(self):
+        """获取系统健康报告"""
+        report = {
+            'timestamp': datetime.utcnow(),
+            'overall_status': 'HEALTHY',
+            'metrics': {},
+            'alerts': [],
+            'recommendations': []
+        }
         
-        return service_configs
+        # 收集各项指标
+        report['metrics'] = self.collect_all_metrics()
+        
+        # 检查活跃告警
+        active_alerts = self.alert_service.get_active_alerts()
+        report['alerts'] = active_alerts
+        
+        # 生成建议
+        report['recommendations'] = self.generate_recommendations(report)
+        
+        # 确定整体状态
+        report['overall_status'] = self.determine_system_status(active_alerts)
+        
+        return report
+    
+    def collect_all_metrics(self):
+        """收集所有指标"""
+        metrics = {
+            'authentication': {
+                'latency': self.metrics_service.get_auth_latency(),
+                'success_rate': self.metrics_service.get_auth_success_rate(),
+                'failure_rate': self.metrics_service.get_auth_failure_rate(),
+                'requests_per_second': self.metrics_service.get_auth_rps()
+            },
+            'authorization': {
+                'latency': self.metrics_service.get_authz_latency(),
+                'success_rate': self.metrics_service.get_authz_success_rate(),
+                'failure_rate': self.metrics_service.get_authz_failure_rate(),
+                'requests_per_second': self.metrics_service.get_authz_rps()
+            },
+            'system': {
+                'cpu_usage': self.metrics_service.get_cpu_usage(),
+                'memory_usage': self.metrics_service.get_memory_usage(),
+                'disk_usage': self.metrics_service.get_disk_usage(),
+                'network_io': self.metrics_service.get_network_io()
+            }
+        }
+        
+        return metrics
 ```
 
-## 系统监控体系
-
-### 监控指标设计
+### 监控面板设计
 
 ```javascript
-// 系统监控服务
-class SystemMonitoringService {
-  constructor(metricsService, alertService, visualizationService) {
-    this.metricsService = metricsService;
-    this.alertService = alertService;
+// 系统监控面板
+class SystemMonitoringDashboard {
+  constructor(monitoringService, visualizationService) {
+    this.monitoringService = monitoringService;
     this.visualizationService = visualizationService;
-    this.monitors = new Map();
+    this.dashboardContainer = null;
+    this.charts = new Map();
   }
   
-  // 初始化监控指标
-  initializeMetrics() {
-    // 认证相关指标
-    this.metricsService.registerCounter('auth.login_attempts', '登录尝试次数');
-    this.metricsService.registerCounter('auth.login_success', '登录成功次数');
-    this.metricsService.registerCounter('auth.login_failure', '登录失败次数');
-    this.metricsService.registerHistogram('auth.login_duration', '登录耗时分布');
-    
-    // 授权相关指标
-    this.metricsService.registerCounter('authz.permission_checks', '权限检查次数');
-    this.metricsService.registerCounter('authz.permission_granted', '权限授予次数');
-    this.metricsService.registerCounter('authz.permission_denied', '权限拒绝次数');
-    this.metricsService.registerHistogram('authz.check_duration', '权限检查耗时');
-    
-    // 用户管理指标
-    this.metricsService.registerCounter('user.operations', '用户操作次数');
-    this.metricsService.registerGauge('user.active_count', '活跃用户数');
-    this.metricsService.registerGauge('user.total_count', '总用户数');
-    
-    // 系统性能指标
-    this.metricsService.registerGauge('system.cpu_usage', 'CPU使用率');
-    this.metricsService.registerGauge('system.memory_usage', '内存使用率');
-    this.metricsService.registerGauge('system.disk_usage', '磁盘使用率');
-    this.metricsService.registerHistogram('system.response_time', '系统响应时间');
+  // 初始化监控面板
+  init(containerId) {
+    this.dashboardContainer = document.getElementById(containerId);
+    this.renderDashboard();
+    this.setupRealTimeUpdates();
   }
   
-  // 设置监控器
-  setupMonitors() {
-    // 认证成功率监控
-    this.createMonitor('auth_success_rate', {
-      metric: 'auth.login_success_rate',
-      checkFunction: this.checkAuthSuccessRate.bind(this),
-      threshold: 0.95,  // 95%成功率阈值
-      alertLevel: 'HIGH',
-      checkInterval: 60000  // 1分钟检查一次
-    });
+  // 渲染监控面板
+  renderDashboard() {
+    // 创建仪表板布局
+    const layout = this.createDashboardLayout();
+    this.dashboardContainer.appendChild(layout);
     
-    // 系统响应时间监控
-    this.createMonitor('response_time', {
-      metric: 'system.response_time_95th',
-      checkFunction: this.checkResponseTime.bind(this),
-      threshold: 2000,  // 2秒阈值
-      alertLevel: 'MEDIUM',
-      checkInterval: 30000  // 30秒检查一次
-    });
-    
-    // CPU使用率监控
-    this.createMonitor('cpu_usage', {
-      metric: 'system.cpu_usage',
-      checkFunction: this.checkCPUUsage.bind(this),
-      threshold: 0.8,  // 80%使用率阈值
-      alertLevel: 'LOW',
-      checkInterval: 10000  // 10秒检查一次
-    });
+    // 渲染各个监控组件
+    this.renderSystemMetrics();
+    this.renderPerformanceCharts();
+    this.renderAlertPanel();
+    this.renderHealthStatus();
   }
   
-  // 创建监控器
-  createMonitor(name, config) {
-    const monitor = {
-      name: name,
-      config: config,
-      lastCheck: null,
-      lastValue: null,
-      isEnabled: true
-    };
+  // 创建仪表板布局
+  createDashboardLayout() {
+    const dashboard = document.createElement('div');
+    dashboard.className = 'monitoring-dashboard';
     
-    this.monitors.set(name, monitor);
-    
-    // 启动定时检查
-    if (config.checkInterval) {
-      monitor.timer = setInterval(() => {
-        this.checkMonitor(monitor);
-      }, config.checkInterval);
-    }
-    
-    return monitor;
-  }
-  
-  // 检查监控器
-  async checkMonitor(monitor) {
-    if (!monitor.isEnabled) return;
-    
-    try {
-      const currentValue = await monitor.config.checkFunction();
-      monitor.lastCheck = new Date();
-      monitor.lastValue = currentValue;
+    dashboard.innerHTML = `
+      <div class="dashboard-header">
+        <h1>系统监控面板</h1>
+        <div class="refresh-controls">
+          <button id="refresh-btn">刷新</button>
+          <select id="time-range">
+            <option value="1h">最近1小时</option>
+            <option value="6h">最近6小时</option>
+            <option value="24h" selected>最近24小时</option>
+            <option value="7d">最近7天</option>
+          </select>
+        </div>
+      </div>
       
-      // 检查是否超过阈值
-      if (this.isThresholdExceeded(currentValue, monitor.config.threshold)) {
-        this.triggerAlert(monitor, currentValue);
+      <div class="dashboard-grid">
+        <div class="grid-item health-status">
+          <div class="panel-header">
+            <h2>系统健康状态</h2>
+          </div>
+          <div id="health-status-content"></div>
+        </div>
+        
+        <div class="grid-item system-metrics">
+          <div class="panel-header">
+            <h2>系统指标</h2>
+          </div>
+          <div id="system-metrics-content"></div>
+        </div>
+        
+        <div class="grid-item performance-charts">
+          <div class="panel-header">
+            <h2>性能图表</h2>
+          </div>
+          <div id="performance-charts-content"></div>
+        </div>
+        
+        <div class="grid-item alert-panel">
+          <div class="panel-header">
+            <h2>实时告警</h2>
+          </div>
+          <div id="alert-panel-content"></div>
+        </div>
+      </div>
+    `;
+    
+    return dashboard;
+  }
+  
+  // 渲染系统指标
+  async renderSystemMetrics() {
+    const metrics = await this.monitoringService.getSystemMetrics();
+    const container = document.getElementById('system-metrics-content');
+    
+    container.innerHTML = `
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value">${metrics.cpu.usage}%</div>
+          <div class="metric-label">CPU使用率</div>
+          <div class="metric-trend ${metrics.cpu.trend > 0 ? 'up' : 'down'}">
+            ${metrics.cpu.trend > 0 ? '↑' : '↓'} ${Math.abs(metrics.cpu.trend)}%
+          </div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-value">${metrics.memory.usage}%</div>
+          <div class="metric-label">内存使用率</div>
+          <div class="metric-trend ${metrics.memory.trend > 0 ? 'up' : 'down'}">
+            ${metrics.memory.trend > 0 ? '↑' : '↓'} ${Math.abs(metrics.memory.trend)}%
+          </div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-value">${metrics.disk.usage}%</div>
+          <div class="metric-label">磁盘使用率</div>
+          <div class="metric-trend ${metrics.disk.trend > 0 ? 'up' : 'down'}">
+            ${metrics.disk.trend > 0 ? '↑' : '↓'} ${Math.abs(metrics.disk.trend)}%
+          </div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-value">${metrics.network.inbound} Mbps</div>
+          <div class="metric-label">网络流入</div>
+          <div class="metric-trend ${metrics.network.inboundTrend > 0 ? 'up' : 'down'}">
+            ${metrics.network.inboundTrend > 0 ? '↑' : '↓'} ${Math.abs(metrics.network.inboundTrend)}%
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // 渲染性能图表
+  async renderPerformanceCharts() {
+    const performanceData = await this.monitoringService.getPerformanceData();
+    const container = document.getElementById('performance-charts-content');
+    
+    // 渲染认证延迟图表
+    const authLatencyChart = this.visualizationService.createLineChart(
+      'auth-latency-chart',
+      performanceData.authLatency,
+      {
+        title: '认证延迟 (ms)',
+        yAxisLabel: '延迟 (ms)',
+        threshold: 2000
       }
-    } catch (error) {
-      console.error(`监控检查失败 ${monitor.name}:`, error);
-    }
-  }
-  
-  // 检查认证成功率
-  async checkAuthSuccessRate() {
-    const attempts = await this.metricsService.getCounterValue('auth.login_attempts');
-    const successes = await this.metricsService.getCounterValue('auth.login_success');
+    );
     
-    if (attempts === 0) return 1.0;
-    return successes / attempts;
-  }
-  
-  // 检查响应时间
-  async checkResponseTime() {
-    const responseTime95th = await this.metricsService.getHistogramQuantile('system.response_time', 0.95);
-    return responseTime95th;
-  }
-  
-  // 检查CPU使用率
-  async checkCPUUsage() {
-    const cpuUsage = await this.metricsService.getGaugeValue('system.cpu_usage');
-    return cpuUsage;
-  }
-  
-  // 触发告警
-  triggerAlert(monitor, currentValue) {
-    const alert = {
-      monitorName: monitor.name,
-      metric: monitor.config.metric,
-      currentValue: currentValue,
-      threshold: monitor.config.threshold,
-      level: monitor.config.alertLevel,
-      timestamp: new Date()
-    };
+    // 渲染授权成功率图表
+    const authzSuccessRateChart = this.visualizationService.createLineChart(
+      'authz-success-rate-chart',
+      performanceData.authzSuccessRate,
+      {
+        title: '授权成功率 (%)',
+        yAxisLabel: '成功率 (%)',
+        threshold: 99,
+        isPercentage: true
+      }
+    );
     
-    this.alertService.sendAlert(alert);
+    container.innerHTML = `
+      <div class="charts-container">
+        <div class="chart-wrapper">
+          ${authLatencyChart.outerHTML}
+        </div>
+        <div class="chart-wrapper">
+          ${authzSuccessRateChart.outerHTML}
+        </div>
+      </div>
+    `;
   }
   
-  // 判断是否超过阈值
-  isThresholdExceeded(currentValue, threshold) {
-    // 对于成功率等比率指标，低于阈值才告警
-    if (monitor.config.metric.includes('rate') || monitor.config.metric.includes('success')) {
-      return currentValue < threshold;
+  // 渲染告警面板
+  async renderAlertPanel() {
+    const alerts = await this.monitoringService.getActiveAlerts();
+    const container = document.getElementById('alert-panel-content');
+    
+    if (alerts.length === 0) {
+      container.innerHTML = '<div class="no-alerts">当前无活跃告警</div>';
+      return;
     }
-    // 对于其他指标，超过阈值才告警
-    return currentValue > threshold;
+    
+    const alertList = document.createElement('div');
+    alertList.className = 'alert-list';
+    
+    alerts.forEach(alert => {
+      const alertElement = document.createElement('div');
+      alertElement.className = `alert-item level-${alert.level.toLowerCase()}`;
+      alertElement.innerHTML = `
+        <div class="alert-header">
+          <span class="alert-level ${alert.level.toLowerCase()}">${alert.level}</span>
+          <span class="alert-time">${this.formatTime(alert.timestamp)}</span>
+        </div>
+        <div class="alert-content">
+          <div class="alert-title">${alert.title}</div>
+          <div class="alert-description">${alert.description}</div>
+          <div class="alert-details">
+            <span>当前值: ${alert.currentValue}</span>
+            <span>阈值: ${alert.threshold}</span>
+          </div>
+        </div>
+      `;
+      alertList.appendChild(alertElement);
+    });
+    
+    container.appendChild(alertList);
+  }
+  
+  formatTime(timestamp) {
+    return new Date(timestamp).toLocaleString();
   }
 }
 ```
 
-### 监控面板实现
-
-```java
-public class MonitoringDashboardService {
-    private final MetricsService metricsService;
-    private final AlertService alertService;
-    private final VisualizationService visualizationService;
-    
-    // 监控面板数据
-    public class MonitoringDashboard {
-        private SystemHealth health;
-        private PerformanceMetrics performance;
-        private SecurityMetrics security;
-        private BusinessMetrics business;
-        private List<Alert> activeAlerts;
-        private List<MetricChart> charts;
-    }
-    
-    // 系统健康状态
-    public class SystemHealth {
-        private OverallStatus status;
-        private List<ComponentStatus> components;
-        private double uptimePercentage;
-        private LocalDateTime lastCheck;
-    }
-    
-    // 性能指标
-    public class PerformanceMetrics {
-        private double avgResponseTime;
-        private double p95ResponseTime;
-        private double p99ResponseTime;
-        private int requestsPerSecond;
-        private double errorRate;
-    }
-    
-    // 安全指标
-    public class SecurityMetrics {
-        private int failedLoginAttempts;
-        private int securityViolations;
-        private int permissionDenied;
-        private List<SuspiciousActivity> suspiciousActivities;
-    }
-    
-    // 获取监控面板数据
-    public MonitoringDashboard getMonitoringDashboard() {
-        MonitoringDashboard dashboard = new MonitoringDashboard();
-        
-        // 并行获取各项数据
-        CompletableFuture<SystemHealth> healthFuture = CompletableFuture.supplyAsync(
-            () -> getSystemHealth());
-        
-        CompletableFuture<PerformanceMetrics> performanceFuture = CompletableFuture.supplyAsync(
-            () -> getPerformanceMetrics());
-        
-        CompletableFuture<SecurityMetrics> securityFuture = CompletableFuture.supplyAsync(
-            () -> getSecurityMetrics());
-        
-        CompletableFuture<BusinessMetrics> businessFuture = CompletableFuture.supplyAsync(
-            () -> getBusinessMetrics());
-        
-        CompletableFuture<List<Alert>> alertsFuture = CompletableFuture.supplyAsync(
-            () -> alertService.getActiveAlerts());
-        
-        // 等待所有数据获取完成
-        CompletableFuture.allOf(
-            healthFuture, performanceFuture, securityFuture, businessFuture, alertsFuture
-        ).join();
-        
-        // 组装数据
-        dashboard.setHealth(healthFuture.join());
-        dashboard.setPerformance(performanceFuture.join());
-        dashboard.setSecurity(securityFuture.join());
-        dashboard.setBusiness(businessFuture.join());
-        dashboard.setActiveAlerts(alertsFuture.join());
-        dashboard.setCharts(generateMetricCharts());
-        
-        return dashboard;
-    }
-    
-    // 获取系统健康状态
-    private SystemHealth getSystemHealth() {
-        SystemHealth health = new SystemHealth();
-        
-        // 获取各组件状态
-        List<ComponentStatus> components = new ArrayList<>();
-        components.add(checkDatabaseStatus());
-        components.add(checkCacheStatus());
-        components.add(checkMessageQueueStatus());
-        components.add(checkExternalServiceStatus());
-        
-        health.setComponents(components);
-        
-        // 计算整体状态
-        health.setStatus(calculateOverallStatus(components));
-        
-        // 计算运行时间
-        health.setUptimePercentage(calculateUptimePercentage());
-        health.setLastCheck(LocalDateTime.now());
-        
-        return health;
-    }
-    
-    // 生成指标图表
-    private List<MetricChart> generateMetricCharts() {
-        List<MetricChart> charts = new ArrayList<>();
-        
-        // 响应时间趋势图
-        MetricChart responseTimeChart = new MetricChart();
-        responseTimeChart.setTitle("响应时间趋势");
-        responseTimeChart.setType("LINE");
-        responseTimeChart.setData(metricsService.getResponseTimeTrend(24)); // 24小时数据
-        charts.add(responseTimeChart);
-        
-        // 请求量趋势图
-        MetricChart requestVolumeChart = new MetricChart();
-        requestVolumeChart.setTitle("请求量趋势");
-        requestVolumeChart.setType("BAR");
-        requestVolumeChart.setData(metricsService.getRequestVolumeTrend(24));
-        charts.add(requestVolumeChart);
-        
-        // 错误率趋势图
-        MetricChart errorRateChart = new MetricChart();
-        errorRateChart.setTitle("错误率趋势");
-        errorRateChart.setType("LINE");
-        errorRateChart.setData(metricsService.getErrorRateTrend(24));
-        charts.add(errorRateChart);
-        
-        return charts;
-    }
-}
-```
-
-## 日志查询体系
+## 日志查询与分析
 
 ### 日志架构设计
 
@@ -637,25 +633,23 @@ public class MonitoringDashboardService {
 CREATE TABLE system_logs (
     id VARCHAR(50) PRIMARY KEY,
     timestamp TIMESTAMP NOT NULL,
-    level VARCHAR(20) NOT NULL,  -- DEBUG, INFO, WARN, ERROR, FATAL
+    log_level VARCHAR(20) NOT NULL,  -- DEBUG, INFO, WARN, ERROR, FATAL
     service_name VARCHAR(100) NOT NULL,
-    component VARCHAR(100),
+    module_name VARCHAR(100),
     message TEXT NOT NULL,
     stack_trace TEXT,
     user_id VARCHAR(50),
+    session_id VARCHAR(50),
     ip_address VARCHAR(45),
-    session_id VARCHAR(100),
-    correlation_id VARCHAR(100),
+    request_id VARCHAR(50),
     additional_data JSON,
-    tags JSON,
     
     INDEX idx_timestamp (timestamp),
-    INDEX idx_level (level),
-    INDEX idx_service (service_name),
-    INDEX idx_component (component),
+    INDEX idx_log_level (log_level),
+    INDEX idx_service_name (service_name),
     INDEX idx_user_id (user_id),
-    INDEX idx_ip_address (ip_address),
-    INDEX idx_correlation_id (correlation_id),
+    INDEX idx_session_id (session_id),
+    INDEX idx_request_id (request_id),
     FULLTEXT(message)
 );
 
@@ -663,463 +657,484 @@ CREATE TABLE system_logs (
 CREATE TABLE log_aggregations (
     id VARCHAR(50) PRIMARY KEY,
     aggregation_type VARCHAR(50) NOT NULL,  -- HOURLY, DAILY, WEEKLY
-    time_bucket TIMESTAMP NOT NULL,
+    date_key DATE NOT NULL,
     service_name VARCHAR(100) NOT NULL,
-    level VARCHAR(20) NOT NULL,
+    log_level VARCHAR(20) NOT NULL,
     count INT NOT NULL DEFAULT 0,
-    error_count INT NOT NULL DEFAULT 0,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    UNIQUE KEY unique_aggregation (aggregation_type, time_bucket, service_name, level),
-    INDEX idx_time_bucket (time_bucket),
-    INDEX idx_service (service_name)
+    UNIQUE KEY unique_aggregation (aggregation_type, date_key, service_name, log_level),
+    INDEX idx_date_key (date_key),
+    INDEX idx_service_name (service_name),
+    INDEX idx_log_level (log_level)
 );
 
--- 日志配置表
-CREATE TABLE log_config (
+-- 日志查询模板表
+CREATE TABLE log_query_templates (
     id VARCHAR(50) PRIMARY KEY,
-    service_name VARCHAR(100) NOT NULL,
-    log_level VARCHAR(20) NOT NULL DEFAULT 'INFO',
-    retention_days INT NOT NULL DEFAULT 30,
-    max_file_size BIGINT NOT NULL DEFAULT 1073741824,  -- 1GB
-    enable_rotation BOOLEAN DEFAULT TRUE,
-    enable_compression BOOLEAN DEFAULT TRUE,
-    output_format VARCHAR(20) DEFAULT 'JSON',  -- JSON, TEXT
+    template_name VARCHAR(200) NOT NULL,
+    query_conditions JSON NOT NULL,
+    description TEXT,
+    created_by VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
-    UNIQUE KEY unique_service_config (service_name)
+    INDEX idx_template_name (template_name),
+    INDEX idx_created_by (created_by)
 );
 
 -- 创建日志分析视图
-CREATE VIEW log_analysis_dashboard AS
+CREATE VIEW log_analysis_view AS
 SELECT 
     DATE(timestamp) as log_date,
     service_name,
-    level,
+    log_level,
     COUNT(*) as log_count,
-    COUNT(CASE WHEN level IN ('ERROR', 'FATAL') THEN 1 END) as error_count,
-    COUNT(DISTINCT user_id) as unique_users,
-    GROUP_CONCAT(DISTINCT ip_address) as involved_ips,
+    COUNT(CASE WHEN log_level = 'ERROR' THEN 1 END) as error_count,
+    COUNT(CASE WHEN log_level = 'WARN' THEN 1 END) as warning_count,
+    GROUP_CONCAT(DISTINCT user_id) as affected_users,
     MIN(timestamp) as first_log,
     MAX(timestamp) as last_log
 FROM system_logs
 WHERE timestamp > DATE_SUB(NOW(), INTERVAL 7 DAY)
-GROUP BY DATE(timestamp), service_name, level
+GROUP BY DATE(timestamp), service_name, log_level
 ORDER BY log_date DESC, log_count DESC;
 ```
 
-### 日志查询服务
+### 日志查询系统
 
-```python
-class LogQueryService:
-    def __init__(self, log_repository, search_service):
-        self.log_repository = log_repository
-        self.search_service = search_service
+```java
+public class LogQuerySystem {
+    private final LogService logService;
+    private final SearchService searchService;
+    private final ExportService exportService;
     
-    def search_logs(self, criteria):
-        """搜索日志"""
-        # 构建查询条件
-        query_conditions = self._build_query_conditions(criteria)
-        
-        # 执行查询
-        logs = self.log_repository.search_logs(query_conditions)
-        
-        # 格式化结果
-        formatted_logs = self._format_logs(logs)
-        
-        return formatted_logs
+    // 日志查询条件
+    public class LogQueryCriteria {
+        private LocalDateTime startTime;
+        private LocalDateTime endTime;
+        private List<String> logLevels;
+        private List<String> serviceNames;
+        private String userId;
+        private String sessionId;
+        private String keyword;
+        private Map<String, Object> additionalFilters;
+        private int page = 0;
+        private int size = 50;
+        private String sortBy = "timestamp";
+        private String sortOrder = "DESC";
+    }
     
-    def _build_query_conditions(self, criteria):
-        """构建查询条件"""
-        conditions = {}
+    // 执行日志查询
+    public LogQueryResult queryLogs(LogQueryCriteria criteria) {
+        LogQueryResult result = new LogQueryResult();
         
-        # 时间范围
-        if 'start_time' in criteria and 'end_time' in criteria:
-            conditions['timestamp_range'] = (criteria['start_time'], criteria['end_time'])
+        // 构建查询条件
+        QueryBuilder queryBuilder = new QueryBuilder();
+        queryBuilder.addTimeRangeFilter(criteria.getStartTime(), criteria.getEndTime());
+        queryBuilder.addLogLevelFilter(criteria.getLogLevels());
+        queryBuilder.addServiceFilter(criteria.getServiceNames());
+        queryBuilder.addUserFilter(criteria.getUserId());
+        queryBuilder.addSessionFilter(criteria.getSessionId());
+        queryBuilder.addKeywordFilter(criteria.getKeyword());
+        queryBuilder.addCustomFilters(criteria.getAdditionalFilters());
         
-        # 日志级别
-        if 'levels' in criteria:
-            conditions['levels'] = criteria['levels']
+        // 执行查询
+        List<LogEntry> logs = logService.queryLogs(queryBuilder.build(), criteria.getPage(), criteria.getSize());
+        long total = logService.countLogs(queryBuilder.build());
         
-        # 服务名称
-        if 'service_names' in criteria:
-            conditions['service_names'] = criteria['service_names']
+        // 处理查询结果
+        result.setLogs(logs);
+        result.setTotal(total);
+        result.setPage(criteria.getPage());
+        result.setSize(criteria.getSize());
+        result.setHasMore(total > (criteria.getPage() + 1) * criteria.getSize());
         
-        # 组件名称
-        if 'components' in criteria:
-            conditions['components'] = criteria['components']
-        
-        # 用户ID
-        if 'user_id' in criteria:
-            conditions['user_id'] = criteria['user_id']
-        
-        # IP地址
-        if 'ip_address' in criteria:
-            conditions['ip_address'] = criteria['ip_address']
-        
-        # 关键词搜索
-        if 'keywords' in criteria:
-            conditions['keywords'] = criteria['keywords']
-        
-        # 标签过滤
-        if 'tags' in criteria:
-            conditions['tags'] = criteria['tags']
-        
-        return conditions
+        return result;
+    }
     
-    def _format_logs(self, logs):
-        """格式化日志"""
-        formatted_logs = []
+    // 高级日志分析
+    public LogAnalysisReport analyzeLogs(LogAnalysisCriteria criteria) {
+        LogAnalysisReport report = new LogAnalysisReport();
         
-        for log in logs:
-            formatted_log = {
-                'id': log['id'],
-                'timestamp': log['timestamp'].isoformat(),
-                'level': log['level'],
-                'service': log['service_name'],
-                'component': log['component'],
-                'message': log['message'],
-                'user_id': log.get('user_id'),
-                'ip_address': log.get('ip_address'),
-                'correlation_id': log.get('correlation_id'),
-                'formatted_message': self._format_log_message(log)
-            }
+        // 时间范围分析
+        report.setTimeRangeAnalysis(analyzeTimeRange(criteria));
+        
+        // 服务分布分析
+        report.setServiceDistribution(analyzeServiceDistribution(criteria));
+        
+        // 错误模式分析
+        report.setErrorPatterns(analyzeErrorPatterns(criteria));
+        
+        // 用户行为分析
+        report.setUserBehavior(analyzeUserBehavior(criteria));
+        
+        return report;
+    }
+    
+    // 日志导出功能
+    public ExportResult exportLogs(LogQueryCriteria criteria, ExportFormat format) {
+        try {
+            // 执行查询
+            List<LogEntry> logs = logService.queryLogs(convertToQuery(criteria));
             
-            # 如果有堆栈跟踪，添加到格式化消息中
-            if log.get('stack_trace'):
-                formatted_log['formatted_message'] += f"\nStack Trace:\n{log['stack_trace']}"
+            // 格式化数据
+            String exportedData = formatLogs(logs, format);
             
-            formatted_logs.append(formatted_log)
+            // 生成导出文件
+            String fileName = generateExportFileName(criteria, format);
+            String filePath = exportService.saveExportFile(fileName, exportedData);
+            
+            return new ExportResult(true, filePath, logs.size());
+        } catch (Exception e) {
+            return new ExportResult(false, null, 0, e.getMessage());
+        }
+    }
+    
+    // 实时日志流
+    public class RealTimeLogStream {
+        private final WebSocketService webSocketService;
+        private final LogService logService;
         
-        return formatted_logs
-    
-    def _format_log_message(self, log):
-        """格式化日志消息"""
-        timestamp = log['timestamp'].strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-        return f"[{timestamp}] {log['level']} [{log['service_name']}] {log['message']}"
-    
-    def get_log_statistics(self, period_start, period_end):
-        """获取日志统计信息"""
-        statistics = {
-            'total_logs': 0,
-            'logs_by_level': {},
-            'logs_by_service': {},
-            'error_rate': 0,
-            'top_error_services': [],
-            'unique_users': 0,
-            'peak_hours': []
+        // 订阅实时日志
+        public void subscribeToRealTimeLogs(String sessionId, LogQueryCriteria criteria) {
+            // 注册WebSocket会话
+            webSocketService.registerSession(sessionId, this::handleLogEvent);
+            
+            // 设置日志监听器
+            logService.addLogListener(criteria, this::onLogEvent);
         }
         
-        # 获取基础统计
-        basic_stats = self.log_repository.get_basic_statistics(period_start, period_end)
-        statistics['total_logs'] = basic_stats['total_logs']
-        statistics['logs_by_level'] = basic_stats['logs_by_level']
-        statistics['logs_by_service'] = basic_stats['logs_by_service']
-        statistics['unique_users'] = basic_stats['unique_users']
+        // 处理日志事件
+        private void onLogEvent(LogEntry logEntry) {
+            // 构造推送消息
+            LogEventMessage message = new LogEventMessage();
+            message.setType("LOG_EVENT");
+            message.setLogEntry(logEntry);
+            message.setTimestamp(Instant.now());
+            
+            // 推送消息到所有订阅者
+            webSocketService.broadcastMessage(message);
+        }
         
-        # 计算错误率
-        total_logs = statistics['total_logs']
-        error_logs = statistics['logs_by_level'].get('ERROR', 0) + statistics['logs_by_level'].get('FATAL', 0)
-        statistics['error_rate'] = error_logs / total_logs if total_logs > 0 else 0
-        
-        # 获取错误率最高的服务
-        statistics['top_error_services'] = self._get_top_error_services(statistics['logs_by_service'])
-        
-        # 获取高峰时段
-        statistics['peak_hours'] = self.log_repository.get_peak_hours(period_start, period_end)
-        
-        return statistics
-    
-    def _get_top_error_services(self, logs_by_service):
-        """获取错误率最高的服务"""
-        error_services = []
-        
-        for service, log_count in logs_by_service.items():
-            error_count = self.log_repository.get_error_count_by_service(service)
-            error_rate = error_count / log_count if log_count > 0 else 0
-            error_services.append({
-                'service': service,
-                'log_count': log_count,
-                'error_count': error_count,
-                'error_rate': error_rate
-            })
-        
-        # 按错误率排序
-        error_services.sort(key=lambda x: x['error_rate'], reverse=True)
-        
-        return error_services[:10]  # 返回前10个
-    
-    def export_logs(self, criteria, format='json'):
-        """导出日志"""
-        # 搜索日志
-        logs = self.search_logs(criteria)
-        
-        # 格式化数据
-        if format.lower() == 'json':
-            return self._format_as_json(logs)
-        elif format.lower() == 'csv':
-            return self._format_as_csv(logs)
-        elif format.lower() == 'text':
-            return self._format_as_text(logs)
-        else:
-            raise ValueError(f"Unsupported export format: {format}")
-    
-    def _format_as_json(self, logs):
-        """格式化为JSON"""
-        import json
-        return json.dumps(logs, indent=2, ensure_ascii=False)
-    
-    def _format_as_csv(self, logs):
-        """格式化为CSV"""
-        import csv
-        import io
-        
-        output = io.StringIO()
-        writer = csv.writer(output)
-        
-        # 写入表头
-        writer.writerow([
-            'Timestamp', 'Level', 'Service', 'Component', 'Message', 
-            'User ID', 'IP Address', 'Correlation ID'
-        ])
-        
-        # 写入数据
-        for log in logs:
-            writer.writerow([
-                log['timestamp'],
-                log['level'],
-                log['service'],
-                log['component'],
-                log['message'],
-                log.get('user_id', ''),
-                log.get('ip_address', ''),
-                log.get('correlation_id', '')
-            ])
-        
-        return output.getvalue()
-    
-    def _format_as_text(self, logs):
-        """格式化为文本"""
-        lines = []
-        for log in logs:
-            lines.append(log['formatted_message'])
-        return '\n'.join(lines)
+        // 处理WebSocket消息
+        private void handleLogEvent(String sessionId, WebSocketMessage message) {
+            // 处理客户端发送的消息
+            if ("SUBSCRIBE".equals(message.getType())) {
+                // 处理订阅请求
+                handleSubscribeRequest(sessionId, message);
+            } else if ("UNSUBSCRIBE".equals(message.getType())) {
+                // 处理取消订阅请求
+                handleUnsubscribeRequest(sessionId);
+            }
+        }
+    }
+}
 ```
 
-### 日志分析与告警
+### 日志查询界面
 
 ```javascript
-// 日志分析服务
-class LogAnalysisService {
-  constructor(logService, alertService, mlService) {
+// 日志查询界面
+class LogQueryInterface {
+  constructor(logService, visualizationService) {
     this.logService = logService;
-    this.alertService = alertService;
-    this.mlService = mlService;
-    this.analyzers = new Map();
+    this.visualizationService = visualizationService;
+    this.currentQuery = {};
   }
   
-  // 初始化分析器
-  initializeAnalyzers() {
-    // 异常模式检测分析器
-    this.createAnalyzer('anomaly_detection', {
-      name: '异常模式检测',
-      description: '检测日志中的异常模式',
-      analyzeFunction: this.detectAnomalies.bind(this),
-      schedule: '*/5 * * * *'  // 每5分钟执行一次
+  // 初始化查询界面
+  init(containerId) {
+    this.container = document.getElementById(containerId);
+    this.renderQueryForm();
+    this.renderResultsPanel();
+    this.bindEvents();
+  }
+  
+  // 渲染查询表单
+  renderQueryForm() {
+    const formContainer = document.createElement('div');
+    formContainer.className = 'log-query-form';
+    
+    formContainer.innerHTML = `
+      <div class="form-section">
+        <h3>时间范围</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>开始时间</label>
+            <input type="datetime-local" id="start-time" value="${this.getDefaultStartTime()}">
+          </div>
+          <div class="form-group">
+            <label>结束时间</label>
+            <input type="datetime-local" id="end-time" value="${this.getDefaultEndTime()}">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h3>过滤条件</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>日志级别</label>
+            <select id="log-level" multiple>
+              <option value="DEBUG">DEBUG</option>
+              <option value="INFO" selected>INFO</option>
+              <option value="WARN" selected>WARN</option>
+              <option value="ERROR" selected>ERROR</option>
+              <option value="FATAL">FATAL</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>服务名称</label>
+            <input type="text" id="service-name" placeholder="支持模糊搜索">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>用户ID</label>
+            <input type="text" id="user-id" placeholder="精确匹配">
+          </div>
+          <div class="form-group">
+            <label>关键字</label>
+            <input type="text" id="keyword" placeholder="支持全文搜索">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button id="query-btn" class="primary">查询</button>
+        <button id="export-btn">导出</button>
+        <button id="save-template-btn">保存为模板</button>
+        <button id="clear-btn">清空</button>
+      </div>
+    `;
+    
+    this.container.appendChild(formContainer);
+  }
+  
+  // 渲染结果面板
+  renderResultsPanel() {
+    const resultsContainer = document.createElement('div');
+    resultsContainer.className = 'log-results-panel';
+    
+    resultsContainer.innerHTML = `
+      <div class="results-header">
+        <h3>查询结果</h3>
+        <div class="results-info">
+          <span id="total-count">共 0 条记录</span>
+          <span id="page-info">第 1 页</span>
+        </div>
+      </div>
+      
+      <div class="results-table-container">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>级别</th>
+              <th>服务</th>
+              <th>消息</th>
+              <th>用户</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+            <tr>
+              <td colspan="6" class="no-data">请输入查询条件并点击查询按钮</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="pagination" id="pagination">
+        <!-- 分页控件将在这里渲染 -->
+      </div>
+    `;
+    
+    this.container.appendChild(resultsContainer);
+  }
+  
+  // 绑定事件
+  bindEvents() {
+    // 查询按钮
+    document.getElementById('query-btn').addEventListener('click', () => {
+      this.executeQuery();
     });
     
-    // 错误率分析器
-    this.createAnalyzer('error_rate', {
-      name: '错误率分析',
-      description: '分析系统错误率趋势',
-      analyzeFunction: this.analyzeErrorRate.bind(this),
-      schedule: '*/10 * * * *'  // 每10分钟执行一次
+    // 导出按钮
+    document.getElementById('export-btn').addEventListener('click', () => {
+      this.exportResults();
     });
     
-    // 安全威胁检测分析器
-    this.createAnalyzer('security_threat', {
-      name: '安全威胁检测',
-      description: '检测潜在的安全威胁',
-      analyzeFunction: this.detectSecurityThreats.bind(this),
-      schedule: '*/15 * * * *'  // 每15分钟执行一次
+    // 保存模板按钮
+    document.getElementById('save-template-btn').addEventListener('click', () => {
+      this.saveQueryTemplate();
+    });
+    
+    // 清空按钮
+    document.getElementById('clear-btn').addEventListener('click', () => {
+      this.clearForm();
+    });
+    
+    // 回车查询
+    this.container.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        this.executeQuery();
+      }
     });
   }
   
-  // 创建分析器
-  createAnalyzer(name, config) {
-    const analyzer = {
-      name: name,
-      config: config,
-      isEnabled: true,
-      lastRun: null,
-      lastResult: null
-    };
+  // 执行查询
+  async executeQuery() {
+    // 收集查询条件
+    const criteria = this.collectQueryCriteria();
     
-    this.analyzers.set(name, analyzer);
-    
-    // 设置定时执行
-    if (config.schedule) {
-      analyzer.cronJob = this.scheduleJob(config.schedule, () => {
-        this.runAnalyzer(analyzer);
-      });
-    }
-    
-    return analyzer;
-  }
-  
-  // 运行分析器
-  async runAnalyzer(analyzer) {
-    if (!analyzer.isEnabled) return;
+    // 显示加载状态
+    this.showLoading();
     
     try {
-      const result = await analyzer.config.analyzeFunction();
-      analyzer.lastRun = new Date();
-      analyzer.lastResult = result;
+      // 执行查询
+      const result = await this.logService.queryLogs(criteria);
       
-      // 如果发现异常，触发告警
-      if (result.alerts && result.alerts.length > 0) {
-        for (const alert of result.alerts) {
-          this.alertService.sendAlert(alert);
-        }
-      }
+      // 显示结果
+      this.displayResults(result);
       
-      return result;
+      // 更新分页
+      this.updatePagination(result);
     } catch (error) {
-      console.error(`日志分析失败 ${analyzer.name}:`, error);
-      throw error;
+      this.showError(error.message);
+    } finally {
+      this.hideLoading();
     }
   }
   
-  // 检测异常模式
-  async detectAnomalies() {
-    const result = {
-      analyzer: 'anomaly_detection',
-      timestamp: new Date(),
-      alerts: []
+  // 收集查询条件
+  collectQueryCriteria() {
+    return {
+      startTime: document.getElementById('start-time').value,
+      endTime: document.getElementById('end-time').value,
+      logLevels: Array.from(document.getElementById('log-level').selectedOptions).map(opt => opt.value),
+      serviceName: document.getElementById('service-name').value,
+      userId: document.getElementById('user-id').value,
+      keyword: document.getElementById('keyword').value,
+      page: 0,
+      size: 50
     };
-    
-    // 获取最近的日志数据
-    const recentLogs = await this.logService.getRecentLogs(60); // 最近1小时
-    
-    // 使用机器学习模型检测异常
-    const anomalies = await this.mlService.detectLogAnomalies(recentLogs);
-    
-    if (anomalies.length > 0) {
-      result.alerts.push({
-        type: 'LOG_ANOMALY',
-        level: 'HIGH',
-        title: '检测到日志异常模式',
-        description: `发现 ${anomalies.length} 个异常日志模式`,
-        details: anomalies,
-        timestamp: new Date()
-      });
-    }
-    
-    return result;
   }
   
-  // 分析错误率
-  async analyzeErrorRate() {
-    const result = {
-      analyzer: 'error_rate',
-      timestamp: new Date(),
-      alerts: []
-    };
+  // 显示结果
+  displayResults(result) {
+    const tbody = document.getElementById('results-body');
     
-    // 获取错误率统计
-    const errorStats = await this.logService.getErrorRateStats(24); // 24小时
-    
-    // 检查错误率是否异常
-    if (errorStats.currentRate > errorStats.baselineRate * 1.5) {  // 超过基线50%
-      result.alerts.push({
-        type: 'HIGH_ERROR_RATE',
-        level: 'MEDIUM',
-        title: '系统错误率异常升高',
-        description: `当前错误率 ${errorStats.currentRate.toFixed(2)}%，基线 ${errorStats.baselineRate.toFixed(2)}%`,
-        details: errorStats,
-        timestamp: new Date()
-      });
+    if (result.logs.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="no-data">未找到匹配的日志记录</td></tr>';
+      return;
     }
     
-    return result;
+    tbody.innerHTML = result.logs.map(log => `
+      <tr class="log-level-${log.level.toLowerCase()}">
+        <td>${this.formatDateTime(log.timestamp)}</td>
+        <td><span class="level-badge ${log.level.toLowerCase()}">${log.level}</span></td>
+        <td>${log.serviceName}</td>
+        <td class="log-message">${this.truncateMessage(log.message)}</td>
+        <td>${log.userId || '-'}</td>
+        <td>
+          <button class="view-details-btn" data-log-id="${log.id}">详情</button>
+        </td>
+      </tr>
+    `).join('');
+    
+    // 绑定详情按钮事件
+    document.querySelectorAll('.view-details-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const logId = e.target.dataset.logId;
+        this.showLogDetails(logId);
+      });
+    });
+    
+    // 更新总数
+    document.getElementById('total-count').textContent = `共 ${result.total} 条记录`;
   }
   
-  // 检测安全威胁
-  async detectSecurityThreats() {
-    const result = {
-      analyzer: 'security_threat',
-      timestamp: new Date(),
-      alerts: []
-    };
-    
-    // 搜索安全相关日志
-    const securityLogs = await this.logService.searchSecurityLogs(60); // 最近1小时
-    
-    // 检测潜在威胁模式
-    const threats = this.detectThreatPatterns(securityLogs);
-    
-    if (threats.length > 0) {
-      result.alerts.push({
-        type: 'SECURITY_THREAT',
-        level: 'HIGH',
-        title: '检测到潜在安全威胁',
-        description: `发现 ${threats.length} 个潜在安全威胁`,
-        details: threats,
-        timestamp: new Date()
-      });
+  // 显示日志详情
+  async showLogDetails(logId) {
+    try {
+      const log = await this.logService.getLogById(logId);
+      
+      // 创建模态框显示详情
+      const modal = this.createModal('日志详情', `
+        <div class="log-details">
+          <div class="detail-row">
+            <label>时间:</label>
+            <span>${this.formatDateTime(log.timestamp)}</span>
+          </div>
+          <div class="detail-row">
+            <label>级别:</label>
+            <span><span class="level-badge ${log.level.toLowerCase()}">${log.level}</span></span>
+          </div>
+          <div class="detail-row">
+            <label>服务:</label>
+            <span>${log.serviceName}</span>
+          </div>
+          <div class="detail-row">
+            <label>用户:</label>
+            <span>${log.userId || '-'}</span>
+          </div>
+          <div class="detail-row">
+            <label>会话:</label>
+            <span>${log.sessionId || '-'}</span>
+          </div>
+          <div class="detail-row">
+            <label>IP地址:</label>
+            <span>${log.ipAddress || '-'}</span>
+          </div>
+          <div class="detail-row full-width">
+            <label>消息:</label>
+            <pre class="message-content">${log.message}</pre>
+          </div>
+          ${log.stackTrace ? `
+          <div class="detail-row full-width">
+            <label>堆栈跟踪:</label>
+            <pre class="stack-trace">${log.stackTrace}</pre>
+          </div>
+          ` : ''}
+          ${log.additionalData ? `
+          <div class="detail-row full-width">
+            <label>附加数据:</label>
+            <pre class="additional-data">${JSON.stringify(log.additionalData, null, 2)}</pre>
+          </div>
+          ` : ''}
+        </div>
+      `);
+      
+      document.body.appendChild(modal);
+    } catch (error) {
+      this.showError('获取日志详情失败: ' + error.message);
     }
-    
-    return result;
   }
   
-  // 检测威胁模式
-  detectThreatPatterns(logs) {
-    const threats = [];
-    
-    // 检测频繁失败的认证尝试
-    const failedAuthAttempts = logs.filter(log => 
-      log.message.includes('Authentication failed') || 
-      log.message.includes('登录失败')
-    );
-    
-    if (failedAuthAttempts.length > 10) {
-      threats.push({
-        type: 'BRUTE_FORCE_ATTEMPT',
-        description: '检测到可能的暴力破解尝试',
-        count: failedAuthAttempts.length,
-        timeframe: '1小时内'
-      });
+  formatDateTime(timestamp) {
+    return new Date(timestamp).toLocaleString();
+  }
+  
+  truncateMessage(message) {
+    if (message.length > 100) {
+      return message.substring(0, 100) + '...';
     }
-    
-    // 检测异常的权限访问
-    const permissionDeniedLogs = logs.filter(log => 
-      log.message.includes('Permission denied') || 
-      log.message.includes('权限拒绝')
-    );
-    
-    if (permissionDeniedLogs.length > 20) {
-      threats.push({
-        type: 'UNAUTHORIZED_ACCESS',
-        description: '检测到大量未授权访问尝试',
-        count: permissionDeniedLogs.length,
-        timeframe: '1小时内'
-      });
-    }
-    
-    return threats;
+    return message;
   }
 }
 ```
 
 ## 总结
 
-运维视角的配置管理、系统监控和日志查询是统一身份治理平台稳定运行的重要保障。通过构建完善的配置管理体系、实时的监控体系和强大的日志查询分析体系，运维人员可以更好地管理和维护系统。
+运维视角的配置管理、系统监控和日志查询功能是统一身份治理平台稳定运行的重要保障。通过完善的配置管理体系、实时的监控告警机制和强大的日志分析能力，运维团队能够及时发现和解决问题，确保系统的高可用性和高性能。
 
 关键要点包括：
 
-1. **配置管理**：提供灵活的配置项管理、版本控制和环境隔离功能
-2. **系统监控**：建立全面的监控指标体系和实时告警机制
-3. **日志查询**：实现高效的日志存储、查询和分析功能
+1. **配置管理**：支持动态配置、版本控制、模板管理和配置验证
+2. **系统监控**：建立全面的监控指标体系，实现实时告警和健康状态展示
+3. **日志查询**：提供灵活的日志查询接口和可视化分析工具
 
-在后续章节中，我们将继续探讨平台运营与持续迭代、面向未来的身份治理等主题，为构建完整的企业级身份治理平台提供全面指导。
+这些功能的实现不仅提升了运维效率，也为平台的持续优化和故障排查提供了有力支持。在后续章节中，我们将继续探讨平台运营、未来发展方向等重要内容，为构建完整的企业级身份治理解决方案提供全面指导。
