@@ -39,6 +39,11 @@
 #### 第6章：数据存储与访问层实现
 
 - [6-1-data-storage-and-access-layer-implementation.md](6-1-data-storage-and-access-layer-implementation.md) - 数据存储与访问层实现
+- [6-1-1-data-storage-engine.md](6-1-1-data-storage-engine.md) - 数据存储引擎：对象存储（OSS/S3） vs. 块设备 vs. 本地磁盘
+- [6-1-2-data-redundancy-mechanisms.md](6-1-2-data-redundancy-mechanisms.md) - 数据冗余机制：多副本（Replication）的实现与调度
+- [6-1-3-erasure-coding-technology.md](6-1-3-erasure-coding-technology.md) - 纠删码（Erasure Coding）技术详解与工程实践
+- [6-1-4-data-balancing-and-migration.md](6-1-4-data-balancing-and-migration.md) - 数据均衡与迁移：热点调度、容量均衡、坏盘处理
+- [6-1-5-data-read-write-process.md](6-1-5-data-read-write-process.md) - 数据读写流程与并发控制
 
 ---
 *注：本文档根据[index.md](index.md)目录结构生成，将持续更新完善。*

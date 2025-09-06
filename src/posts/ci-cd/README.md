@@ -64,8 +64,49 @@
 
 ### 第四部分：运维、观测与落地篇
 
-（此部分的文章将在后续生成）
+- [6-1 安全与合规（DevSecOps）](6-1-security-compliance-devsecops.md)
+  - [6-1-1 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成](6-1-1-left-shift-security-practices.md)
+  - [6-1-2 密钥与凭据管理：与Vault等 secrets manager 集成](6-1-2-secrets-credentials-management.md)
+  - [6-1-3 合规性即代码：自动化审计与合规检查](6-1-3-compliance-as-code.md)
+  - [6-1-4 镜像安全扫描：CVE漏洞扫描与阻断](6-1-4-image-security-scanning.md)
+
+- [7-1 可观测性与效能度量](7-1-observability-effectiveness-metrics.md)
+  - [7-1-1 流水线可视化：全局视图、实时日志、执行历史](7-1-1-pipeline-visualization.md)
+  - [7-1-2 平台自身监控：健康度、性能、队列状态](7-1-2-platform-monitoring.md)
+  - [7-1-3 研发效能度量：DORA指标看板、瓶颈分析、驱动改进](7-1-3-rd-effectiveness-metrics.md)
+
+- [8-1 平台运营与最佳实践](8-1-platform-operations-best-practices.md)
+  - [8-1-1 流水线模板库与共享库：促进最佳实践复用，降低使用门槛](8-1-1-pipeline-template-library.md)
+  - [8-1-2 多租户与权限管理（RBAC）：项目隔离、资源配额](8-1-2-multi-tenancy-permission-management.md)
+  - [8-1-3 推广与赋能：文档、培训、支持，培育内部专家](8-1-3-promotion-empowerment.md)
+  - [8-1-4 常见问题与避坑指南：依赖问题、环境问题、网络问题](8-1-4-common-issues-pitfall-guide.md)
+
+- [9-1 与生态系统的集成](9-1-ecosystem-integration.md)
+  - [9-1-1 与项目管理工具（Jira）集成：需求驱动部署](9-1-1-project-management-integration.md)
+  - [9-1-2 与监控系统（Prometheus）集成：部署后自动验证](9-1-2-monitoring-system-integration.md)
+  - [9-1-3 与沟通工具（钉钉/企微）集成：构建结果通知](9-1-3-communication-tools-integration.md)
+  - [9-1-4 与Serverless/FaaS平台集成](9-1-4-serverless-faas-integration.md)
 
 ### 第五部分：进阶与未来篇
 
-（此部分的文章将在后续生成）
+- [10-1 GitOps模式实践](10-1-gitops-practice.md)
+  - [10-1-1 GitOps核心思想：声明式、版本控制、自动同步](10-1-1-gitops-core-concepts.md)
+  - [10-1-2 使用Argo CD/FluxCD实现GitOps部署模式](10-1-2-gitops-with-argocd-fluxcd.md)
+  - [10-1-3 应用与基础设施的统一交付](10-1-3-unified-delivery-of-applications-and-infrastructure.md)
+
+- [11-1 AIOps在CI/CD中的探索](11-1-aiops-in-cicd.md)
+  - [11-1-1 智能测试优化：预测性测试选择、故障测试用例识别](11-1-1-intelligent-test-optimization.md)
+  - [11-1-2 智能资源调度与成本优化](11-1-2-intelligent-resource-scheduling.md)
+  - [11-1-3 异常构建的智能根因分析](11-1-3-intelligent-root-cause-analysis.md)
+
+- [16-1 未来演进趋势](16-1-future-evolution-trends.md)
+  - [16-1-1 内部开发者平台（IDP）与CI/CD](16-1-1-idp-and-cicd.md)
+  - [16-1-2 安全与合规的进一步自动化](16-1-2-security-compliance-automation.md)
+  - [16-1-3 云原生环境下的CI/CD新范式](16-1-3-cloud-native-cicd-paradigms.md)
+
+### 附录
+
+- [附录A：主流CI/CD工具对比](appendix-a-cicd-tools-comparison.md)
+- [附录B：Jenkinsfile/GitLab CI YAML 编写指南](appendix-b-pipeline-configuration-guide.md)
+- [附录C：Dockerfile 最佳实践](appendix-c-dockerfile-best-practices.md)
+- [附录D：术语表 (CI, CD, DevOps, SRE, DORA, etc.)](appendix-d-glossary.md)
