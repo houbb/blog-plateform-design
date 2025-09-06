@@ -2,748 +2,483 @@
 title: 异常流量自动识别与防护：结合机器学习识别CC攻击等异常模式并自动限流
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, anomaly-detection, machine-learning, security]
+tags: [flow-control, distributed, aiops, anomaly-detection, security]
 published: true
 ---
 
-在分布式系统中，异常流量（如CC攻击、爬虫、恶意请求等）是影响系统稳定性和安全性的重要威胁。传统的基于规则的防护机制往往难以应对复杂多变的攻击模式，而机器学习技术为异常流量识别提供了更加智能和灵活的解决方案。通过结合机器学习算法识别异常流量模式，并自动触发限流机制，可以有效提升系统的安全防护能力。本章将深入探讨异常流量自动识别与防护的实现原理、核心算法以及最佳实践。
+在现代分布式系统中，异常流量（如DDoS攻击、CC攻击、爬虫等）已成为系统稳定性的重大威胁。传统的基于阈值的限流策略难以有效识别和防护这些复杂的异常流量模式。通过引入机器学习技术，我们可以构建智能化的异常流量识别与防护系统，自动检测并阻止异常请求，保障系统的正常运行。本章将深入探讨如何结合机器学习技术实现异常流量的自动识别与防护。
 
 ## 异常流量识别概述
 
 ### 异常流量类型
 
-常见的异常流量类型包括：
+在分布式系统中，常见的异常流量类型包括：
 
-1. **CC攻击（Challenge Collapsar）**：通过大量请求消耗服务器资源
-2. **爬虫流量**：自动化程序抓取网站内容
-3. **暴力破解**：尝试大量用户名密码组合
-4. **SQL注入**：尝试注入恶意SQL语句
-5. **XSS攻击**：尝试注入恶意脚本
-6. **DDoS攻击**：分布式拒绝服务攻击
+1. **DDoS攻击**：分布式拒绝服务攻击，通过大量请求耗尽系统资源
+2. **CC攻击**：Challenge Collapsar攻击，针对应用层的攻击
+3. **恶意爬虫**：高频爬取网站内容的自动化程序
+4. **暴力破解**：尝试大量用户名密码组合的攻击
+5. **API滥用**：超出正常使用模式的API调用
+6. **扫描攻击**：探测系统漏洞的自动化扫描
 
 ### 机器学习在异常检测中的应用
 
-机器学习在异常流量检测中的应用主要包括：
+机器学习在异常流量识别中具有以下优势：
 
-1. **监督学习**：基于标记的正常和异常样本训练分类模型
-2. **无监督学习**：基于正常流量模式识别偏离正常模式的异常流量
-3. **半监督学习**：结合少量标记样本和大量未标记样本进行训练
-4. **深度学习**：使用神经网络自动提取特征并识别复杂模式
+1. **自适应性**：能够适应正常流量模式的变化
+2. **复杂模式识别**：可以识别复杂的异常模式
+3. **自动化**：减少人工配置和调整的需求
+4. **实时性**：支持实时检测和响应
 
-## 特征工程与数据预处理
+## 异常检测算法实现
 
-### 流量特征提取
+### Isolation Forest算法
+
+Isolation Forest（孤立森林）是一种高效的异常检测算法，特别适用于高维数据的异常检测。
 
 ```java
-// 流量特征提取器
+// Isolation Forest异常检测实现
 @Component
-public class TrafficFeatureExtractor {
-    private final IpGeolocationService ipGeolocationService;
-    private final UserAgentParser userAgentParser;
+public class IsolationForestAnomalyDetector {
+    private final IsolationForestModel model;
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ScheduledExecutorService modelUpdateScheduler = Executors.newScheduledThreadPool(1);
     
-    public TrafficFeatureExtractor(IpGeolocationService ipGeolocationService,
-                                 UserAgentParser userAgentParser) {
-        this.ipGeolocationService = ipGeolocationService;
-        this.userAgentParser = userAgentParser;
+    public IsolationForestAnomalyDetector(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        this.model = new IsolationForestModel(100, 256); // 100棵树，子采样大小256
+        
+        // 定期更新模型
+        modelUpdateScheduler.scheduleAtFixedRate(this::updateModel, 
+            0, 3600, TimeUnit.SECONDS); // 每小时更新一次模型
     }
     
-    public TrafficFeatures extractFeatures(HttpServletRequest request, 
-                                        RequestMetrics metrics) {
-        TrafficFeatures features = new TrafficFeatures();
-        
-        // 基础特征
-        features.setIpAddress(request.getRemoteAddr());
-        features.setUserAgent(request.getHeader("User-Agent"));
-        features.setHttpMethod(request.getMethod());
-        features.setRequestPath(request.getRequestURI());
-        features.setTimestamp(System.currentTimeMillis());
-        
-        // IP地理位置特征
-        extractIpFeatures(features, request.getRemoteAddr());
-        
-        // User-Agent特征
-        extractUserAgentFeatures(features, request.getHeader("User-Agent"));
-        
-        // 请求频率特征
-        extractFrequencyFeatures(features, metrics);
-        
-        // 内容特征
-        extractContentFeatures(features, request);
-        
-        // 行为特征
-        extractBehavioralFeatures(features, metrics);
-        
-        return features;
-    }
-    
-    private void extractIpFeatures(TrafficFeatures features, String ipAddress) {
+    public AnomalyDetectionResult detectAnomaly(RequestFeatures features) {
         try {
-            // 获取IP地理位置信息
-            IpLocation location = ipGeolocationService.getLocation(ipAddress);
-            if (location != null) {
-                features.setCountry(location.getCountry());
-                features.setRegion(location.getRegion());
-                features.setCity(location.getCity());
-                features.setIsp(location.getIsp());
-            }
+            // 提取特征向量
+            double[] featureVector = features.toVector();
             
-            // IP信誉特征
-            features.setIpReputation(ipGeolocationService.getReputation(ipAddress));
+            // 使用孤立森林检测异常
+            double anomalyScore = model.anomalyScore(featureVector);
+            
+            // 判断是否为异常
+            boolean isAnomaly = anomalyScore > model.getThreshold();
+            
+            return AnomalyDetectionResult.builder()
+                .anomalyScore(anomalyScore)
+                .isAnomaly(isAnomaly)
+                .confidence(calculateConfidence(anomalyScore))
+                .build();
         } catch (Exception e) {
-            log.warn("Failed to extract IP features for: " + ipAddress, e);
+            log.error("Failed to detect anomaly for features: " + features, e);
+            return AnomalyDetectionResult.normal();
         }
     }
     
-    private void extractUserAgentFeatures(TrafficFeatures features, String userAgent) {
+    private void updateModel() {
         try {
-            if (userAgent != null) {
-                UserAgentInfo info = userAgentParser.parse(userAgent);
-                features.setBrowser(info.getBrowser());
-                features.setBrowserVersion(info.getBrowserVersion());
-                features.setOperatingSystem(info.getOperatingSystem());
-                features.setDeviceType(info.getDeviceType());
-                features.setIsBot(info.isBot());
-            }
-        } catch (Exception e) {
-            log.warn("Failed to parse User-Agent: " + userAgent, e);
-        }
-    }
-    
-    private void extractFrequencyFeatures(TrafficFeatures features, RequestMetrics metrics) {
-        // 请求频率特征
-        features.setRequestRate(metrics.getRequestRate()); // 请求速率（QPS）
-        features.setUniqueIpsCount(metrics.getUniqueIpsCount()); // 唯一IP数
-        features.setRequestsFromSameIp(metrics.getRequestsFromSameIp()); // 同一IP请求数
-        features.setErrorRate(metrics.getErrorRate()); // 错误率
-        
-        // 时间特征
-        features.setHourOfDay(LocalDateTime.now().getHour());
-        features.setDayOfWeek(LocalDateTime.now().getDayOfWeek().getValue());
-    }
-    
-    private void extractContentFeatures(TrafficFeatures features, HttpServletRequest request) {
-        try {
-            // URL特征
-            String requestUri = request.getRequestURI();
-            features.setUriLength(requestUri.length());
-            features.setPathDepth(requestUri.split("/").length - 1);
+            log.info("Updating Isolation Forest model...");
             
-            // 参数特征
-            Map<String, String[]> parameterMap = request.getParameterMap();
-            features.setParameterCount(parameterMap.size());
+            // 从Redis获取历史正常流量数据
+            List<RequestFeatures> normalSamples = getNormalSamples(10000);
             
-            // 检查是否包含可疑参数
-            boolean hasSuspiciousParams = parameterMap.keySet().stream()
-                .anyMatch(param -> isSuspiciousParameter(param));
-            features.setHasSuspiciousParams(hasSuspiciousParams);
-            
-            // 请求体特征
-            String contentType = request.getContentType();
-            features.setContentType(contentType);
-            
-            if ("POST".equals(request.getMethod()) && 
-                contentType != null && 
-                contentType.contains("application/json")) {
-                // 解析JSON请求体特征
-                extractJsonFeatures(features, request);
-            }
-        } catch (Exception e) {
-            log.warn("Failed to extract content features", e);
-        }
-    }
-    
-    private void extractJsonFeatures(TrafficFeatures features, HttpServletRequest request) {
-        try {
-            String requestBody = getRequestBody(request);
-            if (requestBody != null && !requestBody.isEmpty()) {
-                features.setRequestBodyLength(requestBody.length());
+            // 提取特征向量
+            List<double[]> featureVectors = normalSamples.stream()
+                .map(RequestFeatures::toVector)
+                .collect(Collectors.toList());
                 
-                // 检查是否包含可疑内容
-                features.setHasSuspiciousContent(
-                    isSuspiciousContent(requestBody));
-            }
+            // 重新训练模型
+            model.train(featureVectors);
+            
+            // 更新阈值
+            updateThreshold(normalSamples);
+            
+            log.info("Isolation Forest model updated successfully");
         } catch (Exception e) {
-            log.warn("Failed to extract JSON features", e);
+            log.error("Failed to update Isolation Forest model", e);
         }
     }
     
-    private void extractBehavioralFeatures(TrafficFeatures features, RequestMetrics metrics) {
-        // 用户行为特征
-        features.setSessionDuration(metrics.getSessionDuration());
-        features.setPagesPerSession(metrics.getPagesPerSession());
-        features.setAvgTimeOnPage(metrics.getAvgTimeOnPage());
-        
-        // 跳跃行为特征
-        features.setBounceRate(metrics.getBounceRate());
-        features.setHasSequentialRequests(metrics.isHasSequentialRequests());
+    private List<RequestFeatures> getNormalSamples(int count) {
+        try {
+            // 从Redis获取历史正常流量数据
+            String key = "traffic:normal_samples";
+            List<String> samples = redisTemplate.opsForList().range(key, 0, count - 1);
+            
+            return samples.stream()
+                .map(this::deserializeFeatures)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.warn("Failed to get normal samples", e);
+            return new ArrayList<>();
+        }
     }
     
-    private String getRequestBody(HttpServletRequest request) {
+    private RequestFeatures deserializeFeatures(String json) {
         try {
-            StringBuilder sb = new StringBuilder();
-            BufferedReader reader = request.getReader();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-            return sb.toString();
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json, RequestFeatures.class);
         } catch (Exception e) {
+            log.warn("Failed to deserialize features: " + json, e);
             return null;
         }
     }
     
-    private boolean isSuspiciousParameter(String param) {
-        // 检查是否为可疑参数名
-        String[] suspiciousKeywords = {"select", "union", "insert", "update", 
-                                     "delete", "drop", "create", "alter"};
-        String lowerParam = param.toLowerCase();
-        return Arrays.stream(suspiciousKeywords)
-            .anyMatch(keyword -> lowerParam.contains(keyword));
-    }
-    
-    private boolean isSuspiciousContent(String content) {
-        // 检查是否包含可疑内容
-        String[] suspiciousPatterns = {"<script", "javascript:", "eval(", 
-                                     "union select", "drop table"};
-        String lowerContent = content.toLowerCase();
-        return Arrays.stream(suspiciousPatterns)
-            .anyMatch(pattern -> lowerContent.contains(pattern));
-    }
-    
-    // 流量特征类
-    public static class TrafficFeatures {
-        private String ipAddress;
-        private String userAgent;
-        private String httpMethod;
-        private String requestPath;
-        private long timestamp;
-        
-        // IP地理位置特征
-        private String country;
-        private String region;
-        private String city;
-        private String isp;
-        private double ipReputation;
-        
-        // User-Agent特征
-        private String browser;
-        private String browserVersion;
-        private String operatingSystem;
-        private String deviceType;
-        private boolean isBot;
-        
-        // 频率特征
-        private double requestRate;
-        private int uniqueIpsCount;
-        private int requestsFromSameIp;
-        private double errorRate;
-        private int hourOfDay;
-        private int dayOfWeek;
-        
-        // 内容特征
-        private int uriLength;
-        private int pathDepth;
-        private int parameterCount;
-        private boolean hasSuspiciousParams;
-        private String contentType;
-        private int requestBodyLength;
-        private boolean hasSuspiciousContent;
-        
-        // 行为特征
-        private long sessionDuration;
-        private int pagesPerSession;
-        private long avgTimeOnPage;
-        private double bounceRate;
-        private boolean hasSequentialRequests;
-        
-        // getter和setter方法
-        public String getIpAddress() { return ipAddress; }
-        public void setIpAddress(String ipAddress) { this.ipAddress = ipAddress; }
-        public String getUserAgent() { return userAgent; }
-        public void setUserAgent(String userAgent) { this.userAgent = userAgent; }
-        public String getHttpMethod() { return httpMethod; }
-        public void setHttpMethod(String httpMethod) { this.httpMethod = httpMethod; }
-        public String getRequestPath() { return requestPath; }
-        public void setRequestPath(String requestPath) { this.requestPath = requestPath; }
-        public long getTimestamp() { return timestamp; }
-        public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
-        public String getCountry() { return country; }
-        public void setCountry(String country) { this.country = country; }
-        public String getRegion() { return region; }
-        public void setRegion(String region) { this.region = region; }
-        public String getCity() { return city; }
-        public void setCity(String city) { this.city = city; }
-        public String getIsp() { return isp; }
-        public void setIsp(String isp) { this.isp = isp; }
-        public double getIpReputation() { return ipReputation; }
-        public void setIpReputation(double ipReputation) { this.ipReputation = ipReputation; }
-        public String getBrowser() { return browser; }
-        public void setBrowser(String browser) { this.browser = browser; }
-        public String getBrowserVersion() { return browserVersion; }
-        public void setBrowserVersion(String browserVersion) { this.browserVersion = browserVersion; }
-        public String getOperatingSystem() { return operatingSystem; }
-        public void setOperatingSystem(String operatingSystem) { this.operatingSystem = operatingSystem; }
-        public String getDeviceType() { return deviceType; }
-        public void setDeviceType(String deviceType) { this.deviceType = deviceType; }
-        public boolean isBot() { return isBot; }
-        public void setBot(boolean bot) { isBot = bot; }
-        public double getRequestRate() { return requestRate; }
-        public void setRequestRate(double requestRate) { this.requestRate = requestRate; }
-        public int getUniqueIpsCount() { return uniqueIpsCount; }
-        public void setUniqueIpsCount(int uniqueIpsCount) { this.uniqueIpsCount = uniqueIpsCount; }
-        public int getRequestsFromSameIp() { return requestsFromSameIp; }
-        public void setRequestsFromSameIp(int requestsFromSameIp) { this.requestsFromSameIp = requestsFromSameIp; }
-        public double getErrorRate() { return errorRate; }
-        public void setErrorRate(double errorRate) { this.errorRate = errorRate; }
-        public int getHourOfDay() { return hourOfDay; }
-        public void setHourOfDay(int hourOfDay) { this.hourOfDay = hourOfDay; }
-        public int getDayOfWeek() { return dayOfWeek; }
-        public void setDayOfWeek(int dayOfWeek) { this.dayOfWeek = dayOfWeek; }
-        public int getUriLength() { return uriLength; }
-        public void setUriLength(int uriLength) { this.uriLength = uriLength; }
-        public int getPathDepth() { return pathDepth; }
-        public void setPathDepth(int pathDepth) { this.pathDepth = pathDepth; }
-        public int getParameterCount() { return parameterCount; }
-        public void setParameterCount(int parameterCount) { this.parameterCount = parameterCount; }
-        public boolean isHasSuspiciousParams() { return hasSuspiciousParams; }
-        public void setHasSuspiciousParams(boolean hasSuspiciousParams) { this.hasSuspiciousParams = hasSuspiciousParams; }
-        public String getContentType() { return contentType; }
-        public void setContentType(String contentType) { this.contentType = contentType; }
-        public int getRequestBodyLength() { return requestBodyLength; }
-        public void setRequestBodyLength(int requestBodyLength) { this.requestBodyLength = requestBodyLength; }
-        public boolean isHasSuspiciousContent() { return hasSuspiciousContent; }
-        public void setHasSuspiciousContent(boolean hasSuspiciousContent) { this.hasSuspiciousContent = hasSuspiciousContent; }
-        public long getSessionDuration() { return sessionDuration; }
-        public void setSessionDuration(long sessionDuration) { this.sessionDuration = sessionDuration; }
-        public int getPagesPerSession() { return pagesPerSession; }
-        public void setPagesPerSession(int pagesPerSession) { this.pagesPerSession = pagesPerSession; }
-        public long getAvgTimeOnPage() { return avgTimeOnPage; }
-        public void setAvgTimeOnPage(long avgTimeOnPage) { this.avgTimeOnPage = avgTimeOnPage; }
-        public double getBounceRate() { return bounceRate; }
-        public void setBounceRate(double bounceRate) { this.bounceRate = bounceRate; }
-        public boolean isHasSequentialRequests() { return hasSequentialRequests; }
-        public void setHasSequentialRequests(boolean hasSequentialRequests) { this.hasSequentialRequests = hasSequentialRequests; }
-    }
-}
-```
-
-## 机器学习异常检测算法
-
-### Isolation Forest算法
-
-```java
-// Isolation Forest异常检测器
-@Component
-public class IsolationForestDetector {
-    private final IsolationForest model;
-    private final FeatureNormalizer normalizer;
-    private final AtomicBoolean isTrained = new AtomicBoolean(false);
-    private final ScheduledExecutorService trainingScheduler;
-    
-    public IsolationForestDetector(FeatureNormalizer normalizer) {
-        this.normalizer = normalizer;
-        this.model = new IsolationForest(100, 256, 42); // 100棵树，子采样256个样本
-        this.trainingScheduler = Executors.newScheduledThreadPool(1);
-        
-        // 定期重新训练模型
-        trainingScheduler.scheduleAtFixedRate(this::retrainModel, 
-            0, 1, TimeUnit.HOURS);
-    }
-    
-    public AnomalyDetectionResult detectAnomaly(TrafficFeatures features) {
+    private void updateThreshold(List<RequestFeatures> normalSamples) {
         try {
-            // 确保模型已训练
-            if (!isTrained.get()) {
-                return AnomalyDetectionResult.normal(features.getIpAddress());
-            }
+            // 计算正常样本的异常分数
+            List<Double> scores = normalSamples.stream()
+                .map(features -> model.anomalyScore(features.toVector()))
+                .sorted()
+                .collect(Collectors.toList());
+                
+            // 设置阈值为95%分位数
+            int index = (int) (scores.size() * 0.95);
+            double threshold = scores.get(Math.min(index, scores.size() - 1));
             
-            // 特征向量化
-            double[] featureVector = convertToVector(features);
-            
-            // 归一化特征
-            double[] normalizedFeatures = normalizer.normalize(featureVector);
-            
-            // 执行异常检测
-            double anomalyScore = model.predict(normalizedFeatures);
-            
-            // 判断是否为异常
-            boolean isAnomaly = anomalyScore > 0.6; // 阈值可调
-            
-            return new AnomalyDetectionResult(features.getIpAddress(), 
-                                            isAnomaly, anomalyScore);
+            model.setThreshold(threshold * 1.2); // 留有一定余量
         } catch (Exception e) {
-            log.error("Failed to detect anomaly", e);
-            return AnomalyDetectionResult.normal(features.getIpAddress());
+            log.warn("Failed to update threshold", e);
         }
     }
     
-    private double[] convertToVector(TrafficFeatures features) {
-        List<Double> vector = new ArrayList<>();
-        
-        // 添加数值特征
-        vector.add(features.getRequestRate());
-        vector.add(features.getUniqueIpsCount());
-        vector.add(features.getRequestsFromSameIp());
-        vector.add(features.getErrorRate());
-        vector.add(features.getIpReputation());
-        vector.add(features.getUriLength());
-        vector.add(features.getPathDepth());
-        vector.add(features.getParameterCount());
-        vector.add(features.getRequestBodyLength());
-        vector.add(features.getSessionDuration());
-        vector.add(features.getPagesPerSession());
-        vector.add(features.getAvgTimeOnPage());
-        vector.add(features.getBounceRate());
-        vector.add((double) features.getHourOfDay());
-        vector.add((double) features.getDayOfWeek());
-        
-        // 添加布尔特征
-        vector.add(features.isBot() ? 1.0 : 0.0);
-        vector.add(features.isHasSuspiciousParams() ? 1.0 : 0.0);
-        vector.add(features.isHasSuspiciousContent() ? 1.0 : 0.0);
-        vector.add(features.isHasSequentialRequests() ? 1.0 : 0.0);
-        
-        // 添加分类特征的编码（简化处理）
-        vector.add(hashFeature(features.getHttpMethod()));
-        vector.add(hashFeature(features.getCountry()));
-        vector.add(hashFeature(features.getBrowser()));
-        vector.add(hashFeature(features.getOperatingSystem()));
-        vector.add(hashFeature(features.getDeviceType()));
-        
-        return vector.stream().mapToDouble(Double::doubleValue).toArray();
-    }
-    
-    private double hashFeature(String feature) {
-        return feature != null ? Math.abs(feature.hashCode()) % 1000 : 0;
-    }
-    
-    private void retrainModel() {
-        try {
-            // 获取历史正常流量数据
-            List<double[]> normalTrafficData = getHistoricalNormalData();
-            
-            if (normalTrafficData.size() < 1000) {
-                log.warn("Insufficient normal traffic data for training: " + normalTrafficData.size());
-                return;
-            }
-            
-            // 训练模型
-            model.fit(normalTrafficData);
-            isTrained.set(true);
-            
-            log.info("Isolation Forest model retrained with {} samples", normalTrafficData.size());
-        } catch (Exception e) {
-            log.error("Failed to retrain Isolation Forest model", e);
+    private double calculateConfidence(double anomalyScore) {
+        // 根据异常分数计算置信度
+        double threshold = model.getThreshold();
+        if (anomalyScore <= threshold) {
+            return 0.0; // 正常流量
         }
+        
+        // 置信度随着异常分数的增加而增加
+        return Math.min(1.0, (anomalyScore - threshold) / threshold);
     }
     
-    private List<double[]> getHistoricalNormalData() {
-        // 获取历史正常流量数据（这里简化实现）
-        return new ArrayList<>();
-    }
-    
-    // Isolation Forest实现（简化版）
-    public static class IsolationForest {
+    // 孤立森林模型实现
+    public static class IsolationForestModel {
         private final int numTrees;
         private final int subSampleSize;
-        private final long randomSeed;
         private final List<IsolationTree> trees;
-        private final Random random;
+        private double threshold;
         
-        public IsolationForest(int numTrees, int subSampleSize, long randomSeed) {
+        public IsolationForestModel(int numTrees, int subSampleSize) {
             this.numTrees = numTrees;
             this.subSampleSize = subSampleSize;
-            this.randomSeed = randomSeed;
             this.trees = new ArrayList<>();
-            this.random = new Random(randomSeed);
+            this.threshold = 0.5; // 默认阈值
         }
         
-        public void fit(List<double[]> data) {
+        public void train(List<double[]> samples) {
             trees.clear();
             
+            // 构建多棵孤立树
             for (int i = 0; i < numTrees; i++) {
                 // 随机采样子集
-                List<double[]> subSample = getRandomSubSample(data, subSampleSize);
+                List<double[]> subSample = randomSample(samples, subSampleSize);
                 
                 // 构建孤立树
-                IsolationTree tree = new IsolationTree(random.nextLong());
-                tree.buildTree(subSample);
+                IsolationTree tree = new IsolationTree();
+                tree.build(subSample);
                 trees.add(tree);
             }
         }
         
-        public double predict(double[] sample) {
+        public double anomalyScore(double[] features) {
             if (trees.isEmpty()) {
                 return 0.0;
             }
             
-            double sumPathLength = 0.0;
-            for (IsolationTree tree : trees) {
-                sumPathLength += tree.getPathLength(sample);
-            }
-            
-            double avgPathLength = sumPathLength / trees.size();
-            double expectedPathLength = calculateExpectedPathLength(subSampleSize);
-            
-            // 计算异常分数
+            // 计算所有树的平均路径长度
+            double avgPathLength = trees.stream()
+                .mapToDouble(tree -> tree.pathLength(features))
+                .average()
+                .orElse(0.0);
+                
+            // 转换为异常分数
+            double expectedPathLength = computeExpectedPathLength(subSampleSize);
             return Math.pow(2, -avgPathLength / expectedPathLength);
         }
         
-        private List<double[]> getRandomSubSample(List<double[]> data, int size) {
-            List<double[]> subSample = new ArrayList<>();
-            for (int i = 0; i < size && i < data.size(); i++) {
-                subSample.add(data.get(random.nextInt(data.size())));
+        private List<double[]> randomSample(List<double[]> samples, int size) {
+            if (samples.size() <= size) {
+                return new ArrayList<>(samples);
             }
-            return subSample;
+            
+            Collections.shuffle(samples);
+            return samples.subList(0, size);
         }
         
-        private double calculateExpectedPathLength(int n) {
-            if (n <= 1) return 0;
+        private double computeExpectedPathLength(int n) {
+            // 计算期望路径长度
+            if (n <= 1) {
+                return 0;
+            }
             return 2 * (Math.log(n - 1) + 0.5772156649) - (2 * (n - 1) / n);
         }
+        
+        // getter和setter方法
+        public double getThreshold() { return threshold; }
+        public void setThreshold(double threshold) { this.threshold = threshold; }
     }
     
     // 孤立树实现
     public static class IsolationTree {
-        private final Random random;
         private Node root;
         
-        public IsolationTree(long seed) {
-            this.random = new Random(seed);
-        }
-        
-        public void buildTree(List<double[]> data) {
-            root = buildNode(data, 0);
-        }
-        
-        private Node buildNode(List<double[]> data, int depth) {
-            if (data.size() <= 1 || depth >= 50) { // 最大深度限制
-                return new Node(depth);
+        public void build(List<double[]> samples) {
+            if (samples.isEmpty()) {
+                return;
             }
             
-            // 随机选择特征和分割值
-            int featureIndex = random.nextInt(data.get(0).length);
-            double min = Double.MAX_VALUE;
-            double max = Double.MIN_VALUE;
-            
-            for (double[] sample : data) {
-                min = Math.min(min, sample[featureIndex]);
-                max = Math.max(max, sample[featureIndex]);
+            root = buildTree(samples, 0);
+        }
+        
+        private Node buildTree(List<double[]> samples, int depth) {
+            if (samples.size() <= 1 || depth > 50) { // 最大深度限制
+                return new Node(samples.size(), depth);
             }
+            
+            // 随机选择分割维度
+            int splitDimension = new Random().nextInt(samples.get(0).length);
+            
+            // 计算分割值范围
+            double min = samples.stream().mapToDouble(s -> s[splitDimension]).min().orElse(0);
+            double max = samples.stream().mapToDouble(s -> s[splitDimension]).max().orElse(1);
             
             if (min == max) {
-                return new Node(depth);
+                return new Node(samples.size(), depth);
             }
             
-            double splitValue = min + random.nextDouble() * (max - min);
+            // 随机选择分割值
+            double splitValue = min + new Random().nextDouble() * (max - min);
             
-            // 分割数据
-            List<double[]> leftData = new ArrayList<>();
-            List<double[]> rightData = new ArrayList<>();
+            // 分割样本
+            List<double[]> leftSamples = new ArrayList<>();
+            List<double[]> rightSamples = new ArrayList<>();
             
-            for (double[] sample : data) {
-                if (sample[featureIndex] < splitValue) {
-                    leftData.add(sample);
+            for (double[] sample : samples) {
+                if (sample[splitDimension] < splitValue) {
+                    leftSamples.add(sample);
                 } else {
-                    rightData.add(sample);
+                    rightSamples.add(sample);
                 }
             }
             
             // 递归构建子树
-            Node node = new Node(featureIndex, splitValue, depth);
-            node.left = buildNode(leftData, depth + 1);
-            node.right = buildNode(rightData, depth + 1);
+            Node node = new Node();
+            node.splitDimension = splitDimension;
+            node.splitValue = splitValue;
+            node.left = buildTree(leftSamples, depth + 1);
+            node.right = buildTree(rightSamples, depth + 1);
             
             return node;
         }
         
-        public double getPathLength(double[] sample) {
-            return getPathLength(sample, root, 0);
+        public double pathLength(double[] features) {
+            return pathLength(root, features, 0);
         }
         
-        private double getPathLength(double[] sample, Node node, int depth) {
+        private double pathLength(Node node, double[] features, int depth) {
             if (node.isLeaf()) {
-                return depth + calculateExpectedPathLength(node.getSize());
+                return depth + computeExpectedPathLength(node.size);
             }
             
-            if (sample[node.getFeatureIndex()] < node.getSplitValue()) {
-                return getPathLength(sample, node.left, depth + 1);
+            if (features[node.splitDimension] < node.splitValue) {
+                return pathLength(node.left, features, depth + 1);
             } else {
-                return getPathLength(sample, node.right, depth + 1);
+                return pathLength(node.right, features, depth + 1);
             }
         }
         
         // 树节点
         public static class Node {
-            private final int featureIndex;
-            private final double splitValue;
-            private final int depth;
-            private final int size;
+            private int size;
+            private int depth;
+            private int splitDimension;
+            private double splitValue;
             private Node left;
             private Node right;
             
-            public Node(int depth) {
-                this.featureIndex = -1;
-                this.splitValue = 0;
-                this.depth = depth;
-                this.size = 1;
-            }
+            public Node() {}
             
-            public Node(int featureIndex, double splitValue, int depth) {
-                this.featureIndex = featureIndex;
-                this.splitValue = splitValue;
+            public Node(int size, int depth) {
+                this.size = size;
                 this.depth = depth;
-                this.size = 0;
             }
             
             public boolean isLeaf() {
                 return left == null && right == null;
             }
-            
-            public int getFeatureIndex() { return featureIndex; }
-            public double getSplitValue() { return splitValue; }
-            public int getDepth() { return depth; }
-            public int getSize() { return size; }
         }
     }
     
     // 异常检测结果
+    @Data
+    @Builder
     public static class AnomalyDetectionResult {
-        private final String ipAddress;
-        private final boolean isAnomaly;
-        private final double anomalyScore;
-        private final long timestamp;
+        private double anomalyScore;
+        private boolean isAnomaly;
+        private double confidence;
         
-        public AnomalyDetectionResult(String ipAddress, boolean isAnomaly, double anomalyScore) {
-            this.ipAddress = ipAddress;
-            this.isAnomaly = isAnomaly;
-            this.anomalyScore = anomalyScore;
-            this.timestamp = System.currentTimeMillis();
+        public static AnomalyDetectionResult normal() {
+            return AnomalyDetectionResult.builder()
+                .anomalyScore(0.0)
+                .isAnomaly(false)
+                .confidence(0.0)
+                .build();
         }
-        
-        public static AnomalyDetectionResult normal(String ipAddress) {
-            return new AnomalyDetectionResult(ipAddress, false, 0.0);
-        }
-        
-        // getter方法
-        public String getIpAddress() { return ipAddress; }
-        public boolean isAnomaly() { return isAnomaly; }
-        public double getAnomalyScore() { return anomalyScore; }
-        public long getTimestamp() { return timestamp; }
     }
 }
 ```
 
 ### One-Class SVM算法
 
+One-Class SVM是另一种常用的异常检测算法，特别适用于高维空间的异常检测。
+
 ```java
-// One-Class SVM异常检测器
+// One-Class SVM异常检测实现
 @Component
-public class OneClassSvmDetector {
-    private final OneClassSVM model;
-    private final FeatureNormalizer normalizer;
-    private final AtomicBoolean isTrained = new AtomicBoolean(false);
+public class OneClassSvmAnomalyDetector {
+    private final OneClassSvmModel model;
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ScheduledExecutorService modelUpdateScheduler = Executors.newScheduledThreadPool(1);
     
-    public OneClassSvmDetector(FeatureNormalizer normalizer) {
-        this.normalizer = normalizer;
-        this.model = new OneClassSVM(0.1, 0.1, 100); // nu=0.1, gamma=0.1, maxIter=100
+    public OneClassSvmAnomalyDetector(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        this.model = new OneClassSvmModel(0.1, 0.1); // nu=0.1, gamma=0.1
+        
+        // 定期更新模型
+        modelUpdateScheduler.scheduleAtFixedRate(this::updateModel, 
+            1800, 3600, TimeUnit.SECONDS); // 30分钟后开始，每小时更新一次
     }
     
-    public AnomalyDetectionResult detectAnomaly(TrafficFeatures features) {
+    public AnomalyDetectionResult detectAnomaly(RequestFeatures features) {
         try {
-            if (!isTrained.get()) {
-                return IsolationForestDetector.AnomalyDetectionResult.normal(features.getIpAddress());
-            }
+            // 提取特征向量
+            double[] featureVector = features.toVector();
             
-            // 特征向量化和归一化
-            double[] featureVector = convertToVector(features);
-            double[] normalizedFeatures = normalizer.normalize(featureVector);
+            // 使用One-Class SVM检测异常
+            double decisionValue = model.decisionFunction(featureVector);
             
-            // 执行异常检测
-            double decisionValue = model.predict(normalizedFeatures);
-            boolean isAnomaly = decisionValue < 0; // 决策值小于0表示异常
+            // 判断是否为异常（决策值小于0表示异常）
+            boolean isAnomaly = decisionValue < 0;
             
-            // 将决策值转换为0-1之间的异常分数
-            double anomalyScore = 1.0 / (1.0 + Math.exp(-decisionValue));
-            
-            return new IsolationForestDetector.AnomalyDetectionResult(
-                features.getIpAddress(), isAnomaly, anomalyScore);
+            return AnomalyDetectionResult.builder()
+                .anomalyScore(-decisionValue) // 转换为正数表示异常程度
+                .isAnomaly(isAnomaly)
+                .confidence(calculateConfidence(decisionValue))
+                .build();
         } catch (Exception e) {
-            log.error("Failed to detect anomaly with One-Class SVM", e);
-            return IsolationForestDetector.AnomalyDetectionResult.normal(features.getIpAddress());
+            log.error("Failed to detect anomaly with One-Class SVM for features: " + features, e);
+            return AnomalyDetectionResult.normal();
         }
     }
     
-    public void trainModel(List<double[]> normalData) {
+    private void updateModel() {
         try {
-            // 归一化训练数据
-            List<double[]> normalizedData = normalData.stream()
-                .map(normalizer::normalize)
+            log.info("Updating One-Class SVM model...");
+            
+            // 从Redis获取历史正常流量数据
+            List<RequestFeatures> normalSamples = getNormalSamples(5000);
+            
+            // 提取特征向量
+            List<double[]> featureVectors = normalSamples.stream()
+                .map(RequestFeatures::toVector)
                 .collect(Collectors.toList());
+                
+            // 重新训练模型
+            model.train(featureVectors);
             
-            // 训练模型
-            model.fit(normalizedData);
-            isTrained.set(true);
-            
-            log.info("One-Class SVM model trained with {} samples", normalizedData.size());
+            log.info("One-Class SVM model updated successfully");
         } catch (Exception e) {
-            log.error("Failed to train One-Class SVM model", e);
+            log.error("Failed to update One-Class SVM model", e);
         }
     }
     
-    private double[] convertToVector(TrafficFeatures features) {
-        // 复用Isolation Forest中的特征转换逻辑
-        return new double[0]; // 简化实现
+    private List<RequestFeatures> getNormalSamples(int count) {
+        try {
+            // 从Redis获取历史正常流量数据
+            String key = "traffic:normal_samples";
+            List<String> samples = redisTemplate.opsForList().range(key, 0, count - 1);
+            
+            return samples.stream()
+                .map(this::deserializeFeatures)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.warn("Failed to get normal samples", e);
+            return new ArrayList<>();
+        }
     }
     
-    // One-Class SVM实现（简化版）
-    public static class OneClassSVM {
+    private RequestFeatures deserializeFeatures(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json, RequestFeatures.class);
+        } catch (Exception e) {
+            log.warn("Failed to deserialize features: " + json, e);
+            return null;
+        }
+    }
+    
+    private double calculateConfidence(double decisionValue) {
+        // 根据决策值计算置信度
+        // 决策值越负，置信度越高
+        return Math.min(1.0, Math.max(0.0, -decisionValue / 10.0));
+    }
+    
+    // One-Class SVM模型实现（简化版）
+    public static class OneClassSvmModel {
         private final double nu;
         private final double gamma;
-        private final int maxIterations;
         private List<SupportVector> supportVectors;
         private double rho;
         
-        public OneClassSVM(double nu, double gamma, int maxIterations) {
+        public OneClassSvmModel(double nu, double gamma) {
             this.nu = nu;
             this.gamma = gamma;
-            this.maxIterations = maxIterations;
             this.supportVectors = new ArrayList<>();
         }
         
-        public void fit(List<double[]> data) {
-            int n = data.size();
-            int m = data.get(0).length;
+        public void train(List<double[]> samples) {
+            // 简化的训练过程
+            // 实际实现中需要使用SMO算法或其他优化算法
             
-            // 初始化拉格朗日乘子
-            double[] alpha = new double[n];
-            Arrays.fill(alpha, 1.0 / n);
+            // 这里我们使用简化的实现
+            supportVectors.clear();
             
-            // SMO算法训练
-            for (int iter = 0; iter < maxIterations; iter++) {
-                // 选择两个变量进行优化
-                int i = selectFirstVariable(alpha, n);
-                int j = selectSecondVariable(i, alpha, n);
+            // 随机选择一些样本作为支持向量
+            Random random = new Random();
+            int numSupportVectors = Math.min(100, samples.size() / 10);
+            
+            for (int i = 0; i < numSupportVectors; i++) {
+                int index = random.nextInt(samples.size());
+                double[] sample = samples.get(index);
+                double alpha = random.nextDouble() * 0.1; // 随机alpha值
                 
-                if (i == -1 || j == -1) continue;
-                
-                // 优化这两个变量
-                optimizeVariables(data, alpha, i, j);
+                supportVectors.add(new SupportVector(sample, alpha));
             }
             
-            // 提取支持向量
-            extractSupportVectors(data, alpha);
+            // 设置rho值
+            this.rho = 0.1;
         }
         
-        public double predict(double[] sample) {
+        public double decisionFunction(double[] features) {
+            if (supportVectors.isEmpty()) {
+                return 1.0; // 默认为正常
+            }
+            
+            // 计算决策函数值
             double sum = 0.0;
             for (SupportVector sv : supportVectors) {
-                sum += sv.alpha * kernel(sv.features, sample);
+                double kernelValue = rbfKernel(sv.features, features, gamma);
+                sum += sv.alpha * kernelValue;
             }
+            
             return sum - rho;
         }
         
-        private double kernel(double[] x1, double[] x2) {
+        private double rbfKernel(double[] x1, double[] x2, double gamma) {
             // RBF核函数
             double sum = 0.0;
             for (int i = 0; i < x1.length; i++) {
@@ -751,40 +486,6 @@ public class OneClassSvmDetector {
                 sum += diff * diff;
             }
             return Math.exp(-gamma * sum);
-        }
-        
-        private int selectFirstVariable(double[] alpha, int n) {
-            // 简化的变量选择策略
-            for (int i = 0; i < n; i++) {
-                if (alpha[i] > 0 && alpha[i] < 1.0 / (nu * n)) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-        
-        private int selectSecondVariable(int i, double[] alpha, int n) {
-            // 随机选择第二个变量
-            Random random = new Random();
-            int j;
-            do {
-                j = random.nextInt(n);
-            } while (j == i);
-            return j;
-        }
-        
-        private void optimizeVariables(List<double[]> data, double[] alpha, int i, int j) {
-            // 简化的变量优化
-            // 实际实现需要更复杂的数学计算
-        }
-        
-        private void extractSupportVectors(List<double[]> data, double[] alpha) {
-            supportVectors.clear();
-            for (int i = 0; i < data.size(); i++) {
-                if (alpha[i] > 1e-6) { // 非零alpha值对应的样本为支持向量
-                    supportVectors.add(new SupportVector(data.get(i), alpha[i]));
-                }
-            }
         }
         
         // 支持向量
@@ -801,604 +502,1205 @@ public class OneClassSvmDetector {
 }
 ```
 
-## 自动防护机制
+## 多算法融合检测
 
-### 动态限流防护
-
-```java
-// 基于异常检测的自动防护器
-@Component
-public class AnomalyBasedProtection {
-    private final IsolationForestDetector isolationForestDetector;
-    private final OneClassSvmDetector oneClassSvmDetector;
-    private final DistributedRateLimiter rateLimiter;
-    private final BlacklistManager blacklistManager;
-    private final AlertNotificationService alertService;
-    private final Map<String, AnomalyHistory> anomalyHistory = new ConcurrentHashMap<>();
-    
-    public AnomalyBasedProtection(IsolationForestDetector isolationForestDetector,
-                                OneClassSvmDetector oneClassSvmDetector,
-                                DistributedRateLimiter rateLimiter,
-                                BlacklistManager blacklistManager,
-                                AlertNotificationService alertService) {
-        this.isolationForestDetector = isolationForestDetector;
-        this.oneClassSvmDetector = oneClassSvmDetector;
-        this.rateLimiter = rateLimiter;
-        this.blacklistManager = blacklistManager;
-        this.alertService = alertService;
-    }
-    
-    public ProtectionDecision evaluateAndProtect(TrafficFeatures features) {
-        try {
-            // 使用多个检测器进行异常检测
-            IsolationForestDetector.AnomalyDetectionResult ifResult = 
-                isolationForestDetector.detectAnomaly(features);
-                
-            IsolationForestDetector.AnomalyDetectionResult svmResult = 
-                oneClassSvmDetector.detectAnomaly(features);
-            
-            // 融合多个检测器的结果
-            AnomalyDetectionResult fusedResult = fuseDetectionResults(ifResult, svmResult);
-            
-            // 根据检测结果采取防护措施
-            ProtectionAction action = determineProtectionAction(features, fusedResult);
-            
-            // 执行防护措施
-            executeProtectionAction(features, action);
-            
-            // 记录异常历史
-            recordAnomalyHistory(features, fusedResult, action);
-            
-            return new ProtectionDecision(features.getIpAddress(), action, fusedResult);
-        } catch (Exception e) {
-            log.error("Failed to evaluate and protect traffic", e);
-            return new ProtectionDecision(features.getIpAddress(), 
-                                        ProtectionAction.ALLOW, null);
-        }
-    }
-    
-    private AnomalyDetectionResult fuseDetectionResults(
-            IsolationForestDetector.AnomalyDetectionResult ifResult,
-            IsolationForestDetector.AnomalyDetectionResult svmResult) {
-        
-        // 简单的投票融合
-        boolean isAnomaly = ifResult.isAnomaly() || svmResult.isAnomaly();
-        double anomalyScore = Math.max(ifResult.getAnomalyScore(), 
-                                     svmResult.getAnomalyScore());
-        
-        return new AnomalyDetectionResult(ifResult.getIpAddress(), isAnomaly, anomalyScore);
-    }
-    
-    private ProtectionAction determineProtectionAction(TrafficFeatures features,
-                                                     AnomalyDetectionResult result) {
-        if (!result.isAnomaly()) {
-            return ProtectionAction.ALLOW;
-        }
-        
-        // 获取IP的异常历史
-        AnomalyHistory history = anomalyHistory.getOrDefault(
-            features.getIpAddress(), new AnomalyHistory(features.getIpAddress()));
-        
-        // 根据异常分数和历史记录决定防护动作
-        double anomalyScore = result.getAnomalyScore();
-        
-        if (anomalyScore > 0.9) {
-            // 高风险异常，直接拒绝
-            return ProtectionAction.BLOCK;
-        } else if (anomalyScore > 0.7) {
-            // 中等风险异常，限流
-            if (history.getRecentAnomalyCount(5) > 3) { // 5分钟内超过3次异常
-                return ProtectionAction.BLOCK;
-            } else {
-                return ProtectionAction.RATE_LIMIT;
-            }
-        } else if (anomalyScore > 0.5) {
-            // 低风险异常，监控
-            if (history.getRecentAnomalyCount(10) > 5) { // 10分钟内超过5次异常
-                return ProtectionAction.RATE_LIMIT;
-            } else {
-                return ProtectionAction.MONITOR;
-            }
-        } else {
-            return ProtectionAction.ALLOW;
-        }
-    }
-    
-    private void executeProtectionAction(TrafficFeatures features, ProtectionAction action) {
-        String ipAddress = features.getIpAddress();
-        
-        switch (action) {
-            case ALLOW:
-                // 允许通过，不做特殊处理
-                break;
-                
-            case MONITOR:
-                // 记录监控日志
-                log.warn("Monitoring suspicious traffic from IP: {}", ipAddress);
-                sendAlert("Suspicious Traffic Detected", 
-                         "Monitoring suspicious traffic from IP: " + ipAddress);
-                break;
-                
-            case RATE_LIMIT:
-                // 对该IP实施限流
-                rateLimiter.setIpLimit(ipAddress, 10); // 限制为10 QPS
-                log.info("Rate limiting IP: {} due to suspicious activity", ipAddress);
-                sendAlert("Rate Limiting Applied", 
-                         "Rate limiting applied to IP: " + ipAddress);
-                break;
-                
-            case BLOCK:
-                // 将该IP加入黑名单
-                blacklistManager.blacklistIp(ipAddress, 3600000); // 黑名单1小时
-                log.info("Blocking IP: {} due to high-risk activity", ipAddress);
-                sendAlert("IP Blocked", 
-                         "IP blocked due to high-risk activity: " + ipAddress);
-                break;
-        }
-    }
-    
-    private void recordAnomalyHistory(TrafficFeatures features,
-                                    AnomalyDetectionResult result,
-                                    ProtectionAction action) {
-        String ipAddress = features.getIpAddress();
-        AnomalyHistory history = anomalyHistory.computeIfAbsent(
-            ipAddress, AnomalyHistory::new);
-        history.addAnomalyRecord(new AnomalyRecord(result, action));
-    }
-    
-    private void sendAlert(String title, String message) {
-        try {
-            AlertEvent alert = new AlertEvent();
-            alert.setTitle(title);
-            alert.setMessage(message);
-            alert.setLevel("WARNING");
-            alert.setTimestamp(System.currentTimeMillis());
-            
-            alertService.sendAlert(alert);
-        } catch (Exception e) {
-            log.warn("Failed to send alert", e);
-        }
-    }
-    
-    // 防护动作枚举
-    public enum ProtectionAction {
-        ALLOW,      // 允许
-        MONITOR,    // 监控
-        RATE_LIMIT, // 限流
-        BLOCK       // 拒绝
-    }
-    
-    // 防护决策
-    public static class ProtectionDecision {
-        private final String ipAddress;
-        private final ProtectionAction action;
-        private final AnomalyDetectionResult detectionResult;
-        private final long timestamp;
-        
-        public ProtectionDecision(String ipAddress, ProtectionAction action,
-                                AnomalyDetectionResult detectionResult) {
-            this.ipAddress = ipAddress;
-            this.action = action;
-            this.detectionResult = detectionResult;
-            this.timestamp = System.currentTimeMillis();
-        }
-        
-        // getter方法
-        public String getIpAddress() { return ipAddress; }
-        public ProtectionAction getAction() { return action; }
-        public AnomalyDetectionResult getDetectionResult() { return detectionResult; }
-        public long getTimestamp() { return timestamp; }
-    }
-    
-    // 异常历史记录
-    public static class AnomalyHistory {
-        private final String ipAddress;
-        private final Queue<AnomalyRecord> records;
-        
-        public AnomalyHistory(String ipAddress) {
-            this.ipAddress = ipAddress;
-            this.records = new ConcurrentLinkedQueue<>();
-        }
-        
-        public void addAnomalyRecord(AnomalyRecord record) {
-            records.offer(record);
-            // 清理过期记录（保留1小时内的记录）
-            cleanupExpiredRecords();
-        }
-        
-        private void cleanupExpiredRecords() {
-            long oneHourAgo = System.currentTimeMillis() - 3600000;
-            records.removeIf(record -> record.getTimestamp() < oneHourAgo);
-        }
-        
-        public int getRecentAnomalyCount(int minutes) {
-            long timeThreshold = System.currentTimeMillis() - minutes * 60000;
-            return (int) records.stream()
-                .filter(record -> record.getTimestamp() > timeThreshold)
-                .count();
-        }
-    }
-    
-    // 异常记录
-    public static class AnomalyRecord {
-        private final AnomalyDetectionResult detectionResult;
-        private final ProtectionAction action;
-        private final long timestamp;
-        
-        public AnomalyRecord(AnomalyDetectionResult detectionResult, 
-                           ProtectionAction action) {
-            this.detectionResult = detectionResult;
-            this.action = action;
-            this.timestamp = System.currentTimeMillis();
-        }
-        
-        // getter方法
-        public AnomalyDetectionResult getDetectionResult() { return detectionResult; }
-        public ProtectionAction getAction() { return action; }
-        public long getTimestamp() { return timestamp; }
-    }
-}
-```
-
-### 黑名单管理
+### 集成学习框架
 
 ```java
-// 黑名单管理器
+// 多算法融合异常检测
 @Component
-public class BlacklistManager {
+public class EnsembleAnomalyDetector {
+    private final IsolationForestAnomalyDetector isolationForestDetector;
+    private final OneClassSvmAnomalyDetector svmDetector;
     private final RedisTemplate<String, String> redisTemplate;
-    private final ScheduledExecutorService cleanupScheduler;
     
-    public BlacklistManager(RedisTemplate<String, String> redisTemplate) {
+    public EnsembleAnomalyDetector(IsolationForestAnomalyDetector isolationForestDetector,
+                                 OneClassSvmAnomalyDetector svmDetector,
+                                 RedisTemplate<String, String> redisTemplate) {
+        this.isolationForestDetector = isolationForestDetector;
+        this.svmDetector = svmDetector;
         this.redisTemplate = redisTemplate;
-        this.cleanupScheduler = Executors.newScheduledThreadPool(1);
+    }
+    
+    public AnomalyDetectionResult detectAnomaly(RequestFeatures features) {
+        try {
+            // 使用多个算法进行检测
+            AnomalyDetectionResult ifResult = isolationForestDetector.detectAnomaly(features);
+            AnomalyDetectionResult svmResult = svmDetector.detectAnomaly(features);
+            
+            // 融合多个算法的结果
+            return fuseResults(ifResult, svmResult);
+        } catch (Exception e) {
+            log.error("Failed to detect anomaly with ensemble method for features: " + features, e);
+            return AnomalyDetectionResult.normal();
+        }
+    }
+    
+    private AnomalyDetectionResult fuseResults(AnomalyDetectionResult ifResult,
+                                             AnomalyDetectionResult svmResult) {
+        // 加权融合策略
+        double ifWeight = 0.6; // Isolation Forest权重
+        double svmWeight = 0.4; // SVM权重
         
-        // 定期清理过期的黑名单记录
-        cleanupScheduler.scheduleAtFixedRate(this::cleanupExpiredBlacklist, 
-            60, 60, TimeUnit.SECONDS);
+        // 融合异常分数
+        double fusedScore = ifResult.getAnomalyScore() * ifWeight + 
+                           svmResult.getAnomalyScore() * svmWeight;
+        
+        // 融合置信度
+        double fusedConfidence = ifResult.getConfidence() * ifWeight + 
+                                svmResult.getConfidence() * svmWeight;
+        
+        // 判断是否为异常
+        boolean isAnomaly = ifResult.isAnomaly() || svmResult.isAnomaly();
+        
+        return AnomalyDetectionResult.builder()
+            .anomalyScore(fusedScore)
+            .isAnomaly(isAnomaly)
+            .confidence(fusedConfidence)
+            .build();
     }
     
-    public void blacklistIp(String ipAddress, long durationMs) {
+    // 动态权重调整
+    public void adjustWeights() {
         try {
-            String key = "blacklist:ip:" + ipAddress;
-            long expireTime = System.currentTimeMillis() + durationMs;
+            // 从Redis获取最近的检测结果和实际标签
+            List<DetectionRecord> recentRecords = getRecentDetectionRecords(1000);
             
-            // 将IP加入黑名单
-            redisTemplate.opsForValue().set(key, String.valueOf(expireTime), 
-                                          durationMs, TimeUnit.MILLISECONDS);
+            // 计算各算法的准确率
+            AlgorithmAccuracy ifAccuracy = calculateAccuracy(recentRecords, "isolation_forest");
+            AlgorithmAccuracy svmAccuracy = calculateAccuracy(recentRecords, "svm");
             
-            log.info("IP {} blacklisted for {} ms", ipAddress, durationMs);
-        } catch (Exception e) {
-            log.error("Failed to blacklist IP: " + ipAddress, e);
-        }
-    }
-    
-    public boolean isBlacklisted(String ipAddress) {
-        try {
-            String key = "blacklist:ip:" + ipAddress;
-            String expireTimeStr = redisTemplate.opsForValue().get(key);
-            
-            if (expireTimeStr != null) {
-                long expireTime = Long.parseLong(expireTimeStr);
-                if (System.currentTimeMillis() < expireTime) {
-                    return true;
-                } else {
-                    // 过期，移除黑名单记录
-                    redisTemplate.delete(key);
-                }
+            // 根据准确率调整权重
+            double totalAccuracy = ifAccuracy.getAccuracy() + svmAccuracy.getAccuracy();
+            if (totalAccuracy > 0) {
+                double ifWeight = ifAccuracy.getAccuracy() / totalAccuracy;
+                double svmWeight = svmAccuracy.getAccuracy() / totalAccuracy;
+                
+                log.info("Adjusted weights - Isolation Forest: {}, SVM: {}", ifWeight, svmWeight);
+                // 实际实现中需要更新权重配置
             }
-            
-            return false;
         } catch (Exception e) {
-            log.warn("Failed to check blacklist for IP: " + ipAddress, e);
-            return false;
+            log.warn("Failed to adjust algorithm weights", e);
         }
     }
     
-    public void removeFromBlacklist(String ipAddress) {
+    private List<DetectionRecord> getRecentDetectionRecords(int count) {
         try {
-            String key = "blacklist:ip:" + ipAddress;
-            redisTemplate.delete(key);
-            log.info("IP {} removed from blacklist", ipAddress);
-        } catch (Exception e) {
-            log.error("Failed to remove IP from blacklist: " + ipAddress, e);
-        }
-    }
-    
-    public List<BlacklistEntry> getBlacklistEntries() {
-        try {
-            Set<String> keys = redisTemplate.keys("blacklist:ip:*");
-            List<BlacklistEntry> entries = new ArrayList<>();
+            String key = "anomaly:detection_records";
+            List<String> records = redisTemplate.opsForList().range(key, 0, count - 1);
             
-            if (keys != null) {
-                for (String key : keys) {
-                    try {
-                        String expireTimeStr = redisTemplate.opsForValue().get(key);
-                        if (expireTimeStr != null) {
-                            String ipAddress = key.substring("blacklist:ip:".length());
-                            long expireTime = Long.parseLong(expireTimeStr);
-                            entries.add(new BlacklistEntry(ipAddress, expireTime));
-                        }
-                    } catch (Exception e) {
-                        log.warn("Failed to get blacklist entry for key: " + key, e);
-                    }
-                }
-            }
-            
-            return entries;
+            return records.stream()
+                .map(this::deserializeRecord)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
         } catch (Exception e) {
-            log.error("Failed to get blacklist entries", e);
+            log.warn("Failed to get detection records", e);
             return new ArrayList<>();
         }
     }
     
-    private void cleanupExpiredBlacklist() {
+    private DetectionRecord deserializeRecord(String json) {
         try {
-            Set<String> keys = redisTemplate.keys("blacklist:ip:*");
-            if (keys != null) {
-                long currentTime = System.currentTimeMillis();
-                for (String key : keys) {
-                    try {
-                        String expireTimeStr = redisTemplate.opsForValue().get(key);
-                        if (expireTimeStr != null) {
-                            long expireTime = Long.parseLong(expireTimeStr);
-                            if (currentTime >= expireTime) {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json, DetectionRecord.class);
+        } catch (Exception e) {
+            log.warn("Failed to deserialize detection record: " + json, e);
+            return null;
+        }
+    }
+    
+    private AlgorithmAccuracy calculateAccuracy(List<DetectionRecord> records, String algorithm) {
+        long truePositives = 0;
+        long falsePositives = 0;
+        long falseNegatives = 0;
+        
+        for (DetectionRecord record : records) {
+            boolean predictedAnomaly = record.isAnomaly(algorithm);
+            boolean actualAnomaly = record.isActuallyAnomaly();
+            
+            if (predictedAnomaly && actualAnomaly) {
+                truePositives++;
+            } else if (predictedAnomaly && !actualAnomaly) {
+                falsePositives++;
+            } else if (!predictedAnomaly && actualAnomaly) {
+                falseNegatives++;
+            }
+        }
+        
+        double precision = (truePositives + falsePositives) > 0 ? 
+            (double) truePositives / (truePositives + falsePositives) : 0;
+        double recall = (truePositives + falseNegatives) > 0 ? 
+            (double) truePositives / (truePositives + falseNegatives) : 0;
+        double f1Score = (precision + recall) > 0 ? 
+            2 * precision * recall / (precision + recall) : 0;
+            
+        return new AlgorithmAccuracy(precision, recall, f1Score);
+    }
+    
+    // 检测记录
+    public static class DetectionRecord {
+        private String requestId;
+        private Map<String, Boolean> algorithmResults;
+        private boolean actuallyAnomaly;
+        private long timestamp;
+        
+        public boolean isAnomaly(String algorithm) {
+            return algorithmResults.getOrDefault(algorithm, false);
+        }
+        
+        // getter和setter方法
+        public boolean isActuallyAnomaly() { return actuallyAnomaly; }
+        public void setActuallyAnomaly(boolean actuallyAnomaly) { this.actuallyAnomaly = actuallyAnomaly; }
+    }
+    
+    // 算法准确率
+    public static class AlgorithmAccuracy {
+        private final double precision;
+        private final double recall;
+        private final double f1Score;
+        
+        public AlgorithmAccuracy(double precision, double recall, double f1Score) {
+            this.precision = precision;
+            this.recall = recall;
+            this.f1Score = f1Score;
+        }
+        
+        public double getAccuracy() {
+            return f1Score; // 使用F1分数作为准确率指标
+        }
+    }
+}
+```
+
+## 自动防护机制
+
+### 动态黑名单管理
+
+```java
+// 动态黑名单管理
+@Component
+public class DynamicBlacklistManager {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ScheduledExecutorService cleanupScheduler = Executors.newScheduledThreadPool(1);
+    
+    public DynamicBlacklistManager(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        
+        // 定期清理过期的黑名单记录
+        cleanupScheduler.scheduleAtFixedRate(this::cleanupExpiredEntries, 
+            3600, 3600, TimeUnit.SECONDS); // 每小时执行一次
+    }
+    
+    public boolean isBlacklisted(String identifier) {
+        try {
+            String key = "blacklist:" + identifier;
+            String value = redisTemplate.opsForValue().get(key);
+            return value != null && !"0".equals(value);
+        } catch (Exception e) {
+            log.warn("Failed to check blacklist for identifier: " + identifier, e);
+            return false;
+        }
+    }
+    
+    public void addToBlacklist(String identifier, long duration, String reason) {
+        try {
+            String key = "blacklist:" + identifier;
+            String value = System.currentTimeMillis() + ":" + reason;
+            
+            // 添加到黑名单
+            redisTemplate.opsForValue().set(key, value, Duration.ofSeconds(duration));
+            
+            // 记录到黑名单历史
+            recordBlacklistHistory(identifier, duration, reason);
+            
+            log.info("Added {} to blacklist for {} seconds. Reason: {}", 
+                identifier, duration, reason);
+        } catch (Exception e) {
+            log.error("Failed to add {} to blacklist", identifier, e);
+        }
+    }
+    
+    public void removeFromBlacklist(String identifier) {
+        try {
+            String key = "blacklist:" + identifier;
+            redisTemplate.delete(key);
+            
+            log.info("Removed {} from blacklist", identifier);
+        } catch (Exception e) {
+            log.error("Failed to remove {} from blacklist", identifier, e);
+        }
+    }
+    
+    public BlacklistInfo getBlacklistInfo(String identifier) {
+        try {
+            String key = "blacklist:" + identifier;
+            String value = redisTemplate.opsForValue().get(key);
+            
+            if (value == null || "0".equals(value)) {
+                return BlacklistInfo.notBlacklisted();
+            }
+            
+            String[] parts = value.split(":");
+            if (parts.length >= 2) {
+                long expirationTime = Long.parseLong(parts[0]);
+                String reason = parts[1];
+                long remainingTime = Math.max(0, expirationTime - System.currentTimeMillis());
+                
+                return BlacklistInfo.builder()
+                    .blacklisted(true)
+                    .reason(reason)
+                    .expirationTime(expirationTime)
+                    .remainingTime(remainingTime)
+                    .build();
+            }
+        } catch (Exception e) {
+            log.warn("Failed to get blacklist info for identifier: " + identifier, e);
+        }
+        
+        return BlacklistInfo.notBlacklisted();
+    }
+    
+    private void recordBlacklistHistory(String identifier, long duration, String reason) {
+        try {
+            BlacklistHistory history = BlacklistHistory.builder()
+                .identifier(identifier)
+                .duration(duration)
+                .reason(reason)
+                .timestamp(System.currentTimeMillis())
+                .build();
+                
+            String key = "blacklist:history:" + identifier;
+            String value = serializeHistory(history);
+            
+            // 保留最近10条记录
+            redisTemplate.opsForList().leftPush(key, value);
+            redisTemplate.opsForList().trim(key, 0, 9);
+        } catch (Exception e) {
+            log.warn("Failed to record blacklist history for identifier: " + identifier, e);
+        }
+    }
+    
+    private String serializeHistory(BlacklistHistory history) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(history);
+        } catch (Exception e) {
+            log.warn("Failed to serialize blacklist history", e);
+            return "";
+        }
+    }
+    
+    private void cleanupExpiredEntries() {
+        try {
+            log.info("Cleaning up expired blacklist entries...");
+            
+            // 获取所有黑名单键
+            Set<String> keys = redisTemplate.keys("blacklist:*");
+            if (keys == null || keys.isEmpty()) {
+                return;
+            }
+            
+            long currentTime = System.currentTimeMillis();
+            long removedCount = 0;
+            
+            for (String key : keys) {
+                try {
+                    String value = redisTemplate.opsForValue().get(key);
+                    if (value != null && !value.isEmpty() && !value.equals("0")) {
+                        String[] parts = value.split(":");
+                        if (parts.length > 0) {
+                            long expirationTime = Long.parseLong(parts[0]);
+                            if (expirationTime < currentTime) {
                                 redisTemplate.delete(key);
-                                log.info("Removed expired blacklist entry: {}", key);
+                                removedCount++;
                             }
                         }
-                    } catch (Exception e) {
-                        log.warn("Failed to cleanup blacklist entry: " + key, e);
+                    }
+                } catch (Exception e) {
+                    log.warn("Failed to process blacklist key: " + key, e);
+                }
+            }
+            
+            log.info("Cleaned up {} expired blacklist entries", removedCount);
+        } catch (Exception e) {
+            log.error("Failed to cleanup expired blacklist entries", e);
+        }
+    }
+    
+    // 黑名单信息
+    @Data
+    @Builder
+    public static class BlacklistInfo {
+        private boolean blacklisted;
+        private String reason;
+        private long expirationTime;
+        private long remainingTime;
+        
+        public static BlacklistInfo notBlacklisted() {
+            return BlacklistInfo.builder()
+                .blacklisted(false)
+                .reason("")
+                .expirationTime(0)
+                .remainingTime(0)
+                .build();
+        }
+    }
+    
+    // 黑名单历史记录
+    @Data
+    @Builder
+    public static class BlacklistHistory {
+        private String identifier;
+        private long duration;
+        private String reason;
+        private long timestamp;
+    }
+}
+```
+
+### 自适应防护策略
+
+```java
+// 自适应防护策略
+@Component
+public class AdaptiveProtectionStrategy {
+    private final DynamicBlacklistManager blacklistManager;
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ScheduledExecutorService strategyUpdateScheduler = Executors.newScheduledThreadPool(1);
+    
+    public AdaptiveProtectionStrategy(DynamicBlacklistManager blacklistManager,
+                                    RedisTemplate<String, String> redisTemplate) {
+        this.blacklistManager = blacklistManager;
+        this.redisTemplate = redisTemplate;
+        
+        // 定期更新防护策略
+        strategyUpdateScheduler.scheduleAtFixedRate(this::updateProtectionStrategy, 
+            0, 1800, TimeUnit.SECONDS); // 每30分钟更新一次策略
+    }
+    
+    public ProtectionDecision makeProtectionDecision(RequestContext context, 
+                                                   AnomalyDetectionResult detectionResult) {
+        try {
+            // 1. 检查是否已在黑名单中
+            if (blacklistManager.isBlacklisted(context.getIdentifier())) {
+                return ProtectionDecision.block("Already blacklisted");
+            }
+            
+            // 2. 根据异常检测结果决定防护措施
+            if (detectionResult.isAnomaly()) {
+                return handleAnomaly(context, detectionResult);
+            }
+            
+            // 3. 正常流量，允许通过
+            return ProtectionDecision.allow();
+        } catch (Exception e) {
+            log.error("Failed to make protection decision for context: " + context, e);
+            // 出错时保守处理，允许通过
+            return ProtectionDecision.allow();
+        }
+    }
+    
+    private ProtectionDecision handleAnomaly(RequestContext context, 
+                                          AnomalyDetectionResult detectionResult) {
+        try {
+            String identifier = context.getIdentifier();
+            double confidence = detectionResult.getConfidence();
+            double anomalyScore = detectionResult.getAnomalyScore();
+            
+            // 根据置信度和异常分数决定防护措施
+            if (confidence > 0.9 && anomalyScore > 0.8) {
+                // 高置信度高异常分数，直接加入黑名单
+                long duration = calculateBlacklistDuration(confidence, anomalyScore);
+                blacklistManager.addToBlacklist(identifier, duration, "High confidence anomaly");
+                return ProtectionDecision.block("High confidence anomaly detected");
+            } else if (confidence > 0.7 && anomalyScore > 0.6) {
+                // 中等置信度，加入临时黑名单
+                blacklistManager.addToBlacklist(identifier, 300, "Medium confidence anomaly"); // 5分钟
+                return ProtectionDecision.challenge("Medium confidence anomaly detected");
+            } else if (confidence > 0.5 && anomalyScore > 0.4) {
+                // 低置信度，记录并监控
+                recordSuspiciousActivity(context, detectionResult);
+                return ProtectionDecision.monitor("Low confidence anomaly detected");
+            } else {
+                // 置信度较低，允许通过但记录
+                recordSuspiciousActivity(context, detectionResult);
+                return ProtectionDecision.allow();
+            }
+        } catch (Exception e) {
+            log.error("Failed to handle anomaly for context: " + context, e);
+            return ProtectionDecision.allow();
+        }
+    }
+    
+    private long calculateBlacklistDuration(double confidence, double anomalyScore) {
+        // 根据置信度和异常分数计算黑名单持续时间
+        // 基础时间：60秒
+        long baseDuration = 60;
+        
+        // 根据置信度调整
+        double confidenceFactor = Math.min(1.0, confidence / 0.9); // 以0.9为基准
+        
+        // 根据异常分数调整
+        double scoreFactor = Math.min(1.0, anomalyScore / 0.8); // 以0.8为基准
+        
+        // 计算最终持续时间（最大24小时）
+        return Math.min(86400, (long) (baseDuration * confidenceFactor * scoreFactor * 10));
+    }
+    
+    private void recordSuspiciousActivity(RequestContext context, 
+                                        AnomalyDetectionResult detectionResult) {
+        try {
+            SuspiciousActivity activity = SuspiciousActivity.builder()
+                .identifier(context.getIdentifier())
+                .requestContext(context)
+                .anomalyScore(detectionResult.getAnomalyScore())
+                .confidence(detectionResult.getConfidence())
+                .timestamp(System.currentTimeMillis())
+                .build();
+                
+            String key = "suspicious:activity:" + context.getIdentifier();
+            String value = serializeActivity(activity);
+            
+            // 保留最近100条记录
+            redisTemplate.opsForList().leftPush(key, value);
+            redisTemplate.opsForList().trim(key, 0, 99);
+            
+            // 如果可疑活动频繁，考虑加入黑名单
+            checkAndBlacklistIfNecessary(context.getIdentifier());
+        } catch (Exception e) {
+            log.warn("Failed to record suspicious activity for context: " + context, e);
+        }
+    }
+    
+    private void checkAndBlacklistIfNecessary(String identifier) {
+        try {
+            String key = "suspicious:activity:" + identifier;
+            long count = redisTemplate.opsForList().size(key);
+            
+            // 如果最近有超过10次可疑活动，加入黑名单
+            if (count > 10) {
+                blacklistManager.addToBlacklist(identifier, 1800, "Frequent suspicious activity"); // 30分钟
+                log.info("Added {} to blacklist due to frequent suspicious activity", identifier);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to check and blacklist for identifier: " + identifier, e);
+        }
+    }
+    
+    private String serializeActivity(SuspiciousActivity activity) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(activity);
+        } catch (Exception e) {
+            log.warn("Failed to serialize suspicious activity", e);
+            return "";
+        }
+    }
+    
+    private void updateProtectionStrategy() {
+        try {
+            log.info("Updating protection strategy...");
+            
+            // 根据历史数据调整策略参数
+            adjustStrategyParameters();
+            
+            log.info("Protection strategy updated successfully");
+        } catch (Exception e) {
+            log.error("Failed to update protection strategy", e);
+        }
+    }
+    
+    private void adjustStrategyParameters() {
+        try {
+            // 从Redis获取历史防护决策数据
+            List<ProtectionDecisionRecord> recentDecisions = getRecentDecisions(1000);
+            
+            // 分析决策效果
+            DecisionAnalysis analysis = analyzeDecisions(recentDecisions);
+            
+            // 根据分析结果调整策略阈值
+            log.info("Decision analysis: {}", analysis);
+            // 实际实现中会根据分析结果调整各种阈值参数
+            
+        } catch (Exception e) {
+            log.warn("Failed to adjust strategy parameters", e);
+        }
+    }
+    
+    private List<ProtectionDecisionRecord> getRecentDecisions(int count) {
+        // 实现获取最近防护决策记录的逻辑
+        return new ArrayList<>();
+    }
+    
+    private DecisionAnalysis analyzeDecisions(List<ProtectionDecisionRecord> decisions) {
+        // 实现决策分析逻辑
+        return new DecisionAnalysis();
+    }
+    
+    // 防护决策
+    @Data
+    @Builder
+    public static class ProtectionDecision {
+        private DecisionType type;
+        private String reason;
+        
+        public static ProtectionDecision allow() {
+            return ProtectionDecision.builder()
+                .type(DecisionType.ALLOW)
+                .reason("Normal traffic")
+                .build();
+        }
+        
+        public static ProtectionDecision block(String reason) {
+            return ProtectionDecision.builder()
+                .type(DecisionType.BLOCK)
+                .reason(reason)
+                .build();
+        }
+        
+        public static ProtectionDecision challenge(String reason) {
+            return ProtectionDecision.builder()
+                .type(DecisionType.CHALLENGE)
+                .reason(reason)
+                .build();
+        }
+        
+        public static ProtectionDecision monitor(String reason) {
+            return ProtectionDecision.builder()
+                .type(DecisionType.MONITOR)
+                .reason(reason)
+                .build();
+        }
+    }
+    
+    // 决策类型枚举
+    public enum DecisionType {
+        ALLOW, BLOCK, CHALLENGE, MONITOR
+    }
+    
+    // 可疑活动记录
+    @Data
+    @Builder
+    public static class SuspiciousActivity {
+        private String identifier;
+        private RequestContext requestContext;
+        private double anomalyScore;
+        private double confidence;
+        private long timestamp;
+    }
+    
+    // 决策分析结果
+    public static class DecisionAnalysis {
+        // 实现决策分析结果
+    }
+}
+```
+
+## 请求特征提取
+
+### 特征工程实现
+
+```java
+// 请求特征提取
+@Component
+public class RequestFeatureExtractor {
+    private final RedisTemplate<String, String> redisTemplate;
+    
+    public RequestFeatureExtractor(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+    
+    public RequestFeatures extractFeatures(HttpServletRequest request, 
+                                        RequestContext context) {
+        RequestFeatures features = new RequestFeatures();
+        
+        // 1. 基础特征
+        features.setHttpMethod(request.getMethod());
+        features.setRequestUri(request.getRequestURI());
+        features.setUserAgent(request.getHeader("User-Agent"));
+        features.setReferer(request.getHeader("Referer"));
+        features.setIpAddress(context.getClientIp());
+        
+        // 2. 频率特征
+        extractFrequencyFeatures(features, context);
+        
+        // 3. 行为特征
+        extractBehaviorFeatures(features, request, context);
+        
+        // 4. 内容特征
+        extractContentFeatures(features, request);
+        
+        // 5. 时间特征
+        extractTimeFeatures(features);
+        
+        return features;
+    }
+    
+    private void extractFrequencyFeatures(RequestFeatures features, RequestContext context) {
+        try {
+            String identifier = context.getIdentifier();
+            long currentTime = System.currentTimeMillis();
+            
+            // 计算请求频率（过去1分钟）
+            String key = "traffic:frequency:" + identifier;
+            Long requestCount = redisTemplate.opsForValue().increment(key, 1);
+            redisTemplate.expire(key, 60, TimeUnit.SECONDS); // 1分钟过期
+            
+            features.setRequestFrequency(requestCount != null ? requestCount.intValue() : 0);
+            
+            // 计算不同URI访问频率
+            String uriKey = "traffic:uri_frequency:" + identifier + ":" + features.getRequestUri();
+            Long uriCount = redisTemplate.opsForValue().increment(uriKey, 1);
+            redisTemplate.expire(uriKey, 300, TimeUnit.SECONDS); // 5分钟过期
+            
+            features.setUriFrequency(uriCount != null ? uriCount.intValue() : 0);
+            
+            // 计算错误请求频率
+            if (context.getStatusCode() >= 400) {
+                String errorKey = "traffic:error_frequency:" + identifier;
+                Long errorCount = redisTemplate.opsForValue().increment(errorKey, 1);
+                redisTemplate.expire(errorKey, 60, TimeUnit.SECONDS);
+                
+                features.setErrorFrequency(errorCount != null ? errorCount.intValue() : 0);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to extract frequency features", e);
+        }
+    }
+    
+    private void extractBehaviorFeatures(RequestFeatures features, 
+                                       HttpServletRequest request, 
+                                       RequestContext context) {
+        try {
+            // 检查是否使用了常见攻击模式
+            String userAgent = features.getUserAgent();
+            features.setSuspiciousUserAgent(isSuspiciousUserAgent(userAgent));
+            
+            // 检查请求头是否完整
+            features.setMissingHeaders(countMissingHeaders(request));
+            
+            // 检查请求参数
+            features.setParameterCount(countParameters(request));
+            features.setSuspiciousParameters(hasSuspiciousParameters(request));
+            
+            // 检查请求速度
+            features.setRequestSpeed(calculateRequestSpeed(context));
+        } catch (Exception e) {
+            log.warn("Failed to extract behavior features", e);
+        }
+    }
+    
+    private void extractContentFeatures(RequestFeatures features, HttpServletRequest request) {
+        try {
+            // 检查Content-Type
+            String contentType = request.getContentType();
+            features.setContentType(contentType);
+            
+            // 检查请求体大小
+            if (request.getContentLength() > 0) {
+                features.setContentLength(request.getContentLength());
+            }
+            
+            // 检查是否包含可疑内容
+            features.setSuspiciousContent(hasSuspiciousContent(request));
+        } catch (Exception e) {
+            log.warn("Failed to extract content features", e);
+        }
+    }
+    
+    private void extractTimeFeatures(RequestFeatures features) {
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            features.setHour(now.getHour());
+            features.setDayOfWeek(now.getDayOfWeek().getValue());
+            features.setIsWeekend(now.getDayOfWeek() == DayOfWeek.SATURDAY || 
+                                now.getDayOfWeek() == DayOfWeek.SUNDAY);
+        } catch (Exception e) {
+            log.warn("Failed to extract time features", e);
+        }
+    }
+    
+    private boolean isSuspiciousUserAgent(String userAgent) {
+        if (userAgent == null || userAgent.isEmpty()) {
+            return true;
+        }
+        
+        // 检查是否为常见的爬虫或自动化工具
+        String lowerUserAgent = userAgent.toLowerCase();
+        return lowerUserAgent.contains("bot") || 
+               lowerUserAgent.contains("crawler") || 
+               lowerUserAgent.contains("spider") ||
+               lowerUserAgent.contains("scanner");
+    }
+    
+    private int countMissingHeaders(HttpServletRequest request) {
+        int missing = 0;
+        
+        // 检查常见的重要请求头是否存在
+        if (request.getHeader("Accept") == null) missing++;
+        if (request.getHeader("Accept-Language") == null) missing++;
+        if (request.getHeader("Accept-Encoding") == null) missing++;
+        if (request.getHeader("User-Agent") == null) missing++;
+        
+        return missing;
+    }
+    
+    private int countParameters(HttpServletRequest request) {
+        int count = 0;
+        
+        // 计算查询参数数量
+        String queryString = request.getQueryString();
+        if (queryString != null && !queryString.isEmpty()) {
+            count += queryString.split("&").length;
+        }
+        
+        // 计算表单参数数量
+        if ("POST".equalsIgnoreCase(request.getMethod())) {
+            try {
+                count += request.getParameterMap().size();
+            } catch (Exception e) {
+                log.warn("Failed to get parameter map", e);
+            }
+        }
+        
+        return count;
+    }
+    
+    private boolean hasSuspiciousParameters(HttpServletRequest request) {
+        // 检查参数中是否包含常见的攻击模式
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        
+        for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+            String paramName = entry.getKey();
+            String[] paramValues = entry.getValue();
+            
+            // 检查参数名
+            if (isSuspiciousParameterName(paramName)) {
+                return true;
+            }
+            
+            // 检查参数值
+            for (String paramValue : paramValues) {
+                if (isSuspiciousParameterValue(paramValue)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    private boolean isSuspiciousParameterName(String paramName) {
+        if (paramName == null) return false;
+        
+        String lowerParamName = paramName.toLowerCase();
+        return lowerParamName.contains("select") ||
+               lowerParamName.contains("union") ||
+               lowerParamName.contains("script") ||
+               lowerParamName.contains("eval");
+    }
+    
+    private boolean isSuspiciousParameterValue(String paramValue) {
+        if (paramValue == null) return false;
+        
+        String lowerParamValue = paramValue.toLowerCase();
+        return lowerParamValue.contains("<script") ||
+               lowerParamValue.contains("javascript:") ||
+               lowerParamValue.contains("eval(") ||
+               lowerParamValue.matches(".*\\b(select|union|insert|update|delete)\\b.*");
+    }
+    
+    private double calculateRequestSpeed(RequestContext context) {
+        try {
+            String identifier = context.getIdentifier();
+            long currentTime = System.currentTimeMillis();
+            
+            // 获取上次请求时间
+            String key = "traffic:last_request_time:" + identifier;
+            String lastRequestTimeStr = redisTemplate.opsForValue().get(key);
+            
+            if (lastRequestTimeStr != null) {
+                long lastRequestTime = Long.parseLong(lastRequestTimeStr);
+                long timeDiff = currentTime - lastRequestTime;
+                
+                // 更新最后请求时间
+                redisTemplate.opsForValue().set(key, String.valueOf(currentTime), 
+                    Duration.ofSeconds(300)); // 5分钟过期
+                    
+                // 返回请求间隔（毫秒）
+                return timeDiff;
+            } else {
+                // 第一次请求
+                redisTemplate.opsForValue().set(key, String.valueOf(currentTime), 
+                    Duration.ofSeconds(300));
+                return 0;
+            }
+        } catch (Exception e) {
+            log.warn("Failed to calculate request speed", e);
+            return 0;
+        }
+    }
+    
+    private boolean hasSuspiciousContent(HttpServletRequest request) {
+        try {
+            // 检查请求体内容
+            if (request.getContentLength() > 0) {
+                String contentType = request.getContentType();
+                if (contentType != null && contentType.contains("application/json")) {
+                    // 对于JSON请求，检查是否包含可疑内容
+                    String body = getRequestBody(request);
+                    if (body != null) {
+                        return isSuspiciousJsonContent(body);
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("Failed to cleanup expired blacklist", e);
+            log.warn("Failed to check suspicious content", e);
+        }
+        
+        return false;
+    }
+    
+    private String getRequestBody(HttpServletRequest request) {
+        try {
+            StringBuilder body = new StringBuilder();
+            BufferedReader reader = request.getReader();
+            String line;
+            
+            while ((line = reader.readLine()) != null) {
+                body.append(line);
+            }
+            
+            return body.toString();
+        } catch (Exception e) {
+            log.warn("Failed to read request body", e);
+            return null;
         }
     }
     
-    // 黑名单条目
-    public static class BlacklistEntry {
-        private final String ipAddress;
-        private final long expireTime;
+    private boolean isSuspiciousJsonContent(String jsonContent) {
+        // 检查JSON内容中是否包含可疑模式
+        if (jsonContent == null) return false;
         
-        public BlacklistEntry(String ipAddress, long expireTime) {
-            this.ipAddress = ipAddress;
-            this.expireTime = expireTime;
-        }
-        
-        // getter方法
-        public String getIpAddress() { return ipAddress; }
-        public long getExpireTime() { return expireTime; }
-        public long getRemainingTime() { 
-            return Math.max(0, expireTime - System.currentTimeMillis()); 
-        }
+        String lowerContent = jsonContent.toLowerCase();
+        return lowerContent.contains("<script") ||
+               lowerContent.contains("javascript:") ||
+               lowerContent.contains("eval(") ||
+               lowerContent.matches(".*\\b(select|union|insert|update|delete)\\b.*");
     }
 }
 ```
 
-## 监控与告警
+## 防护系统集成
 
-### 异常检测监控面板
+### 统一防护入口
 
 ```java
-// 异常检测监控控制器
-@RestController
-@RequestMapping("/api/v1/anomaly-detection")
-public class AnomalyDetectionMonitoringController {
-    private final AnomalyBasedProtection protectionService;
-    private final BlacklistManager blacklistManager;
-    private final MetricsCollector metricsCollector;
+// 统一异常流量防护入口
+@Component
+public class UnifiedAnomalyProtection {
+    private final EnsembleAnomalyDetector ensembleDetector;
+    private final RequestFeatureExtractor featureExtractor;
+    private final AdaptiveProtectionStrategy protectionStrategy;
+    private final DynamicBlacklistManager blacklistManager;
+    private final RedisTemplate<String, String> redisTemplate;
     
-    public AnomalyDetectionMonitoringController(AnomalyBasedProtection protectionService,
-                                             BlacklistManager blacklistManager,
-                                             MetricsCollector metricsCollector) {
-        this.protectionService = protectionService;
+    public UnifiedAnomalyProtection(EnsembleAnomalyDetector ensembleDetector,
+                                  RequestFeatureExtractor featureExtractor,
+                                  AdaptiveProtectionStrategy protectionStrategy,
+                                  DynamicBlacklistManager blacklistManager,
+                                  RedisTemplate<String, String> redisTemplate) {
+        this.ensembleDetector = ensembleDetector;
+        this.featureExtractor = featureExtractor;
+        this.protectionStrategy = protectionStrategy;
         this.blacklistManager = blacklistManager;
-        this.metricsCollector = metricsCollector;
+        this.redisTemplate = redisTemplate;
     }
     
-    @GetMapping("/statistics")
-    public ResponseEntity<AnomalyDetectionStatistics> getStatistics() {
+    public ProtectionResult protect(HttpServletRequest request, 
+                                  HttpServletResponse response) {
+        long startTime = System.currentTimeMillis();
+        
         try {
-            AnomalyDetectionStatistics stats = new AnomalyDetectionStatistics();
-            stats.setTotalRequests(metricsCollector.getTotalRequests());
-            stats.setAnomalyRequests(metricsCollector.getAnomalyRequests());
-            stats.setBlockedRequests(metricsCollector.getBlockedRequests());
-            stats.setRateLimitedRequests(metricsCollector.getRateLimitedRequests());
-            stats.setBlacklistedIps(blacklistManager.getBlacklistEntries().size());
-            stats.setGeneratedAt(System.currentTimeMillis());
+            // 1. 构建请求上下文
+            RequestContext context = buildRequestContext(request, response);
             
-            return ResponseEntity.ok(stats);
+            // 2. 检查黑名单
+            if (blacklistManager.isBlacklisted(context.getIdentifier())) {
+                BlacklistInfo blacklistInfo = blacklistManager.getBlacklistInfo(context.getIdentifier());
+                return ProtectionResult.blocked("Blocked by blacklist: " + blacklistInfo.getReason());
+            }
+            
+            // 3. 提取请求特征
+            RequestFeatures features = featureExtractor.extractFeatures(request, context);
+            
+            // 4. 保存正常流量样本（用于模型训练）
+            saveNormalSample(features, context);
+            
+            // 5. 异常检测
+            AnomalyDetectionResult detectionResult = ensembleDetector.detectAnomaly(features);
+            
+            // 6. 防护决策
+            AdaptiveProtectionStrategy.ProtectionDecision decision = 
+                protectionStrategy.makeProtectionDecision(context, detectionResult);
+            
+            // 7. 执行防护措施
+            ProtectionResult result = executeProtectionDecision(decision, context, detectionResult);
+            
+            // 8. 记录防护日志
+            recordProtectionEvent(context, features, detectionResult, decision, result, startTime);
+            
+            return result;
         } catch (Exception e) {
-            log.error("Failed to get anomaly detection statistics", e);
-            return ResponseEntity.status(500).build();
+            log.error("Failed to protect request", e);
+            // 出错时保守处理，允许通过
+            return ProtectionResult.allowed();
         }
     }
     
-    @GetMapping("/recent-anomalies")
-    public ResponseEntity<List<RecentAnomaly>> getRecentAnomalies(
-            @RequestParam(defaultValue = "50") int limit) {
+    private RequestContext buildRequestContext(HttpServletRequest request, 
+                                            HttpServletResponse response) {
+        return RequestContext.builder()
+            .requestId(UUID.randomUUID().toString())
+            .clientIp(getClientIp(request))
+            .userAgent(request.getHeader("User-Agent"))
+            .requestUri(request.getRequestURI())
+            .httpMethod(request.getMethod())
+            .timestamp(System.currentTimeMillis())
+            .build();
+    }
+    
+    private String getClientIp(HttpServletRequest request) {
+        String xForwardedFor = request.getHeader("X-Forwarded-For");
+        if (xForwardedFor != null && !xForwardedFor.isEmpty()) {
+            return xForwardedFor.split(",")[0].trim();
+        }
         
-        try {
-            List<RecentAnomaly> anomalies = metricsCollector.getRecentAnomalies(limit);
-            return ResponseEntity.ok(anomalies);
-        } catch (Exception e) {
-            log.error("Failed to get recent anomalies", e);
-            return ResponseEntity.status(500).build();
+        String xRealIp = request.getHeader("X-Real-IP");
+        if (xRealIp != null && !xRealIp.isEmpty()) {
+            return xRealIp;
         }
-    }
-    
-    @GetMapping("/blacklist")
-    public ResponseEntity<List<BlacklistManager.BlacklistEntry>> getBlacklist() {
-        try {
-            List<BlacklistManager.BlacklistEntry> entries = blacklistManager.getBlacklistEntries();
-            return ResponseEntity.ok(entries);
-        } catch (Exception e) {
-            log.error("Failed to get blacklist", e);
-            return ResponseEntity.status(500).build();
-        }
-    }
-    
-    @DeleteMapping("/blacklist/{ipAddress}")
-    public ResponseEntity<String> removeFromBlacklist(@PathVariable String ipAddress) {
-        try {
-            blacklistManager.removeFromBlacklist(ipAddress);
-            return ResponseEntity.ok("IP removed from blacklist successfully");
-        } catch (Exception e) {
-            log.error("Failed to remove IP from blacklist: " + ipAddress, e);
-            return ResponseEntity.status(500).body("Failed to remove IP from blacklist");
-        }
-    }
-    
-    @GetMapping("/detection-accuracy")
-    public ResponseEntity<DetectionAccuracyReport> getDetectionAccuracy() {
-        try {
-            DetectionAccuracyReport report = metricsCollector.getDetectionAccuracyReport();
-            return ResponseEntity.ok(report);
-        } catch (Exception e) {
-            log.error("Failed to get detection accuracy report", e);
-            return ResponseEntity.status(500).build();
-        }
-    }
-    
-    // 异常检测统计信息
-    public static class AnomalyDetectionStatistics {
-        private long totalRequests;
-        private long anomalyRequests;
-        private long blockedRequests;
-        private long rateLimitedRequests;
-        private int blacklistedIps;
-        private long generatedAt;
         
-        // getter和setter方法
-        public long getTotalRequests() { return totalRequests; }
-        public void setTotalRequests(long totalRequests) { this.totalRequests = totalRequests; }
-        public long getAnomalyRequests() { return anomalyRequests; }
-        public void setAnomalyRequests(long anomalyRequests) { this.anomalyRequests = anomalyRequests; }
-        public long getBlockedRequests() { return blockedRequests; }
-        public void setBlockedRequests(long blockedRequests) { this.blockedRequests = blockedRequests; }
-        public long getRateLimitedRequests() { return rateLimitedRequests; }
-        public void setRateLimitedRequests(long rateLimitedRequests) { this.rateLimitedRequests = rateLimitedRequests; }
-        public int getBlacklistedIps() { return blacklistedIps; }
-        public void setBlacklistedIps(int blacklistedIps) { this.blacklistedIps = blacklistedIps; }
-        public long getGeneratedAt() { return generatedAt; }
-        public void setGeneratedAt(long generatedAt) { this.generatedAt = generatedAt; }
-        
-        public double getAnomalyRate() {
-            return totalRequests > 0 ? (double) anomalyRequests / totalRequests : 0;
+        return request.getRemoteAddr();
+    }
+    
+    private void saveNormalSample(RequestFeatures features, RequestContext context) {
+        try {
+            // 只保存正常流量样本用于训练
+            if (context.getStatusCode() < 400) {
+                String key = "traffic:normal_samples";
+                String value = serializeFeatures(features);
+                
+                // 保留最近10000个样本
+                redisTemplate.opsForList().leftPush(key, value);
+                redisTemplate.opsForList().trim(key, 0, 9999);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to save normal sample", e);
         }
     }
     
-    // 最近异常记录
-    public static class RecentAnomaly {
-        private String ipAddress;
+    private String serializeFeatures(RequestFeatures features) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(features);
+        } catch (Exception e) {
+            log.warn("Failed to serialize features", e);
+            return "";
+        }
+    }
+    
+    private ProtectionResult executeProtectionDecision(
+            AdaptiveProtectionStrategy.ProtectionDecision decision,
+            RequestContext context,
+            AnomalyDetectionResult detectionResult) {
+        
+        switch (decision.getType()) {
+            case ALLOW:
+                return ProtectionResult.allowed();
+                
+            case BLOCK:
+                // 记录被阻止的请求
+                recordBlockedRequest(context, detectionResult);
+                return ProtectionResult.blocked(decision.getReason());
+                
+            case CHALLENGE:
+                // 实施挑战（如验证码）
+                return ProtectionResult.challenged(decision.getReason());
+                
+            case MONITOR:
+                // 监控模式，允许通过但记录
+                return ProtectionResult.monitored(decision.getReason());
+                
+            default:
+                return ProtectionResult.allowed();
+        }
+    }
+    
+    private void recordBlockedRequest(RequestContext context, 
+                                   AnomalyDetectionResult detectionResult) {
+        try {
+            BlockedRequest blockedRequest = BlockedRequest.builder()
+                .requestId(context.getRequestId())
+                .clientIp(context.getClientIp())
+                .requestUri(context.getRequestUri())
+                .anomalyScore(detectionResult.getAnomalyScore())
+                .confidence(detectionResult.getConfidence())
+                .timestamp(System.currentTimeMillis())
+                .build();
+                
+            String key = "anomaly:blocked_requests";
+            String value = serializeBlockedRequest(blockedRequest);
+            
+            redisTemplate.opsForList().leftPush(key, value);
+            redisTemplate.opsForList().trim(key, 0, 999); // 保留最近1000条记录
+        } catch (Exception e) {
+            log.warn("Failed to record blocked request", e);
+        }
+    }
+    
+    private String serializeBlockedRequest(BlockedRequest blockedRequest) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(blockedRequest);
+        } catch (Exception e) {
+            log.warn("Failed to serialize blocked request", e);
+            return "";
+        }
+    }
+    
+    private void recordProtectionEvent(RequestContext context,
+                                     RequestFeatures features,
+                                     AnomalyDetectionResult detectionResult,
+                                     AdaptiveProtectionStrategy.ProtectionDecision decision,
+                                     ProtectionResult result,
+                                     long startTime) {
+        try {
+            long duration = System.currentTimeMillis() - startTime;
+            
+            ProtectionEvent event = ProtectionEvent.builder()
+                .requestId(context.getRequestId())
+                .clientIp(context.getClientIp())
+                .requestUri(context.getRequestUri())
+                .anomalyScore(detectionResult.getAnomalyScore())
+                .confidence(detectionResult.getConfidence())
+                .decisionType(decision.getType())
+                .resultType(result.getType())
+                .processingTime(duration)
+                .timestamp(System.currentTimeMillis())
+                .build();
+                
+            // 发送到监控系统
+            sendToMonitoringSystem(event);
+            
+            // 记录到日志
+            log.info("Protection event - IP: {}, URI: {}, Decision: {}, Result: {}, Time: {}ms",
+                context.getClientIp(), context.getRequestUri(), 
+                decision.getType(), result.getType(), duration);
+        } catch (Exception e) {
+            log.warn("Failed to record protection event", e);
+        }
+    }
+    
+    private void sendToMonitoringSystem(ProtectionEvent event) {
+        // 实现发送到监控系统的逻辑
+        // 可以发送到Prometheus、ELK等监控系统
+    }
+    
+    // 防护结果
+    @Data
+    @Builder
+    public static class ProtectionResult {
+        private ResultType type;
+        private String reason;
+        
+        public static ProtectionResult allowed() {
+            return ProtectionResult.builder()
+                .type(ResultType.ALLOWED)
+                .reason("Normal traffic")
+                .build();
+        }
+        
+        public static ProtectionResult blocked(String reason) {
+            return ProtectionResult.builder()
+                .type(ResultType.BLOCKED)
+                .reason(reason)
+                .build();
+        }
+        
+        public static ProtectionResult challenged(String reason) {
+            return ProtectionResult.builder()
+                .type(ResultType.CHALLENGED)
+                .reason(reason)
+                .build();
+        }
+        
+        public static ProtectionResult monitored(String reason) {
+            return ProtectionResult.builder()
+                .type(ResultType.MONITORED)
+                .reason(reason)
+                .build();
+        }
+    }
+    
+    // 结果类型枚举
+    public enum ResultType {
+        ALLOWED, BLOCKED, CHALLENGED, MONITORED
+    }
+    
+    // 被阻止的请求记录
+    @Data
+    @Builder
+    public static class BlockedRequest {
+        private String requestId;
+        private String clientIp;
+        private String requestUri;
         private double anomalyScore;
-        private String actionTaken;
+        private double confidence;
         private long timestamp;
-        private String requestPath;
-        
-        // 构造函数和getter/setter方法
-        public RecentAnomaly(String ipAddress, double anomalyScore, 
-                           String actionTaken, long timestamp, String requestPath) {
-            this.ipAddress = ipAddress;
-            this.anomalyScore = anomalyScore;
-            this.actionTaken = actionTaken;
-            this.timestamp = timestamp;
-            this.requestPath = requestPath;
-        }
-        
-        // getter和setter方法
-        public String getIpAddress() { return ipAddress; }
-        public void setIpAddress(String ipAddress) { this.ipAddress = ipAddress; }
-        public double getAnomalyScore() { return anomalyScore; }
-        public void setAnomalyScore(double anomalyScore) { this.anomalyScore = anomalyScore; }
-        public String getActionTaken() { return actionTaken; }
-        public void setActionTaken(String actionTaken) { this.actionTaken = actionTaken; }
-        public long getTimestamp() { return timestamp; }
-        public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
-        public String getRequestPath() { return requestPath; }
-        public void setRequestPath(String requestPath) { this.requestPath = requestPath; }
     }
     
-    // 检测准确性报告
-    public static class DetectionAccuracyReport {
-        private double precision;
-        private double recall;
-        private double f1Score;
-        private long evaluatedAt;
-        private int truePositives;
-        private int falsePositives;
-        private int falseNegatives;
-        
-        // getter和setter方法
-        public double getPrecision() { return precision; }
-        public void setPrecision(double precision) { this.precision = precision; }
-        public double getRecall() { return recall; }
-        public void setRecall(double recall) { this.recall = recall; }
-        public double getF1Score() { return f1Score; }
-        public void setF1Score(double f1Score) { this.f1Score = f1Score; }
-        public long getEvaluatedAt() { return evaluatedAt; }
-        public void setEvaluatedAt(long evaluatedAt) { this.evaluatedAt = evaluatedAt; }
-        public int getTruePositives() { return truePositives; }
-        public void setTruePositives(int truePositives) { this.truePositives = truePositives; }
-        public int getFalsePositives() { return falsePositives; }
-        public void setFalsePositives(int falsePositives) { this.falsePositives = falsePositives; }
-        public int getFalseNegatives() { return falseNegatives; }
-        public void setFalseNegatives(int falseNegatives) { this.falseNegatives = falseNegatives; }
+    // 防护事件
+    @Data
+    @Builder
+    public static class ProtectionEvent {
+        private String requestId;
+        private String clientIp;
+        private String requestUri;
+        private double anomalyScore;
+        private double confidence;
+        private AdaptiveProtectionStrategy.DecisionType decisionType;
+        private ResultType resultType;
+        private long processingTime;
+        private long timestamp;
     }
 }
 ```
 
-### 异常检测告警规则
+## 最佳实践总结
 
-```yaml
-# 异常检测相关告警规则
-alerting:
-  rules:
-    - name: "High Anomaly Detection Rate"
-      metric: "anomaly.detection.rate"
-      condition: "anomaly_detection_rate > 0.05"
-      duration: "5m"
-      severity: "warning"
-      message: "High anomaly detection rate: {{value}}% of traffic flagged as anomalous"
-      
-    - name: "Multiple IPs Blocked"
-      metric: "blacklist.ip.count"
-      condition: "blacklist_ip_count > 50"
-      duration: "1m"
-      severity: "warning"
-      message: "Large number of IPs blocked: {{value}} IPs currently blacklisted"
-      
-    - name: "High False Positive Rate"
-      metric: "anomaly.detection.false_positive_rate"
-      condition: "anomaly_detection_false_positive_rate > 0.1"
-      duration: "10m"
-      severity: "warning"
-      message: "High false positive rate in anomaly detection: {{value}}%"
-      
-    - name: "Sudden Spike in Anomalies"
-      metric: "anomaly.detection.count"
-      condition: "rate(anomaly_detection_count[5m]) > 100"
-      duration: "1m"
-      severity: "critical"
-      message: "Sudden spike in detected anomalies: {{value}} anomalies per second"
-```
+### 1. 算法选择与组合
 
-## 最佳实践与经验总结
+- **多算法融合**：结合Isolation Forest和One-Class SVM等不同算法的优势
+- **动态权重调整**：根据算法在实际应用中的表现动态调整权重
+- **特征工程**：精心设计特征提取方法，提高检测准确性
 
-### 实施建议
+### 2. 防护策略优化
 
-1. **多算法融合**：结合多种异常检测算法提高检测准确性
-2. **动态阈值调整**：根据业务场景动态调整异常判断阈值
-3. **渐进式防护**：采用监控→限流→拒绝的渐进式防护策略
-4. **误报处理机制**：建立误报反馈和处理机制
+- **分层防护**：根据异常程度采取不同的防护措施
+- **动态黑名单**：实现智能的黑名单管理机制
+- **自适应调整**：根据系统负载和攻击模式动态调整防护策略
 
-### 注意事项
+### 3. 性能与可扩展性
 
-1. **特征选择**：选择对异常检测有意义的特征，避免噪声干扰
-2. **模型更新**：定期更新模型以适应新的攻击模式
-3. **性能优化**：优化检测算法性能，避免影响正常业务
-4. **隐私保护**：在特征提取过程中注意用户隐私保护
+- **实时处理**：优化算法实现，确保实时检测能力
+- **分布式架构**：利用Redis等分布式存储提高系统可扩展性
+- **缓存机制**：合理使用缓存减少重复计算
 
-通过以上实现，我们构建了一个完整的异常流量自动识别与防护系统。该系统利用机器学习算法识别CC攻击等异常流量模式，并自动触发相应的防护措施，有效提升了系统的安全防护能力。在实际应用中，需要根据具体的业务场景和安全需求调整算法参数和防护策略，以达到最佳的防护效果。
+### 4. 监控与运维
+
+- **全面监控**：监控检测准确率、防护效果等关键指标
+- **日志记录**：详细记录防护事件，便于分析和审计
+- **定期评估**：定期评估防护效果，持续优化系统
+
+通过以上实现，我们可以构建一个智能化的异常流量识别与防护系统，有效应对各种复杂的异常流量攻击，保障分布式系统的稳定运行。

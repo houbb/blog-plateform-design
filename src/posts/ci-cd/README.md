@@ -62,19 +62,16 @@
   - [5-1-3 与Kubernetes的深度集成：Helm/Manifest的自动化部署](5-1-3-kubernetes-integration.md)
   - [5-1-4 审批与安全管控：人工卡点、安全扫描、合规检查](5-1-4-approval-security-control.md)
 
-### 第四部分：运维、观测与落地篇
+- [8-1 自动化测试集成](8-1-automated-testing-integration.md)
+  - [8-1-1 测试金字塔在流水线中的落地：单元测试、集成测试、端到端测试](8-1-1-test-pyramid-implementation.md)
+  - [8-1-2 自动化测试管理与执行：测试环境准备、测试用例筛选、测试报告分析](8-1-2-test-management-execution.md)
+  - [8-1-3 质量门禁设置：测试覆盖率、通过率作为流水线推进的硬性条件](8-1-3-quality-gate-settings.md)
 
-- [8-1 平台运营与最佳实践](8-1-platform-operations-best-practices.md)
-  - [8-1-1 流水线模板库与共享库：促进最佳实践复用，降低使用门槛](8-1-1-pipeline-template-library.md)
-  - [8-1-2 多租户与权限管理（RBAC）：项目隔离、资源配额](8-1-2-multi-tenancy-permission-management.md)
-  - [8-1-3 推广与赋能：文档、培训、支持，培育内部专家](8-1-3-promotion-empowerment.md)
-  - [8-1-4 常见问题与避坑指南：依赖问题、环境问题、网络问题](8-1-4-common-issues-pitfall-guide.md)
-
-- [9-1 与生态系统的集成](9-1-ecosystem-integration.md)
-  - [9-1-1 与项目管理工具（Jira）集成：需求驱动部署](9-1-1-project-management-integration.md)
-  - [9-1-2 与监控系统（Prometheus）集成：部署后自动验证](9-1-2-monitoring-system-integration.md)
-  - [9-1-3 与沟通工具（钉钉/企微）集成：构建结果通知](9-1-3-communication-tools-integration.md)
-  - [9-1-4 与Serverless/FaaS平台集成](9-1-4-serverless-faas-integration.md)
+- [9-1 部署与发布策略](9-1-deployment-release-strategies.md)
+  - [9-1-1 环境管理与隔离：开发、测试、预发、生产环境的自动化管理](9-1-1-environment-management-isolation.md)
+  - [9-1-2 部署策略详解：蓝绿部署、金丝雀发布、滚动发布、功能开关](9-1-2-deployment-strategy-details.md)
+  - [9-1-3 与Kubernetes的深度集成：Helm/Manifest的自动化部署](9-1-3-kubernetes-integration.md)
+  - [9-1-4 审批与安全管控：人工卡点、安全扫描、合规检查](9-1-4-approval-security-control.md)
 
 - [10-1 安全与合规（DevSecOps）](10-1-security-compliance-devsecops.md)
   - [10-1-1 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成](10-1-1-left-shift-security-practices.md)
@@ -82,11 +79,25 @@
   - [10-1-3 合规性即代码：自动化审计与合规检查](10-1-3-compliance-as-code.md)
   - [10-1-4 镜像安全扫描：CVE漏洞扫描与阻断](10-1-4-image-security-scanning.md)
 
+### 第四部分：运维、观测与落地篇
+
 - [11-1 可观测性与效能度量](11-1-observability-effectiveness-metrics.md)
   - [11-1-1 流水线可视化：全局视图、实时日志、执行历史](11-1-1-pipeline-visualization.md)
   - [11-1-2 平台自身监控：健康度、性能、队列状态](11-1-2-platform-monitoring.md)
   - [11-1-3 研发效能度量：DORA指标看板、瓶颈分析、驱动改进](11-1-3-rd-effectiveness-metrics.md)
   - [11-1-4 效能度量实践：DORA指标与自定义指标体系](11-1-4-effectiveness-metrics-practice.md)
+
+- [12-1 平台运营与最佳实践](12-1-platform-operations-best-practices.md)
+  - [12-1-1 流水线模板库与共享库：促进最佳实践复用，降低使用门槛](12-1-1-pipeline-template-library.md)
+  - [12-1-2 多租户与权限管理（RBAC）：项目隔离、资源配额](12-1-2-multi-tenancy-permission-management.md)
+  - [12-1-3 推广与赋能：文档、培训、支持，培育内部专家](12-1-3-promotion-empowerment.md)
+  - [12-1-4 常见问题与避坑指南：依赖问题、环境问题、网络问题](12-1-4-common-issues-pitfall-guide.md)
+
+- [13-1 与生态系统的集成](13-1-ecosystem-integration.md)
+  - [13-1-1 与项目管理工具（Jira）集成：需求驱动部署](13-1-1-project-management-integration.md)
+  - [13-1-2 与监控系统（Prometheus）集成：部署后自动验证](13-1-2-monitoring-system-integration.md)
+  - [13-1-3 与沟通工具（钉钉/企微）集成：构建结果通知](13-1-3-communication-tools-integration.md)
+  - [13-1-4 与Serverless/FaaS平台集成](13-1-4-serverless-faas-integration.md)
 
 ### 第五部分：进阶与未来篇
 
