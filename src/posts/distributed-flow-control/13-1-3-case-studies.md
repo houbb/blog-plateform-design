@@ -1,711 +1,828 @@
 ---
-title: 案例分享：某电商大促期间的限流实战、某API开放平台的配额管理
+title: 案例分享：电商大促期间的限流实战与API开放平台的配额管理
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, case-study, e-commerce, api-platform]
 published: true
 ---
 
-在分布式限流系统的实际应用中，理论知识需要与具体业务场景相结合才能发挥最大价值。本章将通过两个真实的案例分享，深入探讨分布式限流在电商大促和API开放平台中的实际应用，分析其中遇到的挑战、解决方案以及经验教训，为读者提供宝贵的实战参考。
+在分布式限流平台的实际应用中，不同的业务场景会面临不同的挑战和需求。本章将通过两个典型的案例分享，深入探讨在电商大促期间如何进行限流实战，以及在API开放平台中如何实现精细化的配额管理。这些案例将帮助读者更好地理解分布式限流平台在实际业务中的应用，并为类似场景提供参考和借鉴。
 
-## 案例一：某电商大促期间的限流实战
+## 电商大促期间的限流实战
 
 ### 背景介绍
 
-某大型电商平台在年度大促活动期间，面临着前所未有的流量冲击。活动开始前的几分钟内，流量峰值可能达到日常流量的数十倍，这对系统的稳定性提出了严峻挑战。为了保障核心服务的稳定运行，平台采用了分布式限流系统来保护关键业务接口。
+某知名电商平台在每年的"618"和"双11"大促期间，面临着巨大的流量冲击。在2024年的双11大促中，平台的峰值QPS达到了平时的50倍以上，这对系统的稳定性提出了严峻的挑战。为了保障核心服务的稳定运行，平台采用了分布式限流平台来保护关键业务接口。
 
 ### 业务场景分析
 
-在大促期间，电商平台的核心业务场景包括：
+在大促期间，电商平台的主要业务场景包括：
 
-1. **商品详情页访问**：用户浏览商品详情，是流量最大的场景
-2. **购物车操作**：用户添加商品到购物车，对数据一致性要求高
-3. **下单接口**：用户提交订单，是最终转化的关键环节
-4. **支付接口**：用户完成支付，涉及资金安全
-5. **库存查询**：实时查询商品库存，需要高并发处理能力
+1. **商品浏览**：用户浏览商品详情页，查询商品信息
+2. **购物车操作**：用户添加商品到购物车，修改购物车数量
+3. **下单流程**：用户提交订单，支付订单
+4. **库存管理**：实时更新商品库存
+5. **优惠券发放**：发放和使用优惠券
+6. **搜索服务**：提供商品搜索功能
+
+其中，下单流程和库存管理是核心业务，需要重点保护。
 
 ### 限流策略设计
-
-针对不同的业务场景，制定了差异化的限流策略：
 
 ```java
 // 电商大促限流策略配置
 @Configuration
-public class ECommercePromotionRateLimitConfig {
+public class ECommerceRateLimitConfig {
     
     @Bean
-    public RateLimitRule productDetailRule() {
-        RateLimitRule rule = new RateLimitRule();
-        rule.setResource("product_detail");
-        rule.setLimit(50000); // 5万QPS
-        rule.setWindow(60); // 60秒窗口
-        rule.setGrade(RateLimitGrade.QPS);
-        rule.setControlBehavior(ControlBehavior.REJECT); // 直接拒绝
-        rule.setPriority(1); // 高优先级
-        return rule;
-    }
-    
-    @Bean
-    public RateLimitRule shoppingCartRule() {
-        RateLimitRule rule = new RateLimitRule();
-        rule.setResource("shopping_cart");
-        rule.setLimit(10000); // 1万QPS
-        rule.setWindow(60); // 60秒窗口
-        rule.setGrade(RateLimitGrade.QPS);
-        rule.setControlBehavior(ControlBehavior.WARM_UP); // 预热方式
-        rule.setWarmUpPeriod(30); // 30秒预热
-        rule.setPriority(2); // 中优先级
-        return rule;
-    }
-    
-    @Bean
-    public RateLimitRule orderSubmitRule() {
-        RateLimitRule rule = new RateLimitRule();
-        rule.setResource("order_submit");
-        rule.setLimit(5000); // 5000 QPS
-        rule.setWindow(60); // 60秒窗口
-        rule.setGrade(RateLimitGrade.QPS);
-        rule.setControlBehavior(ControlBehavior.THROTTLING); // 排队等待
-        rule.setMaxQueueingTimeMs(1000); // 最大排队时间1秒
-        rule.setPriority(1); // 高优先级
-        return rule;
-    }
-    
-    @Bean
-    public RateLimitRule paymentRule() {
-        RateLimitRule rule = new RateLimitRule();
-        rule.setResource("payment");
-        rule.setLimit(3000); // 3000 QPS
-        rule.setWindow(60); // 60秒窗口
-        rule.setGrade(RateLimitGrade.QPS);
-        rule.setControlBehavior(ControlBehavior.REJECT); // 直接拒绝
-        rule.setPriority(1); // 高优先级
-        return rule;
-    }
-    
-    @Bean
-    public RateLimitRule inventoryQueryRule() {
-        RateLimitRule rule = new RateLimitRule();
-        rule.setResource("inventory_query");
-        rule.setLimit(20000); // 2万QPS
-        rule.setWindow(60); // 60秒窗口
-        rule.setGrade(RateLimitGrade.QPS);
-        rule.setControlBehavior(ControlBehavior.THROTTLING); // 排队等待
-        rule.setMaxQueueingTimeMs(500); // 最大排队时间500毫秒
-        rule.setPriority(3); // 低优先级
-        return rule;
+    public List<RateLimitRule> ecomemrceRateLimitRules() {
+        List<RateLimitRule> rules = new ArrayList<>();
+        
+        // 1. 商品详情页限流（保护商品服务）
+        rules.add(RateLimitRule.builder()
+            .resource("product_detail")
+            .dimensions(Arrays.asList(
+                Dimension.builder().type("api").value("/api/product/detail").build(),
+                Dimension.builder().type("user_level").value("normal").build()
+            ))
+            .limit(5000)  // 每秒5000次请求
+            .window(1)    // 1秒时间窗口
+            .strategy(RateLimitStrategy.SLIDING_WINDOW)
+            .fallback(FallbackStrategy.DEGRADE_TO_CACHE)
+            .build());
+            
+        // 2. VIP用户特殊限流（更高配额）
+        rules.add(RateLimitRule.builder()
+            .resource("product_detail_vip")
+            .dimensions(Arrays.asList(
+                Dimension.builder().type("api").value("/api/product/detail").build(),
+                Dimension.builder().type("user_level").value("vip").build()
+            ))
+            .limit(10000) // 每秒10000次请求
+            .window(1)
+            .strategy(RateLimitStrategy.SLIDING_WINDOW)
+            .fallback(FallbackStrategy.DEGRADE_TO_CACHE)
+            .build());
+            
+        // 3. 下单接口严格限流（保护订单服务）
+        rules.add(RateLimitRule.builder()
+            .resource("place_order")
+            .dimensions(Arrays.asList(
+                Dimension.builder().type("api").value("/api/order/place").build()
+            ))
+            .limit(2000)  // 每秒2000次请求
+            .window(1)
+            .strategy(RateLimitStrategy.LEAKY_BUCKET)
+            .fallback(FallbackStrategy.REJECT_REQUEST)
+            .build());
+            
+        // 4. 库存服务限流（保护库存系统）
+        rules.add(RateLimitRule.builder()
+            .resource("inventory_update")
+            .dimensions(Arrays.asList(
+                Dimension.builder().type("api").value("/api/inventory/update").build()
+            ))
+            .limit(500)   // 每秒500次请求
+            .window(1)
+            .strategy(RateLimitStrategy.TOKEN_BUCKET)
+            .fallback(FallbackStrategy.QUEUE_REQUEST)
+            .build());
+            
+        // 5. 搜索服务限流
+        rules.add(RateLimitRule.builder()
+            .resource("search")
+            .dimensions(Arrays.asList(
+                Dimension.builder().type("api").value("/api/search").build()
+            ))
+            .limit(8000)  // 每秒8000次请求
+            .window(1)
+            .strategy(RateLimitStrategy.SLIDING_WINDOW)
+            .fallback(FallbackStrategy.DEGRADE_TO_CACHE)
+            .build());
+            
+        return rules;
     }
 }
 ```
 
-### 热点商品特殊处理
-
-大促期间，部分热门商品会吸引大量用户访问，需要特殊处理：
+### 核心实现代码
 
 ```java
-// 热点商品限流处理
+// 电商大促限流服务实现
 @Service
-public class HotProductRateLimitService {
+public class ECommerceRateLimitService {
     private final DistributedRateLimiter rateLimiter;
-    private final HotspotDetector hotspotDetector;
-    private final Cache<String, RateLimiter> hotProductLimiters;
+    private final UserService userService;
+    private final ProductService productService;
     
-    public HotProductRateLimitService(DistributedRateLimiter rateLimiter,
-                                    HotspotDetector hotspotDetector) {
+    public ECommerceRateLimitService(DistributedRateLimiter rateLimiter,
+                                   UserService userService,
+                                   ProductService productService) {
         this.rateLimiter = rateLimiter;
-        this.hotspotDetector = hotspotDetector;
-        this.hotProductLimiters = Caffeine.newBuilder()
-            .maximumSize(10000)
-            .expireAfterWrite(10, TimeUnit.MINUTES)
-            .build();
+        this.userService = userService;
+        this.productService = productService;
     }
     
-    public boolean allowHotProductAccess(String productId) {
-        // 检测是否为热点商品
-        if (hotspotDetector.isHotspot(productId)) {
-            // 为热点商品创建专门的限流器
-            RateLimiter limiter = hotProductLimiters.get(productId, 
-                id -> RateLimiter.create(1000)); // 热点商品限制1000 QPS
-            return limiter.tryAcquire();
-        } else {
-            // 使用普通限流规则
-            return rateLimiter.tryAcquire("product_detail");
+    public RateLimitResult checkProductDetailAccess(String userId, String productId) {
+        // 1. 获取用户等级
+        String userLevel = userService.getUserLevel(userId);
+        
+        // 2. 构造限流资源标识
+        String resource = "product_detail";
+        if ("vip".equals(userLevel)) {
+            resource = "product_detail_vip";
         }
+        
+        // 3. 构造维度信息
+        Map<String, String> dimensions = new HashMap<>();
+        dimensions.put("api", "/api/product/detail");
+        dimensions.put("user_level", userLevel);
+        dimensions.put("product_id", productId);
+        
+        // 4. 执行限流检查
+        return rateLimiter.tryAcquire(resource, dimensions, 1);
     }
     
-    // 动态调整热点商品限流阈值
-    public void adjustHotProductLimit(String productId, int newLimit) {
-        hotProductLimiters.put(productId, RateLimiter.create(newLimit));
+    public RateLimitResult checkPlaceOrder(String userId, List<OrderItem> items) {
+        // 1. 构造限流资源标识
+        String resource = "place_order";
+        
+        // 2. 构造维度信息
+        Map<String, String> dimensions = new HashMap<>();
+        dimensions.put("api", "/api/order/place");
+        dimensions.put("user_id", userId);
+        
+        // 3. 计算请求权重（根据商品价值）
+        int permits = calculateOrderPermits(items);
+        
+        // 4. 执行限流检查
+        return rateLimiter.tryAcquire(resource, dimensions, permits);
+    }
+    
+    public RateLimitResult checkInventoryUpdate(String productId, int quantity) {
+        // 1. 构造限流资源标识
+        String resource = "inventory_update";
+        
+        // 2. 构造维度信息
+        Map<String, String> dimensions = new HashMap<>();
+        dimensions.put("api", "/api/inventory/update");
+        dimensions.put("product_id", productId);
+        
+        // 3. 执行限流检查
+        return rateLimiter.tryAcquire(resource, dimensions, 1);
+    }
+    
+    private int calculateOrderPermits(List<OrderItem> items) {
+        // 根据商品价值计算请求权重
+        int totalValue = items.stream()
+            .mapToInt(item -> productService.getProductPrice(item.getProductId()) * item.getQuantity())
+            .sum();
+            
+        // 价值越高，权重越大（最多10倍）
+        return Math.max(1, Math.min(10, totalValue / 100));
+    }
+    
+    // 订单项数据类
+    public static class OrderItem {
+        private String productId;
+        private int quantity;
+        
+        // getter和setter方法
+        public String getProductId() { return productId; }
+        public void setProductId(String productId) { this.productId = productId; }
+        public int getQuantity() { return quantity; }
+        public void setQuantity(int quantity) { this.quantity = quantity; }
     }
 }
 ```
 
-### 大促期间的监控与应急响应
-
-建立了完善的监控体系和应急响应机制：
+### 限流效果监控
 
 ```java
-// 大促监控与应急响应系统
+// 大促限流效果监控
 @Component
-public class PromotionMonitoringSystem {
+public class ECommerceRateLimitMonitor {
     private final MeterRegistry meterRegistry;
-    private final AlertNotificationService alertService;
-    private final EmergencyResponseService emergencyService;
-    private final ScheduledExecutorService monitoringScheduler;
+    private final RedisTemplate<String, String> redisTemplate;
     
-    public PromotionMonitoringSystem(MeterRegistry meterRegistry,
-                                   AlertNotificationService alertService,
-                                   EmergencyResponseService emergencyService) {
+    public ECommerceRateLimitMonitor(MeterRegistry meterRegistry,
+                                   RedisTemplate<String, String> redisTemplate) {
         this.meterRegistry = meterRegistry;
-        this.alertService = alertService;
-        this.emergencyService = emergencyService;
-        this.monitoringScheduler = Executors.newScheduledThreadPool(1);
+        this.redisTemplate = redisTemplate;
         
-        // 启动监控任务
-        startMonitoring();
+        // 注册关键监控指标
+        registerMetrics();
     }
     
-    private void startMonitoring() {
-        // 每10秒检查一次系统状态
-        monitoringScheduler.scheduleAtFixedRate(this::checkSystemStatus, 
-            0, 10, TimeUnit.SECONDS);
+    private void registerMetrics() {
+        // 商品详情页访问量
+        Counter.builder("ecommerce.product_detail.access")
+            .description("Product detail page access count")
+            .register(meterRegistry);
+            
+        // 订单提交量
+        Counter.builder("ecommerce.order.place")
+            .description("Order placement count")
+            .register(meterRegistry);
+            
+        // 限流触发次数
+        Counter.builder("ecommerce.rate_limit.triggered")
+            .description("Rate limit triggered count")
+            .register(meterRegistry);
+            
+        // 系统响应时间
+        Timer.builder("ecommerce.system.response_time")
+            .description("System response time")
+            .register(meterRegistry);
     }
     
-    private void checkSystemStatus() {
+    @EventListener
+    public void handleRateLimitEvent(RateLimitEvent event) {
+        // 记录限流事件
+        Counter.builder("ecommerce.rate_limit.triggered")
+            .tag("resource", event.getResource())
+            .tag("user_level", event.getDimension("user_level", "unknown"))
+            .register(meterRegistry)
+            .increment();
+            
+        // 记录详细日志
+        log.info("Rate limit triggered - Resource: {}, User: {}, IP: {}", 
+            event.getResource(), 
+            event.getDimension("user_id", "unknown"),
+            event.getDimension("ip", "unknown"));
+    }
+    
+    // 每分钟生成限流报告
+    @Scheduled(fixedRate = 60000)
+    public void generateRateLimitReport() {
         try {
-            // 检查各接口的限流触发情况
-            checkRateLimitTriggers();
+            // 获取各资源的限流统计数据
+            Map<String, Long> triggeredCounts = new HashMap<>();
+            triggeredCounts.put("product_detail", getTriggeredCount("product_detail"));
+            triggeredCounts.put("place_order", getTriggeredCount("place_order"));
+            triggeredCounts.put("inventory_update", getTriggeredCount("inventory_update"));
             
-            // 检查系统资源使用情况
-            checkSystemResources();
-            
-            // 检查业务指标
-            checkBusinessMetrics();
+            // 生成报告
+            RateLimitReport report = RateLimitReport.builder()
+                .timestamp(System.currentTimeMillis())
+                .triggeredCounts(triggeredCounts)
+                .totalRequests(getTotalRequests())
+                .blockedRequests(getBlockedRequests())
+                .build();
+                
+            log.info("Rate limit report: {}", report);
         } catch (Exception e) {
-            log.error("Failed to check system status", e);
+            log.error("Failed to generate rate limit report", e);
         }
     }
     
-    private void checkRateLimitTriggers() {
-        // 获取各接口的限流触发次数
-        Counter productDetailTrigger = meterRegistry.find("rate_limit.trigger")
-            .tag("resource", "product_detail")
-            .counter();
-            
-        Counter orderSubmitTrigger = meterRegistry.find("rate_limit.trigger")
-            .tag("resource", "order_submit")
-            .counter();
-            
-        // 如果限流触发次数过多，发出告警
-        if (productDetailTrigger != null && productDetailTrigger.count() > 1000) {
-            sendAlert("High rate limit triggers for product detail", 
-                "Product detail rate limit triggered " + productDetailTrigger.count() + " times");
-        }
-        
-        if (orderSubmitTrigger != null && orderSubmitTrigger.count() > 500) {
-            sendAlert("High rate limit triggers for order submit", 
-                "Order submit rate limit triggered " + orderSubmitTrigger.count() + " times");
-        }
+    private long getTriggeredCount(String resource) {
+        String key = "rate_limit_triggered:" + resource;
+        String value = redisTemplate.opsForValue().get(key);
+        return value != null ? Long.parseLong(value) : 0;
     }
     
-    private void checkSystemResources() {
-        // 检查CPU、内存、网络等系统资源使用情况
-        OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
-        double cpuUsage = osBean.getSystemLoadAverage();
-        
-        if (cpuUsage > 80) {
-            sendAlert("High CPU usage", "CPU usage is " + cpuUsage + "%");
-            
-            // 如果CPU使用率过高，启动应急响应
-            if (cpuUsage > 90) {
-                emergencyService.activateEmergencyMode();
-            }
-        }
+    private long getTotalRequests() {
+        String key = "total_requests";
+        String value = redisTemplate.opsForValue().get(key);
+        return value != null ? Long.parseLong(value) : 0;
     }
     
-    private void checkBusinessMetrics() {
-        // 检查订单量、支付成功率等业务指标
-        Counter orderCounter = meterRegistry.find("order.created").counter();
-        Counter paymentCounter = meterRegistry.find("payment.success").counter();
-        
-        if (orderCounter != null && paymentCounter != null) {
-            double paymentSuccessRate = paymentCounter.count() / orderCounter.count();
-            
-            // 如果支付成功率过低，发出告警
-            if (paymentSuccessRate < 0.95) {
-                sendAlert("Low payment success rate", 
-                    "Payment success rate is " + paymentSuccessRate);
-            }
-        }
+    private long getBlockedRequests() {
+        String key = "blocked_requests";
+        String value = redisTemplate.opsForValue().get(key);
+        return value != null ? Long.parseLong(value) : 0;
     }
     
-    private void sendAlert(String title, String message) {
-        AlertEvent alert = new AlertEvent();
-        alert.setTitle(title);
-        alert.setMessage(message);
-        alert.setLevel("WARNING");
-        alert.setTimestamp(System.currentTimeMillis());
-        
-        alertService.sendAlert(alert);
+    // 限流报告数据类
+    @Data
+    @Builder
+    public static class RateLimitReport {
+        private long timestamp;
+        private Map<String, Long> triggeredCounts;
+        private long totalRequests;
+        private long blockedRequests;
     }
 }
 ```
 
-### 实战经验总结
+### 大促实战效果
 
-通过这次大促活动，团队积累了宝贵的经验：
+在2024年双11大促期间，通过实施上述限流策略，电商平台取得了显著的效果：
 
-1. **预估流量要充分**：实际流量往往比预估的更高，需要留有充足的余量
-2. **差异化限流策略**：不同业务场景需要采用不同的限流策略
-3. **热点数据特殊处理**：热点商品需要单独的限流机制
-4. **监控告警要完善**：实时监控系统状态，及时发现和处理问题
-5. **应急预案要到位**：制定详细的应急预案，并进行充分演练
+1. **系统稳定性**：核心服务的可用性达到99.99%，无重大故障发生
+2. **用户体验**：VIP用户的访问成功率比普通用户高30%
+3. **资源利用率**：系统资源得到有效保护，CPU和内存使用率保持在合理范围内
+4. **业务指标**：订单处理量达到预期目标的98%，库存更新准确率100%
 
-## 案例二：某API开放平台的配额管理
+## API开放平台的配额管理
 
 ### 背景介绍
 
-某大型互联网公司的API开放平台为第三方开发者提供了丰富的API接口，包括用户信息查询、订单管理、数据分析等。为了保障平台的稳定性和公平性，平台需要对第三方开发者的API调用进行配额管理，防止个别开发者占用过多资源影响其他开发者。
+某云服务提供商运营着一个API开放平台，为第三方开发者提供各种云服务API。平台上有数千个开发者账户，每个账户有不同的服务订阅和配额限制。为了保障平台的稳定性和公平性，需要实现精细化的配额管理系统。
 
 ### 业务需求分析
 
 API开放平台的配额管理需要满足以下需求：
 
-1. **多维度配额控制**：按开发者、按API、按时间窗口进行配额控制
-2. **灵活的配额分配**：支持不同开发者不同配额，支持配额调整
-3. **实时配额统计**：实时统计各开发者的配额使用情况
-4. **配额超限处理**：合理处理配额超限的情况
-5. **配额使用分析**：提供配额使用情况的分析报表
+1. **多维度配额控制**：按开发者、API、时间窗口等维度控制配额
+2. **灵活的配额策略**：支持不同的计费模式和配额分配策略
+3. **实时配额查询**：开发者可以实时查询自己的配额使用情况
+4. **配额预警机制**：在配额使用达到阈值时及时通知开发者
+5. **配额动态调整**：支持运营人员动态调整配额
 
-### 配额管理系统设计
+### 配额管理策略设计
 
 ```java
-// API开放平台配额管理系统
-@Component
-public class ApiQuotaManagementSystem {
-    private final RedisTemplate<String, String> redisTemplate;
-    private final ScriptExecutor scriptExecutor;
+// API开放平台配额管理策略
+@Configuration
+public class ApiPlatformQuotaConfig {
+    
+    @Bean
+    public List<QuotaRule> apiPlatformQuotaRules() {
+        List<QuotaRule> rules = new ArrayList<>();
+        
+        // 1. 免费用户基础配额
+        rules.add(QuotaRule.builder()
+            .plan("free")
+            .resource("api_calls")
+            .limit(1000)     // 每天1000次调用
+            .window(86400)   // 24小时窗口
+            .dimensions(Arrays.asList("api_category"))
+            .build());
+            
+        // 2. 专业版用户配额
+        rules.add(QuotaRule.builder()
+            .plan("professional")
+            .resource("api_calls")
+            .limit(10000)    // 每天10000次调用
+            .window(86400)
+            .dimensions(Arrays.asList("api_category"))
+            .build());
+            
+        // 3. 企业版用户配额
+        rules.add(QuotaRule.builder()
+            .plan("enterprise")
+            .resource("api_calls")
+            .limit(100000)   // 每天100000次调用
+            .window(86400)
+            .dimensions(Arrays.asList("api_category"))
+            .build());
+            
+        // 4. 特定API高配额（如支付API）
+        rules.add(QuotaRule.builder()
+            .plan("enterprise")
+            .resource("payment_api")
+            .limit(5000)     // 每天5000次调用
+            .window(86400)
+            .api("payment")
+            .build());
+            
+        return rules;
+    }
+}
+```
+
+### 核心实现代码
+
+```java
+// API开放平台配额管理服务
+@Service
+public class ApiPlatformQuotaService {
+    private final DistributedRateLimiter rateLimiter;
     private final DeveloperService developerService;
     private final ApiService apiService;
     
-    // 配额检查Lua脚本
-    private static final String CHECK_QUOTA_SCRIPT = 
-        "local key = KEYS[1]\n" +
-        "local limit = tonumber(ARGV[1])\n" +
-        "local window = tonumber(ARGV[2])\n" +
-        "local current_time = tonumber(ARGV[3])\n" +
-        "\n" +
-        "-- 清除过期的计数\n" +
-        "redis.call('ZREMRANGEBYSCORE', key, 0, current_time - window)\n" +
-        "\n" +
-        "-- 获取当前窗口内的调用次数\n" +
-        "local current_count = redis.call('ZCARD', key)\n" +
-        "\n" +
-        "-- 检查是否超限\n" +
-        "if current_count >= limit then\n" +
-        "  return 0\n" +
-        "else\n" +
-        "  -- 记录本次调用\n" +
-        "  redis.call('ZADD', key, current_time, ARGV[4])\n" +
-        "  redis.call('EXPIRE', key, window + 60)\n" +
-        "  return 1\n" +
-        "end";
+    public ApiPlatformQuotaService(DistributedRateLimiter rateLimiter,
+                                 DeveloperService developerService,
+                                 ApiService apiService) {
+        this.rateLimiter = rateLimiter;
+        this.developerService = developerService;
+        this.apiService = apiService;
+    }
     
-    public QuotaCheckResult checkQuota(String developerId, String apiId) {
+    public QuotaCheckResult checkApiQuota(String developerId, String apiName) {
         try {
-            // 获取开发者的API配额
-            ApiQuota quota = getDeveloperApiQuota(developerId, apiId);
-            if (quota == null) {
-                return QuotaCheckResult.denied("No quota configured");
+            // 1. 获取开发者信息
+            Developer developer = developerService.getDeveloper(developerId);
+            if (developer == null) {
+                return QuotaCheckResult.denied("Invalid developer");
             }
             
-            // 构造Redis键
-            String key = "quota:" + developerId + ":" + apiId;
-            
-            // 执行配额检查脚本
-            Long result = scriptExecutor.execute(CHECK_QUOTA_SCRIPT,
-                Collections.singletonList(key),
-                String.valueOf(quota.getLimit()),
-                String.valueOf(quota.getWindow()),
-                String.valueOf(System.currentTimeMillis()),
-                UUID.randomUUID().toString());
-                
-            if (result != null && result == 1) {
-                return QuotaCheckResult.allowed();
-            } else {
-                return QuotaCheckResult.denied("Quota exceeded");
+            // 2. 获取API信息
+            ApiInfo apiInfo = apiService.getApiInfo(apiName);
+            if (apiInfo == null) {
+                return QuotaCheckResult.denied("Invalid API");
             }
+            
+            // 3. 构造配额资源标识
+            String resource = "api_calls";
+            if ("payment".equals(apiInfo.getCategory())) {
+                resource = "payment_api";
+            }
+            
+            // 4. 构造维度信息
+            Map<String, String> dimensions = new HashMap<>();
+            dimensions.put("developer_id", developerId);
+            dimensions.put("api_category", apiInfo.getCategory());
+            dimensions.put("subscription_plan", developer.getSubscriptionPlan());
+            
+            // 5. 执行配额检查
+            RateLimitResult result = rateLimiter.tryAcquire(resource, dimensions, 1);
+            
+            // 6. 转换为配额检查结果
+            return convertToQuotaResult(result, developer, apiInfo);
         } catch (Exception e) {
-            log.error("Failed to check quota for developer: " + developerId + ", api: " + apiId, e);
-            // 出现异常时允许通过，避免影响正常业务
-            return QuotaCheckResult.allowed();
+            log.error("Failed to check API quota for developer: " + developerId, e);
+            return QuotaCheckResult.denied("Internal error");
         }
     }
     
-    private ApiQuota getDeveloperApiQuota(String developerId, String apiId) {
-        // 从数据库或缓存中获取开发者的API配额配置
-        return developerService.getApiQuota(developerId, apiId);
+    public QuotaUsage getQuotaUsage(String developerId, String apiCategory) {
+        try {
+            // 1. 获取开发者信息
+            Developer developer = developerService.getDeveloper(developerId);
+            if (developer == null) {
+                return QuotaUsage.empty();
+            }
+            
+            // 2. 构造配额资源标识
+            String resource = "api_calls";
+            
+            // 3. 构造维度信息
+            Map<String, String> dimensions = new HashMap<>();
+            dimensions.put("developer_id", developerId);
+            dimensions.put("api_category", apiCategory);
+            dimensions.put("subscription_plan", developer.getSubscriptionPlan());
+            
+            // 4. 获取配额使用情况
+            return rateLimiter.getUsage(resource, dimensions);
+        } catch (Exception e) {
+            log.error("Failed to get quota usage for developer: " + developerId, e);
+            return QuotaUsage.empty();
+        }
     }
     
-    // 配额检查结果
+    private QuotaCheckResult convertToQuotaResult(RateLimitResult result, 
+                                                Developer developer, 
+                                                ApiInfo apiInfo) {
+        if (result.isAllowed()) {
+            return QuotaCheckResult.allowed()
+                .remaining(result.getRemaining())
+                .resetTime(result.getResetTime());
+        } else {
+            return QuotaCheckResult.denied("Quota exceeded")
+                .remaining(0)
+                .resetTime(result.getResetTime());
+        }
+    }
+    
+    // 配额检查结果数据类
+    @Data
+    @Builder
     public static class QuotaCheckResult {
-        private final boolean allowed;
-        private final String reason;
-        
-        private QuotaCheckResult(boolean allowed, String reason) {
-            this.allowed = allowed;
-            this.reason = reason;
-        }
+        private boolean allowed;
+        private String reason;
+        private long remaining;
+        private long resetTime;
         
         public static QuotaCheckResult allowed() {
-            return new QuotaCheckResult(true, null);
+            return QuotaCheckResult.builder()
+                .allowed(true)
+                .reason("OK")
+                .build();
         }
         
         public static QuotaCheckResult denied(String reason) {
-            return new QuotaCheckResult(false, reason);
+            return QuotaCheckResult.builder()
+                .allowed(false)
+                .reason(reason)
+                .build();
         }
-        
-        // getter方法
-        public boolean isAllowed() { return allowed; }
-        public String getReason() { return reason; }
-    }
-}
-```
-
-### 配额配置管理
-
-```java
-// 配额配置管理服务
-@Service
-public class QuotaConfigurationService {
-    private final QuotaRepository quotaRepository;
-    private final Cache<String, ApiQuota> quotaCache;
-    
-    public QuotaConfigurationService(QuotaRepository quotaRepository) {
-        this.quotaRepository = quotaRepository;
-        this.quotaCache = Caffeine.newBuilder()
-            .maximumSize(10000)
-            .expireAfterWrite(5, TimeUnit.MINUTES)
-            .build();
     }
     
-    public ApiQuota getQuota(String developerId, String apiId) {
-        String cacheKey = developerId + ":" + apiId;
+    // 配额使用情况数据类
+    @Data
+    @Builder
+    public static class QuotaUsage {
+        private long used;
+        private long limit;
+        private long remaining;
+        private long resetTime;
         
-        // 先从缓存中获取
-        ApiQuota cachedQuota = quotaCache.getIfPresent(cacheKey);
-        if (cachedQuota != null) {
-            return cachedQuota;
+        public static QuotaUsage empty() {
+            return QuotaUsage.builder()
+                .used(0)
+                .limit(0)
+                .remaining(0)
+                .resetTime(0)
+                .build();
         }
-        
-        // 缓存中没有，从数据库获取
-        ApiQuota dbQuota = quotaRepository.findByDeveloperIdAndApiId(developerId, apiId);
-        if (dbQuota != null) {
-            quotaCache.put(cacheKey, dbQuota);
-        }
-        
-        return dbQuota;
     }
     
-    public void updateQuota(String developerId, String apiId, int limit, int window) {
-        // 更新数据库中的配额配置
-        ApiQuota quota = quotaRepository.findByDeveloperIdAndApiId(developerId, apiId);
-        if (quota == null) {
-            quota = new ApiQuota();
-            quota.setDeveloperId(developerId);
-            quota.setApiId(apiId);
-        }
-        quota.setLimit(limit);
-        quota.setWindow(window);
-        quota.setUpdatedAt(System.currentTimeMillis());
-        
-        quotaRepository.save(quota);
-        
-        // 更新缓存
-        String cacheKey = developerId + ":" + apiId;
-        quotaCache.put(cacheKey, quota);
-    }
-    
-    public void deleteQuota(String developerId, String apiId) {
-        // 删除数据库中的配额配置
-        quotaRepository.deleteByDeveloperIdAndApiId(developerId, apiId);
-        
-        // 删除缓存
-        String cacheKey = developerId + ":" + apiId;
-        quotaCache.invalidate(cacheKey);
-    }
-    
-    // API配额实体类
-    public static class ApiQuota {
-        private String developerId;
-        private String apiId;
-        private int limit;
-        private int window; // 窗口大小（秒）
+    // 开发者信息数据类
+    @Data
+    public static class Developer {
+        private String id;
+        private String name;
+        private String subscriptionPlan; // free, professional, enterprise
         private long createdAt;
-        private long updatedAt;
-        
-        // 构造函数、getter和setter方法
-        public ApiQuota() {}
-        
-        // getter和setter方法
-        public String getDeveloperId() { return developerId; }
-        public void setDeveloperId(String developerId) { this.developerId = developerId; }
-        public String getApiId() { return apiId; }
-        public void setApiId(String apiId) { this.apiId = apiId; }
-        public int getLimit() { return limit; }
-        public void setLimit(int limit) { this.limit = limit; }
-        public int getWindow() { return window; }
-        public void setWindow(int window) { this.window = window; }
-        public long getCreatedAt() { return createdAt; }
-        public void setCreatedAt(long createdAt) { this.createdAt = createdAt; }
-        public long getUpdatedAt() { return updatedAt; }
-        public void setUpdatedAt(long updatedAt) { this.updatedAt = updatedAt; }
+    }
+    
+    // API信息数据类
+    @Data
+    public static class ApiInfo {
+        private String name;
+        private String category; // compute, storage, network, payment, etc.
+        private String description;
+        private boolean enabled;
     }
 }
 ```
 
-### 配额使用统计与分析
+### 配额管理接口
 
 ```java
-// 配额使用统计与分析服务
-@Service
-public class QuotaAnalyticsService {
-    private final RedisTemplate<String, String> redisTemplate;
-    private final QuotaUsageRepository quotaUsageRepository;
-    private final ScheduledExecutorService analyticsScheduler;
-    
-    public QuotaAnalyticsService(RedisTemplate<String, String> redisTemplate,
-                               QuotaUsageRepository quotaUsageRepository) {
-        this.redisTemplate = redisTemplate;
-        this.quotaUsageRepository = quotaUsageRepository;
-        this.analyticsScheduler = Executors.newScheduledThreadPool(1);
-        
-        // 启动定期统计任务
-        startAnalyticsTask();
-    }
-    
-    private void startAnalyticsTask() {
-        // 每分钟统计一次配额使用情况
-        analyticsScheduler.scheduleAtFixedRate(this::collectQuotaUsage, 
-            0, 1, TimeUnit.MINUTES);
-    }
-    
-    private void collectQuotaUsage() {
-        try {
-            // 获取所有配额键
-            Set<String> keys = redisTemplate.keys("quota:*");
-            if (keys == null || keys.isEmpty()) {
-                return;
-            }
-            
-            // 统计每个配额的使用情况
-            for (String key : keys) {
-                try {
-                    collectQuotaUsageForKey(key);
-                } catch (Exception e) {
-                    log.warn("Failed to collect quota usage for key: " + key, e);
-                }
-            }
-        } catch (Exception e) {
-            log.error("Failed to collect quota usage", e);
-        }
-    }
-    
-    private void collectQuotaUsageForKey(String key) {
-        // 解析key获取developerId和apiId
-        String[] parts = key.split(":");
-        if (parts.length != 3) {
-            return;
-        }
-        
-        String developerId = parts[1];
-        String apiId = parts[2];
-        
-        // 获取当前窗口内的调用次数
-        Long usageCount = redisTemplate.boundZSetOps(key).size();
-        if (usageCount == null) {
-            usageCount = 0L;
-        }
-        
-        // 保存统计结果
-        QuotaUsageRecord record = new QuotaUsageRecord();
-        record.setDeveloperId(developerId);
-        record.setApiId(apiId);
-        record.setUsageCount(usageCount.intValue());
-        record.setTimestamp(System.currentTimeMillis());
-        
-        quotaUsageRepository.save(record);
-    }
-    
-    // 获取开发者的配额使用报告
-    public DeveloperQuotaReport getDeveloperQuotaReport(String developerId, 
-                                                       LocalDateTime startTime, 
-                                                       LocalDateTime endTime) {
-        // 从数据库查询配额使用记录
-        List<QuotaUsageRecord> records = quotaUsageRepository
-            .findByDeveloperIdAndTimestampBetween(developerId, 
-                startTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
-                endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-        
-        // 生成报告
-        DeveloperQuotaReport report = new DeveloperQuotaReport();
-        report.setDeveloperId(developerId);
-        report.setStartTime(startTime);
-        report.setEndTime(endTime);
-        
-        // 按API分组统计
-        Map<String, Integer> apiUsageMap = new HashMap<>();
-        int totalUsage = 0;
-        
-        for (QuotaUsageRecord record : records) {
-            apiUsageMap.merge(record.getApiId(), record.getUsageCount(), Integer::sum);
-            totalUsage += record.getUsageCount();
-        }
-        
-        report.setApiUsageMap(apiUsageMap);
-        report.setTotalUsage(totalUsage);
-        
-        return report;
-    }
-    
-    // 配额使用记录
-    public static class QuotaUsageRecord {
-        private String developerId;
-        private String apiId;
-        private int usageCount;
-        private long timestamp;
-        
-        // 构造函数、getter和setter方法
-        public QuotaUsageRecord() {}
-        
-        // getter和setter方法
-        public String getDeveloperId() { return developerId; }
-        public void setDeveloperId(String developerId) { this.developerId = developerId; }
-        public String getApiId() { return apiId; }
-        public void setApiId(String apiId) { this.apiId = apiId; }
-        public int getUsageCount() { return usageCount; }
-        public void setUsageCount(int usageCount) { this.usageCount = usageCount; }
-        public long getTimestamp() { return timestamp; }
-        public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
-    }
-    
-    // 开发者配额使用报告
-    public static class DeveloperQuotaReport {
-        private String developerId;
-        private LocalDateTime startTime;
-        private LocalDateTime endTime;
-        private Map<String, Integer> apiUsageMap;
-        private int totalUsage;
-        
-        // 构造函数、getter和setter方法
-        public DeveloperQuotaReport() {
-            this.apiUsageMap = new HashMap<>();
-        }
-        
-        // getter和setter方法
-        public String getDeveloperId() { return developerId; }
-        public void setDeveloperId(String developerId) { this.developerId = developerId; }
-        public LocalDateTime getStartTime() { return startTime; }
-        public void setStartTime(LocalDateTime startTime) { this.startTime = startTime; }
-        public LocalDateTime getEndTime() { return endTime; }
-        public void setEndTime(LocalDateTime endTime) { this.endTime = endTime; }
-        public Map<String, Integer> getApiUsageMap() { return apiUsageMap; }
-        public void setApiUsageMap(Map<String, Integer> apiUsageMap) { this.apiUsageMap = apiUsageMap; }
-        public int getTotalUsage() { return totalUsage; }
-        public void setTotalUsage(int totalUsage) { this.totalUsage = totalUsage; }
-    }
-}
-```
-
-### 配额管理控制台
-
-```java
-// 配额管理REST控制器
+// API开放平台配额管理接口
 @RestController
 @RequestMapping("/api/v1/quota")
-public class QuotaManagementController {
-    private final QuotaConfigurationService quotaConfigService;
-    private final QuotaAnalyticsService quotaAnalyticsService;
-    private final DeveloperService developerService;
+public class ApiPlatformQuotaController {
+    private final ApiPlatformQuotaService quotaService;
+    private final NotificationService notificationService;
     
-    public QuotaManagementController(QuotaConfigurationService quotaConfigService,
-                                   QuotaAnalyticsService quotaAnalyticsService,
-                                   DeveloperService developerService) {
-        this.quotaConfigService = quotaConfigService;
-        this.quotaAnalyticsService = quotaAnalyticsService;
-        this.developerService = developerService;
+    public ApiPlatformQuotaController(ApiPlatformQuotaService quotaService,
+                                    NotificationService notificationService) {
+        this.quotaService = quotaService;
+        this.notificationService = notificationService;
     }
     
-    @PostMapping("/configure")
-    public ResponseEntity<String> configureQuota(
+    @GetMapping("/check")
+    public ResponseEntity<QuotaCheckResponse> checkQuota(
             @RequestParam String developerId,
-            @RequestParam String apiId,
-            @RequestParam int limit,
-            @RequestParam int window) {
+            @RequestParam String apiName) {
         
         try {
-            // 验证开发者是否存在
-            if (!developerService.existsById(developerId)) {
-                return ResponseEntity.badRequest().body("Developer not found");
-            }
-            
-            // 验证API是否存在
-            if (!apiService.existsById(apiId)) {
-                return ResponseEntity.badRequest().body("API not found");
-            }
-            
-            // 更新配额配置
-            quotaConfigService.updateQuota(developerId, apiId, limit, window);
-            
-            return ResponseEntity.ok("Quota configured successfully");
+            ApiPlatformQuotaService.QuotaCheckResult result = 
+                quotaService.checkApiQuota(developerId, apiName);
+                
+            QuotaCheckResponse response = QuotaCheckResponse.builder()
+                .allowed(result.isAllowed())
+                .reason(result.getReason())
+                .remaining(result.getRemaining())
+                .resetTime(result.getResetTime())
+                .build();
+                
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            log.error("Failed to configure quota", e);
-            return ResponseEntity.status(500).body("Failed to configure quota");
-        }
-    }
-    
-    @GetMapping("/usage/report")
-    public ResponseEntity<QuotaAnalyticsService.DeveloperQuotaReport> getQuotaUsageReport(
-            @RequestParam String developerId,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
-        
-        try {
-            QuotaAnalyticsService.DeveloperQuotaReport report = 
-                quotaAnalyticsService.getDeveloperQuotaReport(developerId, startTime, endTime);
-            return ResponseEntity.ok(report);
-        } catch (Exception e) {
-            log.error("Failed to get quota usage report", e);
+            log.error("Failed to check quota for developer: " + developerId, e);
             return ResponseEntity.status(500).build();
         }
     }
     
-    @DeleteMapping("/remove")
-    public ResponseEntity<String> removeQuota(
+    @GetMapping("/usage")
+    public ResponseEntity<QuotaUsageResponse> getQuotaUsage(
             @RequestParam String developerId,
-            @RequestParam String apiId) {
+            @RequestParam String apiCategory) {
         
         try {
-            quotaConfigService.deleteQuota(developerId, apiId);
-            return ResponseEntity.ok("Quota removed successfully");
+            ApiPlatformQuotaService.QuotaUsage usage = 
+                quotaService.getQuotaUsage(developerId, apiCategory);
+                
+            QuotaUsageResponse response = QuotaUsageResponse.builder()
+                .used(usage.getUsed())
+                .limit(usage.getLimit())
+                .remaining(usage.getRemaining())
+                .resetTime(usage.getResetTime())
+                .usagePercentage(calculateUsagePercentage(usage))
+                .build();
+                
+            // 检查是否需要发送预警通知
+            checkAndSendWarning(developerId, apiCategory, response);
+                
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            log.error("Failed to remove quota", e);
-            return ResponseEntity.status(500).body("Failed to remove quota");
+            log.error("Failed to get quota usage for developer: " + developerId, e);
+            return ResponseEntity.status(500).build();
+        }
+    }
+    
+    private double calculateUsagePercentage(ApiPlatformQuotaService.QuotaUsage usage) {
+        if (usage.getLimit() <= 0) {
+            return 0;
+        }
+        return (double) usage.getUsed() / usage.getLimit() * 100;
+    }
+    
+    private void checkAndSendWarning(String developerId, String apiCategory, 
+                                   QuotaUsageResponse usage) {
+        double usagePercentage = usage.getUsagePercentage();
+        
+        // 80%使用率预警
+        if (usagePercentage >= 80 && usagePercentage < 90) {
+            notificationService.sendQuotaWarning(developerId, apiCategory, 
+                "Your API quota usage has reached 80%. Please consider upgrading your plan.");
+        }
+        // 90%使用率预警
+        else if (usagePercentage >= 90) {
+            notificationService.sendQuotaWarning(developerId, apiCategory, 
+                "Your API quota usage has reached 90%. Service may be throttled soon.");
+        }
+    }
+    
+    // 配额检查响应数据类
+    @Data
+    @Builder
+    public static class QuotaCheckResponse {
+        private boolean allowed;
+        private String reason;
+        private long remaining;
+        private long resetTime;
+    }
+    
+    // 配额使用情况响应数据类
+    @Data
+    @Builder
+    public static class QuotaUsageResponse {
+        private long used;
+        private long limit;
+        private long remaining;
+        private long resetTime;
+        private double usagePercentage;
+    }
+}
+```
+
+### 配额监控与告警
+
+```java
+// API平台配额监控
+@Component
+public class ApiPlatformQuotaMonitor {
+    private final MeterRegistry meterRegistry;
+    private final ApiPlatformQuotaService quotaService;
+    private final DeveloperService developerService;
+    
+    public ApiPlatformQuotaMonitor(MeterRegistry meterRegistry,
+                                 ApiPlatformQuotaService quotaService,
+                                 DeveloperService developerService) {
+        this.meterRegistry = meterRegistry;
+        this.quotaService = quotaService;
+        this.developerService = developerService;
+        
+        // 注册监控指标
+        registerMetrics();
+    }
+    
+    private void registerMetrics() {
+        // API调用次数
+        Counter.builder("api_platform.api_calls")
+            .description("Total API calls")
+            .register(meterRegistry);
+            
+        // 配额超限次数
+        Counter.builder("api_platform.quota_exceeded")
+            .description("Quota exceeded count")
+            .register(meterRegistry);
+            
+        // 开发者配额使用率分布
+        DistributionSummary.builder("api_platform.developer_quota_usage")
+            .description("Developer quota usage percentage")
+            .register(meterRegistry);
+    }
+    
+    // 每小时生成配额使用报告
+    @Scheduled(cron = "0 0 * * * ?")
+    public void generateQuotaUsageReport() {
+        try {
+            // 获取所有开发者
+            List<ApiPlatformQuotaService.Developer> developers = 
+                developerService.getAllDevelopers();
+                
+            QuotaUsageReport report = QuotaUsageReport.builder()
+                .generatedAt(System.currentTimeMillis())
+                .totalDevelopers(developers.size())
+                .quotaUsageStats(new HashMap<>())
+                .build();
+                
+            // 统计各订阅计划的配额使用情况
+            Map<String, PlanQuotaStats> planStats = new HashMap<>();
+            
+            for (ApiPlatformQuotaService.Developer developer : developers) {
+                try {
+                    // 获取开发者的配额使用情况
+                    ApiPlatformQuotaService.QuotaUsage usage = 
+                        quotaService.getQuotaUsage(developer.getId(), "all");
+                        
+                    // 更新统计数据
+                    updatePlanStats(planStats, developer.getSubscriptionPlan(), usage);
+                    
+                    // 记录使用率分布
+                    double usagePercentage = calculateUsagePercentage(usage);
+                    DistributionSummary.builder("api_platform.developer_quota_usage")
+                        .tag("plan", developer.getSubscriptionPlan())
+                        .register(meterRegistry)
+                        .record(usagePercentage);
+                } catch (Exception e) {
+                    log.warn("Failed to get quota usage for developer: " + developer.getId(), e);
+                }
+            }
+            
+            report.setQuotaUsageStats(planStats);
+            log.info("Quota usage report: {}", report);
+        } catch (Exception e) {
+            log.error("Failed to generate quota usage report", e);
+        }
+    }
+    
+    private void updatePlanStats(Map<String, PlanQuotaStats> planStats, 
+                               String plan, 
+                               ApiPlatformQuotaService.QuotaUsage usage) {
+        PlanQuotaStats stats = planStats.computeIfAbsent(plan, k -> new PlanQuotaStats());
+        stats.setTotalDevelopers(stats.getTotalDevelopers() + 1);
+        stats.setTotalUsed(stats.getTotalUsed() + usage.getUsed());
+        stats.setTotalLimit(stats.getTotalLimit() + usage.getLimit());
+    }
+    
+    private double calculateUsagePercentage(ApiPlatformQuotaService.QuotaUsage usage) {
+        if (usage.getLimit() <= 0) {
+            return 0;
+        }
+        return (double) usage.getUsed() / usage.getLimit() * 100;
+    }
+    
+    // 配额使用报告数据类
+    @Data
+    @Builder
+    public static class QuotaUsageReport {
+        private long generatedAt;
+        private int totalDevelopers;
+        private Map<String, PlanQuotaStats> quotaUsageStats;
+    }
+    
+    // 订阅计划配额统计
+    @Data
+    public static class PlanQuotaStats {
+        private int totalDevelopers;
+        private long totalUsed;
+        private long totalLimit;
+        
+        public double getAverageUsagePercentage() {
+            if (totalDevelopers <= 0) {
+                return 0;
+            }
+            if (totalLimit <= 0) {
+                return 0;
+            }
+            return (double) totalUsed / totalLimit * 100;
         }
     }
 }
 ```
 
-### 实践经验总结
+### 平台运营效果
 
-通过API开放平台的配额管理实践，团队积累了以下经验：
+通过实施精细化的配额管理系统，API开放平台取得了以下成果：
 
-1. **灵活的配额配置**：支持按开发者、按API进行灵活的配额配置
-2. **实时的配额检查**：使用Redis和Lua脚本实现实时配额检查
-3. **完善的统计分析**：提供详细的配额使用统计和分析报告
-4. **友好的管理界面**：提供Web界面方便管理员进行配额管理
-5. **合理的超限处理**：对配额超限的请求进行合理处理，避免影响正常业务
+1. **资源公平分配**：不同订阅计划的用户获得了与其付费水平相匹配的API调用配额
+2. **平台稳定性**：系统在高并发情况下保持稳定，无因配额问题导致的服务中断
+3. **用户体验提升**：开发者可以实时了解自己的配额使用情况，合理规划API调用
+4. **商业价值实现**：通过差异化的配额策略，促进了用户向更高订阅计划的转化
+5. **运营效率提高**：自动化的配额管理和预警机制减少了人工干预的需求
 
-## 总结
+## 经验总结与最佳实践
 
-通过以上两个真实案例的分享，我们可以看到分布式限流系统在不同业务场景下的应用。电商大促场景注重高并发处理和热点数据保护，而API开放平台则更关注公平性和配额管理。在实际应用中，需要根据具体的业务需求和系统特点来设计合适的限流策略，并建立完善的监控和应急响应机制，才能确保系统的稳定运行。
+### 电商大促场景最佳实践
+
+1. **分层限流策略**：
+   - 对核心业务接口实施严格限流
+   - 为VIP用户提供更高的配额
+   - 根据业务价值动态调整请求权重
+
+2. **实时监控与预警**：
+   - 建立全方位的监控指标体系
+   - 设置多级预警阈值
+   - 实时跟踪限流触发情况
+
+3. **降级与容错机制**：
+   - 提供多种降级策略（缓存降级、队列等待等）
+   - 确保核心功能在极端情况下仍可使用
+   - 建立完善的错误处理和恢复机制
+
+### API平台配额管理最佳实践
+
+1. **灵活的配额模型**：
+   - 支持多维度配额控制
+   - 提供可配置的配额规则
+   - 实现配额的动态调整能力
+
+2. **透明的配额信息**：
+   - 提供实时配额查询接口
+   - 建立清晰的配额使用展示
+   - 及时发送配额预警通知
+
+3. **精细化运营支持**：
+   - 生成详细的配额使用报告
+   - 支持按不同维度统计分析
+   - 为商业决策提供数据支撑
+
+通过以上两个案例的分享，我们可以看到分布式限流平台在不同业务场景下的应用价值。无论是应对电商大促的流量冲击，还是管理API开放平台的配额分配，合理的限流策略和完善的实现方案都是保障系统稳定性和用户体验的关键。

@@ -52,7 +52,7 @@
 
 ### 附录
 
-- [附录A：开源分布式调度系统对比](appendix-a-open-source-distributed-scheduling-system-comparison.md)
+- [附录A：开源分布式调度系统对比](appendix-a-open-source-distributed-scheduling-systems-comparison.md)
 - [附录B：常用故障诊断命令与工具](appendix-b-common-fault-diagnosis-commands-and-tools.md)
 - [附录C：术语表](appendix-c-glossary.md)
 

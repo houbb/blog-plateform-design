@@ -1,577 +1,669 @@
 ---
-title: 性能陷阱：Lua脚本复杂度、网络往返次数
+title: 性能陷阱：Lua脚本复杂度、网络往返次数与系统瓶颈
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, performance, lua, network]
+tags: [flow-control, distributed, performance, lua, redis, bottleneck]
 published: true
 ---
 
-在分布式限流系统的实现过程中，性能优化是一个至关重要的环节。然而，开发人员在追求高性能的过程中，往往会陷入一些常见的性能陷阱，这些陷阱不仅不能提升系统性能，反而可能成为系统的瓶颈。本章将深入探讨分布式限流系统中最常见的性能陷阱，包括Lua脚本复杂度过高、网络往返次数过多等问题，并提供相应的优化方案和最佳实践。
+在分布式限流平台的实现过程中，性能优化是一个至关重要的环节。即使系统功能完善，如果性能不佳，仍然无法满足高并发场景下的需求。本章将深入探讨分布式限流平台中最常见的性能陷阱，包括Lua脚本复杂度、网络往返次数优化、系统瓶颈识别与优化等方面，并提供相应的解决方案和最佳实践。
 
-## Lua脚本复杂度问题
+## Lua脚本复杂度陷阱
 
-### Lua脚本复杂度的影响
+### 脚本执行时间过长
 
-在基于Redis的分布式限流实现中，Lua脚本被广泛用于保证操作的原子性。然而，过于复杂的Lua脚本会带来严重的性能问题：
+在基于Redis的分布式限流实现中，Lua脚本常用于保证操作的原子性。然而，复杂的Lua脚本会导致执行时间过长，影响Redis的整体性能。
 
-```java
-// 存在性能问题的复杂Lua脚本示例
-public class ComplexLuaScriptExample {
-    private final RedisTemplate<String, String> redisTemplate;
-    private final ScriptExecutor scriptExecutor;
+```lua
+-- 错误示例：复杂度过高的Lua脚本
+local function complex_rate_limit(keys, argv)
+    -- 复杂的业务逻辑
+    local resource = argv[1]
+    local permits = tonumber(argv[2])
+    local limit = tonumber(argv[3])
+    local window = tonumber(argv[4])
     
-    // 复杂的Lua脚本，包含大量逻辑和循环
-    private static final String COMPLEX_RATE_LIMIT_SCRIPT = 
-        "local key = KEYS[1]\n" +
-        "local limit = tonumber(ARGV[1])\n" +
-        "local window = tonumber(ARGV[2])\n" +
-        "local current_time = tonumber(ARGV[3])\n" +
-        "local request_count = tonumber(ARGV[4])\n" +
-        "local threshold = tonumber(ARGV[5])\n" +
-        "local action = ARGV[6]\n" +
-        "\n" +
-        "-- 获取当前窗口内的所有请求记录\n" +
-        "local records = redis.call('ZRANGE', key, 0, -1, 'WITHSCORES')\n" +
-        "\n" +
-        "-- 删除过期的记录（复杂循环）\n" +
-        "local expired_count = 0\n" +
-        "for i = #records, 1, -2 do\n" +
-        "  local score = tonumber(records[i])\n" +
-        "  if score < current_time - window then\n" +
-        "    redis.call('ZREM', key, records[i-1])\n" +
-        "    expired_count = expired_count + 1\n" +
-        "  end\n" +
-        "end\n" +
-        "\n" +
-        "-- 计算当前窗口内的请求数量\n" +
-        "local current_count = redis.call('ZCARD', key)\n" +
-        "\n" +
-        "-- 添加新的请求记录\n" +
-        "for i = 1, request_count do\n" +
-        "  local request_id = redis.call('INCR', 'request_id_counter')\n" +
-        "  redis.call('ZADD', key, current_time, 'req:' .. request_id)\n" +
-        "end\n" +
-        "\n" +
-        "-- 设置过期时间\n" +
-        "redis.call('EXPIRE', key, window + 10)\n" +
-        "\n" +
-        "-- 根据阈值执行不同操作\n" +
-        "if current_count + request_count > threshold then\n" +
-        "  if action == 'reject' then\n" +
-        "    -- 删除刚刚添加的记录\n" +
-        "    for i = 1, request_count do\n" +
-        "      local request_id = redis.call('GET', 'request_id_counter')\n" +
-        "      redis.call('ZREM', key, 'req:' .. request_id)\n" +
-        "      redis.call('DECR', 'request_id_counter')\n" +
-        "    end\n" +
-        "    return 0\n" +
-        "  elseif action == 'delay' then\n" +
-        "    -- 实现延迟逻辑\n" +
-        "    redis.call('SET', 'delay_flag:' .. key, 1, 'EX', 5)\n" +
-        "    return 2\n" +
-        "  else\n" +
-        "    return 1\n" +
-        "  end\n" +
-        "else\n" +
-        "  return 1\n" +
-        "end";
+    -- 复杂的计算逻辑
+    local current_time = redis.call('TIME')[1]
+    local start_time = current_time - window
     
-    public int complexRateLimit(String resource, int limit, int window, 
-                               int requestCount, int threshold, String action) {
-        try {
-            Long result = scriptExecutor.execute(COMPLEX_RATE_LIMIT_SCRIPT,
-                Collections.singletonList("rate_limit:" + resource),
-                String.valueOf(limit),
-                String.valueOf(window),
-                String.valueOf(System.currentTimeMillis()),
-                String.valueOf(requestCount),
-                String.valueOf(threshold),
-                action);
-            return result != null ? result.intValue() : -1;
-        } catch (Exception e) {
-            log.error("Failed to execute complex rate limit script", e);
-            return -1;
-        }
-    }
-}
+    -- 删除过期数据（可能涉及大量数据）
+    redis.call('ZREMRANGEBYSCORE', keys[1], 0, start_time)
+    
+    -- 获取当前请求数量
+    local current_count = redis.call('ZCARD', keys[1])
+    
+    -- 复杂的条件判断
+    if current_count + permits <= limit then
+        -- 添加新的请求记录
+        for i = 1, permits do
+            redis.call('ZADD', keys[1], current_time, current_time .. ':' .. i)
+        end
+        redis.call('EXPIRE', keys[1], window)
+        return 1
+    else
+        return 0
+    end
+end
 ```
 
-### 优化Lua脚本复杂度
+### 优化方案
 
-通过简化Lua脚本逻辑和减少不必要的操作来优化性能：
+```lua
+-- 优化示例：简化Lua脚本
+local function optimized_rate_limit(keys, argv)
+    local permits = tonumber(argv[1])
+    local limit = tonumber(argv[2])
+    local window = tonumber(argv[3])
+    
+    -- 使用更高效的操作
+    local current_time = redis.call('TIME')[1]
+    local start_time = current_time - window
+    
+    -- 使用EXPIRE替代手动删除过期数据
+    local current_count = redis.call('GET', keys[1])
+    if current_count == false then
+        current_count = 0
+    end
+    
+    if tonumber(current_count) + permits <= limit then
+        redis.call('INCRBY', keys[1], permits)
+        redis.call('EXPIRE', keys[1], window)
+        return 1
+    else
+        return 0
+    end
+end
+```
+
+### Java客户端调用优化
 
 ```java
-// 优化后的Lua脚本实现
+// Lua脚本性能优化实现
 @Component
-public class OptimizedLuaScriptExample {
+public class OptimizedLuaRateLimiter {
     private final RedisTemplate<String, String> redisTemplate;
-    private final ScriptExecutor scriptExecutor;
+    private final DefaultRedisScript<Long> rateLimitScript;
     
-    // 简化后的Lua脚本，只保留核心限流逻辑
-    private static final String OPTIMIZED_RATE_LIMIT_SCRIPT = 
-        "local key = KEYS[1]\n" +
-        "local limit = tonumber(ARGV[1])\n" +
-        "local window = tonumber(ARGV[2])\n" +
-        "local current_time = tonumber(ARGV[3])\n" +
-        "\n" +
-        "-- 移除过期的记录（只移除一个最早的记录，避免复杂循环）\n" +
-        "local oldest_member = redis.call('ZRANGE', key, 0, 0, 'WITHSCORES')\n" +
-        "if #oldest_member > 0 and tonumber(oldest_member[2]) < current_time - window then\n" +
-        "  redis.call('ZREM', key, oldest_member[1])\n" +
-        "end\n" +
-        "\n" +
-        "-- 添加当前请求\n" +
-        "redis.call('ZADD', key, current_time, ARGV[4])\n" +
-        "\n" +
-        "-- 获取当前窗口内的请求数量\n" +
-        "local current_count = redis.call('ZCOUNT', key, current_time - window, current_time)\n" +
-        "\n" +
-        "-- 设置过期时间\n" +
-        "redis.call('EXPIRE', key, window + 10)\n" +
-        "\n" +
-        "-- 判断是否超过限制\n" +
-        "if current_count > limit then\n" +
-        "  return 0\n" +
-        "else\n" +
-        "  return 1\n" +
-        "end";
+    public OptimizedLuaRateLimiter(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        // 预编译Lua脚本
+        this.rateLimitScript = new DefaultRedisScript<>(
+            loadLuaScript("optimized_rate_limit.lua"), Long.class);
+    }
     
-    public boolean optimizedRateLimit(String resource, int limit, int window) {
+    public boolean tryAcquire(String resource, int permits) {
+        String key = "rate_limit:" + resource;
+        List<String> keys = Collections.singletonList(key);
+        List<String> args = Arrays.asList(
+            String.valueOf(permits),
+            String.valueOf(getLimitForResource(resource)),
+            String.valueOf(getWindowForResource(resource))
+        );
+        
         try {
-            String requestId = UUID.randomUUID().toString();
-            Long result = scriptExecutor.execute(OPTIMIZED_RATE_LIMIT_SCRIPT,
-                Collections.singletonList("rate_limit:" + resource),
-                String.valueOf(limit),
-                String.valueOf(window),
-                String.valueOf(System.currentTimeMillis()),
-                requestId);
+            Long result = redisTemplate.execute(rateLimitScript, keys, args.toArray(new String[0]));
             return result != null && result == 1;
         } catch (Exception e) {
-            log.error("Failed to execute optimized rate limit script", e);
+            log.error("Failed to execute rate limit script for resource: " + resource, e);
             return false;
         }
     }
-}
-```
-
-### Lua脚本性能监控
-
-建立Lua脚本执行时间的监控机制：
-
-```java
-// Lua脚本性能监控组件
-@Component
-public class LuaScriptPerformanceMonitor {
-    private final MeterRegistry meterRegistry;
-    private final Map<String, Timer.Sample> scriptSamples = new ConcurrentHashMap<>();
     
-    public LuaScriptPerformanceMonitor(MeterRegistry meterRegistry) {
-        this.meterRegistry = meterRegistry;
-    }
-    
-    public void startScriptExecutionTimer(String scriptName) {
-        scriptSamples.put(scriptName, Timer.start(meterRegistry));
-    }
-    
-    public void recordScriptExecutionTime(String scriptName, boolean success) {
-        Timer.Sample sample = scriptSamples.remove(scriptName);
-        if (sample != null) {
-            sample.stop(Timer.builder("lua.script.execution.time")
-                .tag("script", scriptName)
-                .tag("success", String.valueOf(success))
-                .register(meterRegistry));
+    private String loadLuaScript(String scriptName) {
+        // 从资源文件加载Lua脚本
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(scriptName)) {
+            if (is != null) {
+                return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+            }
+        } catch (IOException e) {
+            log.error("Failed to load Lua script: " + scriptName, e);
         }
+        return "";
     }
     
-    public void recordScriptComplexity(String scriptName, int complexityScore) {
-        Gauge.builder("lua.script.complexity")
-            .tag("script", scriptName)
-            .register(meterRegistry, complexityScore);
+    private int getLimitForResource(String resource) {
+        // 获取资源的限流阈值
+        return 1000; // 示例值
     }
     
-    // 定期分析Lua脚本性能
-    @Scheduled(fixedRate = 300000) // 每5分钟执行一次
-    public void analyzeScriptPerformance() {
-        // 分析各脚本的执行时间分布
-        // 识别执行时间过长的脚本
-        // 提供优化建议
+    private int getWindowForResource(String resource) {
+        // 获取时间窗口
+        return 60; // 示例值，单位秒
     }
 }
 ```
 
 ## 网络往返次数优化
 
-### 网络往返次数的影响
+### 问题分析
 
-在分布式限流系统中，频繁的网络请求会显著增加系统延迟，降低整体性能：
+在分布式限流系统中，频繁的网络请求会显著影响性能。特别是在需要多次与Redis交互的场景下，网络延迟会成为主要瓶颈。
 
 ```java
-// 存在过多网络往返的实现
-@Service
-public class InefficientNetworkUsage {
+// 错误示例：多次网络往返
+@Component
+public class InefficientRateLimiter {
     private final RedisTemplate<String, String> redisTemplate;
     
-    public boolean checkMultipleResources(List<String> resources, int limit) {
-        // 对每个资源分别进行网络请求，导致多次网络往返
-        for (String resource : resources) {
-            String key = "rate_limit:" + resource;
-            String countStr = redisTemplate.opsForValue().get(key);
-            int count = countStr != null ? Integer.parseInt(countStr) : 0;
-            
-            if (count >= limit) {
-                return false; // 任何一个资源超限都拒绝请求
-            }
+    public boolean tryAcquire(String resource, int permits) {
+        String counterKey = "rate_limit:" + resource;
+        String timestampKey = "rate_limit_timestamp:" + resource;
+        
+        // 第一次网络请求：获取当前计数
+        String currentCountStr = redisTemplate.opsForValue().get(counterKey);
+        int currentCount = currentCountStr != null ? Integer.parseInt(currentCountStr) : 0;
+        
+        // 第二次网络请求：获取时间戳
+        String lastResetStr = redisTemplate.opsForValue().get(timestampKey);
+        long lastReset = lastResetStr != null ? Long.parseLong(lastResetStr) : 0;
+        
+        long now = System.currentTimeMillis();
+        long window = getWindowForResource(resource) * 1000L;
+        
+        // 检查是否需要重置计数器
+        if (now - lastReset > window) {
+            // 第三次网络请求：重置计数器
+            redisTemplate.opsForValue().set(counterKey, "0");
+            // 第四次网络请求：更新时间戳
+            redisTemplate.opsForValue().set(timestampKey, String.valueOf(now));
+            currentCount = 0;
         }
+        
+        // 检查是否超过限制
+        int limit = getLimitForResource(resource);
+        if (currentCount + permits > limit) {
+            return false;
+        }
+        
+        // 第五次网络请求：增加计数
+        redisTemplate.opsForValue().increment(counterKey, permits);
+        
         return true;
     }
-    
-    public void incrementMultipleResources(List<String> resources) {
-        // 对每个资源分别进行网络请求，导致多次网络往返
-        for (String resource : resources) {
-            String key = "rate_limit:" + resource;
-            redisTemplate.boundValueOps(key).increment(1);
-            redisTemplate.expire(key, Duration.ofMinutes(1));
-        }
-    }
 }
 ```
 
-### 批量操作优化网络往返
-
-通过批量操作减少网络往返次数：
+### 优化方案
 
 ```java
-// 优化网络往返次数的实现
+// 优化示例：减少网络往返次数
 @Component
-public class OptimizedNetworkUsage {
+public class EfficientRateLimiter {
     private final RedisTemplate<String, String> redisTemplate;
-    private final ScriptExecutor scriptExecutor;
+    private final DefaultRedisScript<Long> rateLimitScript;
     
-    // 使用Lua脚本批量检查多个资源的限流状态
-    private static final String BATCH_CHECK_SCRIPT = 
-        "local results = {}\n" +
-        "local limit = tonumber(ARGV[1])\n" +
-        "\n" +
-        "for i = 1, #KEYS do\n" +
-        "  local key = KEYS[i]\n" +
-        "  local count = redis.call('GET', key)\n" +
-        "  count = count and tonumber(count) or 0\n" +
-        "  \n" +
-        "  if count >= limit then\n" +
-        "    table.insert(results, 0) -- 超限\n" +
-        "  else\n" +
-        "    table.insert(results, 1) -- 未超限\n" +
-        "  end\n" +
-        "end\n" +
-        "\n" +
-        "return results";
+    public EfficientRateLimiter(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        // 使用Lua脚本将多个操作合并为一次网络请求
+        this.rateLimitScript = new DefaultRedisScript<>(
+            "local current = redis.call('GET', KEYS[1]) " +
+            "local timestamp = redis.call('GET', KEYS[2]) " +
+            "local now = tonumber(ARGV[3]) " +
+            "local window = tonumber(ARGV[4]) " +
+            "local permits = tonumber(ARGV[1]) " +
+            "local limit = tonumber(ARGV[2]) " +
+            
+            "if current == false then " +
+            "  current = 0 " +
+            "end " +
+            "if timestamp == false then " +
+            "  timestamp = 0 " +
+            "end " +
+            
+            "if now - tonumber(timestamp) > window then " +
+            "  redis.call('SET', KEYS[1], 0) " +
+            "  redis.call('SET', KEYS[2], now) " +
+            "  current = 0 " +
+            "end " +
+            
+            "if tonumber(current) + permits > limit then " +
+            "  return 0 " +
+            "else " +
+            "  redis.call('INCRBY', KEYS[1], permits) " +
+            "  return 1 " +
+            "end", Long.class);
+    }
     
-    // 使用Lua脚本批量增加多个资源的计数
-    private static final String BATCH_INCREMENT_SCRIPT = 
-        "local expire_time = tonumber(ARGV[1])\n" +
-        "\n" +
-        "for i = 1, #KEYS do\n" +
-        "  local key = KEYS[i]\n" +
-        "  redis.call('INCR', key)\n" +
-        "  redis.call('EXPIRE', key, expire_time)\n" +
-        "end\n" +
-        "\n" +
-        "return 1";
-    
-    public boolean checkMultipleResources(List<String> resources, int limit) {
-        if (resources.isEmpty()) {
-            return true;
-        }
+    public boolean tryAcquire(String resource, int permits) {
+        String counterKey = "rate_limit:" + resource;
+        String timestampKey = "rate_limit_timestamp:" + resource;
+        List<String> keys = Arrays.asList(counterKey, timestampKey);
+        List<String> args = Arrays.asList(
+            String.valueOf(permits),
+            String.valueOf(getLimitForResource(resource)),
+            String.valueOf(System.currentTimeMillis()),
+            String.valueOf(getWindowForResource(resource) * 1000L)
+        );
         
         try {
-            // 构造键列表
-            List<String> keys = resources.stream()
-                .map(resource -> "rate_limit:" + resource)
-                .collect(Collectors.toList());
-            
-            // 使用Lua脚本批量检查
-            List<Long> results = scriptExecutor.execute(BATCH_CHECK_SCRIPT,
-                keys,
-                String.valueOf(limit));
-            
-            // 检查是否有任何一个资源超限
-            return results.stream().allMatch(result -> result == 1);
+            Long result = redisTemplate.execute(rateLimitScript, keys, args.toArray(new String[0]));
+            return result != null && result == 1;
         } catch (Exception e) {
-            log.error("Failed to batch check resources", e);
+            log.error("Failed to execute rate limit script for resource: " + resource, e);
             return false;
         }
     }
     
-    public void incrementMultipleResources(List<String> resources) {
-        if (resources.isEmpty()) {
-            return;
-        }
-        
-        try {
-            // 构造键列表
-            List<String> keys = resources.stream()
-                .map(resource -> "rate_limit:" + resource)
-                .collect(Collectors.toList());
-            
-            // 使用Lua脚本批量增加计数
-            scriptExecutor.execute(BATCH_INCREMENT_SCRIPT,
-                keys,
-                String.valueOf(60)); // 60秒过期时间
-        } catch (Exception e) {
-            log.error("Failed to batch increment resources", e);
-        }
+    private int getLimitForResource(String resource) {
+        // 获取资源的限流阈值
+        return 1000; // 示例值
+    }
+    
+    private int getWindowForResource(String resource) {
+        // 获取时间窗口（秒）
+        return 60; // 示例值
     }
 }
 ```
 
-### 连接池优化
+## 系统瓶颈识别与优化
 
-合理配置Redis连接池以优化网络性能：
-
-```java
-// Redis连接池配置
-@Configuration
-public class RedisConnectionPoolConfig {
-    
-    @Bean
-    public LettuceConnectionFactory redisConnectionFactory() {
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName("localhost");
-        config.setPort(6379);
-        
-        LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-            .commandTimeout(Duration.ofSeconds(5))
-            .shutdownTimeout(Duration.ofSeconds(10))
-            .build();
-            
-        LettuceConnectionFactory factory = new LettuceConnectionFactory(config, clientConfig);
-        return factory;
-    }
-    
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.afterPropertiesSet();
-        return template;
-    }
-    
-    // 自定义连接池配置
-    @Bean
-    public GenericObjectPoolConfig<LettucePool> lettucePoolConfig() {
-        GenericObjectPoolConfig<LettucePool> config = new GenericObjectPoolConfig<>();
-        config.setMaxTotal(100); // 最大连接数
-        config.setMaxIdle(50);   // 最大空闲连接数
-        config.setMinIdle(10);   // 最小空闲连接数
-        config.setMaxWaitMillis(2000); // 获取连接的最大等待时间
-        config.setTestOnBorrow(true);  // 借用连接时检查有效性
-        config.setTestOnReturn(true);  // 归还连接时检查有效性
-        config.setTestWhileIdle(true); // 空闲时检查有效性
-        config.setTimeBetweenEvictionRunsMillis(30000); // 空闲连接回收器线程运行间隔
-        return config;
-    }
-}
-```
-
-## 算法复杂度优化
-
-### 限流算法的时间复杂度
-
-选择合适的时间复杂度算法对性能至关重要：
+### 性能监控指标
 
 ```java
-// 不同限流算法的时间复杂度比较
-public class AlgorithmComplexityComparison {
-    
-    // 固定窗口计数器 - O(1)
-    public class FixedWindowCounter {
-        private final AtomicLong counter = new AtomicLong(0);
-        private final AtomicLong windowStart = new AtomicLong(0);
-        private final long windowSizeMs;
-        private final int limit;
-        
-        public FixedWindowCounter(int limit, long windowSizeMs) {
-            this.limit = limit;
-            this.windowSizeMs = windowSizeMs;
-        }
-        
-        public boolean tryAcquire() {
-            long now = System.currentTimeMillis();
-            long currentWindowStart = windowStart.get();
-            
-            // 检查是否需要重置窗口
-            if (now - currentWindowStart >= windowSizeMs) {
-                if (windowStart.compareAndSet(currentWindowStart, now)) {
-                    counter.set(0);
-                }
-            }
-            
-            // 增加计数并检查是否超限
-            return counter.incrementAndGet() <= limit;
-        }
-    }
-    
-    // 滑动窗口计数器 - O(n)
-    public class SlidingWindowCounter {
-        private final Queue<Long> requestTimestamps = new ConcurrentLinkedQueue<>();
-        private final long windowSizeMs;
-        private final int limit;
-        
-        public SlidingWindowCounter(int limit, long windowSizeMs) {
-            this.limit = limit;
-            this.windowSizeMs = windowSizeMs;
-        }
-        
-        public synchronized boolean tryAcquire() {
-            long now = System.currentTimeMillis();
-            
-            // 移除过期的请求记录
-            while (!requestTimestamps.isEmpty() && 
-                   now - requestTimestamps.peek() >= windowSizeMs) {
-                requestTimestamps.poll();
-            }
-            
-            // 检查是否超限
-            if (requestTimestamps.size() >= limit) {
-                return false;
-            }
-            
-            // 记录当前请求
-            requestTimestamps.offer(now);
-            return true;
-        }
-    }
-    
-    // 令牌桶算法 - O(1)
-    public class TokenBucket {
-        private final AtomicLong tokens = new AtomicLong(0);
-        private final long capacity;
-        private final long refillRate; // 每毫秒补充的令牌数
-        private final AtomicLong lastRefillTime = new AtomicLong(0);
-        
-        public TokenBucket(long capacity, long refillRate) {
-            this.capacity = capacity;
-            this.refillRate = refillRate;
-            this.tokens.set(capacity); // 初始时令牌桶是满的
-            this.lastRefillTime.set(System.currentTimeMillis());
-        }
-        
-        public boolean tryAcquire(long tokensNeeded) {
-            refillTokens(); // 先补充令牌
-            
-            long currentTokens = tokens.get();
-            if (currentTokens >= tokensNeeded) {
-                return tokens.compareAndSet(currentTokens, currentTokens - tokensNeeded);
-            }
-            return false;
-        }
-        
-        private void refillTokens() {
-            long now = System.currentTimeMillis();
-            long lastTime = lastRefillTime.get();
-            
-            // 计算需要补充的令牌数
-            long tokensToAdd = (now - lastTime) * refillRate;
-            if (tokensToAdd > 0) {
-                if (lastRefillTime.compareAndSet(lastTime, now)) {
-                    long currentTokens = tokens.get();
-                    long newTokens = Math.min(capacity, currentTokens + tokensToAdd);
-                    tokens.compareAndSet(currentTokens, newTokens);
-                }
-            }
-        }
-    }
-}
-```
-
-## 性能监控与告警
-
-### 性能指标监控
-
-建立完善的性能监控体系：
-
-```java
-// 性能监控组件
+// 性能监控指标收集器
 @Component
-public class PerformanceMonitor {
+public class PerformanceMetricsCollector {
     private final MeterRegistry meterRegistry;
-    private final Map<String, Timer.Sample> operationSamples = new ConcurrentHashMap<>();
+    private final RedisTemplate<String, String> redisTemplate;
     
-    public PerformanceMonitor(MeterRegistry meterRegistry) {
+    public PerformanceMetricsCollector(MeterRegistry meterRegistry,
+                                     RedisTemplate<String, String> redisTemplate) {
         this.meterRegistry = meterRegistry;
+        this.redisTemplate = redisTemplate;
+        
+        // 注册性能相关指标
+        registerMetrics();
     }
     
-    public void startOperationTimer(String operationName) {
-        operationSamples.put(operationName, Timer.start(meterRegistry));
+    private void registerMetrics() {
+        // Lua脚本执行时间
+        Timer.builder("rate_limit.lua.execution_time")
+            .description("Lua script execution time")
+            .register(meterRegistry);
+            
+        // 网络延迟
+        Timer.builder("rate_limit.network.latency")
+            .description("Network latency for Redis operations")
+            .register(meterRegistry);
+            
+        // Redis连接池使用率
+        Gauge.builder("rate_limit.redis.connection_pool_usage")
+            .description("Redis connection pool usage ratio")
+            .register(meterRegistry, this, PerformanceMetricsCollector::getConnectionPoolUsage);
+            
+        // 请求处理时间
+        Timer.builder("rate_limit.request.processing_time")
+            .description("Request processing time")
+            .register(meterRegistry);
     }
     
-    public void recordOperationTime(String operationName, boolean success) {
-        Timer.Sample sample = operationSamples.remove(operationName);
-        if (sample != null) {
-            sample.stop(Timer.builder("operation.execution.time")
-                .tag("operation", operationName)
-                .tag("success", String.valueOf(success))
-                .register(meterRegistry));
+    public Timer.Sample startLuaExecutionTimer() {
+        return Timer.start(meterRegistry);
+    }
+    
+    public void recordLuaExecutionTime(Timer.Sample sample) {
+        sample.stop(Timer.builder("rate_limit.lua.execution_time")
+            .register(meterRegistry));
+    }
+    
+    public Timer.Sample startNetworkTimer() {
+        return Timer.start(meterRegistry);
+    }
+    
+    public void recordNetworkLatency(Timer.Sample sample) {
+        sample.stop(Timer.builder("rate_limit.network.latency")
+            .register(meterRegistry));
+    }
+    
+    private double getConnectionPoolUsage() {
+        try {
+            // 获取Redis连接池使用情况
+            // 具体实现依赖于使用的Redis客户端
+            return 0.75; // 示例值
+        } catch (Exception e) {
+            log.warn("Failed to get connection pool usage", e);
+            return 0.0;
         }
-    }
-    
-    public void recordNetworkRoundTrips(int count) {
-        Counter.builder("network.round.trips")
-            .register(meterRegistry)
-            .increment(count);
-    }
-    
-    public void recordLuaScriptExecutionTime(long timeMs) {
-        Timer.builder("lua.script.execution.time")
-            .register(meterRegistry)
-            .record(timeMs, TimeUnit.MILLISECONDS);
-    }
-    
-    public void recordAlgorithmComplexity(String algorithm, int complexity) {
-        Gauge.builder("algorithm.complexity")
-            .tag("algorithm", algorithm)
-            .register(meterRegistry, complexity);
     }
 }
 ```
 
-### 性能告警规则
+### 瓶颈分析工具
 
-```yaml
-# 性能相关告警规则
-alerting:
-  rules:
-    - name: "High Lua Script Execution Time"
-      metric: "lua.script.execution.time"
-      condition: "avg(lua_script_execution_time[5m]) > 100"
-      duration: "1m"
-      severity: "warning"
-      message: "Lua script execution time is too high: {{value}}ms"
-      
-    - name: "Too Many Network Round Trips"
-      metric: "network.round.trips"
-      condition: "rate(network_round_trips[1m]) > 50"
-      duration: "30s"
-      severity: "critical"
-      message: "Too many network round trips: {{value}} per second"
-      
-    - name: "High Operation Latency"
-      metric: "operation.execution.time"
-      condition: "avg(operation_execution_time[5m]) > 50"
-      duration: "1m"
-      severity: "warning"
-      message: "Operation latency is too high: {{value}}ms"
-      
-    - name: "Algorithm Complexity Warning"
-      metric: "algorithm.complexity"
-      condition: "algorithm_complexity > 100"
-      duration: "1m"
-      severity: "warning"
-      message: "Algorithm complexity is too high: {{value}}"
+```java
+// 性能瓶颈分析工具
+@Component
+public class PerformanceBottleneckAnalyzer {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final PerformanceMetricsCollector metricsCollector;
+    private final ScheduledExecutorService analysisScheduler = Executors.newScheduledThreadPool(1);
+    
+    @PostConstruct
+    public void init() {
+        // 定期执行性能分析
+        analysisScheduler.scheduleAtFixedRate(this::analyzePerformance, 
+            0, 30, TimeUnit.SECONDS);
+    }
+    
+    public void analyzePerformance() {
+        try {
+            // 1. 分析Lua脚本执行时间
+            analyzeLuaScriptPerformance();
+            
+            // 2. 分析网络延迟
+            analyzeNetworkLatency();
+            
+            // 3. 分析Redis性能
+            analyzeRedisPerformance();
+            
+            // 4. 生成性能报告
+            generatePerformanceReport();
+        } catch (Exception e) {
+            log.error("Failed to analyze performance", e);
+        }
+    }
+    
+    private void analyzeLuaScriptPerformance() {
+        // 模拟Lua脚本性能分析
+        log.info("Analyzing Lua script performance...");
+        // 实际实现中可以收集脚本执行时间统计数据
+    }
+    
+    private void analyzeNetworkLatency() {
+        // 模拟网络延迟分析
+        log.info("Analyzing network latency...");
+        // 实际实现中可以测量Redis操作的响应时间
+    }
+    
+    private void analyzeRedisPerformance() {
+        try {
+            // 检查Redis状态
+            String info = redisTemplate.getConnectionFactory()
+                .getConnection().info();
+            log.info("Redis info: {}", info.substring(0, Math.min(info.length(), 200)));
+        } catch (Exception e) {
+            log.warn("Failed to get Redis info", e);
+        }
+    }
+    
+    private void generatePerformanceReport() {
+        // 生成性能分析报告
+        log.info("Generating performance report...");
+        // 实际实现中可以生成详细的性能分析报告
+    }
+}
 ```
 
-通过以上实现，我们系统地分析了分布式限流系统中常见的性能陷阱，并提供了相应的优化方案和最佳实践。在实际应用中，需要根据具体的业务场景和系统特点来调整这些方案，以达到最佳的性能效果。
+## 批量操作优化
+
+### 批量限流检查
+
+```java
+// 批量限流检查优化
+@Component
+public class BatchRateLimiter {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final DefaultRedisScript<List> batchRateLimitScript;
+    
+    public BatchRateLimiter(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        // 批量限流Lua脚本
+        this.batchRateLimitScript = new DefaultRedisScript<>(
+            "local results = {} " +
+            "for i = 1, #ARGV, 3 do " +
+            "  local resource = ARGV[i] " +
+            "  local permits = tonumber(ARGV[i+1]) " +
+            "  local limit = tonumber(ARGV[i+2]) " +
+            "  local key = 'rate_limit:' .. resource " +
+            "  local current = redis.call('GET', key) " +
+            "  if current == false then " +
+            "    current = 0 " +
+            "  end " +
+            "  if tonumber(current) + permits <= limit then " +
+            "    redis.call('INCRBY', key, permits) " +
+            "    redis.call('EXPIRE', key, 60) " +
+            "    table.insert(results, 1) " +
+            "  else " +
+            "    table.insert(results, 0) " +
+            "  end " +
+            "end " +
+            "return results", List.class);
+    }
+    
+    public List<Boolean> tryAcquireBatch(List<RateLimitRequest> requests) {
+        List<String> args = new ArrayList<>();
+        for (RateLimitRequest request : requests) {
+            args.add(request.getResource());
+            args.add(String.valueOf(request.getPermits()));
+            args.add(String.valueOf(request.getLimit()));
+        }
+        
+        try {
+            List<Long> results = redisTemplate.execute(batchRateLimitScript, 
+                Collections.emptyList(), args.toArray(new String[0]));
+            
+            return results.stream()
+                .map(result -> result != null && result == 1)
+                .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("Failed to execute batch rate limit script", e);
+            // 降级为单个检查
+            return requests.stream()
+                .map(this::tryAcquireSingle)
+                .collect(Collectors.toList());
+        }
+    }
+    
+    private boolean tryAcquireSingle(RateLimitRequest request) {
+        // 单个限流检查的实现
+        String key = "rate_limit:" + request.getResource();
+        String script = 
+            "local current = redis.call('GET', KEYS[1]) " +
+            "if current == false then " +
+            "  current = 0 " +
+            "end " +
+            "if tonumber(current) + tonumber(ARGV[1]) <= tonumber(ARGV[2]) then " +
+            "  redis.call('INCRBY', KEYS[1], ARGV[1]) " +
+            "  redis.call('EXPIRE', KEYS[1], 60) " +
+            "  return 1 " +
+            "else " +
+            "  return 0 " +
+            "end";
+            
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>(script, Long.class);
+        Long result = redisTemplate.execute(redisScript,
+            Collections.singletonList(key),
+            String.valueOf(request.getPermits()),
+            String.valueOf(request.getLimit()));
+            
+        return result != null && result == 1;
+    }
+    
+    // 限流请求数据类
+    public static class RateLimitRequest {
+        private final String resource;
+        private final int permits;
+        private final int limit;
+        
+        public RateLimitRequest(String resource, int permits, int limit) {
+            this.resource = resource;
+            this.permits = permits;
+            this.limit = limit;
+        }
+        
+        // getter方法
+        public String getResource() { return resource; }
+        public int getPermits() { return permits; }
+        public int getLimit() { return limit; }
+    }
+}
+```
+
+## 内存使用优化
+
+### 对象池化
+
+```java
+// 对象池化优化
+@Component
+public class OptimizedRateLimitService {
+    private final RedisTemplate<String, String> redisTemplate;
+    private final ObjectPool<StringBuilder> stringBuilderPool;
+    private final ObjectPool<List<String>> listPool;
+    
+    public OptimizedRateLimitService(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+        // 创建对象池
+        this.stringBuilderPool = new GenericObjectPool<>(new StringBuilderFactory());
+        this.listPool = new GenericObjectPool<>(new ListFactory());
+    }
+    
+    public boolean tryAcquire(String resource, int permits) {
+        StringBuilder keyBuilder = null;
+        List<String> keys = null;
+        List<String> args = null;
+        
+        try {
+            // 从池中获取对象
+            keyBuilder = stringBuilderPool.borrowObject();
+            keys = listPool.borrowObject();
+            args = listPool.borrowObject();
+            
+            // 构建键和参数
+            keyBuilder.setLength(0); // 清空内容
+            keyBuilder.append("rate_limit:").append(resource);
+            keys.add(keyBuilder.toString());
+            
+            args.add(String.valueOf(permits));
+            args.add(String.valueOf(getLimitForResource(resource)));
+            args.add(String.valueOf(60)); // 过期时间
+            
+            // 执行限流操作
+            String script = 
+                "local current = redis.call('GET', KEYS[1]) " +
+                "if current == false then " +
+                "  current = 0 " +
+                "end " +
+                "if tonumber(current) + tonumber(ARGV[1]) <= tonumber(ARGV[2]) then " +
+                "  redis.call('INCRBY', KEYS[1], ARGV[1]) " +
+                "  redis.call('EXPIRE', KEYS[1], ARGV[3]) " +
+                "  return 1 " +
+                "else " +
+                "  return 0 " +
+                "end";
+                
+            DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>(script, Long.class);
+            Long result = redisTemplate.execute(redisScript, keys, args.toArray(new String[0]));
+            
+            return result != null && result == 1;
+        } catch (Exception e) {
+            log.error("Failed to acquire rate limit for resource: " + resource, e);
+            return false;
+        } finally {
+            // 归还对象到池中
+            if (keyBuilder != null) {
+                try {
+                    stringBuilderPool.returnObject(keyBuilder);
+                } catch (Exception e) {
+                    log.warn("Failed to return StringBuilder to pool", e);
+                }
+            }
+            if (keys != null) {
+                try {
+                    listPool.returnObject(keys);
+                } catch (Exception e) {
+                    log.warn("Failed to return keys list to pool", e);
+                }
+            }
+            if (args != null) {
+                try {
+                    listPool.returnObject(args);
+                } catch (Exception e) {
+                    log.warn("Failed to return args list to pool", e);
+                }
+            }
+        }
+    }
+    
+    private int getLimitForResource(String resource) {
+        // 获取资源的限流阈值
+        return 1000; // 示例值
+    }
+    
+    // StringBuilder工厂
+    private static class StringBuilderFactory extends BasePooledObjectFactory<StringBuilder> {
+        @Override
+        public StringBuilder create() throws Exception {
+            return new StringBuilder(128); // 预分配容量
+        }
+        
+        @Override
+        public PooledObject<StringBuilder> wrap(StringBuilder obj) {
+            return new DefaultPooledObject<>(obj);
+        }
+        
+        @Override
+        public void activateObject(PooledObject<StringBuilder> p) throws Exception {
+            p.getObject().setLength(0); // 激活时清空内容
+        }
+    }
+    
+    // List工厂
+    private static class ListFactory extends BasePooledObjectFactory<List<String>> {
+        @Override
+        public List<String> create() throws Exception {
+            return new ArrayList<>(8); // 预分配容量
+        }
+        
+        @Override
+        public PooledObject<List<String>> wrap(List<String> obj) {
+            return new DefaultPooledObject<>(obj);
+        }
+        
+        @Override
+        public void activateObject(PooledObject<List<String>> p) throws Exception {
+            p.getObject().clear(); // 激活时清空内容
+        }
+    }
+}
+```
+
+## 最佳实践总结
+
+### 1. Lua脚本优化
+
+- 保持脚本简洁，避免复杂逻辑
+- 预编译Lua脚本以提高执行效率
+- 监控脚本执行时间，及时发现性能问题
+- 避免在脚本中执行耗时操作
+
+### 2. 网络优化
+
+- 使用Lua脚本合并多个Redis操作
+- 减少不必要的网络往返
+- 使用连接池管理Redis连接
+- 合理设置连接池参数
+
+### 3. 批量操作
+
+- 对于批量限流检查，使用批量Lua脚本
+- 合理设计批量操作的大小
+- 提供降级机制应对批量操作失败
+
+### 4. 内存优化
+
+- 使用对象池减少GC压力
+- 合理设置对象池参数
+- 及时归还对象到池中
+- 监控内存使用情况
+
+### 5. 性能监控
+
+- 建立全面的性能监控体系
+- 定期分析性能瓶颈
+- 设置性能告警阈值
+- 持续优化系统性能
+
+通过以上优化措施，可以显著提升分布式限流平台的性能，确保系统在高并发场景下依然能够稳定高效地运行。

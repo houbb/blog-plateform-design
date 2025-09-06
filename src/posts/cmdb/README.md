@@ -42,6 +42,9 @@
 ### 第6章：数据的生命线——自动发现与采集
 
 * [6-1-1 自动化是准确性的唯一保障：摒弃手动录入](6-1-1_automation-is-the-only-guarantee-of-accuracy.md)
+* [6-1-2 多模式采集融合：Agent模式、无Agent模式、API集成模式、流量分析模式](6-1-2_multi-mode-collection-integration.md)
+* [6-1-3 发现策略与调度：全量发现与增量发现](6-1-3_discovery-strategy-and-scheduling.md)
+* [6-1-4 数据清洗、校验与合规检查](6-1-4_data-cleaning-validation-and-compliance.md)
 
 ### 第7章：数据的维护与治理
 
@@ -101,13 +104,13 @@
 
 ### 第15章：构建运维数据平台（DataOps）
 
-* [15-1-1 从CMDB到运维数据中台：汇聚所有运维数据](15-1-1_from-cmdb-to-operations-data-platform.md)
-* [15-1-2 数据治理在运维领域的实践](15-1-2_data-governance-in-operations.md)
-* [15-1-3 基于全域运维数据的分析与决策](15-1-3_analysis-and-decision-making-based-on-full-operations-data.md)
+* [15-1-1 从CMDB到运维数据中台：汇聚所有运维数据](15-1-1_from-cmdb-to-ops-data-platform.md)
+* [15-1-2 数据治理在运维领域的实践](15-1-2_data-governance-in-ops-practice.md)
+* [15-1-3 基于全域运维数据的分析与决策](15-1-3_analysis-and-decision-making-based-on-full-ops-data.md)
 
 ## 附录
 
-* [附录A：开源CMDB系统对比表](appendix-a_open-source-cmdb-comparison.md)
-* [附录B：常用自动发现工具与协议](appendix-b_common-discovery-tools-and-protocols.md)
+* [附录A：开源CMDB系统对比表](appendix-a_open-source-cmdb-system-comparison.md)
+* [附录B：常用自动发现工具与协议](appendix-b_common-auto-discovery-tools-and-protocols.md)
 * [附录C：CI模型设计示例](appendix-c_ci-model-design-examples.md)
 * [附录D：术语表](appendix-d_glossary.md)

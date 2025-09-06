@@ -64,17 +64,6 @@
 
 ### 第四部分：运维、观测与落地篇
 
-- [10-1 安全与合规（DevSecOps）](10-1-security-compliance-devsecops.md)
-  - [10-1-1 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成](10-1-1-left-shift-security-practices.md)
-  - [10-1-2 密钥与凭据管理：与Vault等 secrets manager 集成](10-1-2-secrets-credentials-management.md)
-  - [10-1-3 合规性即代码：自动化审计与合规检查](10-1-3-compliance-as-code.md)
-  - [10-1-4 镜像安全扫描：CVE漏洞扫描与阻断](10-1-4-image-security-scanning.md)
-
-- [11-1 可观测性与效能度量](11-1-observability-effectiveness-metrics.md)
-  - [11-1-1 流水线可视化：全局视图、实时日志、执行历史](11-1-1-pipeline-visualization.md)
-  - [11-1-2 平台自身监控：健康度、性能、队列状态](11-1-2-platform-monitoring.md)
-  - [11-1-3 研发效能度量：DORA指标看板、瓶颈分析、驱动改进](11-1-3-rd-effectiveness-metrics.md)
-
 - [8-1 平台运营与最佳实践](8-1-platform-operations-best-practices.md)
   - [8-1-1 流水线模板库与共享库：促进最佳实践复用，降低使用门槛](8-1-1-pipeline-template-library.md)
   - [8-1-2 多租户与权限管理（RBAC）：项目隔离、资源配额](8-1-2-multi-tenancy-permission-management.md)
@@ -87,17 +76,29 @@
   - [9-1-3 与沟通工具（钉钉/企微）集成：构建结果通知](9-1-3-communication-tools-integration.md)
   - [9-1-4 与Serverless/FaaS平台集成](9-1-4-serverless-faas-integration.md)
 
+- [10-1 安全与合规（DevSecOps）](10-1-security-compliance-devsecops.md)
+  - [10-1-1 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成](10-1-1-left-shift-security-practices.md)
+  - [10-1-2 密钥与凭据管理：与Vault等 secrets manager 集成](10-1-2-secrets-credentials-management.md)
+  - [10-1-3 合规性即代码：自动化审计与合规检查](10-1-3-compliance-as-code.md)
+  - [10-1-4 镜像安全扫描：CVE漏洞扫描与阻断](10-1-4-image-security-scanning.md)
+
+- [11-1 可观测性与效能度量](11-1-observability-effectiveness-metrics.md)
+  - [11-1-1 流水线可视化：全局视图、实时日志、执行历史](11-1-1-pipeline-visualization.md)
+  - [11-1-2 平台自身监控：健康度、性能、队列状态](11-1-2-platform-monitoring.md)
+  - [11-1-3 研发效能度量：DORA指标看板、瓶颈分析、驱动改进](11-1-3-rd-effectiveness-metrics.md)
+  - [11-1-4 效能度量实践：DORA指标与自定义指标体系](11-1-4-effectiveness-metrics-practice.md)
+
 ### 第五部分：进阶与未来篇
 
-- [10-1 GitOps模式实践](10-1-gitops-practice.md)
-  - [10-1-1 GitOps核心思想：声明式、版本控制、自动同步](10-1-1-gitops-core-concepts.md)
-  - [10-1-2 使用Argo CD/FluxCD实现GitOps部署模式](10-1-2-gitops-with-argocd-fluxcd.md)
-  - [10-1-3 应用与基础设施的统一交付](10-1-3-unified-delivery-of-applications-and-infrastructure.md)
+- [14-1 GitOps模式实践](14-1-gitops-practice.md)
+  - [14-1-1 GitOps核心思想：声明式、版本控制、自动同步](14-1-1-gitops-core-concepts.md)
+  - [14-1-2 使用Argo CD/FluxCD实现GitOps部署模式](14-1-2-gitops-with-argocd-fluxcd.md)
+  - [14-1-3 应用与基础设施的统一交付](14-1-3-unified-delivery-of-applications-and-infrastructure.md)
 
-- [11-1 AIOps在CI/CD中的探索](11-1-aiops-in-cicd.md)
-  - [11-1-1 智能测试优化：预测性测试选择、故障测试用例识别](11-1-1-intelligent-test-optimization.md)
-  - [11-1-2 智能资源调度与成本优化](11-1-2-intelligent-resource-scheduling.md)
-  - [11-1-3 异常构建的智能根因分析](11-1-3-intelligent-root-cause-analysis.md)
+- [15-1 AIOps在CI/CD中的探索](15-1-aiops-in-cicd.md)
+  - [15-1-1 智能测试优化：预测性测试选择、故障测试用例识别](15-1-1-intelligent-test-optimization.md)
+  - [15-1-2 智能资源调度与成本优化](15-1-2-intelligent-resource-scheduling-cost-optimization.md)
+  - [15-1-3 异常构建的智能根因分析](15-1-3-intelligent-root-cause-analysis.md)
 
 - [16-1 未来演进趋势](16-1-future-evolution-trends.md)
   - [16-1-1 内部开发者平台（IDP）与CI/CD](16-1-1-idp-and-cicd.md)

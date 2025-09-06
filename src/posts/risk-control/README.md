@@ -52,3 +52,17 @@
 - [7-2-high-performance-rule-engine-implementation.md](7-2-high-performance-rule-engine-implementation.md) - 高性能规则引擎实现：Rete算法原理与优化
 - [7-3-visual-strategy-orchestration.md](7-3-visual-strategy-orchestration.md) - 可视化策略编排：拖拽式配置复杂规则组合（IF-THEN-ELSE）
 - [7-4-multi-result-processing.md](7-4-multi-result-processing.md) - 多结果处理：评分、标签、拦截、挑战（发送验证码）、人工审核
+
+#### 第8章：名单服务与管理
+
+- [8-1-list-types.md](8-1-list-types.md) - 名单类型：黑名单、白名单、灰名单、临时名单
+- [8-2-list-hierarchy-and-scope.md](8-2-list-hierarchy-and-scope.md) - 名单分级与生效范围：全局名单、业务专属名单
+- [8-3-list-sources.md](8-3-list-sources.md) - 名单来源：人工录入、规则自动产出、模型分阈值划定、第三方引入
+- [8-4-list-lifecycle-and-validation.md](8-4-list-lifecycle-and-validation.md) - 名单生命周期与有效性验证
+
+#### 第9章：模型服务与AI赋能
+
+- [9-1-model-lifecycle-management.md](9-1-model-lifecycle-management.md) - 模型生命周期管理（MLOps）：从特征、训练、评估到部署上线的一站式管理
+- [9-2-common-risk-control-models.md](9-2-common-risk-control-models.md) - 常用风控模型：GBDT（XGBoost/LightGBM）、深度学习、异常检测（Isolation Forest）
+- [9-3-online-model-serving.md](9-3-online-model-serving.md) - 在线模型服务（Model Serving）：低延迟、高并发的模型预测
+- [9-4-model-monitoring-and-iteration.md](9-4-model-monitoring-and-iteration.md) - 模型监控与迭代：模型性能衰减预警、概念漂移检测、持续学习
