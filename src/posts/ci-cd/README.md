@@ -64,16 +64,16 @@
 
 ### 第四部分：运维、观测与落地篇
 
-- [6-1 安全与合规（DevSecOps）](6-1-security-compliance-devsecops.md)
-  - [6-1-1 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成](6-1-1-left-shift-security-practices.md)
-  - [6-1-2 密钥与凭据管理：与Vault等 secrets manager 集成](6-1-2-secrets-credentials-management.md)
-  - [6-1-3 合规性即代码：自动化审计与合规检查](6-1-3-compliance-as-code.md)
-  - [6-1-4 镜像安全扫描：CVE漏洞扫描与阻断](6-1-4-image-security-scanning.md)
+- [10-1 安全与合规（DevSecOps）](10-1-security-compliance-devsecops.md)
+  - [10-1-1 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成](10-1-1-left-shift-security-practices.md)
+  - [10-1-2 密钥与凭据管理：与Vault等 secrets manager 集成](10-1-2-secrets-credentials-management.md)
+  - [10-1-3 合规性即代码：自动化审计与合规检查](10-1-3-compliance-as-code.md)
+  - [10-1-4 镜像安全扫描：CVE漏洞扫描与阻断](10-1-4-image-security-scanning.md)
 
-- [7-1 可观测性与效能度量](7-1-observability-effectiveness-metrics.md)
-  - [7-1-1 流水线可视化：全局视图、实时日志、执行历史](7-1-1-pipeline-visualization.md)
-  - [7-1-2 平台自身监控：健康度、性能、队列状态](7-1-2-platform-monitoring.md)
-  - [7-1-3 研发效能度量：DORA指标看板、瓶颈分析、驱动改进](7-1-3-rd-effectiveness-metrics.md)
+- [11-1 可观测性与效能度量](11-1-observability-effectiveness-metrics.md)
+  - [11-1-1 流水线可视化：全局视图、实时日志、执行历史](11-1-1-pipeline-visualization.md)
+  - [11-1-2 平台自身监控：健康度、性能、队列状态](11-1-2-platform-monitoring.md)
+  - [11-1-3 研发效能度量：DORA指标看板、瓶颈分析、驱动改进](11-1-3-rd-effectiveness-metrics.md)
 
 - [8-1 平台运营与最佳实践](8-1-platform-operations-best-practices.md)
   - [8-1-1 流水线模板库与共享库：促进最佳实践复用，降低使用门槛](8-1-1-pipeline-template-library.md)
