@@ -60,6 +60,13 @@
 - [1-7-3-client-integration.md](1-7-3-client-integration.md) - 客户端集成：Web应用、移动端、后端服务、旧系统的改造方案
 - [1-7-4-logout-single-logout.md](1-7-4-logout-single-logout.md) - 登出与全局登出（Single Logout）
 
+## 第八章：身份联合与外部身份源
+
+- [1-8-identity-federation-external-identity-sources.md](1-8-identity-federation-external-identity-sources.md) - 身份联合与外部身份源（概述）
+- [1-8-1-identity-provider-external-sso-service.md](1-8-1-identity-provider-external-sso-service.md) - 作为身份提供者（IdP）：对外提供SSO服务
+- [1-8-2-service-provider-external-idp-integration.md](1-8-2-service-provider-external-idp-integration.md) - 作为服务提供者（SP）：集成外部IdP（如企业微信、AD）
+- [1-8-3-hybrid-mode-multi-identity-source-coexistence.md](1-8-3-hybrid-mode-multi-identity-source-coexistence.md) - 混合模式：多身份源共存与匹配规则（Just-in-Time Provisioning）
+
 ## 后续章节待生成
 
 （此处将在后续生成过程中逐步添加）

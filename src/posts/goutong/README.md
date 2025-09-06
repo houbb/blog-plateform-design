@@ -2,13 +2,13 @@
 
 本目录包含了一系列关于沟通技巧的深度文章，涵盖了从基础理论到实践应用的各个方面。
 
-## 第一章：记忆力的真相
+## 第一章：无处不在的通知：数字化转型的沟通基石
 
-1. [记忆力的真相：感觉记忆、短时记忆与长期记忆的协作机制](1-1-0-understanding-memory-truth.md)
-2. [感觉记忆：信息接收的第一道门户](1-1-1-sensory-memory.md)
-3. [短时记忆：信息加工的临时工作台](1-1-2-short-term-memory.md)
-4. [长期记忆：知识经验的永久存储库](1-1-3-long-term-memory.md)
-5. [为什么"学了就忘"：大脑遗忘机制的科学解析](1-1-4-why-we-forget.md)
+1. [无处不在的通知：数字化转型的沟通基石](1-1-0-digital-transformation-communication-foundation.md)
+2. [从烟囱式通知到平台化服务：为什么需要统一通知平台？](1-1-1-from-silo-to-platform.md)
+3. [平台核心价值：降本增效、统一体验、提升可靠性、赋能业务](1-1-2-platform-core-values.md)
+4. [典型应用场景：身份验证、监控告警、工单处理、营销推广、系统公告](1-1-3-typical-application-scenarios.md)
+5. ["全生命周期"内涵：涵盖通道管理、模板审核、发送调度、状态追踪、运营分析的完整闭环](1-1-4-full-lifecycle-coverage.md)
 
 ## 第二章：核心概念与通道特性
 
