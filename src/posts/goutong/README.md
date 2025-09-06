@@ -80,3 +80,12 @@
 2. [模板管理：构建高效的内容复用体系](8-1-2-template-management.md)
 3. [数据看板：实时洞察通知平台运营状况](8-1-3-data-dashboard.md)
 4. [运营管理：构建高效稳定的通知服务体系](8-1-4-operations-management.md)
+
+## 第九章：安全、合规与成本控制
+
+### 9.1 安全审计：操作日志、访问记录
+
+1. [安全审计：构建全面的平台安全防护体系](9-1-1-security-audit.md)
+2. [内容安全：构建可靠的消息内容防护体系](9-1-2-content-security.md)
+3. [合规性要求：构建符合法规要求的通知平台](9-1-3-compliance-requirements.md)
+4. [成本分析与优化：构建高效的资源配置体系](9-1-4-cost-analysis-optimization.md)

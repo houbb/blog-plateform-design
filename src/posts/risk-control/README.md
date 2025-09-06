@@ -45,3 +45,10 @@
 - [6-2-real-time-feature-computation.md](6-2-real-time-feature-computation.md) - 实时特征计算：基于Flink/Redis的窗口聚合（近1分钟/1小时交易次数）
 - [6-3-offline-feature-development-and-management.md](6-3-offline-feature-development-and-management.md) - 离线特征开发与管理：调度、回溯、监控
 - [6-4-feature-repository.md](6-4-feature-repository.md) - 特征仓库：特征注册、共享、版本管理和一键上线
+
+#### 第7章：决策引擎——风控的"大脑"
+
+- [7-1-core-architecture.md](7-1-core-architecture.md) - 核心架构：事实、规则、规则集、决策流
+- [7-2-high-performance-rule-engine-implementation.md](7-2-high-performance-rule-engine-implementation.md) - 高性能规则引擎实现：Rete算法原理与优化
+- [7-3-visual-strategy-orchestration.md](7-3-visual-strategy-orchestration.md) - 可视化策略编排：拖拽式配置复杂规则组合（IF-THEN-ELSE）
+- [7-4-multi-result-processing.md](7-4-multi-result-processing.md) - 多结果处理：评分、标签、拦截、挑战（发送验证码）、人工审核
