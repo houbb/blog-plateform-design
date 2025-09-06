@@ -116,3 +116,20 @@
 2. [开发者支持：构建完善的技术服务体系](12-1-2-developer-support.md)
 3. [推广与布道：构建平台影响力与用户生态](12-1-3-promotion-advocacy.md)
 4. [建立反馈渠道与运营SOP：构建高效的问题响应机制](12-1-4-feedback-channels-sop.md)
+
+## 第十三章：最佳实践与避坑指南
+
+### 13.1 消息模板设计最佳实践
+
+1. [消息模板设计最佳实践：构建高效复用的内容体系](13-1-1-template-design-best-practices.md)
+2. [通道稳定性保障最佳实践：构建高可用的通知服务体系](13-1-2-channel-stability-best-practices.md)
+3. [成本控制最佳实践：构建高效的资源配置体系](13-1-3-cost-control-best-practices.md)
+4. [常见陷阱：避免通知平台建设中的典型错误](13-1-4-common-pitfalls.md)
+
+## 第十四章：智能化运营
+
+### 14.1 智能降级与切换：基于机器学习预测通道质量，提前切换
+
+1. [智能降级与切换：基于机器学习的通道质量预测与优化](14-1-1-intelligent-degradation-switching.md)
+2. [智能内容生成：基于用户行为的个性化通知内容优化](14-1-2-intelligent-content-generation.md)
+3. [发送时机优化：基于用户行为预测的智能发送策略](14-1-3-send-timing-optimization.md)
