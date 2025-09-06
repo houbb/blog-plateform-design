@@ -133,3 +133,12 @@
 1. [智能降级与切换：基于机器学习的通道质量预测与优化](14-1-1-intelligent-degradation-switching.md)
 2. [智能内容生成：基于用户行为的个性化通知内容优化](14-1-2-intelligent-content-generation.md)
 3. [发送时机优化：基于用户行为预测的智能发送策略](14-1-3-send-timing-optimization.md)
+
+## 第十五章：未来通道与趋势
+
+### 15.1 富媒体消息：图片、视频、交互式卡片消息
+
+1. [富媒体消息：构建下一代交互式通知体验](15-1-1-rich-media-messaging.md)
+2. [5G消息（RCS）：下一代短信技术的革命性变革](15-1-2-5g-messaging-rcs.md)
+3. [物联网（IoT）设备通知：构建万物互联的通知生态](15-1-3-iot-device-notifications.md)
+4. [统一收件箱（Unified Inbox）展望：构建个人化信息聚合中心](15-1-4-unified-inbox-vision.md)
