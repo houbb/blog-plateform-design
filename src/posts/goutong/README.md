@@ -54,3 +54,29 @@
 2. [消息队列（Kafka/RocketMQ）应用：流量削峰、异步化、保证最终一致性](5-1-2-message-queue-application.md)
 3. [消息模板引擎：变量替换、内容审核（涉黄、涉政、广告）、多语言支持](5-1-3-template-engine.md)
 4. [频率控制与防骚扰：基于用户、IP、业务类型的限流策略](5-1-4-rate-limiting-anti-harassment.md)
+
+## 第六章：通道适配器与路由引擎
+
+### 6.1 通道适配器模式：统一接口，灵活接入各类供应商
+
+1. [通道适配器模式（Adapter Pattern）：统一接口，灵活接入各类供应商](6-1-1-adapter-pattern.md)
+2. [供应商管理：多供应商配置、负载均衡、自动故障切换（Failover）](6-1-2-supplier-management.md)
+3. [智能路由策略：基于成本、到达率、延迟、地域的自动选择](6-1-3-intelligent-routing.md)
+4. [通道质量监控与熔断降级：自动屏蔽故障或低质量通道](6-1-4-channel-quality-monitoring.md)
+
+## 第七章：状态追踪与回调机制
+
+### 7.1 全链路状态追踪：已提交、发送中、发送成功、发送失败、已送达（对于可追踪通道）
+
+1. [全链路状态追踪：消息生命周期的全程监控](7-1-1-full-link-tracking.md)
+2. [统一回调接口设计：构建闭环的消息处理体系](7-1-2-unified-callback-interface.md)
+3. [数据持久化：消息发送记录的存储与查询优化](7-1-3-data-persistence.md)
+
+## 第八章：管理控制台与用户体验
+
+### 8.1 多租户与权限管理（RBAC）：支持多团队、多项目独立使用与计费
+
+1. [多租户与权限管理：构建安全可靠的统一通知平台](8-1-1-multi-tenant-permission-management.md)
+2. [模板管理：构建高效的内容复用体系](8-1-2-template-management.md)
+3. [数据看板：实时洞察通知平台运营状况](8-1-3-data-dashboard.md)
+4. [运营管理：构建高效稳定的通知服务体系](8-1-4-operations-management.md)

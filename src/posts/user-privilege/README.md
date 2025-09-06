@@ -67,6 +67,14 @@
 - [1-8-2-service-provider-external-idp-integration.md](1-8-2-service-provider-external-idp-integration.md) - 作为服务提供者（SP）：集成外部IdP（如企业微信、AD）
 - [1-8-3-hybrid-mode-multi-identity-source-coexistence.md](1-8-3-hybrid-mode-multi-identity-source-coexistence.md) - 混合模式：多身份源共存与匹配规则（Just-in-Time Provisioning）
 
+## 第九章：审计、合规与安全治理
+
+- [9-0-audit-compliance-security-governance.md](9-0-audit-compliance-security-governance.md) - 审计、合规与安全治理（概述）
+- [9-1-full-chain-audit-logs.md](9-1-full-chain-audit-logs.md) - 全链路审计日志：记录所有认证、授权、管理操作
+- [9-2-compliance-support.md](9-2-compliance-support.md) - 合规性支持：GDPR、等保2.0、SOC2中的身份要求
+- [9-3-periodic-access-review-process-platform-implementation.md](9-3-periodic-access-review-process-platform-implementation.md) - 定期权限审阅（Access Review）流程的平台化实现
+- [9-4-key-certificate-security-management-rotation-strategy.md](9-4-key-certificate-security-management-rotation-strategy.md) - 密钥、证书安全管理与轮换策略
+
 ## 后续章节待生成
 
 （此处将在后续生成过程中逐步添加）

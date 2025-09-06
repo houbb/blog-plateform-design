@@ -31,3 +31,10 @@
 * [4-1-2 核心模块设计：CI管理、关系管理、自动发现、权限控制、操作审计](4-1-2_core-module-design.md)
 * [4-1-3 高可用与高性能设计：数据库选型（MySQL/PostgreSQL/NewSQL）、缓存策略、水平扩展](4-1-3_high-availability-and-performance-design.md)
 * [4-1-4 API-first设计：提供全面、稳定的Restful API供各方消费](4-1-4_api-first-design.md)
+
+### 第5章：数据模型与关系建模
+
+* [5-1-1 基础CI模型设计：服务器、网络设备、数据库、中间件、应用服务](5-1-1_basic-ci-model-design.md)
+* [5-1-2 关系类型定义：运行于、连接至、依赖、集群关系等](5-1-2_relationship-type-definition.md)
+* [5-1-3 元数据管理：模型版本控制、变更与兼容性](5-1-3_metadata-management.md)
+* [5-1-4 灵活的自定义字段与模型扩展能力](5-1-4_flexible-custom-fields-and-model-extension.md)
