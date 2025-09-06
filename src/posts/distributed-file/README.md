@@ -45,5 +45,13 @@
 - [6-1-4-data-balancing-and-migration.md](6-1-4-data-balancing-and-migration.md) - 数据均衡与迁移：热点调度、容量均衡、坏盘处理
 - [6-1-5-data-read-write-process.md](6-1-5-data-read-write-process.md) - 数据读写流程与并发控制
 
+#### 第7章：客户端与接入协议
+
+- [7-1-client-and-access-protocols.md](7-1-client-and-access-protocols.md) - 客户端与接入协议概述
+- [7-1-1-client-design.md](7-1-1-client-design.md) - 客户端设计：轻量级SDK、FUSE实现原理
+- [7-1-2-core-protocol-implementation.md](7-1-2-core-protocol-implementation.md) - 核心协议实现：POSIX兼容性挑战与解决方案
+- [7-1-3-high-performance-cache-design.md](7-1-3-high-performance-cache-design.md) - 高性能缓存设计：客户端缓存、元数据缓存、数据缓存（一致性保证）
+- [7-1-4-compatibility-with-standard-protocols.md](7-1-4-compatibility-with-standard-protocols.md) - 与HDFS、S3等标准协议的兼容与网关构建
+
 ---
 *注：本文档根据[index.md](index.md)目录结构生成，将持续更新完善。*
