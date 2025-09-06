@@ -1,6 +1,6 @@
-# 沟通技巧系列文章索引
+# 企业级统一通知通道平台建设：全生命周期实践指南
 
-本目录包含了一系列关于沟通技巧的深度文章，涵盖了从基础理论到实践应用的各个方面。
+本目录包含了一系列关于企业级统一通知通道平台建设的深度文章，涵盖了从理念规划到架构设计、从核心引擎到功能管理、从集成落地到未来演进的各个方面。
 
 ## 第一章：无处不在的通知：数字化转型的沟通基石
 
@@ -142,3 +142,21 @@
 2. [5G消息（RCS）：下一代短信技术的革命性变革](15-1-2-5g-messaging-rcs.md)
 3. [物联网（IoT）设备通知：构建万物互联的通知生态](15-1-3-iot-device-notifications.md)
 4. [统一收件箱（Unified Inbox）展望：构建个人化信息聚合中心](15-1-4-unified-inbox-vision.md)
+
+**附录**
+
+### 附录A: 主流通道供应商API对比与选型建议
+
+1. [主流通道供应商API对比与选型建议](appendix-a-supplier-api-comparison.md)
+
+### 附录B: API接口文档示例
+
+1. [API接口文档示例](appendix-b-api-documentation-example.md)
+
+### 附录C: 通道状态码大全与错误处理建议
+
+1. [通道状态码大全与错误处理建议](appendix-c-channel-status-codes.md)
+
+### 附录D: 术语表
+
+1. [术语表](appendix-d-glossary.md)

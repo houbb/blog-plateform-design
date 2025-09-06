@@ -1,3 +1,11 @@
+---
+title: 写作模板
+date: 2025-09-07
+categories: [Security]
+tags: [security]
+published: true
+---
+
 我将针对 index.md 中的内容，为每一节生成一篇 5000 字左右，专业、科学、有趣、可以落地的内容。
 
 帮我生成对应的文章，
