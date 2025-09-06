@@ -89,3 +89,21 @@
 2. [内容安全：构建可靠的消息内容防护体系](9-1-2-content-security.md)
 3. [合规性要求：构建符合法规要求的通知平台](9-1-3-compliance-requirements.md)
 4. [成本分析与优化：构建高效的资源配置体系](9-1-4-cost-analysis-optimization.md)
+
+## 第十章：可观测性与高可靠保障
+
+### 10.1 监控告警体系：通道健康度、API成功率、队列堆积、延迟监控
+
+1. [监控告警体系：构建全面的平台可观测性](10-1-1-monitoring-alerting-system.md)
+2. [链路追踪：精准定位消息全链路路径](10-1-2-traceability.md)
+3. [容量规划与弹性伸缩：应对业务洪峰挑战](10-1-3-capacity-planning-scaling.md)
+4. [应急预案与灾难恢复：构建高可靠的容灾保障体系](10-1-4-disaster-recovery.md)
+
+## 第十一章：与内部生态系统集成
+
+### 11.1 一站式接入：提供多语言SDK、CLI工具、Webhook配置
+
+1. [一站式接入：构建便捷的开发者体验](11-1-1-one-stop-access.md)
+2. [与统一认证平台集成：构建安全的权限管理体系](11-1-2-unified-authentication-integration.md)
+3. [与监控报警平台集成：构建全面的系统可观测性](11-1-3-monitoring-platform-integration.md)
+4. [与CI/CD集成：构建自动化的部署与测试体系](11-1-4-cicd-integration.md)

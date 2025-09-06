@@ -75,6 +75,13 @@
 - [9-3-periodic-access-review-process-platform-implementation.md](9-3-periodic-access-review-process-platform-implementation.md) - 定期权限审阅（Access Review）流程的平台化实现
 - [9-4-key-certificate-security-management-rotation-strategy.md](9-4-key-certificate-security-management-rotation-strategy.md) - 密钥、证书安全管理与轮换策略
 
+## 第十章：平台的可观测性与可靠性
+
+- [10-0-platform-observability-reliability.md](10-0-platform-observability-reliability.md) - 平台的可观测性与可靠性（概述）
+- [10-1-monitoring-alerting-system.md](10-1-monitoring-alerting-system.md) - 监控告警体系：认证成功率、延迟、MFA使用率、异常行为
+- [10-2-high-availability-disaster-recovery-architecture.md](10-2-high-availability-disaster-recovery-architecture.md) - 高可用与灾难恢复架构：数据库多活、无状态服务、异地容灾
+- [10-3-performance-scalability.md](10-3-performance-scalability.md) - 性能与扩展性：水平扩展、缓存策略（权限、用户信息）
+
 ## 后续章节待生成
 
 （此处将在后续生成过程中逐步添加）
