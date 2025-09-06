@@ -56,6 +56,12 @@
   - [4-1-2 自动化测试管理与执行：测试环境准备、测试用例筛选、测试报告分析](4-1-2-test-management-execution.md)
   - [4-1-3 质量门禁设置：测试覆盖率、通过率作为流水线推进的硬性条件](4-1-3-quality-gate-settings.md)
 
+- [5-1 部署与发布策略](5-1-deployment-release-strategies.md)
+  - [5-1-1 环境管理与隔离：开发、测试、预发、生产环境的自动化管理](5-1-1-environment-management-isolation.md)
+  - [5-1-2 部署策略详解：蓝绿部署、金丝雀发布、滚动发布、功能开关](5-1-2-deployment-strategy-details.md)
+  - [5-1-3 与Kubernetes的深度集成：Helm/Manifest的自动化部署](5-1-3-kubernetes-integration.md)
+  - [5-1-4 审批与安全管控：人工卡点、安全扫描、合规检查](5-1-4-approval-security-control.md)
+
 ### 第四部分：运维、观测与落地篇
 
 （此部分的文章将在后续生成）

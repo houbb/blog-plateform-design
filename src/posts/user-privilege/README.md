@@ -4,11 +4,11 @@
 
 ## 第一章：为什么需要统一的身份治理平台？
 
-- [1-1-why-need-unified-identity-governance-platform.md](1-1-why-need-unified-identity-governance-platform.md) - 为什么需要统一的身份治理平台？（概述）
-- [1-1-1-digital-transformation-identity-pain-points.md](1-1-1-digital-transformation-identity-pain-points.md) - 数字化转型下的身份管理之痛：烟囱系统、权限混乱、效率低下
-- [1-1-2-identity-governance-core-concepts.md](1-1-2-identity-governance-core-concepts.md) - 核心概念界定：IAM、4A、CIAM、SSO、权限
-- [1-1-3-unified-identity-platform-core-values.md](1-1-3-unified-identity-platform-core-values.md) - 平台的核心价值：安全、效率、合规、体验
-- [1-1-4-identity-lifecycle-management.md](1-1-4-identity-lifecycle-management.md) - "全生命周期"解读：从账号创建、权限授予到离职回收的完整闭环
+- [1-0-why-need-unified-identity-governance-platform.md](1-0-why-need-unified-identity-governance-platform.md) - 为什么需要统一的身份治理平台？（概述）
+- [1-1-digital-transformation-identity-pain-points.md](1-1-digital-transformation-identity-pain-points.md) - 数字化转型下的身份管理之痛：烟囱系统、权限混乱、效率低下
+- [1-2-core-concept-definition.md](1-2-core-concept-definition.md) - 核心概念界定：IAM、4A、CIAM、SSO、权限
+- [1-3-platform-core-value.md](1-3-platform-core-value.md) - 平台的核心价值：安全、效率、合规、体验
+- [1-4-full-lifecycle-interpretation.md](1-4-full-lifecycle-interpretation.md) - "全生命周期"解读：从账号创建、权限授予到离职回收的完整闭环
 
 ## 第二章：核心理论基础与开放标准
 

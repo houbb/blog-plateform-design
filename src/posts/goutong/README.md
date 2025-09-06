@@ -46,10 +46,11 @@
 3. [高可用设计：无状态服务、消息队列解耦、数据库与缓存高可用、通道隔离与降级](4-1-3-high-availability-design.md)
 4. [API-first设计：提供标准化、版本化的RESTful API](4-1-4-api-first-design.md)
 
-## 第五章：沟通挑战与应对策略
+## 第五章：统一接入与消息处理逻辑
 
-1. [沟通挑战与应对策略：化解障碍，提升效果](1-5-0-communication-challenges.md)
-2. [识别沟通障碍：洞察沟通失败的根源](1-5-1-identifying-communication-barriers.md)
-3. [情绪管理：沟通中的情感智慧](1-5-2-emotional-management.md)
-4. [冲突解决：化矛盾为合作的智慧](1-5-3-conflict-resolution.md)
-5. [提升沟通效果：从理论到实践的全面指南](1-5-4-improving-communication-effectiveness.md)
+### 5.1 通用API设计：发送、查询、批量操作、异步/同步接口
+
+1. [通用API设计：构建灵活高效的通知平台接入接口](5-1-1-universal-api-design.md)
+2. [消息队列（Kafka/RocketMQ）应用：流量削峰、异步化、保证最终一致性](5-1-2-message-queue-application.md)
+3. [消息模板引擎：变量替换、内容审核（涉黄、涉政、广告）、多语言支持](5-1-3-template-engine.md)
+4. [频率控制与防骚扰：基于用户、IP、业务类型的限流策略](5-1-4-rate-limiting-anti-harassment.md)
