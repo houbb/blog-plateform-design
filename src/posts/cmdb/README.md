@@ -24,3 +24,10 @@
 * [3-1-2 团队组建与协作：运维、开发、DBA的角色](3-1-2_team-building-and-collaboration.md)
 * [3-1-3 技术选型：自研 vs. 开源（iTop、CMDBuild、OneCMDB） vs. 商业产品](3-1-3_technology-selection.md)
 * [3-1-4 演进路线图：从核心CI管理到全链路拓扑与赋能](3-1-4_evolution-roadmap.md)
+
+### 第4章：平台架构设计
+
+* [4-1-1 分层架构：数据采集层、核心服务层、API网关层、消费展示层](4-1-1_layered-architecture.md)
+* [4-1-2 核心模块设计：CI管理、关系管理、自动发现、权限控制、操作审计](4-1-2_core-module-design.md)
+* [4-1-3 高可用与高性能设计：数据库选型（MySQL/PostgreSQL/NewSQL）、缓存策略、水平扩展](4-1-3_high-availability-and-performance-design.md)
+* [4-1-4 API-first设计：提供全面、稳定的Restful API供各方消费](4-1-4_api-first-design.md)
