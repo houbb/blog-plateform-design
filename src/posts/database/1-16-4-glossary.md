@@ -1,11 +1,10 @@
 ---
-title: 数据库平台术语表：DBPaaS、OSC、AIOps等核心概念详解
+title: 数据库平台术语表: DBPaaS、OSC、AIOps等核心概念详解
 date: 2025-08-30
 categories: [Database]
 tags: [database]
 published: true
 ---
-
 在企业级数据库平台建设和运营过程中，涉及众多专业术语和概念。为了帮助读者更好地理解和掌握数据库平台相关知识，本文将对核心术语进行详细解释和说明，涵盖架构设计、技术实现、运维管理、发展趋势等各个方面。
 
 ## 架构与设计术语

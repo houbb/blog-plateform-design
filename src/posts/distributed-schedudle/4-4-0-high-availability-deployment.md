@@ -1,11 +1,10 @@
 ---
-title: 4.4 高可用部署方案：Master集群、Worker弹性伸缩、存储多活
+title: 4.4 高可用部署方案: Master集群、Worker弹性伸缩、存储多活
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, high availability, deployment, master cluster, worker scaling, multi-active storage]
 published: true
 ---
-
 在分布式调度平台的生产环境中，高可用性是确保业务连续性和系统稳定性的关键要求。通过合理的高可用部署方案，可以有效降低系统故障风险，提高服务的可靠性和用户体验。本文将深入探讨分布式调度平台的高可用部署方案，重点分析Master集群、Worker弹性伸缩和存储多活等关键技术的实现策略。
 
 ## 高可用部署的核心理念

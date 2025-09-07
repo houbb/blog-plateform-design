@@ -1,11 +1,10 @@
 ---
-title: 制定平台演进路线图：MVP迭代 vs 一步到位
+title: 制定平台演进路线图: MVP迭代 vs 一步到位
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 2.2 制定平台演进路线图：MVP迭代 vs 一步到位
 
 在测试平台建设过程中，选择合适的演进策略是决定项目成败的关键因素之一。MVP（Minimum Viable Product，最小可行产品）迭代和一步到位是两种截然不同的建设策略，各有优劣。本节将深入探讨这两种策略的特点、适用场景，并详细介绍如何制定科学合理的平台演进路线图。

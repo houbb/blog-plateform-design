@@ -1,11 +1,10 @@
 ---
-title: 附录C：BPM平台性能优化指南
+title: 附录C: BPM平台性能优化指南
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, performance optimization, tuning, scalability, efficiency]
 published: true
 ---
-
 # 附录C：BPM平台性能优化指南
 
 BPM平台的性能直接影响用户体验和业务效率。随着业务规模的增长和流程复杂度的提升，性能优化成为BPM平台运维管理的重要课题。本附录提供了一个全面的性能优化指南，帮助组织识别性能瓶颈、实施优化措施并持续监控平台性能。

@@ -1,11 +1,10 @@
 ---
-title: 限流维度与粒度：QPS、并发线程数与分布式总配额的精细控制
+title: 限流维度与粒度: QPS、并发线程数与分布式总配额的精细控制
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, dimensions, granularity]
 published: true
 ---
-
 在分布式限流系统中，限流维度和粒度是决定限流效果的关键因素。不同的维度和粒度设置会直接影响系统的性能、资源利用率和用户体验。本章将深入探讨限流的主要维度（QPS、并发线程数、分布式总配额）以及限流粒度的设置策略。
 
 ## 限流维度详解

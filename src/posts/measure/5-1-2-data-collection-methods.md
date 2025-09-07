@@ -1,11 +1,10 @@
 ---
-title: 采集方式：Agent、API拉取、消息队列（Kafka）订阅、SDK埋点
+title: 采集方式: Agent、API拉取、消息队列（Kafka）订阅、SDK埋点
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]
 published: true
 ---
-
 在企业级统一度量平台中，数据采集是连接数据源与平台核心的关键环节。不同的数据源和业务场景需要采用不同的采集方式，以确保数据能够高效、可靠地传输到平台中。本节将深入探讨四种主要的数据采集方式：Agent采集、API拉取、消息队列订阅和SDK埋点，分析它们的特点、适用场景以及实现方法。
 
 ## Agent采集方式

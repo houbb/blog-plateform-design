@@ -1,11 +1,10 @@
 ---
-title: 可观测性驱动开发（ODD）：报警左移，在开发阶段定义SLO
+title: 可观测性驱动开发（ODD）: 报警左移，在开发阶段定义SLO
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, observability-driven-development, sre, devops]
 published: true
 ---
-
 # 可观测性驱动开发（ODD）：报警左移，在开发阶段定义SLO
 
 随着软件系统复杂性的不断增加和交付速度的持续提升，传统的运维模式已经难以满足现代业务的需求。可观测性驱动开发（Observability-Driven Development, ODD）作为一种新兴的软件开发方法论，强调在软件开发生命周期的早期阶段就考虑系统的可观测性需求，将可观测性作为设计和实现的核心要素。通过将报警左移，ODD能够帮助团队在问题发生之前就识别和解决潜在风险，实现真正的预防性运维。

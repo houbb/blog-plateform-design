@@ -1,11 +1,10 @@
 ---
-title: 实时数据管道：基于Kafka/Flink的实时事件流构建
+title: 实时数据管道: 基于Kafka/Flink的实时事件流构建
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 实时数据管道：基于Kafka/Flink的实时事件流构建
 
 ## 引言

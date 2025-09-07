@@ -1,11 +1,10 @@
 ---
-title: 采集工具与Agent：主流日志采集解决方案深度对比
+title: 采集工具与Agent: 主流日志采集解决方案深度对比
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]
 published: true
 ---
-
 在构建企业级日志平台的过程中，选择合适的日志采集工具和Agent是至关重要的第一步。不同的采集工具在性能、功能、易用性和生态系统方面各有特点，适用于不同的应用场景。本文将深入对比分析主流的日志采集工具，包括Filebeat、Fluentd、Logstash和Vector，帮助您根据实际需求做出最佳选择。
 
 ## 主流采集工具概览

@@ -1,11 +1,10 @@
 ---
-title: 与项目管理工具（Jira）集成：需求驱动部署
+title: 与项目管理工具（Jira）集成: 需求驱动部署
 date: 2025-09-07
 categories: [CICD]
 tags: [jira, project-management, integration, requirement-driven, automation, devops]
 published: true
 ---
-
 在现代软件开发中，项目管理工具如Jira不仅是任务跟踪的工具，更是连接业务需求与技术实现的桥梁。通过将CI/CD平台与Jira等项目管理工具深度集成，可以实现需求驱动的自动化部署，确保每一次代码提交都与具体的业务需求相对应，从而提升交付的可追溯性和业务价值。
 
 ## 需求驱动的部署模式

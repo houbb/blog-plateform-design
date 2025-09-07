@@ -1,11 +1,10 @@
 ---
-title: 实时特征计算：基于Flink/Redis的窗口聚合（近1分钟/1小时交易次数）
+title: 实时特征计算: 基于Flink/Redis的窗口聚合（近1分钟/1小时交易次数）
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 实时特征计算：基于Flink/Redis的窗口聚合（近1分钟/1小时交易次数）
 
 ## 引言

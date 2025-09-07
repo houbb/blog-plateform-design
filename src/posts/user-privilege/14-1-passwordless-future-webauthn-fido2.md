@@ -1,11 +1,10 @@
 ---
-title: 无密码（Passwordless）未来：WebAuthn/FIDO2
+title: 无密码（Passwordless）未来: WebAuthn/FIDO2
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, passwordless, webauthn, fido2]
 published: true
 ---
-
 在数字化时代，密码作为身份认证的主要方式已经暴露出诸多安全和用户体验问题。忘记密码、弱密码、密码重用等问题不仅影响用户体验，更是安全漏洞的重要来源。无密码认证技术，特别是WebAuthn和FIDO2标准，为解决这些问题提供了革命性的解决方案，代表着身份认证的未来发展方向。
 
 ## 引言

@@ -1,11 +1,10 @@
 ---
-title: GitOps核心思想：声明式、版本控制、自动同步
+title: GitOps核心思想: 声明式、版本控制、自动同步
 date: 2025-09-07
 categories: [CICD]
 tags: [gitops, kubernetes, declarative, version-control, automation, devops]
 published: true
 ---
-
 GitOps的核心思想建立在三个基本原则之上：声明式配置、版本控制和自动同步。这三个原则共同构成了GitOps方法论的基石，为现代云原生应用的部署和管理提供了全新的解决方案。理解这些核心概念对于成功实施GitOps至关重要。
 
 ## 声明式配置

@@ -1,11 +1,10 @@
 ---
-title: 9.1 任务触发方式：定时、手动、API事件驱动
+title: 9.1 任务触发方式: 定时、手动、API事件驱动
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task trigger, cron, manual trigger, API trigger, event-driven]
 published: true
 ---
-
 在分布式调度平台中，任务触发方式决定了任务何时以及如何开始执行，是调度系统的核心功能之一。不同的业务场景需要不同的触发机制，从传统的定时触发到现代化的事件驱动触发，调度平台需要提供灵活多样的触发方式以满足各种复杂需求。本文将深入探讨定时触发、手动触发和API事件驱动触发等核心触发机制的设计与实现，分析各自的技术特点和适用场景。
 
 ## 任务触发方式的核心价值

@@ -1,11 +1,10 @@
 ---
-title: 与Serverless/FaaS平台集成：无服务器架构的CI/CD实践
+title: 与Serverless/FaaS平台集成: 无服务器架构的CI/CD实践
 date: 2025-09-07
 categories: [CICD]
 tags: [serverless, faas, integration, aws-lambda, azure-functions, google-cloud-functions, devops]
 published: true
 ---
-
 随着云计算的发展，Serverless架构和函数即服务（FaaS）平台正在成为现代应用开发的重要组成部分。通过将CI/CD平台与AWS Lambda、Azure Functions、Google Cloud Functions等Serverless平台集成，可以实现函数的自动化部署、版本管理和监控，极大地简化了无服务器应用的交付流程。
 
 ## Serverless平台集成实践

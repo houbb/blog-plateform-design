@@ -1,11 +1,10 @@
 ---
-title: 统一用例模型：管理API、Web UI、Mobile、性能用例
+title: 统一用例模型: 管理API、Web UI、Mobile、性能用例
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 5.1 统一用例模型：管理API、Web UI、Mobile、性能用例
 
 在现代软件测试中，测试类型日益多样化，包括API测试、Web UI测试、移动测试、性能测试等。为了有效管理这些不同类型的测试用例，需要建立一个统一的测试用例模型，既能满足各种测试类型的特殊需求，又能提供一致的管理界面和操作流程。本节将详细介绍统一用例模型的设计理念、结构设计以及对不同测试类型的适配实现。

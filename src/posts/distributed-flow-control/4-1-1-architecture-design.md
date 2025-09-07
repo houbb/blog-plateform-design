@@ -1,11 +1,10 @@
 ---
-title: 分层架构：控制台（Console）、控制面（Control Plane）、数据面（Data Plane）
+title: 分层架构: 控制台（Console）、控制面（Control Plane）、数据面（Data Plane）
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, architecture, control-plane, data-plane]
 published: true
 ---
-
 在构建企业级分布式限流平台时，合理的架构设计是确保系统高可用、高性能和易维护的关键。一个优秀的分布式限流平台通常采用分层架构设计，将系统划分为控制台、控制面和数据面三个核心层次。这种架构模式不仅符合云原生设计理念，还能有效解耦系统组件，提高系统的可扩展性和可维护性。
 
 ## 分层架构概述

@@ -1,11 +1,10 @@
 ---
-title: 常见误区与失败原因分析：为什么你的CMDB成了"僵尸系统"？
+title: 常见误区与失败原因分析: 为什么你的CMDB成了"僵尸系统"？
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]
 published: true
 ---
-
 在IT运维领域，CMDB（Configuration Management Database）被誉为数字化转型的基石，但现实中许多企业的CMDB项目却以失败告终，最终沦为"僵尸系统"——投入了大量资源建设，却无法发挥应有的价值。本文将深入分析CMDB项目失败的常见误区和根本原因，并提供相应的解决方案。
 
 ## 误区一：将CMDB视为单纯的IT项目

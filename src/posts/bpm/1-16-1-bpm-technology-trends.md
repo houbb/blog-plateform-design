@@ -1,11 +1,10 @@
 ---
-title: BPM技术发展趋势：从自动化到智能化的演进
+title: BPM技术发展趋势: 从自动化到智能化的演进
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, technology trends, artificial intelligence, hyperautomation, low-code, edge computing]
 published: true
 ---
-
 # BPM技术发展趋势：从自动化到智能化的演进
 
 随着数字化转型的深入推进和新兴技术的快速发展，业务流程管理(BPM)技术正在经历一场深刻的变革。从早期的流程自动化到如今的智能化流程管理，BPM技术不断演进，呈现出新的发展趋势。这些趋势不仅重塑了BPM平台的技术架构，也重新定义了业务流程自动化的边界和可能性。

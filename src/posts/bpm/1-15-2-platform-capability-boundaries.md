@@ -1,11 +1,10 @@
 ---
-title: 平台能力边界：明确IT开发与业务配置的职责范围
+title: 平台能力边界: 明确IT开发与业务配置的职责范围
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, low-code, capability boundaries, it governance, business configuration]
 published: true
 ---
-
 # 平台能力边界：明确IT开发与业务配置的职责范围
 
 在低代码/无代码平台的实施过程中，一个关键挑战是如何合理划分IT专业开发与业务配置之间的职责边界。明确的能力边界不仅有助于最大化平台价值，还能确保系统的安全性、稳定性和可维护性。通过建立清晰的职责分工机制，企业可以在保持业务敏捷性的同时，维护IT治理的规范性。

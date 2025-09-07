@@ -1,11 +1,10 @@
 ---
-title: 关键原则：一切皆代码（Pipeline as Code, IaC）、自动化、快速反馈、持续改进
+title: 关键原则: 一切皆代码（Pipeline as Code, IaC）、自动化、快速反馈、持续改进
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]
 published: true
 ---
-
 CI/CD的成功实施不仅依赖于技术工具的选择和配置，更依赖于一系列关键原则的贯彻执行。这些原则是CI/CD实践的基石，指导着平台的设计、实施和持续优化。本文将深入探讨CI/CD的四大关键原则：一切皆代码、自动化、快速反馈和持续改进。
 
 ## 一切皆代码（Everything as Code）

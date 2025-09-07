@@ -1,11 +1,10 @@
 ---
-title: 附录B：Jenkinsfile/GitLab CI YAML 编写指南
+title: 附录B: Jenkinsfile/GitLab CI YAML 编写指南
 date: 2025-09-07
 categories: [CICD]
 tags: [jenkins, gitlab, pipeline, configuration, best-practices]
 published: true
 ---
-
 编写高质量的CI/CD流水线配置是实现高效软件交付的关键。无论是Jenkins的Jenkinsfile还是GitLab CI的.gitlab-ci.yml，都需要遵循一定的规范和最佳实践。本文将详细介绍这两种主流CI/CD配置文件的编写方法、语法结构和最佳实践，帮助开发者编写出更加健壮、可维护的流水线配置。
 
 ## Jenkinsfile 编写指南

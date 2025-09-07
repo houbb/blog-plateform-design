@@ -1,11 +1,10 @@
 ---
-title: 附录A：开源CMDB系统对比表
+title: 附录A: 开源CMDB系统对比表
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, open-source, comparison,开源对比]
 published: true
 ---
-
 在配置管理数据库（CMDB）的选型过程中，开源解决方案因其成本效益和灵活性而受到广泛关注。本文档提供了主流开源CMDB系统的详细对比，帮助企业在选型时做出明智的决策。
 
 ## 对比维度说明

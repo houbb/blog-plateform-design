@@ -1,11 +1,10 @@
 ---
-title: 配置热更新：规则变更实时下发至数据面，无需重启应用
+title: 配置热更新: 规则变更实时下发至数据面，无需重启应用
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, configuration, hot-update, realtime]
 published: true
 ---
-
 在分布式限流平台中，配置热更新是一个至关重要的功能。它允许运维人员在不重启应用的情况下实时调整限流规则，这对于应对突发流量、业务变更和紧急故障处理具有重要意义。本章将深入探讨如何实现高效的配置热更新机制，确保规则变更能够实时下发到所有数据面节点。
 
 ## 配置热更新的重要性

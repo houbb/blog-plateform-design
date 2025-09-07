@@ -1,11 +1,10 @@
 ---
-title: 分支策略与流水线触发：Git Flow, GitHub Flow, Trunk-Based Development
+title: 分支策略与流水线触发: Git Flow, GitHub Flow, Trunk-Based Development
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]
 published: true
 ---
-
 分支策略是软件开发流程的核心组成部分，它直接影响着团队的协作效率、发布频率和风险控制能力。不同的分支策略适用于不同的团队规模、项目特性和业务需求。CI/CD平台必须能够灵活支持各种主流的分支策略，并根据分支类型和项目需求自动触发相应的流水线执行。本文将深入探讨三种主流的分支策略：Git Flow、GitHub Flow和Trunk-Based Development，分析它们的特点、适用场景以及在CI/CD平台中的实现方式。
 
 ## 分支策略的核心价值

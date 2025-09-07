@@ -1,11 +1,10 @@
 ---
-title: 附录C：术语表
+title: 附录C: 术语表
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, glossary, terminology, definitions]
 published: true
 ---
-
 在分布式调度平台的设计、开发、部署和运维过程中，涉及众多专业术语和技术概念。为了帮助读者更好地理解和使用本书内容，本附录提供了相关术语的定义和解释。术语按照字母顺序排列，涵盖了分布式系统、调度平台、云计算、容器化等相关领域的核心概念。
 
 ## A

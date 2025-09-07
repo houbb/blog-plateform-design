@@ -1,11 +1,10 @@
 ---
-title: 附录A：BPM平台建设路线图
+title: 附录A: BPM平台建设路线图
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, roadmap, implementation, planning, digital transformation]
 published: true
 ---
-
 # 附录A：BPM平台建设路线图
 
 BPM平台建设是一个复杂的系统工程，需要科学的规划和分阶段的实施。一个清晰的建设路线图不仅能够指导项目实施，还能帮助组织合理分配资源、控制风险并确保项目成功。本附录提供了一个通用的BPM平台建设路线图，组织可以根据自身实际情况进行调整和优化。

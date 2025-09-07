@@ -1,11 +1,10 @@
 ---
-title: 5.2 调度器设计：时间轮（Time Wheel）算法实现定时调度
+title: 5.2 调度器设计: 时间轮（Time Wheel）算法实现定时调度
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, scheduler, time wheel, timing, algorithm]
 published: true
 ---
-
 调度器是分布式调度平台的核心组件，负责根据预设的调度策略和时间规则，决定任务的执行时间和执行节点。定时调度作为调度器的重要功能之一，需要高效、准确地处理大量定时任务。时间轮（Time Wheel）算法作为一种高效的定时器实现方式，在现代调度系统中得到了广泛应用。本文将深入探讨调度器的设计原理，重点分析时间轮算法的实现机制及其在定时调度中的应用。
 
 ## 调度器的核心功能与设计挑战

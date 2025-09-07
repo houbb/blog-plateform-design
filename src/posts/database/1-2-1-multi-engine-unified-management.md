@@ -1,11 +1,10 @@
 ---
-title: 多引擎支持：实现MySQL、PostgreSQL、Redis等数据库的统一纳管
+title: 多引擎支持: 实现MySQL、PostgreSQL、Redis等数据库的统一纳管
 date: 2025-08-30
 categories: [Database]
 tags: [database]
 published: true
 ---
-
 在现代企业的IT架构中，单一数据库引擎已无法满足多样化的业务需求。不同的业务场景需要不同类型的数据库来支撑，这就形成了一个多引擎并存的复杂环境。如何有效地统一纳管这些异构数据库，成为企业级数据库平台建设的重要课题。本文将深入探讨多引擎支持的实现方案和关键技术。
 
 ## 多引擎并存的必然趋势

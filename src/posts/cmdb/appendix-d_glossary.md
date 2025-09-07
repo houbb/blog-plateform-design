@@ -1,11 +1,10 @@
 ---
-title: 附录D：术语表
+title: 附录D: 术语表
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, glossary, terminology]
 published: true
 ---
-
 为了帮助读者更好地理解和使用配置管理数据库（CMDB）相关概念，本文档提供了CMDB领域常用术语的定义和解释。这些术语涵盖了CMDB的核心概念、技术实现、管理实践等多个方面。
 
 ## A

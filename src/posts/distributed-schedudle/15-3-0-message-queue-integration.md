@@ -1,11 +1,10 @@
 ---
-title: 15.3 与消息队列集成：基于事件的任务触发
+title: 15.3 与消息队列集成: 基于事件的任务触发
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, message queue, event-driven, task trigger, Kafka, RabbitMQ]
 published: true
 ---
-
 在现代分布式系统架构中，事件驱动架构（Event-Driven Architecture）已成为构建高内聚、低耦合系统的重要设计模式。通过与消息队列的深度集成，分布式调度平台能够基于系统内外部事件实时触发相应的任务执行，实现业务流程的自动化和智能化。这种基于事件的任务触发机制不仅提升了系统的响应速度和处理效率，还增强了系统的可扩展性和容错能力。本文将深入探讨分布式调度平台与消息队列集成的核心理念、技术实现以及最佳实践。
 
 ## 消息队列集成的核心价值

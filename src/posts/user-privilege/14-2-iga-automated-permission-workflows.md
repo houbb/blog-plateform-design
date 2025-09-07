@@ -1,11 +1,10 @@
 ---
-title: 身份治理与管理（IGA）：自动化权限治理工作流
+title: 身份治理与管理（IGA）: 自动化权限治理工作流
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, iga, automated-workflows, permission-governance]
 published: true
 ---
-
 在企业数字化转型的进程中，身份治理与管理（Identity Governance and Administration, IGA）已成为确保信息安全、满足合规要求和提升运营效率的核心能力。随着组织规模的扩大和系统复杂性的增加，传统的手动权限管理方式已无法满足现代企业的需求。自动化权限治理工作流通过智能化的流程和算法，实现了权限管理的标准化、自动化和智能化。
 
 ## 引言

@@ -1,11 +1,10 @@
 ---
-title: 需求与场景分析：识别需要保护的核心服务与资源
+title: 需求与场景分析: 识别需要保护的核心服务与资源
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, strategy, analysis]
 published: true
 ---
-
 在构建企业级分布式限流平台之前，深入分析业务需求和应用场景是至关重要的第一步。只有准确识别需要保护的核心服务与资源，才能设计出有效的限流策略和平台架构。本章将详细探讨如何进行需求与场景分析，帮助架构师和工程师构建符合实际业务需求的限流平台。
 
 ## 需求分析框架

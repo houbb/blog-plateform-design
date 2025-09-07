@@ -1,3 +1,11 @@
+---
+title: "第一章：数字化转型的流程引擎"
+date: 2025-09-07
+categories: ["BPM"]
+tags: ["bpm", "digital-transformation"]
+published: true
+---
+
 # 第一章：数字化转型的流程引擎
 
 在数字化转型的大潮中，企业越来越意识到业务流程管理（BPM）的重要性。BPM不仅仅是简单的审批流工具，而是企业实现业务自动化、监控和优化的核心引擎。本章将深入探讨BPM的核心价值与战略定位，分析BPM与OA、Workflow、RPA等技术的辨析与融合，并阐述企业为何需要BPM以及BPM全生命周期的概念。

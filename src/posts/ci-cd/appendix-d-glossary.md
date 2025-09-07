@@ -1,11 +1,10 @@
 ---
-title: 附录D：术语表
+title: 附录D: 术语表
 date: 2025-09-07
 categories: [CICD]
 tags: [glossary, terminology, ci, cd, devops, sre, dora]
 published: true
 ---
-
 本文档提供了CI/CD及相关领域中常用术语的定义和解释，帮助读者更好地理解本书内容。
 
 ## A

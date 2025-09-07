@@ -1,11 +1,10 @@
 ---
-title: 附录A：开源报警系统对比
+title: 附录A: 开源报警系统对比
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, open-source, comparison, prometheus, alertmanager, elastalert, nightingale]
 published: true
 ---
-
 # 附录A：开源报警系统对比
 
 在构建智能报警平台时，选择合适的开源报警系统是一个重要的决策。市场上存在多种成熟的开源解决方案，每种都有其特点和适用场景。本附录将对几种主流的开源报警系统进行详细对比，帮助读者根据自身需求选择最适合的解决方案。

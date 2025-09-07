@@ -1,11 +1,10 @@
 ---
-title: 与制品库（Nexus、Harbor）的联动：版本管理
+title: 与制品库（Nexus、Harbor）的联动: 版本管理
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 与制品库（Nexus、Harbor）的联动：版本管理
 
 在现代软件开发生命周期中，制品库（Artifact Repository）扮演着至关重要的角色。作为软件构建产物的集中存储和管理平台，制品库不仅提供了版本控制、依赖管理和安全扫描等功能，还成为了DevOps流水线中的核心组件。对于测试平台而言，与制品库的深度集成能够实现测试环境的精确复现、测试数据的版本追踪以及测试结果的可追溯性，从而提升整个测试流程的质量和效率。

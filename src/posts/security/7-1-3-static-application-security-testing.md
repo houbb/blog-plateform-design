@@ -1,11 +1,10 @@
 ---
-title: 静态应用安全测试（SAST）：集成CI/CD，在编码阶段发现漏洞
+title: 静态应用安全测试（SAST）: 集成CI/CD，在编码阶段发现漏洞
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在现代软件开发生命周期中，安全问题的早期发现和修复对于降低整体安全风险具有至关重要的意义。静态应用安全测试（Static Application Security Testing, SAST）作为一种白盒测试技术，通过在不执行代码的情况下分析源代码、字节码或二进制文件，能够有效识别应用程序中的安全漏洞和编码缺陷。SAST技术的核心价值在于能够在编码阶段就发现潜在的安全问题，从而显著降低修复成本并提高应用的整体安全性。

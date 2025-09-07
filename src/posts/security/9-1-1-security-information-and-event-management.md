@@ -1,11 +1,10 @@
 ---
-title: 安全事件管理（SIEM）：作为安全事件的中枢
+title: 安全事件管理（SIEM）: 作为安全事件的中枢
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在现代企业网络安全架构中，安全信息和事件管理（Security Information and Event Management, SIEM）系统扮演着至关重要的角色，被誉为企业安全运营的"中枢神经系统"。随着企业IT环境的日益复杂化，来自防火墙、入侵检测系统、终端防护软件、应用程序等各个层面的安全日志和事件数据呈现出爆炸式增长，传统的日志分析和安全监控方法已无法有效应对如此庞大的数据量和复杂的安全威胁。

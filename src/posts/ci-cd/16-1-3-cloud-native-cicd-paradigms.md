@@ -1,11 +1,10 @@
 ---
-title: 云原生环境下的CI/CD新范式：从流水线到服务网格的演进
+title: 云原生环境下的CI/CD新范式: 从流水线到服务网格的演进
 date: 2025-09-07
 categories: [CICD]
 tags: [cloud-native, kubernetes, service-mesh, gitops, serverless, devops]
 published: true
 ---
-
 云原生技术的快速发展正在重塑CI/CD的实践方式。传统的基于虚拟机或物理机的部署模式已逐渐被容器化、微服务、服务网格等云原生技术所取代。在这一背景下，CI/CD流程也在发生深刻变革，从线性的流水线执行模式演进为分布式的、事件驱动的服务化架构。GitOps、Serverless、服务网格等新技术正在重新定义软件交付的方式，推动CI/CD向更加自动化、智能化、安全化的方向发展。本文将深入探讨云原生环境下的CI/CD新范式，分析其技术特点和实践方法。
 
 ## GitOps与声明式交付

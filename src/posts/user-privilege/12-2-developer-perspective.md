@@ -1,11 +1,10 @@
 ---
-title: 开发者视角：清晰的集成文档、SDK、API
+title: 开发者视角: 清晰的集成文档、SDK、API
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, developer-experience, api, sdk]
 published: true
 ---
-
 在企业级统一身份治理平台中，开发者是推动平台采用和扩展的关键力量。提供清晰的集成文档、功能丰富的SDK和设计良好的API，能够显著降低集成门槛，提升开发效率，促进平台的广泛采用。本文将深入探讨如何为开发者打造优秀的开发体验。
 
 ## 引言

@@ -1,11 +1,10 @@
 ---
-title: 2.2 调度策略与算法：先进先出（FIFO）、公平调度（Fair）、能力调度（Capacity）、优先级调度
+title: 2.2 调度策略与算法: 先进先出（FIFO）、公平调度（Fair）、能力调度（Capacity）、优先级调度
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed, algorithm, fifo, fair, capacity, priority]
 published: true
 ---
-
 调度策略与算法是分布式调度系统的核心，直接决定了任务的执行顺序和资源分配方式。不同的调度策略适用于不同的业务场景，合理选择和组合调度策略是构建高效调度系统的关键。本文将深入探讨分布式调度系统中的主要调度策略与算法，包括先进先出（FIFO）、公平调度（Fair）、能力调度（Capacity）和优先级调度等。
 
 ## 调度策略与算法概述

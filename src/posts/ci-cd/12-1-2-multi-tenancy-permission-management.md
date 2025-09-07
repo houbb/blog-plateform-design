@@ -1,11 +1,10 @@
 ---
-title: 多租户与权限管理（RBAC）：项目隔离与资源配额
+title: 多租户与权限管理（RBAC）: 项目隔离与资源配额
 date: 2025-09-07
 categories: [CICD]
 tags: [multi-tenancy, rbac, permission-management, resource-quota, devops, security]
 published: true
 ---
-
 在企业级CI/CD平台运营中，多租户架构和基于角色的访问控制（RBAC）是确保平台安全、稳定运行的核心机制。随着组织规模的扩大和团队数量的增加，如何有效隔离不同团队的资源、确保数据安全以及实施精细化的访问控制成为平台运营的重要挑战。通过建立完善的多租户权限管理体系，可以实现资源的合理分配、访问权限的精确控制以及运营成本的有效管理。
 
 ## 多租户权限管理架构

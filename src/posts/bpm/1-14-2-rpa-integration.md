@@ -1,11 +1,10 @@
 ---
-title: 与RPA集成：处理无API的遗留系统操作
+title: 与RPA集成: 处理无API的遗留系统操作
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, rpa, integration, legacy systems, automation, orchestration]
 published: true
 ---
-
 # 与RPA集成：处理无API的遗留系统操作
 
 机器人流程自动化(RPA)作为一种重要的自动化技术，能够模拟人类用户操作界面来执行重复性任务。在企业级BPM平台建设中，将BPM与RPA集成可以有效解决那些缺乏API接口或难以通过传统方式集成的遗留系统的自动化问题。本章将深入探讨BPM与RPA集成的架构设计、实现方法和最佳实践。

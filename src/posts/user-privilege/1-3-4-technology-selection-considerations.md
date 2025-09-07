@@ -1,11 +1,10 @@
 ---
-title: 技术选型考量：自研 vs 商用产品 vs 开源方案（Keycloak, Casdoor, Ory Kratos）
+title: 技术选型考量: 自研 vs 商用产品 vs 开源方案（Keycloak, Casdoor, Ory Kratos）
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]
 published: true
 ---
-
 在构建统一身份治理平台时，技术选型是一个至关重要的决策环节。企业需要在自研、商用产品和开源方案之间做出选择，并针对具体的开源产品进行评估。本文将深入探讨各种技术选型的优缺点，并详细分析Keycloak、Casdoor和Ory Kratos等主流开源身份治理平台的特点和适用场景。
 
 ## 引言

@@ -1,11 +1,10 @@
 ---
-title: 多语言构建支持：Java, Go, Python, Node.js, .NET的标准化构建环境
+title: 多语言构建支持: Java, Go, Python, Node.js, .NET的标准化构建环境
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]
 published: true
 ---
-
 现代软件项目往往涉及多种编程语言和技术栈，这给CI/CD平台的构建环境管理带来了巨大挑战。不同的编程语言有着不同的构建工具、依赖管理机制和打包方式，这就要求CI/CD平台能够提供灵活而标准化的构建环境支持。通过容器化技术、标准化构建模板和智能环境管理，CI/CD平台能够为各种主流编程语言提供一致且高效的构建体验。本文将深入探讨如何为Java、Go、Python、Node.js、.NET等主流编程语言构建标准化的构建环境。
 
 ## 多语言构建的挑战与需求

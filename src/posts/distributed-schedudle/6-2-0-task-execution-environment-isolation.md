@@ -1,11 +1,10 @@
 ---
-title: 6.2 任务执行环境隔离：Docker容器化、Kubernetes Pod、进程级隔离
+title: 6.2 任务执行环境隔离: Docker容器化、Kubernetes Pod、进程级隔离
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task execution, environment isolation, docker, kubernetes, process isolation]
 published: true
 ---
-
 在分布式调度平台中，任务执行环境隔离是确保任务稳定执行和系统安全的关键技术。随着业务复杂度的增加和多租户场景的普及，不同任务间可能存在着资源竞争、安全风险和环境冲突等问题。通过合理的环境隔离技术，可以有效解决这些问题，提高系统的稳定性和安全性。本文将深入探讨任务执行环境隔离的核心技术，重点分析Docker容器化、Kubernetes Pod和进程级隔离等主流隔离方案的实现原理和应用场景。
 
 ## 任务执行环境隔离的核心概念与重要性

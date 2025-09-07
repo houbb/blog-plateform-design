@@ -1,11 +1,10 @@
 ---
-title: 数据库平台开源平台对比：Yearning、Archery、Shardingsphere-Proxy等主流方案分析
+title: 数据库平台开源平台对比: Yearning、Archery、Shardingsphere-Proxy等主流方案分析
 date: 2025-08-30
 categories: [Database]
 tags: [database]
 published: true
 ---
-
 在企业级数据库平台建设过程中，选择合适的技术方案是成功的关键因素之一。随着开源社区的蓬勃发展，市场上涌现出众多优秀的开源数据库管理平台，如Yearning、Archery、Shardingsphere-Proxy等。这些平台各有特色，适用于不同的业务场景和技术需求。本文将对主流的开源数据库管理平台进行详细对比分析，帮助企业在技术选型时做出更加明智的决策。
 
 ## 主流开源平台概述

@@ -1,11 +1,10 @@
 ---
-title: Serverless场景下的限流挑战与应对：在无服务器架构中实现精准流量控制
+title: Serverless场景下的限流挑战与应对: 在无服务器架构中实现精准流量控制
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, serverless, faas, cloud-native]
 published: true
 ---
-
 随着云计算技术的发展，Serverless架构（无服务器架构）正变得越来越流行。在Serverless模式下，开发者无需管理服务器基础设施，只需关注业务逻辑的实现。然而，这种架构模式也给分布式限流带来了新的挑战。本章将深入探讨在Serverless场景下实现分布式限流所面临的主要挑战，并提供相应的解决方案和最佳实践。
 
 ## Serverless架构特点与限流挑战

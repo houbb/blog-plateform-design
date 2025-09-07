@@ -1,11 +1,10 @@
 ---
-title: 第13章：实施推广与变革管理概述
+title: 第13章: 实施推广与变革管理概述
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, implementation, promotion, change management, adoption]
 published: true
 ---
-
 # 第13章：实施推广与变革管理
 
 在企业级BPM平台建设中，技术实现只是成功的一部分，如何有效地实施推广并管理组织变革才是决定项目成败的关键因素。许多技术先进的BPM平台最终未能发挥预期价值，往往不是因为技术问题，而是因为缺乏有效的实施推广策略和变革管理能力。

@@ -1,11 +1,10 @@
 ---
-title: 基于Kubernetes HPA的限流：结合自定义指标（如QPS）进行自动扩缩容
+title: 基于Kubernetes HPA的限流: 结合自定义指标（如QPS）进行自动扩缩容
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, kubernetes, hpa, autoscaling]
 published: true
 ---
-
 在云原生时代，Kubernetes已成为容器编排的事实标准，而水平Pod自动扩缩容（Horizontal Pod Autoscaler, HPA）是Kubernetes中实现自动扩缩容的核心机制。将分布式限流系统与Kubernetes HPA深度集成，通过自定义指标（如QPS）驱动自动扩缩容，能够实现更加智能和高效的资源管理。本章将深入探讨如何基于Kubernetes HPA实现限流驱动的自动扩缩容，并提供完整的实现方案和最佳实践。
 
 ## Kubernetes HPA概述

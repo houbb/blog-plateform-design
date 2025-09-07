@@ -1,11 +1,10 @@
 ---
-title: 与业务系统集成：从ERP、CRM、财务系统中获取数据或回写结果
+title: 与业务系统集成: 从ERP、CRM、财务系统中获取数据或回写结果
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, integration, erp, crm, finance, api, rest, soap]
 published: true
 ---
-
 # 与业务系统集成：从ERP、CRM、财务系统中获取数据或回写结果
 
 在企业级BPM平台建设中，与业务系统的集成是实现端到端业务流程自动化的核心环节。通过与ERP、CRM、财务系统等核心业务系统的深度集成，BPM平台可以获取业务所需的数据，并将流程处理结果回写到相应的系统中，从而实现真正的业务闭环。

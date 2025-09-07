@@ -1,11 +1,10 @@
 ---
-title: 数据加密与脱敏：保护流程中的敏感信息
+title: 数据加密与脱敏: 保护流程中的敏感信息
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, data encryption, data masking, security, privacy]
 published: true
 ---
-
 # 数据加密与脱敏：保护流程中的敏感信息
 
 在企业级BPM平台中，数据加密与脱敏是保护敏感信息的关键技术手段。随着数据安全法规的日益严格和数据泄露事件的频发，企业必须采取有效措施保护业务流程中涉及的个人身份信息、财务数据、商业机密等敏感信息，防止数据泄露和滥用。

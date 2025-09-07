@@ -1,11 +1,10 @@
 ---
-title: ABAC模型初探：策略语言（如Rego）与策略执行点（PEP）/决策点（PDP）架构
+title: ABAC模型初探: 策略语言（如Rego）与策略执行点（PEP）/决策点（PDP）架构
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]
 published: true
 ---
-
 基于属性的访问控制（Attribute-Based Access Control，ABAC）是一种更细粒度的授权模型，它基于用户、资源、环境等属性来决定访问控制决策。相比RBAC模型，ABAC提供了更高的灵活性和更精确的控制能力，特别适用于复杂的业务场景。本文将深入探讨ABAC模型的核心概念、策略语言以及PEP/PDP架构的实现细节。
 
 ## 引言

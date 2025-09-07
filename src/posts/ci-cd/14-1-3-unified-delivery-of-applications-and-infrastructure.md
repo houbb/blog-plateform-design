@@ -1,11 +1,10 @@
 ---
-title: 应用与基础设施的统一交付：GitOps在企业环境中的完整实践
+title: 应用与基础设施的统一交付: GitOps在企业环境中的完整实践
 date: 2025-09-07
 categories: [CICD]
 tags: [gitops, kubernetes, infrastructure, applications, unified-delivery, devops, platform-engineering]
 published: true
 ---
-
 在现代云原生环境中，GitOps不仅用于应用部署，更扩展到了基础设施管理的各个层面。通过将应用和基础设施统一纳入GitOps流程，组织可以实现真正的"一切皆代码"理念，从而提升整个系统的可靠性、安全性和可维护性。本文将深入探讨如何通过GitOps实现应用与基础设施的统一交付，以及在企业环境中的完整实践方案。
 
 ## GitOps统一交付架构

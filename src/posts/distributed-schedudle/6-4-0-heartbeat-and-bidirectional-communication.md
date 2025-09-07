@@ -1,11 +1,10 @@
 ---
-title: 6.4 心跳上报与双向通信：GRPC长连接的应用
+title: 6.4 心跳上报与双向通信: GRPC长连接的应用
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, heartbeat, bidirectional communication, grpc, long connection]
 published: true
 ---
-
 在分布式调度平台中，心跳上报与双向通信机制是确保系统各组件间有效协作和状态同步的关键技术。通过心跳机制，调度器可以实时了解执行器的健康状态和资源使用情况；通过双向通信，调度器和执行器可以高效地交换任务信息和控制指令。gRPC作为一种高性能、跨语言的RPC框架，其长连接特性为实现高效的双向通信提供了理想的技术方案。本文将深入探讨心跳上报与双向通信的核心技术，重点分析基于gRPC长连接的实现原理和最佳实践。
 
 ## 心跳上报与双向通信的核心概念与重要性

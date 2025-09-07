@@ -1,11 +1,10 @@
 ---
-title: 统一代码规范与格式化：Prettier, EditorConfig的平台化管控
+title: 统一代码规范与格式化: Prettier, EditorConfig的平台化管控
 date: 2025-09-06
 categories: [QA]
 tags: [qa]
 published: true
 ---
-
 在软件开发团队中，代码风格的不一致性是一个常见但严重影响代码质量和团队协作的问题。通过统一的代码规范和自动化格式化工具，可以显著提升代码的可读性、可维护性，并减少团队成员之间的摩擦。本章将深入探讨如何通过Prettier、EditorConfig等工具实现代码规范的统一管理，以及如何在工程效能平台中进行平台化管控。
 
 ## 代码规范的重要性

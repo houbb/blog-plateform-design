@@ -1,11 +1,10 @@
 ---
-title: 附录D：术语表
+title: 附录D: 术语表
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, glossary, terminology]
 published: true
 ---
-
 为了帮助读者更好地理解和使用本系列文档中的专业术语，本附录提供了分布式限流领域常用术语的详细解释和定义。这些术语涵盖了限流算法、系统架构、性能指标、安全防护等多个方面，为读者构建完整的知识体系提供参考。
 
 ## A

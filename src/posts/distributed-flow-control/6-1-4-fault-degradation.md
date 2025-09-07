@@ -1,11 +1,10 @@
 ---
-title: 故障降级与恢复：Redis宕机时，自动降级到本地限流或直接放行
+title: 故障降级与恢复: Redis宕机时，自动降级到本地限流或直接放行
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, fault-tolerance, degradation, recovery, redis]
 published: true
 ---
-
 在分布式限流系统中，高可用性是至关重要的设计目标。当核心组件如Redis出现故障时，系统必须具备故障降级和自动恢复的能力，以确保业务的连续性。本章将深入探讨如何设计和实现故障降级与恢复机制，确保在Redis宕机等异常情况下，系统能够自动降级到本地限流或直接放行策略，并在服务恢复后自动恢复正常运行。
 
 ## 故障降级策略设计

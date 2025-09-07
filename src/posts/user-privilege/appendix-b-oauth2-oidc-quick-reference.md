@@ -1,11 +1,10 @@
 ---
-title: 附录B：OAuth 2.0 / OIDC 快速参考
+title: 附录B: OAuth 2.0 / OIDC 快速参考
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, oauth2, oidc, quick-reference]
 published: true
 ---
-
 OAuth 2.0和OpenID Connect（OIDC）是现代身份认证和授权的核心协议。本快速参考指南将帮助开发者快速理解和使用这些协议的关键概念、流程和最佳实践。
 
 ## 引言

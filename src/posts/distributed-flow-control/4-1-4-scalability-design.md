@@ -1,11 +1,10 @@
 ---
-title: 扩展性设计：支持多语言SDK、多环境（K8s/VM）
+title: 扩展性设计: 支持多语言SDK、多环境（K8s/VM）
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, scalability, sdk, kubernetes, multi-environment]
 published: true
 ---
-
 在企业级分布式限流平台的建设中，扩展性设计是确保系统能够适应不断变化的业务需求和技术环境的关键因素。随着业务规模的扩大和多样化，平台需要支持多种编程语言、不同的部署环境以及灵活的扩展机制。本章将深入探讨如何通过多语言SDK支持和多环境适配来构建具有良好扩展性的分布式限流平台。
 
 ## 多语言SDK设计

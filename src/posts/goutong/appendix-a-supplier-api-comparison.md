@@ -1,11 +1,10 @@
 ---
-title: 附录A：主流通道供应商API对比与选型建议
+title: 附录A: 主流通道供应商API对比与选型建议
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, supplier-comparison, api]
 published: true
 ---
-
 在构建企业级统一通知通道平台时，选择合适的通道供应商是确保平台成功的关键决策之一。不同的供应商在技术能力、服务质量、价格策略、覆盖范围等方面各有特点，需要根据具体的业务需求和战略目标进行综合评估。本文将对主流通道供应商的API进行详细对比分析，并提供科学的选型建议。
 
 ## 供应商分类与特点

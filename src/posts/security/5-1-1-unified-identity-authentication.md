@@ -1,11 +1,10 @@
 ---
-title: 统一身份认证（SSO）：集成AD/LDAP、OAUTH 2.0、OIDC、SAML 2.0
+title: 统一身份认证（SSO）: 集成AD/LDAP、OAUTH 2.0、OIDC、SAML 2.0
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在现代企业IT环境中，用户需要访问越来越多的应用系统和服务。传统的每个应用独立进行身份认证的方式不仅用户体验差，而且管理复杂，安全风险高。统一身份认证（Single Sign-On, SSO）作为一种重要的身份管理解决方案，通过一次认证即可访问所有授权资源，大大简化了用户操作，提高了管理效率，增强了安全性。本章将深入探讨SSO的核心概念、技术标准、架构设计以及在企业级统一安全能力平台中的应用实践。

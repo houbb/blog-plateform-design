@@ -1,11 +1,10 @@
 ---
-title: 名单来源：人工录入、规则自动产出、模型分阈值划定、第三方引入
+title: 名单来源: 人工录入、规则自动产出、模型分阈值划定、第三方引入
 date: 2025-09-07
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 名单来源：人工录入、规则自动产出、模型分阈值划定、第三方引入
 
 ## 引言

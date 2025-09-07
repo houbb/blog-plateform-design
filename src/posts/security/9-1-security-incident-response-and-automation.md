@@ -1,11 +1,10 @@
 ---
-title: 安全事件响应与自动化（SOAR）：构建高效的安全运营体系
+title: 安全事件响应与自动化（SOAR）: 构建高效的安全运营体系
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在当今复杂多变的网络安全环境中，企业面临着前所未有的安全挑战。随着攻击手段的日益 sophisticated 和攻击频率的不断上升，传统的手工安全事件响应方式已无法满足现代企业对快速、准确、高效安全响应的需求。安全编排、自动化和响应（Security Orchestration, Automation and Response, SOAR）作为新一代安全运营技术，通过整合安全工具、自动化响应流程和协调安全团队，为企业构建了高效的安全事件响应体系。

@@ -1,11 +1,10 @@
 ---
-title: 数据标准化：统一事件模型（UEM）定义
+title: 数据标准化: 统一事件模型（UEM）定义
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 数据标准化：统一事件模型（UEM）定义
 
 ## 引言

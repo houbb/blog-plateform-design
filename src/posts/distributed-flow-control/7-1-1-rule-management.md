@@ -1,11 +1,10 @@
 ---
-title: 规则数据模型：资源、阈值、流控模式、效果（快速失败/Warm Up/排队等待）
+title: 规则数据模型: 资源、阈值、流控模式、效果（快速失败/Warm Up/排队等待）
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, rule-management, data-model]
 published: true
 ---
-
 在分布式限流平台中，规则数据模型是整个系统的核心基础。一个设计良好的规则数据模型不仅能够准确表达各种限流需求，还能提供良好的扩展性和易用性。本章将深入探讨分布式限流平台的规则数据模型设计，包括资源定义、阈值设置、流控模式选择以及限流效果配置等关键要素。
 
 ## 规则数据模型设计原则

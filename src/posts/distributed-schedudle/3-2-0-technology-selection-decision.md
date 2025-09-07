@@ -1,11 +1,10 @@
 ---
-title: 3.2 技术选型决策：自研 vs 基于开源二次开发（深度对比）
+title: 3.2 技术选型决策: 自研 vs 基于开源二次开发（深度对比）
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, technology selection, in-house development, open source, comparison]
 published: true
 ---
-
 在分布式调度平台的建设过程中，技术选型是决定项目成败的关键环节之一。面对自研和基于开源项目二次开发两种主要路径，团队需要综合考虑业务需求、技术能力、资源投入、时间成本等多个维度进行深入分析和科学决策。本文将从多个角度深度对比这两种技术路径，为构建分布式调度平台提供全面的技术选型指导。
 
 ## 技术选型的核心考量因素

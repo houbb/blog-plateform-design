@@ -1,11 +1,10 @@
 ---
-title: 身份认证集成：与AD/LDAP/统一身份认证平台对接
+title: 身份认证集成: 与AD/LDAP/统一身份认证平台对接
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, identity, authentication, ldap, sso, active directory]
 published: true
 ---
-
 # 身份认证集成：与AD/LDAP/统一身份认证平台对接
 
 在企业级BPM平台中，身份认证集成是确保系统安全性和用户体验的关键环节。通过与企业现有的AD（Active Directory）、LDAP（轻量级目录访问协议）或统一身份认证平台对接，可以实现用户身份的统一管理、单点登录（SSO）以及权限的集中控制。

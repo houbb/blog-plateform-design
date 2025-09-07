@@ -1,11 +1,10 @@
 ---
-title: 度量即代码：将指标定义、仪表盘配置代码化、版本化
+title: 度量即代码: 将指标定义、仪表盘配置代码化、版本化
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]
 published: true
 ---
-
 ## 引言
 
 在软件开发领域，"基础设施即代码"(Infrastructure as Code)和"配置即代码"(Configuration as Code)已经成为业界标准实践，它们通过将基础设施和配置管理代码化、版本化，实现了环境的一致性、可重复性和可追溯性。随着统一度量平台的不断发展和成熟，"度量即代码"(Measurement as Code)正在成为新的发展趋势。

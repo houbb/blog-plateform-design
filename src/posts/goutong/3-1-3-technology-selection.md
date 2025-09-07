@@ -1,11 +1,10 @@
 ---
-title: 技术选型：自研 vs 云服务 vs 开源方案的权衡之道
+title: 技术选型: 自研 vs 云服务 vs 开源方案的权衡之道
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, technology-selection]
 published: true
 ---
-
 在构建统一通知通道平台的过程中，技术选型是一个至关重要的决策环节。企业需要在自研方案、云服务集成和开源方案之间做出明智的选择，这不仅关系到平台的功能实现，还直接影响到成本控制、维护难度、扩展性等多个方面。本文将深入探讨这三种技术路线的优劣势，并提供技术选型的决策框架和最佳实践。
 
 ## 技术选型的重要性

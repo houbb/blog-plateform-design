@@ -1,11 +1,10 @@
 ---
-title: 多模式采集融合：Agent模式、无Agent模式、API集成模式与流量分析模式
+title: 多模式采集融合: Agent模式、无Agent模式、API集成模式与流量分析模式
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, data-collection, agent, api-integration, network-analysis]
 published: true
 ---
-
 在配置管理数据库（CMDB）的建设过程中，数据采集是确保数据准确性和完整性的关键环节。随着IT环境的日益复杂化，单一的采集方式已无法满足现代企业对配置信息全面性和实时性的需求。因此，构建一个多模式采集融合的体系，通过Agent模式、无Agent模式、API集成模式和流量分析模式相结合的方式，成为现代CMDB系统的重要特征。
 
 ## 多模式采集的必要性

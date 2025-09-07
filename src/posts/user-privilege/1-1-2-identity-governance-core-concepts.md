@@ -1,11 +1,10 @@
 ---
-title: 核心概念界定：IAM、4A、CIAM、SSO、权限
+title: 核心概念界定: IAM、4A、CIAM、SSO、权限
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]
 published: true
 ---
-
 在构建统一身份治理平台之前，深入理解相关核心概念是至关重要的。本文将详细解析IAM、4A、CIAM、SSO、权限等关键概念，帮助读者建立完整的身份治理知识体系。
 
 ## 引言

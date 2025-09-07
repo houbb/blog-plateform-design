@@ -1,11 +1,10 @@
 ---
-title: 核心监控指标：限流QPS、通过QPS、阻塞请求数、规则触发次数
+title: 核心监控指标: 限流QPS、通过QPS、阻塞请求数、规则触发次数
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, monitoring, metrics, observability]
 published: true
 ---
-
 在分布式限流系统中，监控是保障系统稳定运行和持续优化的重要手段。通过全面、准确的监控指标，运维人员可以实时了解系统的运行状态，及时发现潜在问题，并基于数据做出合理的优化决策。本章将深入探讨分布式限流系统的核心监控指标，包括限流QPS、通过QPS、阻塞请求数、规则触发次数等，分析这些指标的意义、收集方法以及在实际运维中的应用。
 
 ## 监控指标体系设计

@@ -1,11 +1,10 @@
 ---
-title: 附录D：术语表
+title: 附录D: 术语表
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, glossary, terminology, dictionary]
 published: true
 ---
-
 # 附录D：术语表
 
 在智能报警平台的建设和运维过程中，会涉及到大量的专业术语和概念。为了帮助读者更好地理解和使用本书内容，本附录提供了相关术语的详细解释和说明。

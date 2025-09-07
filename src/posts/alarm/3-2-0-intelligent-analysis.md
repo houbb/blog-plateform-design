@@ -1,11 +1,10 @@
 ---
-title: 智能分析：根因定位（RCA）加速
+title: 智能分析: 根因定位（RCA）加速
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]
 published: true
 ---
-
 # 智能分析：根因定位（RCA）加速
 
 在复杂的现代IT系统中，故障的发生往往不是单一原因造成的，而是多个因素相互作用的结果。传统的手动根因分析（Root Cause Analysis, RCA）过程耗时且容易出错，严重影响故障恢复时间（MTTR）。通过引入智能分析技术，我们可以显著加速根因定位过程，提高问题解决效率。

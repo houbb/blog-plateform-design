@@ -1,11 +1,10 @@
 ---
-title: 14.3 OpenAPI设计：与外部系统集成的RESTful API规范
+title: 14.3 OpenAPI设计: 与外部系统集成的RESTful API规范
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, OpenAPI, RESTful API, API design, system integration]
 published: true
 ---
-
 在现代分布式调度平台的建设中，开放性和可集成性已成为衡量平台成熟度的重要标准。通过设计规范化的RESTful API接口，调度平台可以与各种外部系统无缝集成，实现任务的自动化触发、状态的实时同步、配置的动态管理等功能。OpenAPI（原Swagger）作为业界广泛采用的API描述规范，不仅提供了标准化的接口定义方式，还为开发者提供了丰富的工具链支持。本文将深入探讨分布式调度平台中OpenAPI设计的核心理念、关键要素以及最佳实践。
 
 ## OpenAPI设计的核心价值

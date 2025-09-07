@@ -1,11 +1,10 @@
 ---
-title: 9.4 全局配置与参数传递：系统参数、自定义参数
+title: 9.4 全局配置与参数传递: 系统参数、自定义参数
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, global configuration, parameter passing, system parameters, custom parameters]
 published: true
 ---
-
 在分布式调度平台中，全局配置与参数传递是实现任务灵活执行和统一管理的关键机制。通过合理的配置管理体系，可以实现系统参数的统一管理、自定义参数的灵活传递、配置的动态更新以及参数的安全控制。本文将深入探讨全局配置与参数传递的核心概念、实现机制以及最佳实践，分析系统参数和自定义参数的管理策略。
 
 ## 全局配置与参数传递的核心价值

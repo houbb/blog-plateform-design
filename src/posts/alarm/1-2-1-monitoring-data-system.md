@@ -1,11 +1,10 @@
 ---
-title: 监控数据体系：Metrics（指标）、Logs（日志）、Traces（链路）的深度解析
+title: 监控数据体系: Metrics（指标）、Logs（日志）、Traces（链路）的深度解析
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]
 published: true
 ---
-
 现代监控系统主要依赖三种类型的数据：指标（Metrics）、日志（Logs）和链路追踪（Traces）。这三种数据各有特点，相互补充，共同构成了完整的监控数据体系。本文将深入解析这三种监控数据的特点、应用场景和最佳实践，为构建高效的报警平台提供数据基础。
 
 <!-- more -->

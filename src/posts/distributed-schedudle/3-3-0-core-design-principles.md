@@ -1,11 +1,10 @@
 ---
-title: 3.3 核心设计原则：高可用、可扩展、可观测、用户友好、资源隔离
+title: 3.3 核心设计原则: 高可用、可扩展、可观测、用户友好、资源隔离
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, design principles, high availability, scalability, observability, user experience, resource isolation]
 published: true
 ---
-
 分布式调度平台作为企业核心基础设施，其设计质量直接影响到业务的稳定性和效率。在复杂的分布式环境下，平台需要遵循一系列核心设计原则，以确保在面对各种挑战时仍能提供稳定、高效、易用的服务。本文将深入探讨高可用、可扩展、可观测、用户友好和资源隔离这五大核心设计原则，为构建企业级分布式调度平台提供设计指导。
 
 ## 高可用性设计原则

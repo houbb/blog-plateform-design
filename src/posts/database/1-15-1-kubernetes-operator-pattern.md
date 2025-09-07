@@ -1,11 +1,10 @@
 ---
-title: 数据库平台Kubernetes Operator模式：基于CRD的数据库管理新范式
+title: 数据库平台Kubernetes Operator模式: 基于CRD的数据库管理新范式
 date: 2025-08-30
 categories: [Database]
 tags: [database]
 published: true
 ---
-
 随着云原生技术的快速发展，Kubernetes已经成为容器编排和应用管理的事实标准。在这一背景下，Kubernetes Operator模式作为一种扩展Kubernetes API的机制，为数据库管理提供了全新的解决方案。通过自定义资源定义（CRD）和控制器模式，Operator能够将数据库领域的专业知识编码到Kubernetes中，实现数据库的自动化部署、配置、管理和运维。本文将深入探讨数据库平台中Kubernetes Operator模式的核心概念、实现原理和最佳实践。
 
 ## Kubernetes Operator模式概述

@@ -1,11 +1,10 @@
 ---
-title: 认证（Authentication）vs. 授权（Authorization）：OAuth 2.0、OIDC、SAML 2.0 核心原理详解
+title: 认证（Authentication）vs. 授权（Authorization）: OAuth 2.0、OIDC、SAML 2.0 核心原理详解
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]
 published: true
 ---
-
 在身份治理领域，认证（Authentication）和授权（Authorization）是两个核心但又容易混淆的概念。虽然它们密切相关，但在实际应用中承担着不同的职责。本文将深入探讨这两个概念的区别，并详细解析OAuth 2.0、OpenID Connect（OIDC）和SAML 2.0这三种主流协议的核心原理。
 
 ## 引言

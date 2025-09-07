@@ -1,11 +1,10 @@
 ---
-title: 核心引擎：基于HTTP/GRPC等协议的请求发起与验证
+title: 核心引擎: 基于HTTP/GRPC等协议的请求发起与验证
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 6.1 核心引擎：基于HTTP/GRPC等协议的请求发起与验证
 
 接口测试平台的核心引擎是整个系统的基础，负责处理各种协议的请求发起、响应接收和结果验证。一个优秀的接口测试引擎需要支持多种协议、提供灵活的配置选项、具备强大的验证能力，并且能够处理复杂的测试场景。本节将详细介绍HTTP协议支持、GRPC协议支持以及多协议集成的实现方法。

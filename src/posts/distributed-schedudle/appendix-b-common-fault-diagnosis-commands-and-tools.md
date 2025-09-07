@@ -1,11 +1,10 @@
 ---
-title: 附录B：常用故障诊断命令与工具
+title: 附录B: 常用故障诊断命令与工具
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, fault diagnosis, troubleshooting, commands, tools]
 published: true
 ---
-
 在分布式调度平台的运维过程中，快速准确地诊断和解决故障是保障系统稳定运行的关键。掌握常用的故障诊断命令和工具能够帮助运维人员快速定位问题根源，缩短故障恢复时间。本文将介绍在分布式调度平台运维中常用的故障诊断命令和工具，涵盖系统监控、日志分析、网络诊断、性能分析等多个方面。
 
 ## 系统监控命令

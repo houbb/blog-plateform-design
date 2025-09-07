@@ -1,11 +1,10 @@
 ---
-title: 服务网格（Service Mesh）限流：在Istio等网格中实现更细粒度的限流策略
+title: 服务网格（Service Mesh）限流: 在Istio等网格中实现更细粒度的限流策略
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, service-mesh, istio, envoy]
 published: true
 ---
-
 随着微服务架构的普及，服务网格（Service Mesh）技术逐渐成为云原生应用的重要组成部分。服务网格通过将服务间通信的控制平面与数据平面分离，提供了更加灵活和强大的流量管理能力。在服务网格中实现分布式限流，可以利用其内置的流量控制机制，实现更细粒度、更灵活的限流策略。本章将深入探讨如何在Istio等服务网格中实现分布式限流，并提供完整的实现方案和最佳实践。
 
 ## 服务网格限流概述

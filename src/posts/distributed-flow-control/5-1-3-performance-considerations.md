@@ -1,11 +1,10 @@
 ---
-title: 性能考量：网关集成带来的性能损耗与优化
+title: 性能考量: 网关集成带来的性能损耗与优化
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, gateway, performance, optimization]
 published: true
 ---
-
 在将分布式限流能力集成到API网关中时，性能是一个至关重要的考量因素。虽然限流功能能够有效保护后端服务，但如果实现不当，可能会对网关的性能产生负面影响，进而影响整个系统的响应时间和吞吐量。本章将深入探讨网关集成限流功能可能带来的性能损耗，并提供相应的优化策略。
 
 ## 性能损耗分析

@@ -1,11 +1,10 @@
 ---
-title: 合规性检查：满足SOX、GDPR等内外审计要求
+title: 合规性检查: 满足SOX、GDPR等内外审计要求
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, compliance, sox, gdpr, audit, regulation]
 published: true
 ---
-
 # 合规性检查：满足SOX、GDPR等内外审计要求
 
 在企业级BPM平台建设中，合规性检查是确保平台符合相关法律法规和行业标准的重要环节。随着全球数据保护法规的日益严格，如SOX（萨班斯-奥克斯利法案）、GDPR（通用数据保护条例）等，企业必须建立完善的合规性检查机制，以满足内外部审计要求，避免法律风险和经济损失。

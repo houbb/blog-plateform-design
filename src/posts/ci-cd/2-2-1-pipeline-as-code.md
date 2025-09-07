@@ -1,11 +1,10 @@
 ---
-title: 流水线即代码（Pipeline as Code）：DSL vs YAML vs GUI
+title: 流水线即代码（Pipeline as Code）: DSL vs YAML vs GUI
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]
 published: true
 ---
-
 流水线即代码（Pipeline as Code）是现代CI/CD平台的核心特性之一，它将流水线定义以代码形式存储在版本控制系统中，实现了流水线配置的版本化管理、可追溯性和协作性。通过流水线即代码，团队可以像管理应用程序代码一样管理流水线配置，享受版本控制、代码审查、协作开发等软件工程实践带来的好处。在实现流水线即代码时，主要有三种方式：DSL（领域特定语言）、YAML配置文件和图形化界面。每种方式都有其独特的优势和适用场景，本文将深入探讨这三种方式的特点、实现和选择策略。
 
 ## 流水线即代码的核心价值

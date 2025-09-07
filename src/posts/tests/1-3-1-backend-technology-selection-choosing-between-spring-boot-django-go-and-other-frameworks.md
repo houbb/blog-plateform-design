@@ -1,11 +1,10 @@
 ---
-title: 后端技术选型：Spring Boot/Django/Go等框架的抉择
+title: 后端技术选型: Spring Boot/Django/Go等框架的抉择
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 3.1 后端技术选型：Spring Boot/Django/Go等框架的抉择
 
 在测试平台的后端技术选型中，选择合适的框架是决定项目成功的关键因素之一。不同的框架有着各自的特点和适用场景，需要根据项目需求、团队技能、性能要求等多个维度进行综合考量。本节将深入分析主流后端框架的特点，并提供选型建议和最佳实践。

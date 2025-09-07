@@ -1,11 +1,10 @@
 ---
-title: 附录C：经典故障复盘报告模板
+title: 附录C: 经典故障复盘报告模板
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, incident, postmortem, template, blameless]
 published: true
 ---
-
 # 附录C：经典故障复盘报告模板
 
 故障复盘（Postmortem）是现代IT运维中不可或缺的重要环节，它帮助团队从故障中学习，避免类似问题再次发生。一个结构良好的复盘报告不仅能够记录事件的详细过程，还能促进团队的知识沉淀和持续改进。本附录提供一个经典故障复盘报告模板，供读者在实际工作中参考和使用。

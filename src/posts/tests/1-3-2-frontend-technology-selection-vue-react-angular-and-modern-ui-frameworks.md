@@ -1,11 +1,10 @@
 ---
-title: 前端技术选型：Vue/React/Angular与现代UI框架
+title: 前端技术选型: Vue/React/Angular与现代UI框架
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 3.2 前端技术选型：Vue/React/Angular与现代UI框架
 
 在测试平台的前端技术选型中，选择合适的框架和UI库是确保用户体验、开发效率和项目可维护性的关键。现代前端框架如Vue、React、Angular各有特色，而丰富的UI框架则能显著提升开发效率。本节将深入分析主流前端框架和UI库的特点，并提供选型建议和最佳实践。

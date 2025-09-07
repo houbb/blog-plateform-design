@@ -1,11 +1,10 @@
 ---
-title: 安全与隐私考量：数据脱敏、权限隔离、操作审计
+title: 安全与隐私考量: 数据脱敏、权限隔离、操作审计
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 安全与隐私考量：数据脱敏、权限隔离、操作审计
 
 ## 引言

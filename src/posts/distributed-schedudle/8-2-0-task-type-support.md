@@ -1,11 +1,10 @@
 ---
-title: 8.2 任务类型支持：Shell、HTTP、Python、Spark、Flink、自定义镜像
+title: 8.2 任务类型支持: Shell、HTTP、Python、Spark、Flink、自定义镜像
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task type, Shell, HTTP, Python, Spark, Flink, Docker]
 published: true
 ---
-
 分布式调度平台的核心价值在于能够支持多样化的任务类型，满足不同业务场景的需求。从简单的Shell脚本到复杂的大数据处理任务，平台需要提供灵活的任务类型支持机制。本文将深入探讨调度平台对Shell、HTTP、Python、Spark、Flink以及自定义镜像等任务类型的支持实现，分析各自的技术特点和适用场景。
 
 ## 任务类型支持的核心理念

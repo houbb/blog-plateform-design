@@ -1,11 +1,10 @@
 ---
-title: 与监控系统（Prometheus、SkyWalking）的联动：生产数据反馈测试
+title: 与监控系统（Prometheus、SkyWalking）的联动: 生产数据反馈测试
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 与监控系统（Prometheus、SkyWalking）的联动：生产数据反馈测试
 
 在现代软件开发和运维实践中，监控系统已成为保障系统稳定性和性能的关键基础设施。Prometheus和Apache SkyWalking作为业界领先的监控解决方案，分别在指标监控和分布式追踪领域发挥着重要作用。对于测试平台而言，与这些监控系统的深度集成能够实现从生产环境到测试环境的数据反馈闭环，从而提升测试的有效性和准确性。

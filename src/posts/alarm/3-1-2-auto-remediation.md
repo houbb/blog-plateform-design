@@ -1,11 +1,10 @@
 ---
-title: 自动止损（Auto-Remediation）：设计安全可靠的自动恢复流程
+title: 自动止损（Auto-Remediation）: 设计安全可靠的自动恢复流程
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]
 published: true
 ---
-
 # 自动止损（Auto-Remediation）：设计安全可靠的自动恢复流程
 
 在现代复杂的IT系统中，故障的发生往往难以完全避免，但如何快速恢复和减少影响成为了关键。自动止损（Auto-Remediation）作为智能告警平台的核心能力之一，能够在检测到问题后自动执行预定义的恢复操作，显著缩短故障恢复时间（MTTR），提升系统稳定性和用户体验。本文将深入探讨如何设计安全可靠的自动恢复流程。

@@ -1,11 +1,3 @@
----
-title: README
-date: 2025-09-07
-categories: [Alarm]
-tags: [alarm]
-published: true
----
-
 # 测试平台建设全生命周期指南
 
 本目录包含《构建可落地的全生命周期测试平台：从理论到实践》一书的完整内容，按照章节组织，方便查阅。
@@ -64,5 +56,62 @@ published: true
 - [8.3 兼容性测试：与云真机平台的集成](1-8-3-compatibility-testing-integration-with-cloud-device-platforms.md)
 - [8.4 微信小程序、H5混合应用测试支持](1-8-4-wechat-mini-programs-and-h5-hybrid-app-testing-support.md)
 
----
-*注：后续章节内容将在后续更新中添加*
+#### 第9章：性能测试平台建设
+- [9.1 核心引擎集成：JMeter的实现与分布式改造](9-1-1-core-engine-integration-jmeter-implementation-and-distributed-transformation.md)
+- [9.2 可视化配置压测场景：线程组、定时器、监听器](9-1-2-visual-configuration-of-pressure-test-scenarios-thread-groups-timers-listeners.md)
+- [9.3 实时监控与数据采集：系统资源、应用指标、中间件](9-1-3-real-time-monitoring-and-data-collection-system-resources-application-metrics-middleware.md)
+- [9.4 测试报告生成与瓶颈分析建议](9-1-4-test-report-generation-and-bottleneck-analysis-recommendations.md)
+
+#### 第10章：测试执行引擎与调度中心
+- [10.1 统一任务调度模型：即时任务、定时任务、流水线任务](10-1-1-unified-task-scheduling-model-immediate-tasks-scheduled-tasks-pipeline-tasks.md)
+- [10.2 资源池化管理：Docker/K8s实现动态Agent分配](10-1-2-resource-pooling-management-docker-k8s-dynamic-agent-allocation.md)
+- [10.3 并发控制、队列机制与优先级调度](10-1-3-concurrency-control-queue-mechanism-and-priority-scheduling.md)
+- [10.4 实时日志收集与推送](10-1-4-real-time-log-collection-and-push.md)
+
+#### 第11章：测试报告与质量度量体系
+- [11.1 多维度测试报告：实时报告、阶段报告、对比报告](11-1-1-multi-dimensional-test-reports-real-time-reports-phase-reports-comparison-reports.md)
+- [11.2 构建质量仪表盘（Dashboard）：用例覆盖率、通过率、缺陷分布](11-1-2-building-quality-dashboard-test-case-coverage-pass-rate-defect-distribution.md)
+- [11.3 定义与计算质量指标：千行代码缺陷率、MTTR等](11-1-3-defining-and-calculating-quality-metrics-defects-per-thousand-lines-of-code-mttr-and-more.md)
+- [11.4 通过数据驱动质量改进](11-1-4-driving-quality-improvement-through-data.md)
+
+#### 第12章：与CI/CD流水线深度集成
+- [12.1 与Jenkins/GitLab CI/GitHub Actions的对接](12-1-1-integration-with-jenkins-gitlab-ci-github-actions.md)
+- [12.2 流水线中自动触发测试的策略（门禁）](12-1-2-automatic-test-triggering-strategies-gates-in-pipeline.md)
+- [12.3 测试结果反馈与流水线推进决策](12-1-3-test-result-feedback-and-pipeline-advancement-decision.md)
+
+#### 第13章：与研发体系其他系统的打通
+- [13.1 与项目管理（Jira、Tapd）的联动：需求-用例-缺陷闭环](13-1-1-linkage-with-project-management-jira-tapd-requirement-test-case-defect-closed-loop.md)
+- [13.2 与代码仓库（Git）的联动：代码变更关联用例](13-1-2-linkage-with-code-repository-git-code-changes-associated-with-test-cases.md)
+- [13.3 与制品库（Nexus、Harbor）的联动：版本管理](13-1-3-linkage-with-artifact-repository-nexus-harbor-version-management.md)
+- [13.4 与监控系统（Prometheus、SkyWalking）的联动：生产数据反馈测试](13-1-4-linkage-with-monitoring-systems-prometheus-skywalking-production-data-feedback-testing.md)
+
+#### 第14章：平台的可运维性与高可用
+- [14.1 日志、监控与告警体系建设](14-1-1-logging-monitoring-and-alerting-system-construction.md)
+- [14.2 用户权限管理（RBAC）与操作审计](14-1-2-user-permission-management-rbac-and-operation-audit.md)
+- [14.3 数据备份与恢复策略](14-1-3-data-backup-and-recovery-strategy.md)
+- [14.4 平台自身的版本发布与升级流程](14-1-4-platform-version-release-and-upgrade-process.md)
+
+#### 第15章：推广、培训与文化建设
+- [15.1 如何在团队内推广并获取早期用户？](15-1-1-how-to-promote-within-the-team-and-acquire-early-users.md)
+- [15.2 编写友好的用户文档与操作手册](15-1-2-writing-friendly-user-documentation-and-operation-manuals.md)
+- [15.3 组织培训与建立社区，收集用户反馈](15-1-3-organize-training-and-build-community-collect-user-feedback.md)
+- [15.4 培育"质量左移"和"自动化优先"的工程文化](15-1-4-cultivating-quality-shift-left-and-automation-first-engineering-culture.md)
+
+#### 第16章：AI在测试平台中的应用探索
+- [16.1 智能用例生成](16-1-1-intelligent-test-case-generation.md)
+- [16.2 缺陷预测与根因分析](16-1-2-defect-prediction-and-root-cause-analysis.md)
+- [16.3 视觉测试（Visual Testing）与AI识别](16-1-3-visual-testing-and-ai-recognition.md)
+- [16.4 测试结果的智能分析与洞察](16-1-4-intelligent-analysis-and-insights-of-test-results.md)
+
+#### 第17章：测试平台的发展趋势与未来
+- [17.1 云原生测试平台](17-1-1-cloud-native-test-platform.md)
+- [17.2 无代码（Low-Code/No-Code）的进一步发展](17-1-2-low-code-no-code-further-development.md)
+- [17.3 混沌工程与韧性测试平台](17-1-3-chaos-engineering-and-resilience-testing-platform.md)
+- [17.4 测试即服务（TaaS）的思考](17-1-4-test-as-a-service-taas-thinking.md)
+
+### 第三部分：附录
+
+#### 附录
+- [附录A：开源测试平台项目推荐与评析](appendix-a-open-source-test-platform-projects-recommendation-and-analysis.md)
+- [附录B：常见问题解答（FAQ）](appendix-b-frequently-asked-questions-faq.md)
+- [附录C：关键词索引](appendix-c-keyword-index.md)

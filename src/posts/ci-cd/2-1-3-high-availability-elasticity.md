@@ -1,11 +1,10 @@
 ---
-title: 高可用与弹性设计：Master/Worker架构、基于Kubernetes的动态弹性伸缩
+title: 高可用与弹性设计: Master/Worker架构、基于Kubernetes的动态弹性伸缩
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]
 published: true
 ---
-
 高可用性和弹性是企业级CI/CD平台必须具备的重要特性，它们确保平台能够在各种情况下稳定运行并适应负载变化。随着企业业务规模的不断扩大和用户对软件交付速度要求的不断提高，CI/CD平台必须具备强大的高可用性和弹性能力，以应对突发的流量高峰、硬件故障和业务增长等挑战。本文将深入探讨CI/CD平台的高可用与弹性设计，重点分析Master/Worker架构和基于Kubernetes的动态弹性伸缩两种关键技术方案。
 
 ## 高可用性设计的重要性

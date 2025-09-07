@@ -1,11 +1,10 @@
 ---
-title: 核心引擎集成：Selenium/Playwright/Cypress的选择与封装
+title: 核心引擎集成: Selenium/Playwright/Cypress的选择与封装
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 7.1 核心引擎集成：Selenium/Playwright/Cypress的选择与封装
 
 在UI自动化测试平台的建设过程中，选择合适的自动化测试框架并进行有效封装是至关重要的第一步。当前主流的UI自动化测试框架包括Selenium、Playwright和Cypress，它们各有特点和适用场景。本节将深入分析这三种框架的特点，并详细介绍如何在测试平台中进行集成和封装。

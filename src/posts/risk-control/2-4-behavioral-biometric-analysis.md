@@ -1,11 +1,10 @@
 ---
-title: 行为生物特征分析：鼠标轨迹、击键节奏、设备指纹等
+title: 行为生物特征分析: 鼠标轨迹、击键节奏、设备指纹等
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 行为生物特征分析：鼠标轨迹、击键节奏、设备指纹等
 
 ## 引言

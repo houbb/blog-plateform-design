@@ -1,11 +1,10 @@
 ---
-title: API-first设计：提供全面、稳定的Restful API供各方消费
+title: API-first设计: 提供全面、稳定的Restful API供各方消费
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]
 published: true
 ---
-
 在现代配置管理数据库（CMDB）系统的设计中，API-first设计已经成为一种重要的设计哲学。随着企业数字化转型的深入和微服务架构的普及，CMDB不再仅仅是一个独立的管理系统，而是成为企业IT生态系统中的核心数据枢纽。通过提供全面、稳定的RESTful API，CMDB能够更好地与其他系统集成，支撑各种运维场景，实现真正的数据驱动运维。本文将深入探讨API-first设计的理念、方法和实践。
 
 ## API-first设计的重要性

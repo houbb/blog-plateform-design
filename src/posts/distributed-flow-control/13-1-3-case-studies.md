@@ -1,11 +1,10 @@
 ---
-title: 案例分享：电商大促期间的限流实战与API开放平台的配额管理
+title: 案例分享: 电商大促期间的限流实战与API开放平台的配额管理
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, case-study, e-commerce, api-platform]
 published: true
 ---
-
 在分布式限流平台的实际应用中，不同的业务场景会面临不同的挑战和需求。本章将通过两个典型的案例分享，深入探讨在电商大促期间如何进行限流实战，以及在API开放平台中如何实现精细化的配额管理。这些案例将帮助读者更好地理解分布式限流平台在实际业务中的应用，并为类似场景提供参考和借鉴。
 
 ## 电商大促期间的限流实战

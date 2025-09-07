@@ -1,11 +1,10 @@
 ---
-title: 设计原则：高可用、低延迟、最终一致性、配置热更新
+title: 设计原则: 高可用、低延迟、最终一致性、配置热更新
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, design-principles]
 published: true
 ---
-
 在设计企业级分布式限流平台时，遵循正确的设计原则是确保系统成功的关键。这些原则不仅指导技术架构的选择，还影响系统的可维护性、可扩展性和用户体验。本章将深入探讨分布式限流平台的四大核心设计原则：高可用性、低延迟、最终一致性和配置热更新。
 
 ## 高可用性设计原则

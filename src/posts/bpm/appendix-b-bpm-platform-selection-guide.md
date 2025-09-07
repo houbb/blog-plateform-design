@@ -1,11 +1,10 @@
 ---
-title: 附录B：BPM平台技术选型指南
+title: 附录B: BPM平台技术选型指南
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, technology selection, evaluation, comparison, digital transformation]
 published: true
 ---
-
 # 附录B：BPM平台技术选型指南
 
 BPM平台技术选型是BPM平台建设的关键决策环节，直接影响项目的成功与否和长期发展。面对市场上众多的BPM平台产品和解决方案，如何选择最适合组织需求的平台成为一个重要挑战。本附录提供了一个系统的技术选型指南，帮助组织科学地评估和选择BPM平台。

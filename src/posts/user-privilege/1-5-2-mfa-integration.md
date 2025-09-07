@@ -1,11 +1,10 @@
 ---
-title: 多因子认证（MFA）集成：TOTP、短信、邮件、生物识别、安全密钥
+title: 多因子认证（MFA）集成: TOTP、短信、邮件、生物识别、安全密钥
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]
 published: true
 ---
-
 多因子认证（Multi-Factor Authentication，MFA）是现代身份治理平台中提升安全性的关键技术。通过结合多种不同类型的认证因素，MFA能够显著降低账户被盗用的风险。本文将深入探讨TOTP、短信、邮件、生物识别和安全密钥等多种MFA方式的实现细节。
 
 ## 引言

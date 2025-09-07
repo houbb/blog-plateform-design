@@ -1,11 +1,10 @@
 ---
-title: 附录C：CI模型设计示例
+title: 附录C: CI模型设计示例
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, ci-model, design-examples]
 published: true
 ---
-
 在配置管理数据库（CMDB）的实施过程中，配置项（CI）模型设计是核心环节之一。良好的CI模型设计不仅能够准确描述IT环境中的各种资源，还能支撑复杂的关联关系分析和业务场景应用。本文将通过具体的示例，详细介绍不同类型CI的模型设计方法和最佳实践。
 
 ## CI模型设计原则

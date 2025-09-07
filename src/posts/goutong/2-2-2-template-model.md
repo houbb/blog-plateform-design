@@ -1,11 +1,10 @@
 ---
-title: 消息模板模型：内容复用与个性化的核心
+title: 消息模板模型: 内容复用与个性化的核心
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, template-model]
 published: true
 ---
-
 在统一通知通道平台中，消息模板模型是实现内容复用、个性化和高效管理的关键组件。一个设计良好的模板模型不仅能够提高消息发送的效率，还能确保内容的一致性和合规性。本文将深入探讨消息模板模型的设计原则、核心功能和最佳实践。
 
 ## 模板模型的核心价值

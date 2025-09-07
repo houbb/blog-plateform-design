@@ -1,8 +1,8 @@
 ---
-title: 生成改进看板：量化分析故障，驱动系统性优化
+title: "生成改进看板: 量化分析故障，驱动系统性优化"
 date: 2025-09-07
-categories: [Alarm]
-tags: [alarm, dashboard, analytics]
+categories: ["Alarm"]
+tags: ["alarm", "dashboard", "analytics"]
 published: true
 ---
 
@@ -293,11 +293,12 @@ class ImprovementTracker:
         return min(total_score, 100)  # 确保不超过100
 ```
 
+
 ## 改进看板的设计与实现
 
 ### 1. 看板架构设计
 
-```python
+```
 class ImprovementDashboard:
     def __init__(self):
         self.analyzers = {
@@ -391,9 +392,10 @@ class ImprovementDashboard:
         }
 ```
 
+
 ### 2. 前端展示实现
 
-```javascript
+```
 // 改进看板前端组件
 class ImprovementDashboardComponent extends React.Component {
     constructor(props) {
@@ -512,11 +514,12 @@ class RootCauseSection extends React.Component {
 }
 ```
 
+
 ## 看板指标体系设计
 
 ### 1. 核心指标定义
 
-```python
+```
 class DashboardMetrics:
     """改进看板指标体系"""
     
@@ -593,9 +596,10 @@ class DashboardMetrics:
     }
 ```
 
+
 ### 2. 指标计算与评估
 
-```python
+```
 class MetricsCalculator:
     """指标计算器"""
     
@@ -764,11 +768,12 @@ class MetricsCalculator:
             assessment['weaknesses'].append('重复故障问题突出')
 ```
 
+
 ## 系统性优化驱动
 
 ### 1. 优化机会识别
 
-```python
+```
 class OptimizationOpportunityIdentifier:
     """优化机会识别器"""
     
@@ -884,9 +889,10 @@ class OptimizationOpportunityIdentifier:
         return sorted_opportunities
 ```
 
+
 ### 2. 优化方案制定
 
-```python
+```
 class OptimizationPlanner:
     """优化方案制定器"""
     
@@ -1038,11 +1044,12 @@ class OptimizationPlanner:
         return criteria
 ```
 
+
 ## 最佳实践与总结
 
 ### 1. 看板实施建议
 
-```python
+```
 class DashboardImplementationGuide:
     """看板实施指南"""
     
@@ -1099,6 +1106,7 @@ class DashboardImplementationGuide:
             '持续改进和优化'
         ]
 ```
+
 
 ### 2. 常见问题与解决方案
 

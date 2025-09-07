@@ -1,11 +1,10 @@
 ---
-title: 5.1 任务队列管理：内存队列 vs 持久化队列（基于DB/RocketMQ）
+title: 5.1 任务队列管理: 内存队列 vs 持久化队列（基于DB/RocketMQ）
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task queue, memory queue, persistent queue, database, rocketmq]
 published: true
 ---
-
 任务队列管理是分布式调度平台的核心组件之一，负责维护待执行任务的列表并确保任务能够被正确调度和执行。合理的任务队列设计不仅影响调度平台的性能和可靠性，还直接关系到任务处理的及时性和准确性。本文将深入探讨任务队列管理的关键技术，重点分析内存队列与持久化队列的设计原理、实现方式以及各自的优劣势，并结合基于数据库和RocketMQ的持久化队列实现方案进行详细阐述。
 
 ## 任务队列管理的核心概念

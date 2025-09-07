@@ -1,11 +1,10 @@
 ---
-title: 目录服务：LDAP协议与Active Directory的深度解读
+title: 目录服务: LDAP协议与Active Directory的深度解读
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]
 published: true
 ---
-
 目录服务是企业级身份治理平台的重要基础设施，它提供了集中存储和管理用户、组、设备等身份信息的能力。在众多目录服务技术中，LDAP（轻量级目录访问协议）和Active Directory（活动目录）是最为广泛应用的两种技术。本文将深入探讨目录服务的核心概念、LDAP协议的详细实现以及Active Directory的架构和特性。
 
 ## 引言

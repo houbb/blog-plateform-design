@@ -1,11 +1,10 @@
 ---
-title: 第14章：智能BPM与RPA融合概述
+title: 第14章: 智能BPM与RPA融合概述
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, rpa, artificial intelligence, automation, integration]
 published: true
 ---
-
 # 第十四章：智能BPM与RPA融合
 
 随着人工智能技术的快速发展和机器人流程自动化(RPA)的广泛应用，传统的BPM平台正在向智能化方向演进。智能BPM(iBPM)通过集成人工智能、机器学习、自然语言处理等先进技术，不仅能够实现更复杂的业务流程自动化，还能具备自我学习和优化的能力。同时，BPM与RPA的深度融合为处理端到端的复杂业务流程提供了全新的解决方案。

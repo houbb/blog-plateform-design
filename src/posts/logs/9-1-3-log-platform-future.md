@@ -1,11 +1,10 @@
 ---
-title: 日志平台的未来：Serverless、边缘计算与SOC融合的新时代
+title: 日志平台的未来: Serverless、边缘计算与SOC融合的新时代
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]
 published: true
 ---
-
 随着云计算、边缘计算、人工智能等技术的快速发展，日志平台正迎来前所未有的变革机遇。从传统的集中式架构到云原生微服务，从被动监控到智能预测，日志平台的技术演进正在重塑整个可观测性领域。本文将深入探讨日志平台的未来发展趋势，包括Serverless架构、边缘计算集成、与安全运营中心的深度融合等前沿技术方向。
 
 ## 日志平台的技术演进路径

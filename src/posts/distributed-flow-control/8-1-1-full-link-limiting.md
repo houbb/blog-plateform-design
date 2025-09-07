@@ -1,11 +1,10 @@
 ---
-title: 上下文传递：如何在调用链中传递限流维度（如用户ID）
+title: 上下文传递: 如何在调用链中传递限流维度（如用户ID）
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, context-propagation, tracing, user-id]
 published: true
 ---
-
 在分布式系统中，一个业务请求往往需要经过多个服务节点的处理，形成一条完整的调用链。为了实现全链路的精准限流，我们需要在调用链中传递限流相关的上下文信息，如用户ID、请求来源等维度信息。本章将深入探讨如何在分布式环境中有效地传递限流上下文，确保限流策略能够在整个调用链中保持一致性和准确性。
 
 ## 上下文传递的重要性

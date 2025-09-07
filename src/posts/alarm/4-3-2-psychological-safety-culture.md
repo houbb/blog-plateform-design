@@ -1,11 +1,10 @@
 ---
-title: 心理安全文化：blame-free的复盘文化
+title: 心理安全文化: blame-free的复盘文化
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, psychological-safety, blameless-postmortem, culture]
 published: true
 ---
-
 # 心理安全文化：blame-free的复盘文化
 
 在现代IT运维环境中，故障和问题不可避免。然而，如何处理这些故障，特别是如何进行事后复盘，对于组织的学习和改进至关重要。心理安全文化，特别是无指责（blame-free）的复盘文化，是构建高绩效团队和持续改进机制的关键要素。

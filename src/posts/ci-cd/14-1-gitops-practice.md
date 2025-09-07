@@ -1,11 +1,10 @@
 ---
-title: GitOps模式实践：声明式、版本控制、自动同步
+title: GitOps模式实践: 声明式、版本控制、自动同步
 date: 2025-09-07
 categories: [CICD]
 tags: [gitops, kubernetes, argocd, fluxcd, devops, deployment]
 published: true
 ---
-
 GitOps作为一种现代的DevOps实践方法，正在改变我们管理和部署应用程序的方式。它将Git作为系统状态的事实来源，通过声明式配置和自动化同步机制，实现了基础设施和应用程序部署的版本化、可追溯和可重复。GitOps不仅提升了部署的可靠性，还增强了系统的安全性和合规性。本文将深入探讨GitOps的核心思想、实现方式以及在企业环境中的应用实践。
 
 ## GitOps的核心思想

@@ -1,11 +1,10 @@
 ---
-title: 附录A：开源限流组件对比（Sentinel, Envoy RLS, Redis-cell）
+title: 附录A: 开源限流组件对比（Sentinel, Envoy RLS, Redis-cell）
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, open-source, comparison, sentinel, envoy, redis]
 published: true
 ---
-
 在构建分布式限流平台时，选择合适的开源组件是一个重要的决策。目前市场上有多种成熟的开源限流解决方案，每种都有其特点和适用场景。本附录将对三种主流的开源限流组件进行详细对比分析：阿里巴巴的Sentinel、Envoy的Rate Limit Service（RLS）和Redis-cell。通过对比它们的架构设计、功能特性、性能表现和适用场景，为技术选型提供参考。
 
 ## 组件概述

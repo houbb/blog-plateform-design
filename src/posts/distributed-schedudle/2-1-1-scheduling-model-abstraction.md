@@ -1,11 +1,10 @@
 ---
-title: 2.1 调度模型抽象：任务（Job）、实例（Instance）、工作流（DAG）
+title: 2.1 调度模型抽象: 任务（Job）、实例（Instance）、工作流（DAG）
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed, model, job, instance, dag]
 published: true
 ---
-
 在深入探讨分布式调度系统的实现细节之前，我们首先需要建立对调度系统基本模型的清晰认识。调度系统的核心是对任务的抽象和管理，而任务的抽象模型直接影响着系统的架构设计和功能实现。本文将系统性地介绍分布式调度系统的核心模型抽象，包括任务（Job）、实例（Instance）和工作流（DAG）等关键概念。
 
 ## 调度模型抽象的重要性

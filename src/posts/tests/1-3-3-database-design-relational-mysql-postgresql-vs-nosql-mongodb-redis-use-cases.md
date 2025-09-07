@@ -1,11 +1,10 @@
 ---
-title: 数据库设计：关系型（MySQL/PostgreSQL）与NoSQL（MongoDB/Redis）的应用场景
+title: 数据库设计: 关系型（MySQL/PostgreSQL）与NoSQL（MongoDB/Redis）的应用场景
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 3.3 数据库设计：关系型（MySQL/PostgreSQL）与NoSQL（MongoDB/Redis）的应用场景
 
 在测试平台的数据库设计中，选择合适的数据库技术是确保数据存储效率、查询性能和系统可扩展性的关键。不同的数据库技术有着各自的特点和适用场景，需要根据数据特点、访问模式和业务需求进行合理选择。本节将深入分析关系型数据库和NoSQL数据库的特点，并探讨它们在测试平台中的应用场景和设计原则。

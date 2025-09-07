@@ -1,11 +1,10 @@
 ---
-title: 安全左移与DevSecOps：将安全能力嵌入到研发运维全生命周期（Day 0）
+title: 安全左移与DevSecOps: 将安全能力嵌入到研发运维全生命周期（Day 0）
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在传统的软件开发生命周期（SDLC）中，安全往往被视为一个后期阶段的检查点，通常在开发完成后进行安全测试。然而，随着软件系统变得越来越复杂，攻击面不断扩大，这种"后期安全"模式已无法有效应对现代网络安全威胁。安全左移（Security Shift Left）和DevSecOps理念应运而生，强调将安全集成到软件开发生命周期的早期阶段，实现从设计到运维的全生命周期安全管理。

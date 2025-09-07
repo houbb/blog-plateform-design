@@ -1,11 +1,10 @@
 ---
-title: 培训与社区建设：培养流程主，构建学习型组织
+title: 培训与社区建设: 培养流程主，构建学习型组织
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, training, community, change management, learning organization]
 published: true
 ---
-
 # 培训与社区建设：培养流程主，构建学习型组织
 
 在企业级BPM平台实施过程中，培训与社区建设是确保平台成功落地和持续优化的关键因素。通过系统化的培训和活跃的社区建设，可以培养出一批具备流程管理能力的"流程主"，形成学习型组织，为平台的长期发展奠定坚实基础。

@@ -1,11 +1,10 @@
 ---
-title: 多协议适配器设计：SSH适配器、Agent适配器、SQL适配器、HTTP/API适配器
+title: 多协议适配器设计: SSH适配器、Agent适配器、SQL适配器、HTTP/API适配器
 date: 2025-09-06
 categories: [Task]
 tags: [task]
 published: true
 ---
-
 在现代企业环境中，作业平台需要与各种异构系统和执行环境进行交互。多协议适配器设计通过统一的接口屏蔽底层协议的差异，为上层应用提供一致的操作接口。本章将深入探讨四种核心协议适配器的设计与实现：SSH适配器、Agent适配器、SQL适配器和HTTP/API适配器，为企业构建一个灵活、可扩展的多协议适配框架提供指导。
 
 ## SSH适配器：连接Linux/Unix系统的标准

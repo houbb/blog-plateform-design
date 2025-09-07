@@ -1,11 +1,10 @@
 ---
-title: 核心引擎集成：JMeter的实现与分布式改造
+title: 核心引擎集成: JMeter的实现与分布式改造
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 核心引擎集成：JMeter的实现与分布式改造
 
 在构建全生命周期测试平台的过程中，性能测试是不可或缺的一环。性能测试能够帮助我们评估系统在各种负载条件下的表现，识别性能瓶颈，并为系统优化提供数据支持。Apache JMeter作为业界广泛使用的开源性能测试工具，以其强大的功能和灵活的扩展性成为众多企业的首选。

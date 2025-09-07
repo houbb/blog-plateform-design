@@ -1,11 +1,10 @@
 ---
-title: 技术选型：自研 vs. 基于开源（如Apache Superset、Grafana、Prometheus）生态构建
+title: 技术选型: 自研 vs. 基于开源（如Apache Superset、Grafana、Prometheus）生态构建
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]
 published: true
 ---
-
 在构建统一度量平台时，技术选型是一个至关重要的决策环节。企业需要在自研和基于开源生态构建之间做出选择，每种方案都有其独特的优势和挑战。本节将深入分析这两种技术路线的特点，并重点探讨如何基于开源生态（如Apache Superset、Grafana、Prometheus等）构建度量平台。
 
 ## 自研 vs. 开源生态构建的对比分析

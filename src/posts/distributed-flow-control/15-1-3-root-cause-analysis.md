@@ -1,11 +1,10 @@
 ---
-title: 根因分析：限流发生后的自动根因定位与故障诊断
+title: 根因分析: 限流发生后的自动根因定位与故障诊断
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, aiops, root-cause-analysis, troubleshooting]
 published: true
 ---
-
 在分布式系统中，当限流事件发生时，快速准确地定位根因对于系统恢复和问题解决至关重要。传统的手动排查方式效率低下且容易遗漏关键信息。通过引入智能化的根因分析技术，我们可以自动识别限流事件的根本原因，大幅缩短故障诊断时间，提高系统的可维护性。本章将深入探讨如何构建自动化的根因分析系统，实现限流事件的快速诊断和处理。
 
 ## 根因分析概述

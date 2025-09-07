@@ -1,11 +1,10 @@
 ---
-title: 多语言支持：Java, Go, Python, JavaScript/TypeScript 的扫描引擎集成
+title: 多语言支持: Java, Go, Python, JavaScript/TypeScript 的扫描引擎集成
 date: 2025-09-06
 categories: [QA]
 tags: [qa]
 published: true
 ---
-
 在现代软件开发环境中，技术栈的多样化已成为常态。企业级工程效能平台必须具备强大的多语言支持能力，以适应不同项目和团队的技术需求。不同的编程语言具有各自独特的语法特性和最佳实践，因此需要针对性地集成相应的扫描引擎和分析规则。本章将深入探讨如何实现对主流编程语言的全面支持。
 
 ## 多语言支持的挑战与需求

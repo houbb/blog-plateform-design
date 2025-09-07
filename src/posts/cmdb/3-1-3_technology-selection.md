@@ -1,11 +1,10 @@
 ---
-title: 技术选型：自研 vs. 开源（iTop、CMDBuild、OneCMDB） vs. 商业产品
+title: 技术选型: 自研 vs. 开源（iTop、CMDBuild、OneCMDB） vs. 商业产品
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]
 published: true
 ---
-
 在配置管理数据库（CMDB）项目的实施过程中，技术选型是一个至关重要的决策环节。选择合适的技术方案不仅影响项目的实施成本和周期，更直接关系到系统的功能完整性、性能表现和长期维护成本。本文将深入分析自研、开源和商业产品三种技术路线的优缺点，并提供详细的技术选型指导。
 
 ## 技术选型的重要性

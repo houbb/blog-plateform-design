@@ -1,11 +1,10 @@
 ---
-title: 资源池化管理：Docker/K8s实现动态Agent分配
+title: 资源池化管理: Docker/K8s实现动态Agent分配
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]
 published: true
 ---
-
 # 资源池化管理：Docker/K8s实现动态Agent分配
 
 在现代测试平台中，资源管理是确保测试任务高效执行的关键环节。随着测试规模的不断扩大和测试类型的多样化，传统的静态资源分配方式已经无法满足需求。通过容器化技术和编排平台，我们可以实现资源的池化管理和动态分配，从而提高资源利用率和测试执行效率。

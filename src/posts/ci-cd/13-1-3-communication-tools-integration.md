@@ -1,11 +1,10 @@
 ---
-title: 与沟通工具（钉钉/企微）集成：构建结果通知
+title: 与沟通工具（钉钉/企微）集成: 构建结果通知
 date: 2025-09-07
 categories: [CICD]
 tags: [dingtalk, wecom, communication, integration, notification, devops]
 published: true
 ---
-
 在现代软件开发团队中，及时的沟通和信息共享是确保项目顺利进行的关键。通过将CI/CD平台与钉钉、企业微信等沟通工具集成，可以实时推送构建和部署状态，确保团队成员及时了解项目进展，快速响应问题。这种集成不仅提高了团队的协作效率，还增强了开发流程的透明度。
 
 ## 沟通工具集成方案

@@ -1,11 +1,10 @@
 ---
-title: 高可用设计：构建稳定可靠的统一通知平台
+title: 高可用设计: 构建稳定可靠的统一通知平台
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, high-availability-design]
 published: true
 ---
-
 在构建统一通知通道平台的过程中，高可用设计是确保平台稳定运行、持续服务用户的关键要素。通知平台作为企业内部系统的重要基础设施，其可用性直接影响到业务的正常运行和用户体验。本文将深入探讨统一通知平台的高可用设计策略，为平台建设提供稳定可靠的架构保障。
 
 ## 高可用设计的重要性

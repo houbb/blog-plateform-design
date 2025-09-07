@@ -1,11 +1,10 @@
 ---
-title: 附录B：常用自动发现工具与协议
+title: 附录B: 常用自动发现工具与协议
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, auto-discovery, tools, protocols,自动发现]
 published: true
 ---
-
 自动发现是配置管理数据库（CMDB）数据准确性的关键保障。通过各种工具和协议，系统能够自动识别和收集IT环境中的配置项信息。本文档详细介绍了常用的自动发现工具与协议，为CMDB的自动发现实现提供参考。
 
 ## 自动发现概述

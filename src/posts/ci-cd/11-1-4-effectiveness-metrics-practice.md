@@ -1,11 +1,10 @@
 ---
-title: 研发效能度量实践：DORA指标看板、瓶颈分析与持续改进
+title: 研发效能度量实践: DORA指标看板、瓶颈分析与持续改进
 date: 2025-09-07
 categories: [CICD]
 tags: [effectiveness, dora, metrics, dashboard, continuous-improvement, devops]
 published: true
 ---
-
 研发效能度量是持续改进软件交付流程的关键环节。通过科学、合理的度量体系，组织能够客观评估当前的交付能力，识别流程中的瓶颈和改进机会，并驱动持续优化。DORA（DevOps Research and Assessment）指标作为业界广泛认可的度量标准，为组织提供了评估DevOps效能的基准框架。本文将深入探讨如何构建研发效能度量体系，实施DORA指标监控，并通过数据驱动的方式实现持续改进。
 
 ## DORA指标体系详解

@@ -1,11 +1,10 @@
 ---
-title: 与文档管理系统集成：流程附件、合规存档
+title: 与文档管理系统集成: 流程附件、合规存档
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, document management, integration, attachment, archive, compliance]
 published: true
 ---
-
 # 与文档管理系统集成：流程附件、合规存档
 
 在企业级BPM平台中，文档管理是业务流程的重要组成部分。通过与专业的文档管理系统集成，可以实现流程附件的统一管理、合规性文档的存档以及版本控制等功能，确保业务流程中产生的各类文档得到有效管理和合规保存。

@@ -1,11 +1,10 @@
 ---
-title: 性能陷阱：Lua脚本复杂度、网络往返次数与系统瓶颈
+title: 性能陷阱: Lua脚本复杂度、网络往返次数与系统瓶颈
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, performance, lua, redis, bottleneck]
 published: true
 ---
-
 在分布式限流平台的实现过程中，性能优化是一个至关重要的环节。即使系统功能完善，如果性能不佳，仍然无法满足高并发场景下的需求。本章将深入探讨分布式限流平台中最常见的性能陷阱，包括Lua脚本复杂度、网络往返次数优化、系统瓶颈识别与优化等方面，并提供相应的解决方案和最佳实践。
 
 ## Lua脚本复杂度陷阱

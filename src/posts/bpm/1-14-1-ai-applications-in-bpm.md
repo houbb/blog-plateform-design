@@ -1,11 +1,10 @@
 ---
-title: 人工智能在BPM中的应用：智能录入、路由与预测性监控
+title: 人工智能在BPM中的应用: 智能录入、路由与预测性监控
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, artificial intelligence, machine learning, nlp, computer vision, predictive analytics]
 published: true
 ---
-
 # 人工智能在BPM中的应用：智能录入、路由与预测性监控
 
 随着人工智能技术的不断发展，其在业务流程管理中的应用日益广泛。通过将机器学习、自然语言处理、计算机视觉等AI技术集成到BPM平台中，可以显著提升流程自动化水平和智能化程度。本章将深入探讨人工智能在BPM中的典型应用场景和实现方法。

@@ -1,11 +1,10 @@
 ---
-title: 左移的安全实践：SAST/DAST/SCA工具在流水线中的集成
+title: 左移的安全实践: SAST/DAST/SCA工具在流水线中的集成
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,security,sast,dast,sca,devsecops]
 published: true
 ---
-
 安全左移是DevSecOps的核心理念，强调将安全控制措施尽早集成到软件开发生命周期中，从而在问题早期发现和修复安全漏洞，降低修复成本和风险。通过在CI/CD流水线中集成SAST、DAST、SCA等安全工具，团队能够构建自动化、持续化的安全防护体系。本文将深入探讨安全左移的核心价值、各类安全工具的集成实践以及最佳实施策略。
 
 ## 安全左移的核心价值

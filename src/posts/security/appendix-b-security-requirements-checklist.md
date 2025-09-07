@@ -1,11 +1,10 @@
 ---
-title: 附录B：安全需求 checklist
+title: 附录B: 安全需求 checklist
 date: 2025-09-07
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在企业级统一安全能力平台的建设过程中，全面、系统地识别和梳理安全需求是确保平台成功实施的关键前提。安全需求 checklist 作为一种结构化的工具，能够帮助安全团队和业务部门系统性地识别各个层面的安全需求，确保不遗漏重要的安全考虑因素。

@@ -1,11 +1,10 @@
 ---
-title: 与Git集成：Commit Check, Merge Request Check
+title: 与Git集成: Commit Check, Merge Request Check
 date: 2025-09-06
 categories: [QA]
 tags: [qa]
 published: true
 ---
-
 在现代软件开发流程中，Git作为版本控制系统的核心，与质量门禁的深度集成是确保代码质量的关键环节。通过在Commit和Merge Request阶段实施质量检查，可以在代码进入主分支之前及时发现并阻止质量问题。本章将深入探讨如何实现与Git的深度集成，包括Commit Check和Merge Request Check的具体实现方法。
 
 ## Git集成的架构设计

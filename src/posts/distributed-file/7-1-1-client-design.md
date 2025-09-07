@@ -1,11 +1,10 @@
 ---
-title: 客户端设计：轻量级SDK、FUSE实现原理
+title: 客户端设计: 轻量级SDK、FUSE实现原理
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, client, sdk, fuse]
 published: true
 ---
-
 在分布式文件存储平台中，客户端设计是连接用户应用程序与存储系统的关键桥梁。一个优秀的客户端不仅需要提供高效、可靠的访问接口，还需要具备良好的易用性和可扩展性。本章将深入探讨轻量级SDK的设计原则与实现，以及FUSE（Filesystem in Userspace）在分布式文件系统中的应用原理。
 
 ## 7.1.1 轻量级SDK设计

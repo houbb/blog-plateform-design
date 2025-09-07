@@ -1,11 +1,10 @@
 ---
-title: 2.5 开源引擎借鉴：Airflow, DolphinScheduler, K8s CronJob, Apache Airflow, 腾讯TKE等设计思想
+title: 2.5 开源引擎借鉴: Airflow, DolphinScheduler, K8s CronJob, Apache Airflow, 腾讯TKE等设计思想
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, open source, airflow, dolphinscheduler, kubernetes, tke, design]
 published: true
 ---
-
 在分布式调度平台的设计与实现过程中，借鉴成熟的开源项目经验是提升系统质量和缩短开发周期的有效途径。当前业界已有多个优秀的开源调度引擎，它们在架构设计、功能实现和用户体验等方面都有独特的创新和实践经验。本文将深入分析Apache Airflow、Apache DolphinScheduler、Kubernetes CronJob等主流开源调度引擎的设计思想和实现特点，为构建企业级分布式调度平台提供有价值的参考和借鉴。
 
 ## Apache Airflow：Python生态下的工作流调度专家

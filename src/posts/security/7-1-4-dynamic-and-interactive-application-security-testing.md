@@ -1,11 +1,10 @@
 ---
-title: 动态应用安全测试（DAST）与交互式安全测试（IAST）：运行时安全检测与深度分析
+title: 动态应用安全测试（DAST）与交互式安全测试（IAST）: 运行时安全检测与深度分析
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在现代应用安全测试体系中，仅仅依靠静态分析工具已无法全面覆盖应用的安全风险。动态应用安全测试（Dynamic Application Security Testing, DAST）和交互式安全测试（Interactive Application Security Testing, IAST）作为两种重要的运行时安全检测技术，通过在应用实际运行过程中进行安全检测，能够发现静态分析难以识别的运行时漏洞和逻辑缺陷。

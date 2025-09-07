@@ -1,11 +1,10 @@
 ---
-title: 附录D：术语表
+title: 附录D: 术语表
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, glossary, terminology]
 published: true
 ---
-
 本术语表收录了企业级统一身份治理平台相关的专业术语和概念定义，帮助读者更好地理解本书内容。
 
 ## A

@@ -1,11 +1,10 @@
 ---
-title: 权限体系设计：基于角色的访问控制（RBAC）模型
+title: 权限体系设计: 基于角色的访问控制（RBAC）模型
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, security, rbac, permission, access control]
 published: true
 ---
-
 # 权限体系设计：基于角色的访问控制（RBAC）模型
 
 在企业级BPM平台中，权限体系设计是确保系统安全性的核心基础。通过合理的权限控制，可以确保用户只能访问其职责范围内的功能和数据，防止越权操作和数据泄露。基于角色的访问控制（Role-Based Access Control, RBAC）是目前最广泛应用的权限管理模型，它通过将权限分配给角色，再将角色分配给用户，实现了权限管理的灵活性和可维护性。

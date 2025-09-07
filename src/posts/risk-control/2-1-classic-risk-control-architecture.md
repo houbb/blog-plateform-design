@@ -1,11 +1,10 @@
 ---
-title: 经典风控架构：数据层、特征层、规则/模型层、决策层
+title: 经典风控架构: 数据层、特征层、规则/模型层、决策层
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]
 published: true
 ---
-
 # 经典风控架构：数据层、特征层、规则/模型层、决策层
 
 ## 引言

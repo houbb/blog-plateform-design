@@ -1,11 +1,10 @@
 ---
-title: 数据存储设计：任务模板、执行历史、日志的存储选型（MySQL + ES/Object Storage）
+title: 数据存储设计: 任务模板、执行历史、日志的存储选型（MySQL + ES/Object Storage）
 date: 2025-09-06
 categories: [Task]
 tags: [task]
 published: true
 ---
-
 在企业级作业平台中，数据存储设计是确保系统高效运行和稳定运维的基础。合理的存储选型和设计能够确保数据的高效存取、安全可靠和可扩展性。本章将深入探讨作业平台中三类核心数据的存储设计：任务模板、执行历史和日志数据，并重点介绍基于MySQL、Elasticsearch和对象存储的存储方案选型与实现。
 
 ## 任务模板存储：结构化数据的高效管理

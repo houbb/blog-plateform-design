@@ -1,11 +1,10 @@
 ---
-title: 5.5 工作流（DAG）引擎的设计：节点依赖、并行、条件分支、失败重试
+title: 5.5 工作流（DAG）引擎的设计: 节点依赖、并行、条件分支、失败重试
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, workflow, dag, node dependency, parallel execution, conditional branching, failure retry]
 published: true
 ---
-
 工作流引擎是现代分布式调度平台的核心组件之一，负责编排和执行复杂的任务依赖关系。随着业务复杂度的增加，简单的线性任务调度已无法满足需求，工作流引擎通过有向无环图（DAG）模型，支持节点依赖、并行执行、条件分支和失败重试等高级特性，为构建复杂的数据处理管道和业务流程提供了强大的支持。本文将深入探讨工作流引擎的设计原理和实现技术。
 
 ## 工作流引擎的核心概念与价值

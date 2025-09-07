@@ -1,11 +1,10 @@
 ---
-title: 知名安全架构参考：零信任架构（ZTA）、网络安全框架（CSF）
+title: 知名安全架构参考: 零信任架构（ZTA）、网络安全框架（CSF）
 date: 2025-09-06
 categories: [Security]
 tags: [security]
 published: true
 ---
-
 ## 引言
 
 在当今复杂多变的网络安全环境中，企业需要采用成熟的安全架构来指导安全体系建设。零信任架构（Zero Trust Architecture, ZTA）和网络安全框架（Cybersecurity Framework, CSF）是两种广泛应用的安全架构参考模型，它们为企业构建全面的安全防护体系提供了重要指导。

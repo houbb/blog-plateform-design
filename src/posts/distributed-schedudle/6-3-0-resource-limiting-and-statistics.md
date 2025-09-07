@@ -1,11 +1,10 @@
 ---
-title: 6.3 资源限制与统计：基于Cgroups的实现
+title: 6.3 资源限制与统计: 基于Cgroups的实现
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, resource management, cgroups, resource limiting, resource statistics]
 published: true
 ---
-
 在分布式调度平台中，资源限制与统计是确保系统稳定运行和任务公平执行的关键机制。通过合理的资源限制，可以防止个别任务占用过多资源而影响其他任务的执行；通过准确的资源统计，可以为调度决策提供数据支持，优化资源利用率。Cgroups（Control Groups）作为Linux内核提供的重要机制，为资源限制与统计提供了强大的支持。本文将深入探讨资源限制与统计的核心技术，重点分析基于Cgroups的实现原理和最佳实践。
 
 ## 资源限制与统计的核心概念与重要性

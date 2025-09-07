@@ -1,11 +1,10 @@
 ---
-title: ITSM、ITIL、DevOps辨析：概念融合与实践
+title: ITSM、ITIL、DevOps辨析: 概念融合与实践
 date: 2025-09-07
 categories: [ITSM]
 tags: [itsm]
 published: true
 ---
-
 在IT服务管理领域，ITSM、ITIL和DevOps是三个经常被提及的概念。它们之间既有联系又有区别，理解它们的关系对于构建高效的IT服务体系至关重要。
 
 ### 一、基本概念解析

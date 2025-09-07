@@ -1,11 +1,10 @@
 ---
-title: API-first与集成友好：提供丰富的集成API，构建开放的报警生态系统
+title: API-first与集成友好: 提供丰富的集成API，构建开放的报警生态系统
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]
 published: true
 ---
-
 在现代软件开发中，API-first设计已成为构建可扩展、可集成系统的标准方法。对于智能报警平台而言，采用API-first设计理念不仅能够提供丰富的集成能力，还能构建开放的生态系统，促进与其他系统的无缝协作。本文将深入探讨API-first设计原则在报警平台中的应用，以及如何通过丰富的集成API构建开放的报警生态系统。
 
 <!-- more -->

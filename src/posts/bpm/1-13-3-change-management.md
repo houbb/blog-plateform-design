@@ -1,11 +1,10 @@
 ---
-title: 变革管理：应对阻力，推动流程文化转型
+title: 变革管理: 应对阻力，推动流程文化转型
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, change management, resistance, culture transformation, organizational change]
 published: true
 ---
-
 # 变革管理：应对阻力，推动流程文化转型
 
 在企业级BPM平台实施过程中，技术实现只是成功的一部分，更大挑战往往来自于组织变革管理。流程自动化不仅仅是技术升级，更是对现有工作方式、思维模式和组织文化的深度变革。有效的变革管理能够帮助组织顺利过渡到新的工作模式，最大化BPM平台的投资回报。
