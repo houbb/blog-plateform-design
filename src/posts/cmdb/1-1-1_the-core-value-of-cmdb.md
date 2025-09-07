@@ -1,5 +1,5 @@
 ---
-title: CMDB的核心价值: 从混乱到有序，从被动到主动
+title: "CMDB的核心价值: 从混乱到有序，从被动到主动"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

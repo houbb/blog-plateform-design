@@ -1,5 +1,5 @@
 ---
-title: 日志检索与展示概述: 构建高效直观的日志查询分析平台
+title: "日志检索与展示概述: 构建高效直观的日志查询分析平台"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

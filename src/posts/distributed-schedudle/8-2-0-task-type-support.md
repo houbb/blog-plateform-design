@@ -1,5 +1,5 @@
 ---
-title: 8.2 任务类型支持: Shell、HTTP、Python、Spark、Flink、自定义镜像
+title: "8.2 任务类型支持: Shell、HTTP、Python、Spark、Flink、自定义镜像"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task type, Shell, HTTP, Python, Spark, Flink, Docker]

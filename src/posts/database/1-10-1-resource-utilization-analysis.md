@@ -1,5 +1,5 @@
 ---
-title: 数据库平台资源利用率分析: 识别空闲、低效实例，优化资源配置
+title: "数据库平台资源利用率分析: 识别空闲、低效实例，优化资源配置"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

@@ -1,5 +1,5 @@
 ---
-title: 附录B: Redis Lua脚本示例
+title: "附录B: Redis Lua脚本示例"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, redis, lua, scripting]

@@ -1,5 +1,5 @@
 ---
-title: 合规性检查: 满足SOX、GDPR等内外审计要求
+title: "合规性检查: 满足SOX、GDPR等内外审计要求"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, compliance, sox, gdpr, audit, regulation]

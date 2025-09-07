@@ -1,5 +1,5 @@
 ---
-title: 风控平台的核心价值: 保障资金安全、提升用户体验、保护企业信誉、合规经营
+title: "风控平台的核心价值: 保障资金安全、提升用户体验、保护企业信誉、合规经营"
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]

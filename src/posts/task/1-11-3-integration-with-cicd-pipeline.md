@@ -1,5 +1,5 @@
 ---
-title: 与CI/CD流水线集成: 作为发布流程中的关键步骤
+title: "与CI/CD流水线集成: 作为发布流程中的关键步骤"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

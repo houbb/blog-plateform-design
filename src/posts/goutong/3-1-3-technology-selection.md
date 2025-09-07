@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs 云服务 vs 开源方案的权衡之道
+title: "技术选型: 自研 vs 云服务 vs 开源方案的权衡之道"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, technology-selection]

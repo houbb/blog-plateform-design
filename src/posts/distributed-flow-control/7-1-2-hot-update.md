@@ -1,5 +1,5 @@
 ---
-title: 配置热更新: 规则变更实时下发至数据面，无需重启应用
+title: "配置热更新: 规则变更实时下发至数据面，无需重启应用"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, configuration, hot-update, realtime]

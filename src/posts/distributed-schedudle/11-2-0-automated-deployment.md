@@ -1,5 +1,5 @@
 ---
-title: 11.2 自动化部署: 基于Ansible/Helm/K8s Operator的部署方案
+title: "11.2 自动化部署: 基于Ansible/Helm/K8s Operator的部署方案"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, automated deployment, Ansible, Helm, Kubernetes Operator, CI/CD]

@@ -1,5 +1,5 @@
 ---
-title: 故障降级与恢复: Redis宕机时，自动降级到本地限流或直接放行
+title: "故障降级与恢复: Redis宕机时，自动降级到本地限流或直接放行"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, fault-tolerance, degradation, recovery, redis]

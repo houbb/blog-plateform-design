@@ -1,5 +1,5 @@
 ---
-title: 统一告警接入: 支持Prometheus、Zabbix、云监控、日志监控、自定义API等多种数据源的集成方案
+title: "统一告警接入: 支持Prometheus、Zabbix、云监控、日志监控、自定义API等多种数据源的集成方案"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

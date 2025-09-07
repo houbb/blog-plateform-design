@@ -1,5 +1,5 @@
 ---
-title: 数据库平台自愈与自治能力: 自动Kill慢查询、自动扩容、自动优化参数
+title: "数据库平台自愈与自治能力: 自动Kill慢查询、自动扩容、自动优化参数"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

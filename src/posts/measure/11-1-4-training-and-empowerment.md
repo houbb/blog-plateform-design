@@ -1,5 +1,5 @@
 ---
-title: 培训与赋能: 教会团队如何提问、如何用数据回答问题
+title: "培训与赋能: 教会团队如何提问、如何用数据回答问题"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 消息模板设计最佳实践: 构建高效复用的内容体系
+title: "消息模板设计最佳实践: 构建高效复用的内容体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, template, best-practices]

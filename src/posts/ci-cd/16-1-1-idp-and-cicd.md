@@ -1,5 +1,5 @@
 ---
-title: 内部开发者平台（IDP）与CI/CD: 构建开发者友好的一体化交付平台
+title: "内部开发者平台（IDP）与CI/CD: 构建开发者友好的一体化交付平台"
 date: 2025-09-07
 categories: [CICD]
 tags: [platform-engineering, idp, developer-experience, self-service, devops, automation]

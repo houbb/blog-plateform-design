@@ -1,5 +1,5 @@
 ---
-title: 报警平台核心目标: 减少MTTR、提升MTBF、保障SLO、优化用户体验的实现路径
+title: "报警平台核心目标: 减少MTTR、提升MTBF、保障SLO、优化用户体验的实现路径"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

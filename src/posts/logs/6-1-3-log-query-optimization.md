@@ -1,5 +1,5 @@
 ---
-title: 日志查询优化: 提升大规模日志检索性能的关键技术
+title: "日志查询优化: 提升大规模日志检索性能的关键技术"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

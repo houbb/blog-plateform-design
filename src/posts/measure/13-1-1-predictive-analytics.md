@@ -1,5 +1,5 @@
 ---
-title: 预测性分析: 基于历史数据预测未来趋势与风险
+title: "预测性分析: 基于历史数据预测未来趋势与风险"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

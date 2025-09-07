@@ -1,5 +1,5 @@
 ---
-title: 数据库平台Serverless Database集成: 无服务器数据库与平台的融合之道
+title: "数据库平台Serverless Database集成: 无服务器数据库与平台的融合之道"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

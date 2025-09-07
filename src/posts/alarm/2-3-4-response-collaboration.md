@@ -1,5 +1,5 @@
 ---
-title: 响应协作: 告警群聊自动创建、@相关人员、快速沟通
+title: "响应协作: 告警群聊自动创建、@相关人员、快速沟通"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

@@ -1,5 +1,5 @@
 ---
-title: 动态目标选择: 与CMDB集成，基于标签、业务属性动态生成执行目标
+title: "动态目标选择: 与CMDB集成，基于标签、业务属性动态生成执行目标"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

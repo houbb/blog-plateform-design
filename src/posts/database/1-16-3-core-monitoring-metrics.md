@@ -1,5 +1,5 @@
 ---
-title: 数据库平台核心监控指标详解: QPS、TPS、连接数、慢查询、容量等关键指标解读
+title: "数据库平台核心监控指标详解: QPS、TPS、连接数、慢查询、容量等关键指标解读"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

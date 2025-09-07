@@ -1,5 +1,5 @@
 ---
-title: 日志级别、上下文信息与格式化输出: 构建高质量日志的基础要素
+title: "日志级别、上下文信息与格式化输出: 构建高质量日志的基础要素"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

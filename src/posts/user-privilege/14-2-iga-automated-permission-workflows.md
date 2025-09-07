@@ -1,5 +1,5 @@
 ---
-title: 身份治理与管理（IGA）: 自动化权限治理工作流
+title: "身份治理与管理（IGA）: 自动化权限治理工作流"
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, iga, automated-workflows, permission-governance]

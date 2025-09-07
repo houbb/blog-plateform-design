@@ -1,5 +1,5 @@
 ---
-title: 通用API设计: 构建灵活高效的通知平台接入接口
+title: "通用API设计: 构建灵活高效的通知平台接入接口"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, api-design]

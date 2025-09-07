@@ -1,5 +1,5 @@
 ---
-title: 与沟通工具集成: 构建结果通知与团队协作
+title: "与沟通工具集成: 构建结果通知与团队协作"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,communication,slack,dingtalk,devops,notification,collaboration]

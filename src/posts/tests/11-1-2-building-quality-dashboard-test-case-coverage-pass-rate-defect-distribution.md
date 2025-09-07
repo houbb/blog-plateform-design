@@ -1,5 +1,5 @@
 ---
-title: 构建质量仪表盘（Dashboard）: 用例覆盖率、通过率、缺陷分布
+title: "构建质量仪表盘（Dashboard）: 用例覆盖率、通过率、缺陷分布"
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]

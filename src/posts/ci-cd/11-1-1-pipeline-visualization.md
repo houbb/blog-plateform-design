@@ -1,5 +1,5 @@
 ---
-title: 指标收集与分析: 构建统一的指标体系
+title: "指标收集与分析: 构建统一的指标体系"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,metrics,monitoring,prometheus,grafana,devops]

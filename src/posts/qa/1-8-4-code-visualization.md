@@ -1,5 +1,5 @@
 ---
-title: 代码可视化: hotspot分析、依赖关系、复杂度图谱
+title: "代码可视化: hotspot分析、依赖关系、复杂度图谱"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

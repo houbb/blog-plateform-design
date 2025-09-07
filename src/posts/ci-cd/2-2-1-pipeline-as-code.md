@@ -1,5 +1,5 @@
 ---
-title: 流水线即代码（Pipeline as Code）: DSL vs YAML vs GUI
+title: "流水线即代码（Pipeline as Code）: DSL vs YAML vs GUI"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

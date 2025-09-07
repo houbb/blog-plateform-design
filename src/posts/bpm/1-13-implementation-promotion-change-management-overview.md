@@ -1,5 +1,5 @@
 ---
-title: 第13章: 实施推广与变革管理概述
+title: "第13章: 实施推广与变革管理概述"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, implementation, promotion, change management, adoption]

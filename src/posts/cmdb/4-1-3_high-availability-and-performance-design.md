@@ -1,5 +1,5 @@
 ---
-title: 高可用与高性能设计: 数据库选型（MySQL/PostgreSQL/NewSQL）、缓存策略、水平扩展
+title: "高可用与高性能设计: 数据库选型（MySQL/PostgreSQL/NewSQL）、缓存策略、水平扩展"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

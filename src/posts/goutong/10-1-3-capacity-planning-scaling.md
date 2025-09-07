@@ -1,5 +1,5 @@
 ---
-title: 容量规划与弹性伸缩: 应对业务洪峰挑战
+title: "容量规划与弹性伸缩: 应对业务洪峰挑战"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, capacity-planning, auto-scaling]

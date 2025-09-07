@@ -1,5 +1,5 @@
 ---
-title: 安全能力的API化与自助服务: 构建敏捷安全运营新模式
+title: "安全能力的API化与自助服务: 构建敏捷安全运营新模式"
 date: 2025-09-07
 categories: [Security]
 tags: [security]

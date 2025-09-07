@@ -1,5 +1,5 @@
 ---
-title: 与Serverless/FaaS平台集成: 函数即服务的持续交付
+title: "与Serverless/FaaS平台集成: 函数即服务的持续交付"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,serverless,faas,aws-lambda,azure-functions,devops,cloud]

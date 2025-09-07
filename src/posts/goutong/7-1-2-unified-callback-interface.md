@@ -1,5 +1,5 @@
 ---
-title: 统一回调接口设计: 构建闭环的消息处理体系
+title: "统一回调接口设计: 构建闭环的消息处理体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, callback-interface]

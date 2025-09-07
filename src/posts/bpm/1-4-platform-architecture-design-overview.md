@@ -1,5 +1,5 @@
 ---
-title: 平台总体架构设计: 构建企业级BPM平台的技术基石
+title: "平台总体架构设计: 构建企业级BPM平台的技术基石"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

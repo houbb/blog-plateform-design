@@ -1,5 +1,5 @@
 ---
-title: 目标设定与范围界定: 从哪里开始？（MVP原则）
+title: "目标设定与范围界定: 从哪里开始？（MVP原则）"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

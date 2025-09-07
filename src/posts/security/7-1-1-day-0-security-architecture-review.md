@@ -1,5 +1,5 @@
 ---
-title: Day 0 安全架构检视: 在设计阶段引入威胁建模（STRIDE）
+title: "Day 0 安全架构检视: 在设计阶段引入威胁建模（STRIDE）"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

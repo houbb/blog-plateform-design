@@ -1,5 +1,5 @@
 ---
-title: 度量即代码: 将指标定义、仪表盘配置代码化、版本化
+title: "度量即代码: 将指标定义、仪表盘配置代码化、版本化"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

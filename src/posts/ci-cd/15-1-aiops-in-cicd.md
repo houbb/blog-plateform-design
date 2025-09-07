@@ -1,5 +1,5 @@
 ---
-title: AIOps在CI/CD中的探索: 智能测试优化、资源调度与根因分析
+title: "AIOps在CI/CD中的探索: 智能测试优化、资源调度与根因分析"
 date: 2025-09-07
 categories: [CICD]
 tags: [aiops, machine-learning, testing, resource-scheduling, root-cause-analysis, devops, automation]

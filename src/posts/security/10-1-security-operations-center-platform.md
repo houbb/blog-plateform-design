@@ -1,5 +1,5 @@
 ---
-title: 安全运营中心（SOC）平台: 构建一体化的安全运营体系
+title: "安全运营中心（SOC）平台: 构建一体化的安全运营体系"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

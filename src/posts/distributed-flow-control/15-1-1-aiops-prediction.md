@@ -1,5 +1,5 @@
 ---
-title: 基于时间序列预测的弹性限流: 预测流量洪峰，提前调整阈值
+title: "基于时间序列预测的弹性限流: 预测流量洪峰，提前调整阈值"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, aiops, time-series, prediction]

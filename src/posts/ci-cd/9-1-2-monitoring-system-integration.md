@@ -1,5 +1,5 @@
 ---
-title: 与监控系统集成: 部署后自动验证
+title: "与监控系统集成: 部署后自动验证"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,monitoring,prometheus,grafana,datadog,devops,validation]

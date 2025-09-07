@@ -1,5 +1,5 @@
 ---
-title: 多租户与权限管理: 构建安全可靠的统一通知平台
+title: "多租户与权限管理: 构建安全可靠的统一通知平台"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, multi-tenant, rbac]

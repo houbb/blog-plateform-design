@@ -1,5 +1,5 @@
 ---
-title: 日志平台的未来: Serverless、边缘计算与SOC融合的新时代
+title: "日志平台的未来: Serverless、边缘计算与SOC融合的新时代"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

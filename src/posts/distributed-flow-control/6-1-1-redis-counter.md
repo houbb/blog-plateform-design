@@ -1,5 +1,5 @@
 ---
-title: 基于Redis的分布式计数器: Lua脚本保证原子性、集群模式下的同步问题
+title: "基于Redis的分布式计数器: Lua脚本保证原子性、集群模式下的同步问题"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, redis, lua, atomicity, clustering]

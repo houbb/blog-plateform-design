@@ -1,5 +1,5 @@
 ---
-title: 链路追踪集成: 在调用链上标记被限流的请求
+title: "链路追踪集成: 在调用链上标记被限流的请求"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, tracing, opentracing, opentelemetry, observability]

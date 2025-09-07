@@ -1,5 +1,5 @@
 ---
-title: 与CMDB集成: 建立服务、资产、工单的关联关系
+title: "与CMDB集成: 建立服务、资产、工单的关联关系"
 date: 2025-09-06
 categories: [ITSM]
 tags: [itsm]

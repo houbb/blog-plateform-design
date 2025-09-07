@@ -1,5 +1,5 @@
 ---
-title: 权限的效验: 中央化API网关与Sidecar模式
+title: "权限的效验: 中央化API网关与Sidecar模式"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

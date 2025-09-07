@@ -1,5 +1,5 @@
 ---
-title: 附录A: 开源限流组件对比（Sentinel, Envoy RLS, Redis-cell）
+title: "附录A: 开源限流组件对比（Sentinel, Envoy RLS, Redis-cell）"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, open-source, comparison, sentinel, envoy, redis]

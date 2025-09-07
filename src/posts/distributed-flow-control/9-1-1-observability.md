@@ -1,5 +1,5 @@
 ---
-title: 核心监控指标: 限流QPS、通过QPS、阻塞请求数、规则触发次数
+title: "核心监控指标: 限流QPS、通过QPS、阻塞请求数、规则触发次数"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, monitoring, metrics, observability]

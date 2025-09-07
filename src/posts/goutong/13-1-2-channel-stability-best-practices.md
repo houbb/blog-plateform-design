@@ -1,5 +1,5 @@
 ---
-title: 通道稳定性保障最佳实践: 构建高可用的通知服务体系
+title: "通道稳定性保障最佳实践: 构建高可用的通知服务体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, channel-stability, best-practices]

@@ -1,5 +1,5 @@
 ---
-title: 数据标准化与规范化: 定义统一的指标模型（MetricML？）
+title: "数据标准化与规范化: 定义统一的指标模型（MetricML？）"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

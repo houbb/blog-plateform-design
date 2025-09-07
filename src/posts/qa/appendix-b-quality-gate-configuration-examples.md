@@ -1,5 +1,5 @@
 ---
-title: 附录B: 门禁规则集配置示例
+title: "附录B: 门禁规则集配置示例"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

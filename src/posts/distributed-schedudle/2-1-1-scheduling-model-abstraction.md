@@ -1,5 +1,5 @@
 ---
-title: 2.1 调度模型抽象: 任务（Job）、实例（Instance）、工作流（DAG）
+title: "2.1 调度模型抽象: 任务（Job）、实例（Instance）、工作流（DAG）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed, model, job, instance, dag]

@@ -1,5 +1,5 @@
 ---
-title: 认证（Authentication）vs. 授权（Authorization）: OAuth 2.0、OIDC、SAML 2.0 核心原理详解
+title: "认证（Authentication）vs. 授权（Authorization）: OAuth 2.0、OIDC、SAML 2.0 核心原理详解"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs 集成开源（SonarQube, Checkstyle, FindBugs, OWASP ZAP） vs 商用SaaS
+title: "技术选型: 自研 vs 集成开源（SonarQube, Checkstyle, FindBugs, OWASP ZAP） vs 商用SaaS"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

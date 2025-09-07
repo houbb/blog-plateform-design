@@ -1,5 +1,5 @@
 ---
-title: 附录: 日志平台建设实用参考指南
+title: "附录: 日志平台建设实用参考指南"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

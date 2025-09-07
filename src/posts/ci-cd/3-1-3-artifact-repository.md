@@ -1,5 +1,5 @@
 ---
-title: 制品仓库管理: 管理Jar, Docker Image, Npm等制品，生命周期管理
+title: "制品仓库管理: 管理Jar, Docker Image, Npm等制品，生命周期管理"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

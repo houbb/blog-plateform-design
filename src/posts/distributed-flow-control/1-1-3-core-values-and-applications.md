@@ -1,5 +1,5 @@
 ---
-title: 核心价值: 防止系统雪崩、保障服务可用性、实现公平调度、成本控制
+title: "核心价值: 防止系统雪崩、保障服务可用性、实现公平调度、成本控制"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed]

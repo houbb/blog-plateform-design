@@ -1,5 +1,5 @@
 ---
-title: 配置项（CI）: 识别与管理一切需要管理的对象
+title: "配置项（CI）: 识别与管理一切需要管理的对象"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

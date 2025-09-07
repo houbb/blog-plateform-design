@@ -1,5 +1,5 @@
 ---
-title: 8.1 任务描述语言: UI表单、JSON/YAML、SQL、SDK
+title: "8.1 任务描述语言: UI表单、JSON/YAML、SQL、SDK"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task description, UI form, JSON, YAML, SQL, SDK]

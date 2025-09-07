@@ -1,5 +1,5 @@
 ---
-title: 3.2 技术选型决策: 自研 vs 基于开源二次开发（深度对比）
+title: "3.2 技术选型决策: 自研 vs 基于开源二次开发（深度对比）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, technology selection, in-house development, open source, comparison]

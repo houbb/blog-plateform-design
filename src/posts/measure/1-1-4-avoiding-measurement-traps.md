@@ -1,5 +1,5 @@
 ---
-title: 避免度量陷阱: Goodhart's Law（当度量成为目标，它就不再是好度量）、虚荣指标与可行动指标
+title: "避免度量陷阱: Goodhart's Law（当度量成为目标，它就不再是好度量）、虚荣指标与可行动指标"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 平台运营与最佳实践: 流水线模板库与共享库
+title: "平台运营与最佳实践: 流水线模板库与共享库"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,platform,operations,best-practices,devops]

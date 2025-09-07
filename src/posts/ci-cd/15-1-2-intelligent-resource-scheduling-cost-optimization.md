@@ -1,5 +1,5 @@
 ---
-title: 智能资源调度与成本优化: 基于机器学习的CI/CD资源管理
+title: "智能资源调度与成本优化: 基于机器学习的CI/CD资源管理"
 date: 2025-09-07
 categories: [CICD]
 tags: [aiops, resource-scheduling, cost-optimization, machine-learning, kubernetes, devops]

@@ -1,5 +1,5 @@
 ---
-title: 数据库平台开源平台对比: Yearning、Archery、Shardingsphere-Proxy等主流方案分析
+title: "数据库平台开源平台对比: Yearning、Archery、Shardingsphere-Proxy等主流方案分析"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

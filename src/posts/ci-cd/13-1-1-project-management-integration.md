@@ -1,5 +1,5 @@
 ---
-title: 与项目管理工具（Jira）集成: 需求驱动部署
+title: "与项目管理工具（Jira）集成: 需求驱动部署"
 date: 2025-09-07
 categories: [CICD]
 tags: [jira, project-management, integration, requirement-driven, automation, devops]

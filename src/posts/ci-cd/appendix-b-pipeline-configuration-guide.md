@@ -1,5 +1,5 @@
 ---
-title: 附录B: Jenkinsfile/GitLab CI YAML 编写指南
+title: "附录B: Jenkinsfile/GitLab CI YAML 编写指南"
 date: 2025-09-07
 categories: [CICD]
 tags: [jenkins, gitlab, pipeline, configuration, best-practices]

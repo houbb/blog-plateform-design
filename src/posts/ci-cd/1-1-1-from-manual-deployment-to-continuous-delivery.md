@@ -1,5 +1,5 @@
 ---
-title: 从手工部署到持续交付: 软件交付的演进史
+title: "从手工部署到持续交付: 软件交付的演进史"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

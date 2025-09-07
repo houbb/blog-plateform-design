@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs. 采购商用产品 vs. 开源组合（Wazuh, Osquery, TheHive等）
+title: "技术选型: 自研 vs. 采购商用产品 vs. 开源组合（Wazuh, Osquery, TheHive等）"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

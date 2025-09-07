@@ -1,5 +1,5 @@
 ---
-title: 15.2 与数据平台集成: 触发DataX/Spark离线任务、上报数据质量结果
+title: "15.2 与数据平台集成: 触发DataX/Spark离线任务、上报数据质量结果"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, data platform, DataX, Spark, data quality, integration]

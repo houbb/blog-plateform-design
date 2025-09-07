@@ -1,5 +1,5 @@
 ---
-title: 安全平台的核心价值: 降低风险、满足合规、保障业务、赋能发展
+title: "安全平台的核心价值: 降低风险、满足合规、保障业务、赋能发展"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

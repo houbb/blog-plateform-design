@@ -1,5 +1,5 @@
 ---
-title: 培训与布道: 编写操作手册、举办 Workshop、分享案例
+title: "培训与布道: 编写操作手册、举办 Workshop、分享案例"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

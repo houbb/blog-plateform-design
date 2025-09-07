@@ -1,5 +1,5 @@
 ---
-title: 数据库平台设计原则详解: 自助服务、安全兜底、可观测性、可扩展性
+title: "数据库平台设计原则详解: 自助服务、安全兜底、可观测性、可扩展性"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

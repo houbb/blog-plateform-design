@@ -1,5 +1,5 @@
 ---
-title: 与项目管理（Jira）集成: 将质量数据关联至需求与迭代
+title: "与项目管理（Jira）集成: 将质量数据关联至需求与迭代"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

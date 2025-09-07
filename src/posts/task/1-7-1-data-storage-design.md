@@ -1,5 +1,5 @@
 ---
-title: 数据存储设计: 任务模板、执行历史、日志的存储选型（MySQL + ES/Object Storage）
+title: "数据存储设计: 任务模板、执行历史、日志的存储选型（MySQL + ES/Object Storage）"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

@@ -1,5 +1,5 @@
 ---
-title: 服务网格（Service Mesh）限流: 在Istio等网格中实现更细粒度的限流策略
+title: "服务网格（Service Mesh）限流: 在Istio等网格中实现更细粒度的限流策略"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, service-mesh, istio, envoy]

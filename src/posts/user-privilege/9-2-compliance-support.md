@@ -1,5 +1,5 @@
 ---
-title: 合规性支持: GDPR、等保2.0、SOC2中的身份要求
+title: "合规性支持: GDPR、等保2.0、SOC2中的身份要求"
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, compliance, gdpr, soc2]

@@ -1,5 +1,5 @@
 ---
-title: 附录C: 全球分布式限流架构探讨
+title: "附录C: 全球分布式限流架构探讨"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, global, architecture, multi-region]

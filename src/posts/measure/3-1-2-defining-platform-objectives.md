@@ -1,5 +1,5 @@
 ---
-title: 明确平台目标: 监控、洞察、问责、改进？
+title: "明确平台目标: 监控、洞察、问责、改进？"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

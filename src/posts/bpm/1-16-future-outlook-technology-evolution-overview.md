@@ -1,5 +1,5 @@
 ---
-title: 第16章: 未来展望与技术演进概述
+title: "第16章: 未来展望与技术演进概述"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, future outlook, technology evolution, digital transformation, innovation]

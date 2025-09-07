@@ -1,5 +1,5 @@
 ---
-title: 核心概念与抽象: 构建作业平台的理论基础
+title: "核心概念与抽象: 构建作业平台的理论基础"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

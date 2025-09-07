@@ -1,5 +1,5 @@
 ---
-title: 数据库平台高可用设计: 避免平台成为单点故障的核心策略
+title: "数据库平台高可用设计: 避免平台成为单点故障的核心策略"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

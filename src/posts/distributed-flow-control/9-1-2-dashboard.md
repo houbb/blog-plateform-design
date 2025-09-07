@@ -1,5 +1,5 @@
 ---
-title: 实时仪表盘: 全局流量态势、限流热点图、规则效果可视化
+title: "实时仪表盘: 全局流量态势、限流热点图、规则效果可视化"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, dashboard, visualization, grafana, monitoring]

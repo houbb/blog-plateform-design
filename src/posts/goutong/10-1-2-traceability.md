@@ -1,5 +1,5 @@
 ---
-title: 链路追踪: 精准定位消息全链路路径
+title: "链路追踪: 精准定位消息全链路路径"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, traceability, distributed-tracing]

@@ -1,5 +1,5 @@
 ---
-title: 安全与合规的进一步自动化: 构建内生安全的CI/CD流水线
+title: "安全与合规的进一步自动化: 构建内生安全的CI/CD流水线"
 date: 2025-09-07
 categories: [CICD]
 tags: [security, compliance, automation, devsecops, policy-as-code]

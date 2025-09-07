@@ -1,5 +1,5 @@
 ---
-title: 2.2 调度策略与算法: 先进先出（FIFO）、公平调度（Fair）、能力调度（Capacity）、优先级调度
+title: "2.2 调度策略与算法: 先进先出（FIFO）、公平调度（Fair）、能力调度（Capacity）、优先级调度"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed, algorithm, fifo, fair, capacity, priority]

@@ -1,5 +1,5 @@
 ---
-title: 消息与事件驱动: 实现异步、解耦的流程触发与推进
+title: "消息与事件驱动: 实现异步、解耦的流程触发与推进"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, messaging, event-driven, kafka, rabbitmq]

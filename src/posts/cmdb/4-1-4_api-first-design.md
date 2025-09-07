@@ -1,5 +1,5 @@
 ---
-title: API-first设计: 提供全面、稳定的Restful API供各方消费
+title: "API-first设计: 提供全面、稳定的Restful API供各方消费"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

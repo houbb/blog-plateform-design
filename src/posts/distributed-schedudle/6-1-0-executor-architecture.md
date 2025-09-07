@@ -1,5 +1,5 @@
 ---
-title: 6.1 执行器架构: 任务拉取 vs 任务推送模型
+title: "6.1 执行器架构: 任务拉取 vs 任务推送模型"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, executor, architecture, pull model, push model]

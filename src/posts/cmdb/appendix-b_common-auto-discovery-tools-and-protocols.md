@@ -1,5 +1,5 @@
 ---
-title: 附录B: 常用自动发现工具与协议
+title: "附录B: 常用自动发现工具与协议"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, auto-discovery, tools, protocols,自动发现]

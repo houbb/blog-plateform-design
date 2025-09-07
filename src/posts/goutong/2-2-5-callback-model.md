@@ -1,5 +1,5 @@
 ---
-title: 消息回调模型: 状态追踪与业务闭环的关键
+title: "消息回调模型: 状态追踪与业务闭环的关键"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, callback-model]

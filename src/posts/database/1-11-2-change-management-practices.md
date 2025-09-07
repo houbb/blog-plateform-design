@@ -1,5 +1,5 @@
 ---
-title: 数据库平台变革管理实践: 如何让开发者和DBA接受并信任平台
+title: "数据库平台变革管理实践: 如何让开发者和DBA接受并信任平台"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

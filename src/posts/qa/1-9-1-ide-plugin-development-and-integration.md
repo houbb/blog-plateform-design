@@ -1,5 +1,5 @@
 ---
-title: IDE插件开发与集成: 本地编码实时反馈、预提交检查
+title: "IDE插件开发与集成: 本地编码实时反馈、预提交检查"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

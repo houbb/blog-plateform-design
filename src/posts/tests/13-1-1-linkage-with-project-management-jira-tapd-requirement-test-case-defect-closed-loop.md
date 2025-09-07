@@ -1,5 +1,5 @@
 ---
-title: 与项目管理（Jira、Tapd）的联动: 需求-用例-缺陷闭环
+title: "与项目管理（Jira、Tapd）的联动: 需求-用例-缺陷闭环"
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]

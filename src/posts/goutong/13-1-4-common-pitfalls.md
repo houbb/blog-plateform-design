@@ -1,5 +1,5 @@
 ---
-title: 常见陷阱: 避免通知平台建设中的典型错误
+title: "常见陷阱: 避免通知平台建设中的典型错误"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, pitfalls, best-practices]

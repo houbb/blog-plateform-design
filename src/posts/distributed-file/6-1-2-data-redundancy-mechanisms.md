@@ -1,5 +1,5 @@
 ---
-title: 数据冗余机制: 多副本（Replication）的实现与调度
+title: "数据冗余机制: 多副本（Replication）的实现与调度"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, replication, redundancy]

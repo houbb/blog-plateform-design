@@ -1,5 +1,5 @@
 ---
-title: 客户端设计: 轻量级SDK、FUSE实现原理
+title: "客户端设计: 轻量级SDK、FUSE实现原理"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, client, sdk, fuse]

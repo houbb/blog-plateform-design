@@ -1,5 +1,5 @@
 ---
-title: 流程设计与开发: 从现实业务到BPMN模型的转化艺术
+title: "流程设计与开发: 从现实业务到BPMN模型的转化艺术"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, process design, bpmn]

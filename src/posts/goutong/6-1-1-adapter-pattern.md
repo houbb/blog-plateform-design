@@ -1,5 +1,5 @@
 ---
-title: 通道适配器模式: 统一接口，灵活接入各类供应商
+title: "通道适配器模式: 统一接口，灵活接入各类供应商"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, adapter-pattern]

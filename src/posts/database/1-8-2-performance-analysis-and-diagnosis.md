@@ -1,5 +1,5 @@
 ---
-title: 数据库平台性能分析与诊断: 实时性能剖面、锁等待分析、拓扑可视化
+title: "数据库平台性能分析与诊断: 实时性能剖面、锁等待分析、拓扑可视化"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

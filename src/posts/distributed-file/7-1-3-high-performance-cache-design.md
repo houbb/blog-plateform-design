@@ -1,5 +1,5 @@
 ---
-title: 高性能缓存设计: 客户端缓存、元数据缓存、数据缓存（一致性保证）
+title: "高性能缓存设计: 客户端缓存、元数据缓存、数据缓存（一致性保证）"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, cache, performance, metadata, consistency]

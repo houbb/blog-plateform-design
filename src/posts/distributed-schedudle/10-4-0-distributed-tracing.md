@@ -1,5 +1,5 @@
 ---
-title: 10.4 链路追踪（Tracing）: 复杂工作流的全链路跟踪
+title: "10.4 链路追踪（Tracing）: 复杂工作流的全链路跟踪"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed tracing, workflow tracking, Jaeger, Zipkin, OpenTelemetry]

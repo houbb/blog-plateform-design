@@ -1,5 +1,5 @@
 ---
-title: 服务调用与集成: 连接BPM平台与外部系统的桥梁
+title: "服务调用与集成: 连接BPM平台与外部系统的桥梁"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, integration, service calls]

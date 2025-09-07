@@ -1,5 +1,5 @@
 ---
-title: 指标注册与管理: 定义指标名称、口径、计算逻辑、负责人
+title: "指标注册与管理: 定义指标名称、口径、计算逻辑、负责人"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

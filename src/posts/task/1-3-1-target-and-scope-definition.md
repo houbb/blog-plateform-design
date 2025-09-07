@@ -1,5 +1,5 @@
 ---
-title: 目标与范围界定: 支持的任务类型、目标规模
+title: "目标与范围界定: 支持的任务类型、目标规模"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

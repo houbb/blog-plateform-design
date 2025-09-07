@@ -1,5 +1,5 @@
 ---
-title: 10.3 指标 Metrics: 调度延迟、任务成功率、资源利用率（Prometheus/Grafana）
+title: "10.3 指标 Metrics: 调度延迟、任务成功率、资源利用率（Prometheus/Grafana）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, metrics, Prometheus, Grafana, scheduling latency, task success rate, resource utilization]

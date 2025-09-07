@@ -1,5 +1,5 @@
 ---
-title: 数据看板: 实时洞察通知平台运营状况
+title: "数据看板: 实时洞察通知平台运营状况"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, data-dashboard]

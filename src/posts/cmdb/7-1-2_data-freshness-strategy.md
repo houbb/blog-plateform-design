@@ -1,5 +1,5 @@
 ---
-title: 数据保鲜策略: 定期扫描、变更事件触发更新
+title: "数据保鲜策略: 定期扫描、变更事件触发更新"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, data-freshness, data-update,数据保鲜]

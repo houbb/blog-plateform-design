@@ -1,5 +1,5 @@
 ---
-title: 数据库平台元数据采集机制: 自动发现、定时轮询、事件触发（binlog/事件监听）
+title: "数据库平台元数据采集机制: 自动发现、定时轮询、事件触发（binlog/事件监听）"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

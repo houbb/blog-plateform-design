@@ -1,5 +1,5 @@
 ---
-title: 版本控制与部署: 流程定义的版本化管理、灰度发布、A/B测试
+title: "版本控制与部署: 流程定义的版本化管理、灰度发布、A/B测试"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, version control, deployment, gray release, ab testing]

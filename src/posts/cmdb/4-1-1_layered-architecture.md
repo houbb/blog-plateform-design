@@ -1,5 +1,5 @@
 ---
-title: 分层架构: 数据采集层、核心服务层、API网关层、消费展示层
+title: "分层架构: 数据采集层、核心服务层、API网关层、消费展示层"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

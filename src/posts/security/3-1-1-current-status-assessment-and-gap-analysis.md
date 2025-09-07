@@ -1,5 +1,5 @@
 ---
-title: 现状评估与差距分析（GAP Analysis）: 识别最大风险与能力短板
+title: "现状评估与差距分析（GAP Analysis）: 识别最大风险与能力短板"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

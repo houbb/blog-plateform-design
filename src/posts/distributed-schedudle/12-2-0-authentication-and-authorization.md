@@ -1,5 +1,5 @@
 ---
-title: 12.2 认证与授权（RBAC）: 与公司统一登录系统集成
+title: "12.2 认证与授权（RBAC）: 与公司统一登录系统集成"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, authentication, authorization, RBAC, SSO, LDAP, OAuth2]

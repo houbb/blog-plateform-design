@@ -1,5 +1,5 @@
 ---
-title: 重新定义CMDB: 不仅是数据库，更是连接与消费的枢纽
+title: "重新定义CMDB: 不仅是数据库，更是连接与消费的枢纽"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

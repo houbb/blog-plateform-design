@@ -1,5 +1,5 @@
 ---
-title: 4.3 状态管理: 无状态服务与有状态服务的设计（如调度状态、任务状态）
+title: "4.3 状态管理: 无状态服务与有状态服务的设计（如调度状态、任务状态）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, state management, stateless, stateful, scheduling state, task state]

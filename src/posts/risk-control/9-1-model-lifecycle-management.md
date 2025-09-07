@@ -1,5 +1,5 @@
 ---
-title: 模型生命周期管理（MLOps）: 从特征、训练、评估到部署上线的一站式管理
+title: "模型生命周期管理（MLOps）: 从特征、训练、评估到部署上线的一站式管理"
 date: 2025-09-07
 categories: [RiskControl]
 tags: [rsik-control]

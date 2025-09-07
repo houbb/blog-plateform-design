@@ -1,5 +1,5 @@
 ---
-title: 流程引擎设计与实现: BPM平台的核心技术支撑
+title: "流程引擎设计与实现: BPM平台的核心技术支撑"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

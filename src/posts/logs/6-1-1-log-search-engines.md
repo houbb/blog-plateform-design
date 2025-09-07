@@ -1,5 +1,5 @@
 ---
-title: 日志搜索引擎: 技术选型与性能优化实战
+title: "日志搜索引擎: 技术选型与性能优化实战"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

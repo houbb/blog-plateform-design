@@ -1,5 +1,5 @@
 ---
-title: 与制品库（Nexus、Harbor）的联动: 版本管理
+title: "与制品库（Nexus、Harbor）的联动: 版本管理"
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]

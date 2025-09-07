@@ -1,5 +1,5 @@
 ---
-title: 数据库平台核心流程解析: SQL上线、结构变更、数据变更、查询与数据导出
+title: "数据库平台核心流程解析: SQL上线、结构变更、数据变更、查询与数据导出"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

@@ -1,5 +1,5 @@
 ---
-title: 核心组件设计: 控制面、数据面与存储层的详细实现
+title: "核心组件设计: 控制面、数据面与存储层的详细实现"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, components, control-plane, data-plane, storage]

@@ -1,5 +1,5 @@
 ---
-title: 基于系统负载的动态限流: 根据CPU、Load、P99延迟自动调整阈值
+title: "基于系统负载的动态限流: 根据CPU、Load、P99延迟自动调整阈值"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, adaptive, system-metrics, auto-scaling]

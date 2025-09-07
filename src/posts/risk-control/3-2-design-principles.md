@@ -1,5 +1,5 @@
 ---
-title: 设计原则: 实时性、准确性、高可用、可解释性、可迭代
+title: "设计原则: 实时性、准确性、高可用、可解释性、可迭代"
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]

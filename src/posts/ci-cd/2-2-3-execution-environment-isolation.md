@@ -1,5 +1,5 @@
 ---
-title: 执行环境隔离: 容器化（Docker/Kubernetes Pod）作为标准执行单元
+title: "执行环境隔离: 容器化（Docker/Kubernetes Pod）作为标准执行单元"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

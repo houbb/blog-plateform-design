@@ -1,5 +1,5 @@
 ---
-title: 数字化企业的核心竞争力: 数据驱动
+title: "数字化企业的核心竞争力: 数据驱动"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs. 集成开源（如 Sentinel, Redis-cell, Envoy RateLimit）
+title: "技术选型: 自研 vs. 集成开源（如 Sentinel, Redis-cell, Envoy RateLimit）"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, tech-selection, sentinel, redis-cell, envoy]

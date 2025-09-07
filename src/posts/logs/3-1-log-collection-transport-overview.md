@@ -1,5 +1,5 @@
 ---
-title: 日志采集与传输概述: 构建高效可靠的日志管道
+title: "日志采集与传输概述: 构建高效可靠的日志管道"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

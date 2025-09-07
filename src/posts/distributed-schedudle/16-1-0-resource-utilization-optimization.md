@@ -1,5 +1,5 @@
 ---
-title: 16.1 资源利用率分析与优化: 混部、弹性扩缩容（HPA）
+title: "16.1 资源利用率分析与优化: 混部、弹性扩缩容（HPA）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, resource utilization, optimization, co-location, HPA, autoscaling]

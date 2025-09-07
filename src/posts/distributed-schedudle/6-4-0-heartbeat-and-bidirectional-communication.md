@@ -1,5 +1,5 @@
 ---
-title: 6.4 心跳上报与双向通信: GRPC长连接的应用
+title: "6.4 心跳上报与双向通信: GRPC长连接的应用"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, heartbeat, bidirectional communication, grpc, long connection]

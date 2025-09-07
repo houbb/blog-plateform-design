@@ -1,5 +1,5 @@
 ---
-title: 多协议适配器设计: SSH适配器、Agent适配器、SQL适配器、HTTP/API适配器
+title: "多协议适配器设计: SSH适配器、Agent适配器、SQL适配器、HTTP/API适配器"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

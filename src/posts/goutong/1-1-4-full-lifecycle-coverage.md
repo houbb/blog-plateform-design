@@ -1,5 +1,5 @@
 ---
-title: "全生命周期"内涵: 涵盖通道管理、模板审核、发送调度、状态追踪、运营分析的完整闭环
+title: "\"全生命周期\"内涵: 涵盖通道管理、模板审核、发送调度、状态追踪、运营分析的完整闭环"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, platform, lifecycle]

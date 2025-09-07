@@ -1,5 +1,5 @@
 ---
-title: 数字化转型的流程引擎: BPM的核心价值与战略定位
+title: "数字化转型的流程引擎: BPM的核心价值与战略定位"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

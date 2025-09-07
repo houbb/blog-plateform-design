@@ -1,5 +1,5 @@
 ---
-title: 数据库平台SQL审核规则集: 语法检查、索引建议、大数据量提醒、高危操作拦截示例
+title: "数据库平台SQL审核规则集: 语法检查、索引建议、大数据量提醒、高危操作拦截示例"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

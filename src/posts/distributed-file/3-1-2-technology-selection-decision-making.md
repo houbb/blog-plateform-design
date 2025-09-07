@@ -1,5 +1,5 @@
 ---
-title: 技术选型决策: 自研 vs. 基于开源（如Ceph, JuiceFS, Alluxio, MinIO）二次开发
+title: "技术选型决策: 自研 vs. 基于开源（如Ceph, JuiceFS, Alluxio, MinIO）二次开发"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs]

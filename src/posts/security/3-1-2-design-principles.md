@@ -1,5 +1,5 @@
 ---
-title: 设计原则: 纵深防御、最小权限、永不信任、始终验证
+title: "设计原则: 纵深防御、最小权限、永不信任、始终验证"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

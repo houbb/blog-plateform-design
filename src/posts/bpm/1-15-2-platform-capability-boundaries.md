@@ -1,5 +1,5 @@
 ---
-title: 平台能力边界: 明确IT开发与业务配置的职责范围
+title: "平台能力边界: 明确IT开发与业务配置的职责范围"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, low-code, capability boundaries, it governance, business configuration]

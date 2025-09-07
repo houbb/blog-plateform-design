@@ -1,5 +1,5 @@
 ---
-title: 2.4 高可用与一致性: 基于Raft/Paxos的选主、状态同步与脑裂避免
+title: "2.4 高可用与一致性: 基于Raft/Paxos的选主、状态同步与脑裂避免"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, high availability, consistency, raft, paxos, consensus]

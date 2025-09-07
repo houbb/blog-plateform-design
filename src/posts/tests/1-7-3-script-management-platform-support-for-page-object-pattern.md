@@ -1,5 +1,5 @@
 ---
-title: 脚本管理: Page Object模式的平台化支持
+title: "脚本管理: Page Object模式的平台化支持"
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]

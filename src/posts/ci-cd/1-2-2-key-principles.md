@@ -1,5 +1,5 @@
 ---
-title: 关键原则: 一切皆代码（Pipeline as Code, IaC）、自动化、快速反馈、持续改进
+title: "关键原则: 一切皆代码（Pipeline as Code, IaC）、自动化、快速反馈、持续改进"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

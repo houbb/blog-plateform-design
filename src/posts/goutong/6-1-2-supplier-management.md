@@ -1,5 +1,5 @@
 ---
-title: 供应商管理: 多供应商配置、负载均衡、自动故障切换
+title: "供应商管理: 多供应商配置、负载均衡、自动故障切换"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, supplier-management]

@@ -1,5 +1,5 @@
 ---
-title: 安全策略管理: 集中化管理防火墙、WAF、IPS等策略
+title: "安全策略管理: 集中化管理防火墙、WAF、IPS等策略"
 date: 2025-09-07
 categories: [Security]
 tags: [security]

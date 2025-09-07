@@ -1,5 +1,5 @@
 ---
-title: 采集工具与Agent: 主流日志采集解决方案深度对比
+title: "采集工具与Agent: 主流日志采集解决方案深度对比"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

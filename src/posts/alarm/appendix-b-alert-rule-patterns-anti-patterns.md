@@ -1,5 +1,5 @@
 ---
-title: 附录B: 报警规则设计模式与反模式
+title: "附录B: 报警规则设计模式与反模式"
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, alert-rules, patterns, anti-patterns, best-practices]

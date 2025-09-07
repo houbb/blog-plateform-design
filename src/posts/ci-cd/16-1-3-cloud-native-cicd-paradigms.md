@@ -1,5 +1,5 @@
 ---
-title: 云原生环境下的CI/CD新范式: 从流水线到服务网格的演进
+title: "云原生环境下的CI/CD新范式: 从流水线到服务网格的演进"
 date: 2025-09-07
 categories: [CICD]
 tags: [cloud-native, kubernetes, service-mesh, gitops, serverless, devops]

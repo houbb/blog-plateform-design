@@ -1,5 +1,5 @@
 ---
-title: 附录A: 开源CMDB系统对比表
+title: "附录A: 开源CMDB系统对比表"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, open-source, comparison,开源对比]

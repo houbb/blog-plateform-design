@@ -1,5 +1,5 @@
 ---
-title: 度量指标体系: 基于ITIL的KPI设计（MTTR, MTBF, 变更成功率等）
+title: "度量指标体系: 基于ITIL的KPI设计（MTTR, MTBF, 变更成功率等）"
 date: 2025-09-06
 categories: [ITSM]
 tags: [itsm]

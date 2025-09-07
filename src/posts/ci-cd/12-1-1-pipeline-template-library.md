@@ -1,5 +1,5 @@
 ---
-title: 流水线模板库与共享库: 促进最佳实践复用，降低使用门槛
+title: "流水线模板库与共享库: 促进最佳实践复用，降低使用门槛"
 date: 2025-09-07
 categories: [CICD]
 tags: [pipeline-template, shared-library, best-practices, reuse, devops, automation]

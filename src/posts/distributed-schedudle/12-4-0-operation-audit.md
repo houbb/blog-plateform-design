@@ -1,5 +1,5 @@
 ---
-title: 12.4 操作审计: 关键操作的记录与查询
+title: "12.4 操作审计: 关键操作的记录与查询"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, operation audit, audit log, compliance, security audit, log management]

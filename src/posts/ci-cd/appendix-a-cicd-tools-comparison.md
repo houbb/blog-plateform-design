@@ -1,5 +1,5 @@
 ---
-title: 附录A: 主流CI/CD工具对比
+title: "附录A: 主流CI/CD工具对比"
 date: 2025-09-07
 categories: [CICD]
 tags: [tools, comparison, jenkins, gitlab, github-actions, tekton, argo-cd]

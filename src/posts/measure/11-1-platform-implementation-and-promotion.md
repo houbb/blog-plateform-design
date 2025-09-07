@@ -1,5 +1,5 @@
 ---
-title: 平台实施与推广: 从试点到全面落地的完整路径
+title: "平台实施与推广: 从试点到全面落地的完整路径"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 与Git的深度集成: Webhook、Checkout策略、多仓库管理
+title: "与Git的深度集成: Webhook、Checkout策略、多仓库管理"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

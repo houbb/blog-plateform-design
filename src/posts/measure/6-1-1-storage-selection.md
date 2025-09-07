@@ -1,5 +1,5 @@
 ---
-title: 存储选型: 时序数据库（TDengine, InfluxDB, Prometheus）、数据湖（Iceberg/Hudi）、数据仓库（ClickHouse, BigQuery）
+title: "存储选型: 时序数据库（TDengine, InfluxDB, Prometheus）、数据湖（Iceberg/Hudi）、数据仓库（ClickHouse, BigQuery）"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 报警之痛与范式转移: 从告警风暴到智能中枢
+title: "报警之痛与范式转移: 从告警风暴到智能中枢"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

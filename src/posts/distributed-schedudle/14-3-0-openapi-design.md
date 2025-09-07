@@ -1,5 +1,5 @@
 ---
-title: 14.3 OpenAPI设计: 与外部系统集成的RESTful API规范
+title: "14.3 OpenAPI设计: 与外部系统集成的RESTful API规范"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, OpenAPI, RESTful API, API design, system integration]

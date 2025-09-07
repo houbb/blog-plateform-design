@@ -1,5 +1,5 @@
 ---
-title: 日志可视化: 构建直观高效的日志分析展示平台
+title: "日志可视化: 构建直观高效的日志分析展示平台"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

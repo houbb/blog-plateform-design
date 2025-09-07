@@ -1,5 +1,5 @@
 ---
-title: 数据库平台技术选型与演进路线图: 自研 vs 开源二次开发 vs 商业解决方案
+title: "数据库平台技术选型与演进路线图: 自研 vs 开源二次开发 vs 商业解决方案"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

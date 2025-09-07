@@ -1,5 +1,5 @@
 ---
-title: 13.2 混沌工程（Chaos Engineering）实践: 模拟Master宕机、网络分区、Worker失联
+title: "13.2 混沌工程（Chaos Engineering）实践: 模拟Master宕机、网络分区、Worker失联"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, chaos engineering, resilience, fault tolerance, master failure, network partition, worker disconnection]

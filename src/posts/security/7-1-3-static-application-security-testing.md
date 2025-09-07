@@ -1,5 +1,5 @@
 ---
-title: 静态应用安全测试（SAST）: 集成CI/CD，在编码阶段发现漏洞
+title: "静态应用安全测试（SAST）: 集成CI/CD，在编码阶段发现漏洞"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

@@ -1,5 +1,5 @@
 ---
-title: 日志与合规: 满足GDPR、ISO27001等法规要求的实践指南
+title: "日志与合规: 满足GDPR、ISO27001等法规要求的实践指南"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

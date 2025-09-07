@@ -1,5 +1,5 @@
 ---
-title: 15.3 与消息队列集成: 基于事件的任务触发
+title: "15.3 与消息队列集成: 基于事件的任务触发"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, message queue, event-driven, task trigger, Kafka, RabbitMQ]

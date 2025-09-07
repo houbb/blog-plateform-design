@@ -1,5 +1,5 @@
 ---
-title: 规则数据模型: 资源、阈值、流控模式、效果（快速失败/Warm Up/排队等待）
+title: "规则数据模型: 资源、阈值、流控模式、效果（快速失败/Warm Up/排队等待）"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, rule-management, data-model]

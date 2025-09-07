@@ -1,5 +1,5 @@
 ---
-title: 17.2 基于AI的智能调度: 预测任务运行时间、智能资源推荐、故障预测
+title: "17.2 基于AI的智能调度: 预测任务运行时间、智能资源推荐、故障预测"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, AI, machine learning, intelligent scheduling, prediction, resource recommendation, fault prediction]

@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs 开源方案的深度对比与实践指南
+title: "技术选型: 自研 vs 开源方案的深度对比与实践指南"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

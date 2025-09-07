@@ -1,5 +1,5 @@
 ---
-title: 日志的产生: 应用、系统与设备的全方位日志源
+title: "日志的产生: 应用、系统与设备的全方位日志源"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

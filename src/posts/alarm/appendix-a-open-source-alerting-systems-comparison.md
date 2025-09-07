@@ -1,5 +1,5 @@
 ---
-title: 附录A: 开源报警系统对比
+title: "附录A: 开源报警系统对比"
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, open-source, comparison, prometheus, alertmanager, elastalert, nightingale]

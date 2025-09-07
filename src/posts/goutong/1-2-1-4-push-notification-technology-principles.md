@@ -1,5 +1,5 @@
 ---
-title: App推送（Push Notification）技术原理与限制: 苹果APNs、谷歌FCM、厂商通道
+title: "App推送（Push Notification）技术原理与限制: 苹果APNs、谷歌FCM、厂商通道"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, push, technology]

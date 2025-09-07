@@ -1,5 +1,5 @@
 ---
-title: 消息队列应用: 实现流量削峰、异步化与最终一致性
+title: "消息队列应用: 实现流量削峰、异步化与最终一致性"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, message-queue]

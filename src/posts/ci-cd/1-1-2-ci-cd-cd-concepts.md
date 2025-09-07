@@ -1,5 +1,5 @@
 ---
-title: CI、CD、CD: 厘清持续集成、持续交付与持续部署
+title: "CI、CD、CD: 厘清持续集成、持续交付与持续部署"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

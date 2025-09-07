@@ -1,5 +1,5 @@
 ---
-title: 与统一认证平台集成: 构建安全的权限管理体系
+title: "与统一认证平台集成: 构建安全的权限管理体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, authentication, authorization]

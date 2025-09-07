@@ -1,5 +1,5 @@
 ---
-title: 3.1 目标与范围界定: 是否支持工作流？是否支持多租户？目标规模？
+title: "3.1 目标与范围界定: 是否支持工作流？是否支持多租户？目标规模？"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, planning, scope, workflow, multi-tenancy, scale]

@@ -1,5 +1,5 @@
 ---
-title: 制定业务蓝图: 明确业务目标、范围与预期ROI
+title: "制定业务蓝图: 明确业务目标、范围与预期ROI"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

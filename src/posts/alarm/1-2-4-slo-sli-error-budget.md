@@ -1,5 +1,5 @@
 ---
-title: SLO/SLI与错误预算: 基于业务目标的精准报警实践
+title: "SLO/SLI与错误预算: 基于业务目标的精准报警实践"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

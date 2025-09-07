@@ -1,5 +1,5 @@
 ---
-title: 设计原则: 高可用、低延迟、最终一致性、配置热更新
+title: "设计原则: 高可用、低延迟、最终一致性、配置热更新"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, design-principles]

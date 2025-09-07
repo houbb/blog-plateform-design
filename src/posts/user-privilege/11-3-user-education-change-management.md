@@ -1,5 +1,5 @@
 ---
-title: 用户教育与变革管理: 如何推广平台，改变用户习惯
+title: "用户教育与变革管理: 如何推广平台，改变用户习惯"
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, user-education, change-management]

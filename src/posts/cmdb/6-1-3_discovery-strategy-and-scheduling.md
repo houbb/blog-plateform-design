@@ -1,5 +1,5 @@
 ---
-title: 发现策略与调度: 全量发现与增量发现
+title: "发现策略与调度: 全量发现与增量发现"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, discovery-strategy, scheduling, full-discovery, incremental-discovery]

@@ -1,5 +1,5 @@
 ---
-title: 规则引擎集成: 将复杂业务逻辑从流程中剥离
+title: "规则引擎集成: 将复杂业务逻辑从流程中剥离"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, rule engine, dmn]

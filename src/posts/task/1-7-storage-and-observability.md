@@ -1,5 +1,5 @@
 ---
-title: 存储与可观测性: 构建高效、可监控的作业平台
+title: "存储与可观测性: 构建高效、可监控的作业平台"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

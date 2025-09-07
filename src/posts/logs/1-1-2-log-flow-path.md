@@ -1,5 +1,5 @@
 ---
-title: 日志的流转路径: 从产生到消费的全链路追踪
+title: "日志的流转路径: 从产生到消费的全链路追踪"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

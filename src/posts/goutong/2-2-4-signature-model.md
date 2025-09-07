@@ -1,5 +1,5 @@
 ---
-title: 消息签名模型: 品牌识别与信任建立的关键
+title: "消息签名模型: 品牌识别与信任建立的关键"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, signature-model]

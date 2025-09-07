@@ -1,5 +1,5 @@
 ---
-title: 数据库平台执行模式与OSC集成: 线上执行、备份后执行、ORM同步、在线结构变更集成
+title: "数据库平台执行模式与OSC集成: 线上执行、备份后执行、ORM同步、在线结构变更集成"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

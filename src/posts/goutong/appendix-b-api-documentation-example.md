@@ -1,5 +1,5 @@
 ---
-title: 附录B: API接口文档示例
+title: "附录B: API接口文档示例"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, api, documentation]

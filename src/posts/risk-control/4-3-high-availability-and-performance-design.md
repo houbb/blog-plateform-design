@@ -1,5 +1,5 @@
 ---
-title: 高可用与高性能设计: 应对峰值流量、决策链路冗余、故障自动降级
+title: "高可用与高性能设计: 应对峰值流量、决策链路冗余、故障自动降级"
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]

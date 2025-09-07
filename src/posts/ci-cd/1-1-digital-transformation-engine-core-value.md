@@ -1,5 +1,5 @@
 ---
-title: 数字化转型的引擎: CI/CD的核心价值
+title: "数字化转型的引擎: CI/CD的核心价值"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

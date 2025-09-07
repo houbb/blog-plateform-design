@@ -1,5 +1,5 @@
 ---
-title: 邮件（Email）技术原理与限制: SMTP协议、信誉度、反垃圾邮件策略
+title: "邮件（Email）技术原理与限制: SMTP协议、信誉度、反垃圾邮件策略"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, email, technology]

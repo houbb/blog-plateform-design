@@ -1,5 +1,5 @@
 ---
-title: 智能洞察与预测: 从描述性分析到预测性分析的跃迁
+title: "智能洞察与预测: 从描述性分析到预测性分析的跃迁"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

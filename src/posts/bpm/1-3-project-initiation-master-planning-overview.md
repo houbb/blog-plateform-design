@@ -1,5 +1,5 @@
 ---
-title: 项目启动与总体规划: BPM平台建设的成功基石
+title: "项目启动与总体规划: BPM平台建设的成功基石"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

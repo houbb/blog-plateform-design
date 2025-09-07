@@ -1,5 +1,5 @@
 ---
-title: 平台化管理的四大目标: 效率提升、安全合规、成本优化、性能保障
+title: "平台化管理的四大目标: 效率提升、安全合规、成本优化、性能保障"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

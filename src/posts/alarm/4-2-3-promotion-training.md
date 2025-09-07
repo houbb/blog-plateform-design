@@ -1,5 +1,5 @@
 ---
-title: 推广与培训: 改变用户心智，从被动接收到主动管理
+title: "推广与培训: 改变用户心智，从被动接收到主动管理"
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, promotion, training, user-adoption, culture]

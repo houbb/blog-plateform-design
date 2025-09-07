@@ -1,5 +1,5 @@
 ---
-title: 8.4 版本控制与回滚: 任务配置的变更历史与审计
+title: "8.4 版本控制与回滚: 任务配置的变更历史与审计"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, version control, rollback, configuration management, audit]

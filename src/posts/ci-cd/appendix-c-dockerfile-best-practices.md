@@ -1,5 +1,5 @@
 ---
-title: 附录C: Dockerfile 最佳实践
+title: "附录C: Dockerfile 最佳实践"
 date: 2025-09-07
 categories: [CICD]
 tags: [docker, dockerfile, best-practices, container, security]

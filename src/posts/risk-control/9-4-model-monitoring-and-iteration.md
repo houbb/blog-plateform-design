@@ -1,5 +1,5 @@
 ---
-title: 模型监控与迭代: 模型性能衰减预警、概念漂移检测、持续学习
+title: "模型监控与迭代: 模型性能衰减预警、概念漂移检测、持续学习"
 date: 2025-09-07
 categories: [RiskControl]
 tags: [rsik-control]

@@ -1,5 +1,5 @@
 ---
-title: 3.4 平台演进路线图: 从核心调度引擎到生态集成的MVP迭代路径
+title: "3.4 平台演进路线图: 从核心调度引擎到生态集成的MVP迭代路径"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, roadmap, evolution, mvp, core engine, ecosystem integration]

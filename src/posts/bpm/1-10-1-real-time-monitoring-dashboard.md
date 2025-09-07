@@ -1,5 +1,5 @@
 ---
-title: 实时监控看板: 流程实例状态、任务积压、吞吐量、效率瓶颈监控
+title: "实时监控看板: 流程实例状态、任务积压、吞吐量、效率瓶颈监控"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, monitoring, dashboard, real-time, kpi]

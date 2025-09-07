@@ -1,5 +1,5 @@
 ---
-title: 与CMDB集成: 自动获取机器列表和属性
+title: "与CMDB集成: 自动获取机器列表和属性"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

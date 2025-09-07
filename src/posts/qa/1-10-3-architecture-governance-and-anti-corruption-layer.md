@@ -1,5 +1,5 @@
 ---
-title: 架构治理与防腐层: 守护分层、包依赖关系、API兼容性
+title: "架构治理与防腐层: 守护分层、包依赖关系、API兼容性"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

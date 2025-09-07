@@ -1,5 +1,5 @@
 ---
-title: 7.3 状态机设计: 任务生命周期的状态流转（Pending、Running、Success、Failed）
+title: "7.3 状态机设计: 任务生命周期的状态流转（Pending、Running、Success、Failed）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, state machine, task lifecycle, state transition, pending, running, success, failed]

@@ -1,5 +1,5 @@
 ---
-title: 一致性模型: 强一致性、最终一致性及其权衡
+title: "一致性模型: 强一致性、最终一致性及其权衡"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs]

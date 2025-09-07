@@ -1,5 +1,5 @@
 ---
-title: 5G消息（RCS）: 下一代短信技术的革命性变革
+title: "5G消息（RCS）: 下一代短信技术的革命性变革"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, 5g-messaging, rcs]

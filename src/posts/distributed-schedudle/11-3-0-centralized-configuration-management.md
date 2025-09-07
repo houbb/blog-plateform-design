@@ -1,5 +1,5 @@
 ---
-title: 11.3 配置中心化管理: Apollo/Nacos的集成
+title: "11.3 配置中心化管理: Apollo/Nacos的集成"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, configuration management, Apollo, Nacos, centralized configuration, dynamic configuration]

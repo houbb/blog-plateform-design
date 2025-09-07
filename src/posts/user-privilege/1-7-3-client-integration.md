@@ -1,5 +1,5 @@
 ---
-title: 客户端集成: Web应用、移动端、后端服务、旧系统的改造方案
+title: "客户端集成: Web应用、移动端、后端服务、旧系统的改造方案"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

@@ -1,3 +1,10 @@
+---
+title: ""
+date: 2025-09-07
+categories: ["Alarm"]
+tags: ["alarm"]
+published: true
+---
 # 第二章：BPM核心理论与标准
 
 业务流程管理（BPM）建立在坚实的理论基础之上，并通过一系列国际标准来规范和指导实践。本章将深入探讨BPM的核心理论，详细解析BPMN 2.0、DMN和CMMN等重要标准，并阐述卓越流程的特点，为读者构建完整的BPM理论体系。

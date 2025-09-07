@@ -1,5 +1,5 @@
 ---
-title: 模板管理: 构建高效的内容复用体系
+title: "模板管理: 构建高效的内容复用体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, template-management]

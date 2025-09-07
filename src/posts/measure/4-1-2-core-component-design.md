@@ -1,5 +1,5 @@
 ---
-title: 核心组件设计: 指标定义中心、数据采集器、ETL管道、元数据管理系统
+title: "核心组件设计: 指标定义中心、数据采集器、ETL管道、元数据管理系统"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

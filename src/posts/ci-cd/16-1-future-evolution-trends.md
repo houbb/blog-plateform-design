@@ -1,5 +1,5 @@
 ---
-title: 未来演进趋势: CI/CD平台的发展方向与前沿探索
+title: "未来演进趋势: CI/CD平台的发展方向与前沿探索"
 date: 2025-09-07
 categories: [CICD]
 tags: [future-trends, idp, security, cloud-native, devops, platform-engineering]

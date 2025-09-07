@@ -1,5 +1,5 @@
 ---
-title: 数据库平台敏感数据管控: 自动识别、动态脱敏、水印技术
+title: "数据库平台敏感数据管控: 自动识别、动态脱敏、水印技术"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

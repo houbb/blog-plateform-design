@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs. 基于开源（如Apache Superset、Grafana、Prometheus）生态构建
+title: "技术选型: 自研 vs. 基于开源（如Apache Superset、Grafana、Prometheus）生态构建"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

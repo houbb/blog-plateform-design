@@ -1,5 +1,5 @@
 ---
-title: 与沟通工具（钉钉/企微）集成: 构建结果通知
+title: "与沟通工具（钉钉/企微）集成: 构建结果通知"
 date: 2025-09-07
 categories: [CICD]
 tags: [dingtalk, wecom, communication, integration, notification, devops]

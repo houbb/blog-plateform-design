@@ -1,5 +1,5 @@
 ---
-title: 网关集成模式: 内置、Sidecar、外部服务模式详解
+title: "网关集成模式: 内置、Sidecar、外部服务模式详解"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, gateway, integration-patterns]

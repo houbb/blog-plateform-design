@@ -1,5 +1,5 @@
 ---
-title: 任务委托与代理: 休假等场景下的工作交接机制
+title: "任务委托与代理: 休假等场景下的工作交接机制"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, task delegation, proxy, vacation, work handover]

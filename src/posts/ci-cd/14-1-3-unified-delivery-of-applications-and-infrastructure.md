@@ -1,5 +1,5 @@
 ---
-title: 应用与基础设施的统一交付: GitOps在企业环境中的完整实践
+title: "应用与基础设施的统一交付: GitOps在企业环境中的完整实践"
 date: 2025-09-07
 categories: [CICD]
 tags: [gitops, kubernetes, infrastructure, applications, unified-delivery, devops, platform-engineering]

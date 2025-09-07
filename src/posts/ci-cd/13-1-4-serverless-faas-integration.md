@@ -1,5 +1,5 @@
 ---
-title: 与Serverless/FaaS平台集成: 无服务器架构的CI/CD实践
+title: "与Serverless/FaaS平台集成: 无服务器架构的CI/CD实践"
 date: 2025-09-07
 categories: [CICD]
 tags: [serverless, faas, integration, aws-lambda, azure-functions, google-cloud-functions, devops]

@@ -1,5 +1,5 @@
 ---
-title: 不可变制品与晋升流程: 构建一次，多处部署
+title: "不可变制品与晋升流程: 构建一次，多处部署"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

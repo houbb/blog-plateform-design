@@ -1,5 +1,5 @@
 ---
-title: 5.1 任务队列管理: 内存队列 vs 持久化队列（基于DB/RocketMQ）
+title: "5.1 任务队列管理: 内存队列 vs 持久化队列（基于DB/RocketMQ）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task queue, memory queue, persistent queue, database, rocketmq]

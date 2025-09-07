@@ -1,5 +1,5 @@
 ---
-title: 权限模型基石: 自主访问控制（DAC）、强制访问控制（MAC）、基于角色的访问控制（RBAC）、基于属性的访问控制（ABAC）
+title: "权限模型基石: 自主访问控制（DAC）、强制访问控制（MAC）、基于角色的访问控制（RBAC）、基于属性的访问控制（ABAC）"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

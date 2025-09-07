@@ -1,5 +1,5 @@
 ---
-title: 数据库平台与现有流程集成: 对接工单系统、CMDB、监控平台的无缝整合
+title: "数据库平台与现有流程集成: 对接工单系统、CMDB、监控平台的无缝整合"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

@@ -1,5 +1,5 @@
 ---
-title: 4.1 分层架构: 客户端、接入层、调度核心、执行器、元数据存储
+title: "4.1 分层架构: 客户端、接入层、调度核心、执行器、元数据存储"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, architecture, layered architecture, client, gateway, scheduler, executor, metadata]

@@ -1,5 +1,5 @@
 ---
-title: 热点参数限流: 对频繁访问的特定参数进行特殊限制
+title: "热点参数限流: 对频繁访问的特定参数进行特殊限制"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, hotspot, parameter-limiting, cache]

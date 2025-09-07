@@ -1,5 +1,5 @@
 ---
-title: 稳定性陷阱: 分布式锁的使用、缓存穿透与雪崩
+title: "稳定性陷阱: 分布式锁的使用、缓存穿透与雪崩"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, stability, cache, locking]

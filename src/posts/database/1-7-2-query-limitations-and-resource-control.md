@@ -1,5 +1,5 @@
 ---
-title: 数据库平台查询限制与资源控制: 最大返回行数、执行时间、定时查询
+title: "数据库平台查询限制与资源控制: 最大返回行数、执行时间、定时查询"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

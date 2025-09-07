@@ -1,5 +1,5 @@
 ---
-title: 通道质量监控与熔断降级: 自动屏蔽故障或低质量通道
+title: "通道质量监控与熔断降级: 自动屏蔽故障或低质量通道"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, quality-monitoring]

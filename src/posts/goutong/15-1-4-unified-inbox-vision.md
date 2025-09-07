@@ -1,5 +1,5 @@
 ---
-title: 统一收件箱（Unified Inbox）展望: 构建个人化信息聚合中心
+title: "统一收件箱（Unified Inbox）展望: 构建个人化信息聚合中心"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, unified-inbox, future-vision]

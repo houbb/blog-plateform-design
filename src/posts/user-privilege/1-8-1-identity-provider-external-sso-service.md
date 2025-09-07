@@ -1,5 +1,5 @@
 ---
-title: 作为身份提供者（IdP）: 对外提供SSO服务
+title: "作为身份提供者（IdP）: 对外提供SSO服务"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

@@ -1,5 +1,5 @@
 ---
-title: BPM的核心: 业务流程的自动化、监控与优化
+title: "BPM的核心: 业务流程的自动化、监控与优化"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

@@ -1,5 +1,5 @@
 ---
-title: 作为服务提供者（SP）: 集成外部IdP（如企业微信、AD）
+title: "作为服务提供者（SP）: 集成外部IdP（如企业微信、AD）"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

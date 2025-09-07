@@ -1,5 +1,5 @@
 ---
-title: 与CI/CD流水线深度集成: 作为流水线推进的必备关卡
+title: "与CI/CD流水线深度集成: 作为流水线推进的必备关卡"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

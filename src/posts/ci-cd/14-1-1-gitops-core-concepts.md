@@ -1,5 +1,5 @@
 ---
-title: GitOps核心思想: 声明式、版本控制、自动同步
+title: "GitOps核心思想: 声明式、版本控制、自动同步"
 date: 2025-09-07
 categories: [CICD]
 tags: [gitops, kubernetes, declarative, version-control, automation, devops]

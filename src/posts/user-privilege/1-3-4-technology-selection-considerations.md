@@ -1,5 +1,5 @@
 ---
-title: 技术选型考量: 自研 vs 商用产品 vs 开源方案（Keycloak, Casdoor, Ory Kratos）
+title: "技术选型考量: 自研 vs 商用产品 vs 开源方案（Keycloak, Casdoor, Ory Kratos）"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

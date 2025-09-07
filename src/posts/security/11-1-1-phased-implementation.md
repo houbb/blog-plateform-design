@@ -1,5 +1,5 @@
 ---
-title: 分阶段实施: 先夯实基础（IAM、日志），再建设高级能力（威胁检测）
+title: "分阶段实施: 先夯实基础（IAM、日志），再建设高级能力（威胁检测）"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

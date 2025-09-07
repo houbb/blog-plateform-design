@@ -1,5 +1,5 @@
 ---
-title: 企业服务管理: 将ITSM能力拓展至HR、财务、行政等业务部门
+title: "企业服务管理: 将ITSM能力拓展至HR、财务、行政等业务部门"
 date: 2025-09-07
 categories: [ITSM]
 tags: [itsm]

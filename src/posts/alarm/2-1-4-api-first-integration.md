@@ -1,5 +1,5 @@
 ---
-title: API-first与集成友好: 提供丰富的集成API，构建开放的报警生态系统
+title: "API-first与集成友好: 提供丰富的集成API，构建开放的报警生态系统"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

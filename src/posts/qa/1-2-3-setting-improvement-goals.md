@@ -1,5 +1,5 @@
 ---
-title: 设定改进目标: 使用North Star Metric（北极星指标）引领方向
+title: "设定改进目标: 使用North Star Metric（北极星指标）引领方向"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

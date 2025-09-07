@@ -1,10 +1,11 @@
 ---
-title: 附录D: BPM术语表
+title: 附录D：BPM术语表
 date: 2025-09-07
 categories: [BPM]
-tags: [bpm, terminology, glossary, bpmn, dmn, cmmn]
+tags: [bpm]
 published: true
 ---
+
 # 附录D：BPM术语表
 
 本附录提供了BPM领域常用术语的定义和解释，帮助读者更好地理解本书中涉及的概念和术语。

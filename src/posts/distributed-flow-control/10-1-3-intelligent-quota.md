@@ -1,5 +1,5 @@
 ---
-title: 智能配额分配: 根据服务重要性、SLA动态分配集群总配额
+title: "智能配额分配: 根据服务重要性、SLA动态分配集群总配额"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, quota-allocation, sla, service-governance]

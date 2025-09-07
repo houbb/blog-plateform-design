@@ -1,5 +1,5 @@
 ---
-title: 推广与布道: 构建平台影响力与用户生态
+title: "推广与布道: 构建平台影响力与用户生态"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, promotion, advocacy]

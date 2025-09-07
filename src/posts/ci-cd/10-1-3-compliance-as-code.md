@@ -1,5 +1,5 @@
 ---
-title: 合规性即代码: 自动化审计与合规检查
+title: "合规性即代码: 自动化审计与合规检查"
 date: 2025-09-07
 categories: [CICD]
 tags: [compliance, policy-as-code, audit, devsecops, automation]

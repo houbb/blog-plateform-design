@@ -1,5 +1,5 @@
 ---
-title: 数据库平台Kubernetes Operator模式: 基于CRD的数据库管理新范式
+title: "数据库平台Kubernetes Operator模式: 基于CRD的数据库管理新范式"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

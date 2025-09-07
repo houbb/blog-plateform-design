@@ -1,5 +1,5 @@
 ---
-title: KPI度量体系: 流程周期、活动周期、成本、满意度度量
+title: "KPI度量体系: 流程周期、活动周期、成本、满意度度量"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, kpi, metrics, process cycle, cost analysis]

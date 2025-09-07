@@ -1,5 +1,5 @@
 ---
-title: 审批与安全管控: 人工卡点、安全扫描、合规检查
+title: "审批与安全管控: 人工卡点、安全扫描、合规检查"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,approval,security,compliance,governance]

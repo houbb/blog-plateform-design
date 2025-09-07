@@ -1,5 +1,5 @@
 ---
-title: 其他重要标准: DMN与CMMN在BPM中的应用
+title: "其他重要标准: DMN与CMMN在BPM中的应用"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

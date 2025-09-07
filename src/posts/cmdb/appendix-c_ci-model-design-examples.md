@@ -1,5 +1,5 @@
 ---
-title: 附录C: CI模型设计示例
+title: "附录C: CI模型设计示例"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, ci-model, design-examples]

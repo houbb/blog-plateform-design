@@ -1,5 +1,5 @@
 ---
-title: 经典模型解析: DORA四大关键指标、SPACE开发者效能模型、Google的四大黄金信号
+title: "经典模型解析: DORA四大关键指标、SPACE开发者效能模型、Google的四大黄金信号"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 研发效能度量实践: DORA指标看板、瓶颈分析与持续改进
+title: "研发效能度量实践: DORA指标看板、瓶颈分析与持续改进"
 date: 2025-09-07
 categories: [CICD]
 tags: [effectiveness, dora, metrics, dashboard, continuous-improvement, devops]

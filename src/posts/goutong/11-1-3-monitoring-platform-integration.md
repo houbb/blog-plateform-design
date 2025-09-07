@@ -1,5 +1,5 @@
 ---
-title: 与监控报警平台集成: 构建全面的系统可观测性
+title: "与监控报警平台集成: 构建全面的系统可观测性"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, monitoring, alerting]

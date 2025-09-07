@@ -1,5 +1,5 @@
 ---
-title: 与文档管理系统集成: 流程附件、合规存档
+title: "与文档管理系统集成: 流程附件、合规存档"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, document management, integration, attachment, archive, compliance]

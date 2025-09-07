@@ -1,5 +1,5 @@
 ---
-title: 分支策略与流水线触发: Git Flow, GitHub Flow, Trunk-Based Development
+title: "分支策略与流水线触发: Git Flow, GitHub Flow, Trunk-Based Development"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

@@ -1,5 +1,5 @@
 ---
-title: 扩展性设计: 支持多语言SDK、多环境（K8s/VM）
+title: "扩展性设计: 支持多语言SDK、多环境（K8s/VM）"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, scalability, sdk, kubernetes, multi-environment]

@@ -1,5 +1,5 @@
 ---
-title: 指标生命周期管理: 从创建到废弃的全生命周期治理
+title: "指标生命周期管理: 从创建到废弃的全生命周期治理"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

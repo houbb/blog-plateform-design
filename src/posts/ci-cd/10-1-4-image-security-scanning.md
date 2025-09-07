@@ -1,5 +1,5 @@
 ---
-title: 镜像安全扫描: 容器镜像的漏洞检测与合规检查
+title: "镜像安全扫描: 容器镜像的漏洞检测与合规检查"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,security,container,image,scan,vulnerability,devsecops]

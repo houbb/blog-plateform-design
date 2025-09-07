@@ -1,5 +1,5 @@
 ---
-title: 采集方式: Agent、API拉取、消息队列（Kafka）订阅、SDK埋点
+title: "采集方式: Agent、API拉取、消息队列（Kafka）订阅、SDK埋点"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

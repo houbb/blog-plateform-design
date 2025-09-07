@@ -1,5 +1,5 @@
 ---
-title: 日志生命周期模型概述: 从产生到消亡的完整旅程
+title: "日志生命周期模型概述: 从产生到消亡的完整旅程"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

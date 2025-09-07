@@ -1,5 +1,5 @@
 ---
-title: 质量门禁设置: 测试覆盖率、通过率作为流水线推进的硬性条件
+title: "质量门禁设置: 测试覆盖率、通过率作为流水线推进的硬性条件"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,testing,quality]

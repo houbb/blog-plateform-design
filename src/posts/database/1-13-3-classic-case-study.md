@@ -1,5 +1,5 @@
 ---
-title: 数据库平台经典案例分享: 从零建设DBPaaS的历程与数据库故障快速恢复实践
+title: "数据库平台经典案例分享: 从零建设DBPaaS的历程与数据库故障快速恢复实践"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

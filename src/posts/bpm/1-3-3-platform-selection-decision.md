@@ -1,5 +1,5 @@
 ---
-title: 平台选型决策: 自研 vs. 商用产品 vs. 低代码平台
+title: "平台选型决策: 自研 vs. 商用产品 vs. 低代码平台"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

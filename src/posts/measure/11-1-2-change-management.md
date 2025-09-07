@@ -1,5 +1,5 @@
 ---
-title: 变革管理: 应对"被度量"的恐惧，建立数据驱动文化
+title: "变革管理: 应对\"被度量\"的恐惧，建立数据驱动文化"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

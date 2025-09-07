@@ -1,5 +1,5 @@
 ---
-title: 4.4 高可用部署方案: Master集群、Worker弹性伸缩、存储多活
+title: "4.4 高可用部署方案: Master集群、Worker弹性伸缩、存储多活"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, high availability, deployment, master cluster, worker scaling, multi-active storage]

@@ -1,5 +1,5 @@
 ---
-title: 5.4 分布式锁与选主机制: 基于ZooKeeper/Etcd的实现
+title: "5.4 分布式锁与选主机制: 基于ZooKeeper/Etcd的实现"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed lock, leader election, zookeeper, etcd]

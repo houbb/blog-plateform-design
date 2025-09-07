@@ -1,5 +1,5 @@
 ---
-title: 监控告警体系: 构建全面的平台可观测性
+title: "监控告警体系: 构建全面的平台可观测性"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, monitoring, alerting]

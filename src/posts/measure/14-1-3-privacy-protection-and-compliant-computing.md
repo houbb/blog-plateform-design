@@ -1,5 +1,5 @@
 ---
-title: 隐私保护与合规计算: 在满足GDPR等要求下进行数据聚合与分析
+title: "隐私保护与合规计算: 在满足GDPR等要求下进行数据聚合与分析"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

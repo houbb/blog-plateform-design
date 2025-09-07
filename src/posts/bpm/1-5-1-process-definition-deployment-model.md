@@ -1,5 +1,5 @@
 ---
-title: 流程定义部署模型: 解析与执行BPMN 2.0 XML
+title: "流程定义部署模型: 解析与执行BPMN 2.0 XML"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

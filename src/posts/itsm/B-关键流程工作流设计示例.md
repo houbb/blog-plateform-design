@@ -1,5 +1,5 @@
 ---
-title: 附录B: 关键流程工作流设计示例
+title: "附录B: 关键流程工作流设计示例"
 date: 2025-09-07
 categories: [ITSM]
 tags: [itsm]

@@ -1,5 +1,5 @@
 ---
-title: 与生态系统的集成: 构建开放的CI/CD平台
+title: "与生态系统的集成: 构建开放的CI/CD平台"
 date: 2025-09-07
 categories: [CICD]
 tags: [ecosystem, integration, jira, prometheus, dingtalk, serverless, devops]

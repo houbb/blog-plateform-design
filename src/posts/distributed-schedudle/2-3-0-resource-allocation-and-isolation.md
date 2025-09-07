@@ -1,5 +1,5 @@
 ---
-title: 2.3 资源分配与隔离: CPU、内存、磁盘、GPU
+title: "2.3 资源分配与隔离: CPU、内存、磁盘、GPU"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, resource isolation, cpu, memory, disk, gpu]

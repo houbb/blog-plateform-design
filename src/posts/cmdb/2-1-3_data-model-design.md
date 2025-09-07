@@ -1,5 +1,5 @@
 ---
-title: 数据模型设计: 经典模型与自定义扩展
+title: "数据模型设计: 经典模型与自定义扩展"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

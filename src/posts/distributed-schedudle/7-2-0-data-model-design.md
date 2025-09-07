@@ -1,5 +1,5 @@
 ---
-title: 7.2 数据模型设计: 任务元数据、执行记录、调度日志、用户权限
+title: "7.2 数据模型设计: 任务元数据、执行记录、调度日志、用户权限"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, data model, metadata, execution record, schedule log, user permission]

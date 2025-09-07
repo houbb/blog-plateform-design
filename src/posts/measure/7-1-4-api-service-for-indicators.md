@@ -1,5 +1,5 @@
 ---
-title: API化服务: 为所有下游应用提供统一的指标查询服务
+title: "API化服务: 为所有下游应用提供统一的指标查询服务"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

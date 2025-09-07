@@ -1,5 +1,5 @@
 ---
-title: 附录A: 主流通道供应商API对比与选型建议
+title: "附录A: 主流通道供应商API对比与选型建议"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, supplier-comparison, api]

@@ -1,5 +1,5 @@
 ---
-title: 配置中心化管理: 不同环境的配置隔离与版本控制
+title: "配置中心化管理: 不同环境的配置隔离与版本控制"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, configuration, management, environment, version]

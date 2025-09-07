@@ -1,5 +1,5 @@
 ---
-title: 与Kubernetes的深度集成: Helm/Manifest的自动化部署
+title: "与Kubernetes的深度集成: Helm/Manifest的自动化部署"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,kubernetes,helm,manifest,automation]

@@ -1,5 +1,5 @@
 ---
-title: 元数据管理: 数据血缘、指标口径管理、生命周期管理
+title: "元数据管理: 数据血缘、指标口径管理、生命周期管理"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

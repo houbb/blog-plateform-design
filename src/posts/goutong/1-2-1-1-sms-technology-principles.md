@@ -1,5 +1,5 @@
 ---
-title: 短信（SMS）技术原理与限制: 协议、长度、并发、运营商限制
+title: "短信（SMS）技术原理与限制: 协议、长度、并发、运营商限制"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, sms, technology]

@@ -1,5 +1,5 @@
 ---
-title: 消息接收者模型: 精准触达的基石
+title: "消息接收者模型: 精准触达的基石"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, receiver-model]

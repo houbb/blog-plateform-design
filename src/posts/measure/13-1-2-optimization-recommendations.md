@@ -1,5 +1,5 @@
 ---
-title: 优化建议生成: 从发现问题到提供解决方案的智能跃迁
+title: "优化建议生成: 从发现问题到提供解决方案的智能跃迁"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

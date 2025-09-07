@@ -1,5 +1,5 @@
 ---
-title: 压测与容量规划: 通过限流平台模拟流量，进行全链路压测，找出系统瓶颈
+title: "压测与容量规划: 通过限流平台模拟流量，进行全链路压测，找出系统瓶颈"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, load-testing, capacity-planning, performance-testing]

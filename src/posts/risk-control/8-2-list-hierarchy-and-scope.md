@@ -1,5 +1,5 @@
 ---
-title: 名单分级与生效范围: 全局名单、业务专属名单
+title: "名单分级与生效范围: 全局名单、业务专属名单"
 date: 2025-09-07
 categories: [RiskControl]
 tags: [rsik-control]

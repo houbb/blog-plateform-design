@@ -1,5 +1,5 @@
 ---
-title: 变更流程与CMDB的联动: 一切变更皆记录
+title: "变更流程与CMDB的联动: 一切变更皆记录"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, change-management, integration, audit-trail]

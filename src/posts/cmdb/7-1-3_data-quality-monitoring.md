@@ -1,5 +1,5 @@
 ---
-title: 数据质量监控: 完整性、准确性、一致性度量与告警
+title: "数据质量监控: 完整性、准确性、一致性度量与告警"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, data-quality, monitoring,数据质量]

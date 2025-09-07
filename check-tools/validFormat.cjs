@@ -5,7 +5,7 @@ const path = require('path');
 
 // 检查YAML头部格式是否合法
 function isValidYamlHeader(content) {
-  // 检查是否以 --- 开头和结尾
+  // 检查是否以 --- 开头和结尾（必须是三个连字符，不能是其他破折号）
   const yamlHeaderRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
   const match = content.match(yamlHeaderRegex);
   
@@ -14,6 +14,11 @@ function isValidYamlHeader(content) {
   }
   
   const yamlContent = match[1];
+  
+  // 检查YAML头部是否包含多余的破折号
+  if (yamlContent.includes('---')) {
+    return false;
+  }
   
   // 检查必需的字段
   const requiredFields = ['title', 'date', 'categories', 'tags', 'published'];
@@ -26,8 +31,9 @@ function isValidYamlHeader(content) {
   // 检查title字段格式（确保使用英文冒号）
   const titleLines = yamlContent.split('\n').filter(line => line.trim().startsWith('title:'));
   for (const titleLine of titleLines) {
+    // 检查是否包含中文冒号
     if (titleLine.includes('：')) {
-      return false; // 包含中文冒号
+      return false;
     }
   }
   
@@ -59,13 +65,21 @@ function fixYamlHeader(content) {
   const match = content.match(yamlHeaderRegex);
   
   if (!match) {
-    return content; // 如果没有YAML头部，直接返回原内容
+    // 如果没有YAML头部，添加一个默认的
+    return `---
+title: ""
+date: 2025-09-07
+categories: ["Alarm"]
+tags: ["alarm"]
+published: true
+---
+${content}`;
   }
   
   let yamlContent = match[1];
   const restContent = content.slice(match[0].length);
   
-  // 修正title字段中的中文冒号和其他特殊字符问题
+  // 修正title字段
   const lines = yamlContent.split('\n');
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
@@ -77,20 +91,23 @@ function fixYamlHeader(content) {
         lines[i] = lines[i].replace(/：/g, ':');
       }
       
-      // 提取title值并确保其被正确引号包围
+      // 提取title值并确保其被正确引号包围（如果需要）
       const titleMatch = lines[i].match(/title:\s*(.*)/);
       if (titleMatch) {
         let titleValue = titleMatch[1].trim();
         
-        // 移除可能存在的引号
-        if ((titleValue.startsWith('"') && titleValue.endsWith('"')) || 
-            (titleValue.startsWith("'") && titleValue.endsWith("'"))) {
-          titleValue = titleValue.substring(1, titleValue.length - 1);
+        // 如果title包含特殊字符（如冒号、逗号等），确保被引号包围
+        if (/[,:{}[\]&*#?|<>!=]/.test(titleValue)) {
+          // 移除可能存在的引号
+          if ((titleValue.startsWith('"') && titleValue.endsWith('"')) || 
+              (titleValue.startsWith("'") && titleValue.endsWith("'"))) {
+            titleValue = titleValue.substring(1, titleValue.length - 1);
+          }
+          
+          // 转义双引号并重新添加引号
+          titleValue = titleValue.replace(/"/g, '\\"');
+          lines[i] = `title: "${titleValue}"`;
         }
-        
-        // 转义特殊字符并重新添加引号
-        titleValue = titleValue.replace(/"/g, '\\"');
-        lines[i] = `title: "${titleValue}"`;
       }
     }
     
@@ -99,16 +116,6 @@ function fixYamlHeader(content) {
     if (fieldMatch) {
       const fieldName = fieldMatch[1];
       let fieldValue = fieldMatch[2].trim();
-      
-      // 对于非title字段，如果包含特殊字符也需要处理
-      if (fieldName !== 'title' && fieldName !== 'date' && fieldName !== 'published') {
-        // 如果值未被引号包围且包含特殊字符，则添加引号
-        if (!fieldValue.startsWith('"') && !fieldValue.startsWith("'") && 
-            /[,:{}[\]&*#?|<>!=]/.test(fieldValue)) {
-          fieldValue = fieldValue.replace(/"/g, '\\"');
-          lines[i] = `${fieldName}: "${fieldValue}"`;
-        }
-      }
       
       // 对于categories和tags，确保它们是数组格式
       if (fieldName === 'categories' || fieldName === 'tags') {
@@ -119,12 +126,25 @@ function fixYamlHeader(content) {
         
         // 如果值未被引号包围且包含逗号，则拆分为数组
         if (!fieldValue.startsWith('"') && !fieldValue.startsWith("'") && fieldValue.includes(',')) {
-          const items = fieldValue.split(',').map(item => item.trim());
-          lines[i] = `${fieldName}: [${items.map(item => `"${item}"`).join(', ')}]`;
+          const items = fieldValue.split(',').map(item => {
+            const trimmed = item.trim();
+            // 移除可能的引号
+            if ((trimmed.startsWith('"') && trimmed.endsWith('"')) || 
+                (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+              return trimmed.substring(1, trimmed.length - 1);
+            }
+            return trimmed;
+          });
+          lines[i] = `${fieldName}: [${items.map(item => `"${item.replace(/"/g, '\\"')}"`).join(', ')}]`;
         } else if (!fieldValue.startsWith('"') && !fieldValue.startsWith("'")) {
           // 简单处理，将单个值包装成数组
           if (fieldValue) {
-            lines[i] = `${fieldName}: ["${fieldValue}"]`;
+            // 移除可能的引号
+            if ((fieldValue.startsWith('"') && fieldValue.endsWith('"')) || 
+                (fieldValue.startsWith("'") && fieldValue.endsWith("'"))) {
+              fieldValue = fieldValue.substring(1, fieldValue.length - 1);
+            }
+            lines[i] = `${fieldName}: ["${fieldValue.replace(/"/g, '\\"')}"]`;
           }
         }
       }
@@ -154,7 +174,10 @@ function fixYamlHeader(content) {
   }
   
   // 重新构建YAML头部
-  return `---\n${yamlContent}\n---\n${restContent}`;
+  return `---
+${yamlContent}
+---
+${restContent}`;
 }
 
 // 递归遍历目录

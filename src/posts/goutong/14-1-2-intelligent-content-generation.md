@@ -1,5 +1,5 @@
 ---
-title: 智能内容生成: 基于用户行为的个性化通知内容优化
+title: "智能内容生成: 基于用户行为的个性化通知内容优化"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, intelligent-content, personalization]

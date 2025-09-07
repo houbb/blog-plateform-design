@@ -1,5 +1,5 @@
 ---
-title: 高可用与弹性设计: Master/Worker架构、基于Kubernetes的动态弹性伸缩
+title: "高可用与弹性设计: Master/Worker架构、基于Kubernetes的动态弹性伸缩"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

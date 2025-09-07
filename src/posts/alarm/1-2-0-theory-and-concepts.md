@@ -1,5 +1,5 @@
 ---
-title: 理论基础与核心概念: 构建智能报警平台的基石
+title: "理论基础与核心概念: 构建智能报警平台的基石"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

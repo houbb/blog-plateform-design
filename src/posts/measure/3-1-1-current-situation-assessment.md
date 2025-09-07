@@ -1,5 +1,5 @@
 ---
-title: 现状评估: 识别数据孤岛、数据质量与工具链碎片化问题
+title: "现状评估: 识别数据孤岛、数据质量与工具链碎片化问题"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 日志输出规范概述: 构建统一、高效、可管理的日志体系
+title: "日志输出规范概述: 构建统一、高效、可管理的日志体系"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

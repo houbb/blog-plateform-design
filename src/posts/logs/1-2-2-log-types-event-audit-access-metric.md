@@ -1,5 +1,5 @@
 ---
-title: 日志分类详解: 事件、审计、访问与指标日志的应用实践
+title: "日志分类详解: 事件、审计、访问与指标日志的应用实践"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

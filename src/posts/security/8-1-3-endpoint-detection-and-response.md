@@ -1,5 +1,5 @@
 ---
-title: 终端检测与响应（EDR）: 主机层面的恶意行为监控与响应
+title: "终端检测与响应（EDR）: 主机层面的恶意行为监控与响应"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

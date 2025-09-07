@@ -1,5 +1,5 @@
 ---
-title: 全链路状态追踪: 消息生命周期的全程监控
+title: "全链路状态追踪: 消息生命周期的全程监控"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, state-tracking]

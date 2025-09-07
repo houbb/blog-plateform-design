@@ -1,5 +1,5 @@
 ---
-title: 与Git集成: Commit Check, Merge Request Check
+title: "与Git集成: Commit Check, Merge Request Check"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

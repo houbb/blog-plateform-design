@@ -1,5 +1,5 @@
 ---
-title: 合规性要求: 构建符合法规要求的通知平台
+title: "合规性要求: 构建符合法规要求的通知平台"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, compliance]

@@ -1,5 +1,5 @@
 ---
-title: 名单类型: 黑名单、白名单、灰名单、临时名单
+title: "名单类型: 黑名单、白名单、灰名单、临时名单"
 date: 2025-09-07
 categories: [RiskControl]
 tags: [rsik-control]

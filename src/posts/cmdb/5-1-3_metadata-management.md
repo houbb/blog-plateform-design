@@ -1,5 +1,5 @@
 ---
-title: 元数据管理: 模型版本控制、变更与兼容性
+title: "元数据管理: 模型版本控制、变更与兼容性"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

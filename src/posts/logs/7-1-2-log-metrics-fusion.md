@@ -1,5 +1,5 @@
 ---
-title: 日志与指标融合: 构建统一可观测性的关键桥梁
+title: "日志与指标融合: 构建统一可观测性的关键桥梁"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

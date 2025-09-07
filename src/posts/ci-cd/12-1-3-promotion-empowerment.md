@@ -1,5 +1,5 @@
 ---
-title: 推广与赋能: 文档、培训、支持，培育内部专家
+title: "推广与赋能: 文档、培训、支持，培育内部专家"
 date: 2025-09-07
 categories: [CICD]
 tags: [promotion, empowerment, documentation, training, support, devops, community]

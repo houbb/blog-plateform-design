@@ -1,5 +1,5 @@
 ---
-title: 多租户与权限管理: 构建安全可靠的日志平台访问控制体系
+title: "多租户与权限管理: 构建安全可靠的日志平台访问控制体系"
 date: 2025-09-07
 categories: [Log-Plateform]
 tags: [log, log-plateform]

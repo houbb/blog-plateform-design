@@ -1,5 +1,5 @@
 ---
-title: 数据质量管理与治理: 完整性、准确性、及时性校验
+title: "数据质量管理与治理: 完整性、准确性、及时性校验"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: Web控制台设计: 作业设计器（拖拽/表单）、执行详情页、仪表盘
+title: "Web控制台设计: 作业设计器（拖拽/表单）、执行详情页、仪表盘"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

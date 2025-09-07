@@ -1,5 +1,5 @@
 ---
-title: SSO核心流程: 基于票据的交换过程
+title: "SSO核心流程: 基于票据的交换过程"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

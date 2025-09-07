@@ -1,5 +1,5 @@
 ---
-title: 平台核心价值: 降本增效、统一体验、提升可靠性、赋能业务
+title: "平台核心价值: 降本增效、统一体验、提升可靠性、赋能业务"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, platform, value-proposition]

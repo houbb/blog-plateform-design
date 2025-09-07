@@ -1,5 +1,5 @@
 ---
-title: 日志归档与生命周期管理: 实现自动化数据管理的最佳实践
+title: "日志归档与生命周期管理: 实现自动化数据管理的最佳实践"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

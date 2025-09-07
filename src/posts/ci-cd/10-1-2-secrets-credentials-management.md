@@ -1,5 +1,5 @@
 ---
-title: 密钥与凭据管理: 与Vault等 secrets manager 集成
+title: "密钥与凭据管理: 与Vault等 secrets manager 集成"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,security,secrets,vault,devsecops]

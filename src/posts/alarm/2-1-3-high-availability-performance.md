@@ -1,5 +1,5 @@
 ---
-title: 高可用与性能设计: 消息队列（Kafka）解耦、水平扩展、缓存策略的深度实践
+title: "高可用与性能设计: 消息队列（Kafka）解耦、水平扩展、缓存策略的深度实践"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

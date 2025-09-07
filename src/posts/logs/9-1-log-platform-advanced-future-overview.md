@@ -1,5 +1,5 @@
 ---
-title: 日志平台进阶与未来趋势概述: 从自动化到智能化的演进之路
+title: "日志平台进阶与未来趋势概述: 从自动化到智能化的演进之路"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

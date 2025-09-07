@@ -1,5 +1,5 @@
 ---
-title: 设计原则: 构建高可用统一通知平台的指导方针
+title: "设计原则: 构建高可用统一通知平台的指导方针"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, design-principles]

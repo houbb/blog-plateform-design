@@ -1,5 +1,5 @@
 ---
-title: 智能降级与切换: 基于机器学习的通道质量预测与优化
+title: "智能降级与切换: 基于机器学习的通道质量预测与优化"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, intelligent-degradation, machine-learning]

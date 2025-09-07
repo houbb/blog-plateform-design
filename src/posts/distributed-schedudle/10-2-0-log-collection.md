@@ -1,5 +1,5 @@
 ---
-title: 10.2 日志收集: 任务执行日志的实时采集、存储与检索（ELK/Loki）
+title: "10.2 日志收集: 任务执行日志的实时采集、存储与检索（ELK/Loki）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, log collection, ELK, Loki, real-time collection, log storage, log retrieval]

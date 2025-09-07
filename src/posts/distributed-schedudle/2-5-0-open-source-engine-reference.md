@@ -1,5 +1,5 @@
 ---
-title: 2.5 开源引擎借鉴: Airflow, DolphinScheduler, K8s CronJob, Apache Airflow, 腾讯TKE等设计思想
+title: "2.5 开源引擎借鉴: Airflow, DolphinScheduler, K8s CronJob, Apache Airflow, 腾讯TKE等设计思想"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, open source, airflow, dolphinscheduler, kubernetes, tke, design]

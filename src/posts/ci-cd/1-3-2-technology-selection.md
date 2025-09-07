@@ -1,5 +1,5 @@
 ---
-title: 技术选型决策: 自研 vs 基于开源（Jenkins, GitLab CI, Drone, Argo CD）二次开发
+title: "技术选型决策: 自研 vs 基于开源（Jenkins, GitLab CI, Drone, Argo CD）二次开发"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

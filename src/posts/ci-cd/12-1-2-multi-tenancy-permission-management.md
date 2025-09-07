@@ -1,5 +1,5 @@
 ---
-title: 多租户与权限管理（RBAC）: 项目隔离与资源配额
+title: "多租户与权限管理（RBAC）: 项目隔离与资源配额"
 date: 2025-09-07
 categories: [CICD]
 tags: [multi-tenancy, rbac, permission-management, resource-quota, devops, security]

@@ -1,5 +1,5 @@
 ---
-title: 平台运营与最佳实践: 构建可持续的CI/CD生态系统
+title: "平台运营与最佳实践: 构建可持续的CI/CD生态系统"
 date: 2025-09-07
 categories: [CICD]
 tags: [platform-operations, best-practices, template-library, multi-tenancy, rbac, empowerment, devops]

@@ -1,5 +1,5 @@
 ---
-title: 技术陷阱: CMDB脱节与集成复杂度低估
+title: "技术陷阱: CMDB脱节与集成复杂度低估"
 date: 2025-09-07
 categories: [ITSM]
 tags: [itsm]

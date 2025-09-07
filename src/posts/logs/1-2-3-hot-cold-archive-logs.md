@@ -1,5 +1,5 @@
 ---
-title: 热日志、冷日志与归档日志: 基于访问频率的分层存储策略
+title: "热日志、冷日志与归档日志: 基于访问频率的分层存储策略"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

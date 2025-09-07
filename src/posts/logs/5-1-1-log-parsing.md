@@ -1,5 +1,5 @@
 ---
-title: 日志解析: 从非结构化文本到结构化数据的转换艺术
+title: "日志解析: 从非结构化文本到结构化数据的转换艺术"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

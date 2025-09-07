@@ -1,5 +1,5 @@
 ---
-title: 事件（Incident）与告警（Alert）: 概念辨析与管理实践
+title: "事件（Incident）与告警（Alert）: 概念辨析与管理实践"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

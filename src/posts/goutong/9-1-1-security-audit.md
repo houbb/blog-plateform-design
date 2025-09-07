@@ -1,5 +1,5 @@
 ---
-title: 安全审计: 构建全面的平台安全防护体系
+title: "安全审计: 构建全面的平台安全防护体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, security-audit]

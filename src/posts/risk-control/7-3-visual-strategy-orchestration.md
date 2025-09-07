@@ -1,5 +1,5 @@
 ---
-title: 可视化策略编排: 拖拽式配置复杂规则组合（IF-THEN-ELSE）
+title: "可视化策略编排: 拖拽式配置复杂规则组合（IF-THEN-ELSE）"
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]

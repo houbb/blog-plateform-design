@@ -1,5 +1,5 @@
 ---
-title: 智能根因分析探索: 基于机器学习/图算法的根因推荐
+title: "智能根因分析探索: 基于机器学习/图算法的根因推荐"
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm]

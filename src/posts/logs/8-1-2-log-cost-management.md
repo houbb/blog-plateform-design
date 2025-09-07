@@ -1,5 +1,5 @@
 ---
-title: 日志成本管理: 优化企业日志平台的存储与处理开销
+title: "日志成本管理: 优化企业日志平台的存储与处理开销"
 date: 2025-09-07
 categories: [Log-Plateform]
 tags: [log, log-plateform]

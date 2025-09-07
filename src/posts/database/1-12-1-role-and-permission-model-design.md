@@ -1,5 +1,5 @@
 ---
-title: 数据库平台角色与权限模型设计: 超级管理员、DBA、项目经理、开发者权限体系
+title: "数据库平台角色与权限模型设计: 超级管理员、DBA、项目经理、开发者权限体系"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

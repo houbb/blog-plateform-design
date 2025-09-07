@@ -1,5 +1,5 @@
 ---
-title: 培训与社区建设: 培养流程主，构建学习型组织
+title: "培训与社区建设: 培养流程主，构建学习型组织"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, training, community, change management, learning organization]

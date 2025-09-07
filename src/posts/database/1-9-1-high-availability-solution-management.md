@@ -1,5 +1,5 @@
 ---
-title: 数据库平台高可用方案管理: 自动主从切换、故障感知与处理
+title: "数据库平台高可用方案管理: 自动主从切换、故障感知与处理"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

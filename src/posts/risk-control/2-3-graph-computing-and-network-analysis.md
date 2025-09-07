@@ -1,5 +1,5 @@
 ---
-title: 图计算与关系网络分析: 挖掘隐藏的团伙欺诈
+title: "图计算与关系网络分析: 挖掘隐藏的团伙欺诈"
 date: 2025-09-06
 categories: [RiskControl]
 tags: [rsik-control]

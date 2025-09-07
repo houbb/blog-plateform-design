@@ -1,5 +1,5 @@
 ---
-title: 可配置化仪表盘: 支持拖拽、自定义、分享
+title: "可配置化仪表盘: 支持拖拽、自定义、分享"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

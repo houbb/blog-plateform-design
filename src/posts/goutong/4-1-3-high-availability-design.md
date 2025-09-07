@@ -1,5 +1,5 @@
 ---
-title: 高可用设计: 构建稳定可靠的统一通知平台
+title: "高可用设计: 构建稳定可靠的统一通知平台"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, high-availability-design]

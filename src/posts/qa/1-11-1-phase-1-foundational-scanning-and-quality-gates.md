@@ -1,5 +1,5 @@
 ---
-title: 第一阶段: 搭建基础扫描与门禁，嵌入CI流水线
+title: "第一阶段: 搭建基础扫描与门禁，嵌入CI流水线"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

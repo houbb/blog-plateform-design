@@ -1,5 +1,5 @@
 ---
-title: 从手动操作到自动化平台: 演进之路与核心价值
+title: "从手动操作到自动化平台: 演进之路与核心价值"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

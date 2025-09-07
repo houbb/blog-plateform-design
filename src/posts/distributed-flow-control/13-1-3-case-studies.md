@@ -1,5 +1,5 @@
 ---
-title: 案例分享: 电商大促期间的限流实战与API开放平台的配额管理
+title: "案例分享: 电商大促期间的限流实战与API开放平台的配额管理"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, case-study, e-commerce, api-platform]

@@ -1,5 +1,5 @@
 ---
-title: 左移的安全实践: SAST/DAST/SCA工具在流水线中的集成
+title: "左移的安全实践: SAST/DAST/SCA工具在流水线中的集成"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,security,sast,dast,sca,devsecops]

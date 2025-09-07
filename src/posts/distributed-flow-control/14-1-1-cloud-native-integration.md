@@ -1,5 +1,5 @@
 ---
-title: 基于Kubernetes HPA的限流: 结合自定义指标（如QPS）进行自动扩缩容
+title: "基于Kubernetes HPA的限流: 结合自定义指标（如QPS）进行自动扩缩容"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, kubernetes, hpa, autoscaling]

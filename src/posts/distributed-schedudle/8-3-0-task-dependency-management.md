@@ -1,5 +1,5 @@
 ---
-title: 8.3 任务依赖管理: 跨任务依赖、文件/数据依赖
+title: "8.3 任务依赖管理: 跨任务依赖、文件/数据依赖"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task dependency, cross-task dependency, data dependency, file dependency]

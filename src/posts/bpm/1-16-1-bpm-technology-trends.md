@@ -1,5 +1,5 @@
 ---
-title: BPM技术发展趋势: 从自动化到智能化的演进
+title: "BPM技术发展趋势: 从自动化到智能化的演进"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, technology trends, artificial intelligence, hyperautomation, low-code, edge computing]

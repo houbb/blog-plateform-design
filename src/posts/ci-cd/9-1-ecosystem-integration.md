@@ -1,5 +1,5 @@
 ---
-title: 与生态系统的集成: 项目管理、监控、沟通工具的整合
+title: "与生态系统的集成: 项目管理、监控、沟通工具的整合"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,ecosystem,integration,devops,project-management,monitoring,communication]

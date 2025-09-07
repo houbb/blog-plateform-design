@@ -1,5 +1,5 @@
 ---
-title: 流水线模板库: 促进最佳实践复用，降低使用门槛
+title: "流水线模板库: 促进最佳实践复用，降低使用门槛"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,pipeline,template,library,devops,best-practices]

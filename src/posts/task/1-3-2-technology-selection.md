@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs 开源（如Ansible Tower/AWX、SaltStack、Rundeck）
+title: "技术选型: 自研 vs 开源（如Ansible Tower/AWX、SaltStack、Rundeck）"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

@@ -1,5 +1,5 @@
 ---
-title: 统一日志采集: 汇集操作系统、网络设备、数据库、应用日志
+title: "统一日志采集: 汇集操作系统、网络设备、数据库、应用日志"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

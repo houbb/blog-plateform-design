@@ -1,5 +1,5 @@
 ---
-title: 多语言支持: Java, Go, Python, JavaScript/TypeScript 的扫描引擎集成
+title: "多语言支持: Java, Go, Python, JavaScript/TypeScript 的扫描引擎集成"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

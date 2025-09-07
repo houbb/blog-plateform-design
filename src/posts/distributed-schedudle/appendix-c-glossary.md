@@ -1,5 +1,5 @@
 ---
-title: 附录C: 术语表
+title: "附录C: 术语表"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, glossary, terminology, definitions]

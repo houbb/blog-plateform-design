@@ -1,5 +1,5 @@
 ---
-title: 成本分析与优化: 构建高效的资源配置体系
+title: "成本分析与优化: 构建高效的资源配置体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, cost-optimization]

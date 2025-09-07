@@ -1,5 +1,5 @@
 ---
-title: 消息模板引擎: 实现变量替换、内容审核与多语言支持
+title: "消息模板引擎: 实现变量替换、内容审核与多语言支持"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, template-engine]

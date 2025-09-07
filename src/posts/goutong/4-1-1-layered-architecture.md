@@ -1,5 +1,5 @@
 ---
-title: 分层架构设计: 构建清晰、可维护的统一通知平台
+title: "分层架构设计: 构建清晰、可维护的统一通知平台"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, architecture-design]

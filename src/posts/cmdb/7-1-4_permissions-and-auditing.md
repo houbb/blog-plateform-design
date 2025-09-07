@@ -1,5 +1,5 @@
 ---
-title: 权限与审计: 基于RBAC的数据访问控制，所有操作留痕
+title: "权限与审计: 基于RBAC的数据访问控制，所有操作留痕"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, permissions, auditing, rbac, security]

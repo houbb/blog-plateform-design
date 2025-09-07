@@ -1,5 +1,5 @@
 ---
-title: 消息内容模型: 信息传递的核心载体
+title: "消息内容模型: 信息传递的核心载体"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, content-model]

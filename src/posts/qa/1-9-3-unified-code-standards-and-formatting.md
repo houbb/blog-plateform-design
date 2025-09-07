@@ -1,5 +1,5 @@
 ---
-title: 统一代码规范与格式化: Prettier, EditorConfig的平台化管控
+title: "统一代码规范与格式化: Prettier, EditorConfig的平台化管控"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

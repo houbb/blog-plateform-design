@@ -1,5 +1,5 @@
 ---
-title: 数据库平台术语表: DBPaaS、OSC、AIOps等核心概念详解
+title: "数据库平台术语表: DBPaaS、OSC、AIOps等核心概念详解"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

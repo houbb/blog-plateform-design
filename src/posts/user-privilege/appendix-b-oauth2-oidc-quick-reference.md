@@ -1,5 +1,5 @@
 ---
-title: 附录B: OAuth 2.0 / OIDC 快速参考
+title: "附录B: OAuth 2.0 / OIDC 快速参考"
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, oauth2, oidc, quick-reference]

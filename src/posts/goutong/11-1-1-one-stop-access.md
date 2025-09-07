@@ -1,5 +1,5 @@
 ---
-title: 一站式接入: 构建便捷的开发者体验
+title: "一站式接入: 构建便捷的开发者体验"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, developer-experience, sdk]

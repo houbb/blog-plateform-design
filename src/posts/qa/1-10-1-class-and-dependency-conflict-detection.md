@@ -1,5 +1,5 @@
 ---
-title: 类冲突与依赖冲突检测: 在编译前发现 Jar Hell / Dependency Hell
+title: "类冲突与依赖冲突检测: 在编译前发现 Jar Hell / Dependency Hell"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

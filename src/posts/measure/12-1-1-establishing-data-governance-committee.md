@@ -1,5 +1,5 @@
 ---
-title: 成立数据治理委员会: 构建权威的数据治理组织架构
+title: "成立数据治理委员会: 构建权威的数据治理组织架构"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

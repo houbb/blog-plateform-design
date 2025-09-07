@@ -1,5 +1,5 @@
 ---
-title: 流程挖掘技术: 基于历史数据还原实际流程，发现偏差与优化点
+title: "流程挖掘技术: 基于历史数据还原实际流程，发现偏差与优化点"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, process mining, process discovery, conformance checking]

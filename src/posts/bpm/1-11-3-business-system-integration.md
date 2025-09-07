@@ -1,5 +1,5 @@
 ---
-title: 与业务系统集成: 从ERP、CRM、财务系统中获取数据或回写结果
+title: "与业务系统集成: 从ERP、CRM、财务系统中获取数据或回写结果"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, integration, erp, crm, finance, api, rest, soap]

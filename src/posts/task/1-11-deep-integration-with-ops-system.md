@@ -1,5 +1,5 @@
 ---
-title: 与运维体系深度集成: CMDB、监控系统、CI/CD流水线、ITSM流程集成
+title: "与运维体系深度集成: CMDB、监控系统、CI/CD流水线、ITSM流程集成"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

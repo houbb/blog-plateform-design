@@ -1,5 +1,5 @@
 ---
-title: 日志平台化能力概述: 构建企业级日志管理的核心能力
+title: "日志平台化能力概述: 构建企业级日志管理的核心能力"
 date: 2025-09-07
 categories: [Log-Plateform]
 tags: [log, log-plateform]

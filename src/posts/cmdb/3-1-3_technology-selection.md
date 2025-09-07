@@ -1,5 +1,5 @@
 ---
-title: 技术选型: 自研 vs. 开源（iTop、CMDBuild、OneCMDB） vs. 商业产品
+title: "技术选型: 自研 vs. 开源（iTop、CMDBuild、OneCMDB） vs. 商业产品"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

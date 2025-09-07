@@ -1,5 +1,5 @@
 ---
-title: 未来趋势与前沿展望: 度量平台的发展方向与技术演进
+title: "未来趋势与前沿展望: 度量平台的发展方向与技术演进"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

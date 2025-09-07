@@ -1,5 +1,5 @@
 ---
-title: 硬件规划: 计算、网络、存储的配置选型与瓶颈分析
+title: "硬件规划: 计算、网络、存储的配置选型与瓶颈分析"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, hardware, planning, compute, network, storage]

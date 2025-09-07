@@ -1,5 +1,5 @@
 ---
-title: 1.4 定义"可落地的全生命周期": 设计、开发、部署、监控、治理、下线
+title: "1.4 定义\"可落地的全生命周期\": 设计、开发、部署、监控、治理、下线"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed, lifecycle, governance]

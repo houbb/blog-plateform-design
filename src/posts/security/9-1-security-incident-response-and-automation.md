@@ -1,5 +1,5 @@
 ---
-title: 安全事件响应与自动化（SOAR）: 构建高效的安全运营体系
+title: "安全事件响应与自动化（SOAR）: 构建高效的安全运营体系"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

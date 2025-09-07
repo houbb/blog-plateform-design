@@ -1,5 +1,5 @@
 ---
-title: 消息模板模型: 内容复用与个性化的核心
+title: "消息模板模型: 内容复用与个性化的核心"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, template-model]

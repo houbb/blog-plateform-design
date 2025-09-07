@@ -1,5 +1,5 @@
 ---
-title: 定义与计算质量指标: 千行代码缺陷率、MTTR等
+title: "定义与计算质量指标: 千行代码缺陷率、MTTR等"
 date: 2025-09-07
 categories: [TestPlateform]
 tags: [test, test-plateform]

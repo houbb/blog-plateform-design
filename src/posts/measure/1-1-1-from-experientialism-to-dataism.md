@@ -1,5 +1,5 @@
 ---
-title: 从"经验主义"到"数据主义": 度量如何重塑企业决策模式
+title: "从\"经验主义\"到\"数据主义\": 度量如何重塑企业决策模式"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 业务规则与集成能力: BPM平台的核心连接器
+title: "业务规则与集成能力: BPM平台的核心连接器"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, business rules, integration]

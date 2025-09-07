@@ -1,5 +1,5 @@
 ---
-title: 从烟囱式通知到平台化服务: 为什么需要统一通知平台？
+title: "从烟囱式通知到平台化服务: 为什么需要统一通知平台？"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, platform, architecture]

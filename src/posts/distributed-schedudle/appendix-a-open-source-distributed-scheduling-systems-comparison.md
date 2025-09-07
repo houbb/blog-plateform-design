@@ -1,5 +1,5 @@
 ---
-title: 附录A: 开源分布式调度系统对比
+title: "附录A: 开源分布式调度系统对比"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, open source, comparison, Airflow, DolphinScheduler, Kubernetes, CronJob]

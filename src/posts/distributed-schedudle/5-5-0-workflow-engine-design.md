@@ -1,5 +1,5 @@
 ---
-title: 5.5 工作流（DAG）引擎的设计: 节点依赖、并行、条件分支、失败重试
+title: "5.5 工作流（DAG）引擎的设计: 节点依赖、并行、条件分支、失败重试"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, workflow, dag, node dependency, parallel execution, conditional branching, failure retry]

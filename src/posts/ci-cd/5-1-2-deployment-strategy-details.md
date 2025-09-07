@@ -1,5 +1,5 @@
 ---
-title: 部署策略详解: 蓝绿部署、金丝雀发布、滚动发布、功能开关
+title: "部署策略详解: 蓝绿部署、金丝雀发布、滚动发布、功能开关"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,deployment,strategy,blue-green,canary,rolling]

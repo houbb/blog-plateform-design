@@ -1,5 +1,5 @@
 ---
-title: 数据库平台数据安全与合规性: 权限回收、安全审计、操作拦截、满足等保、GDPR等审计要求
+title: "数据库平台数据安全与合规性: 权限回收、安全审计、操作拦截、满足等保、GDPR等审计要求"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

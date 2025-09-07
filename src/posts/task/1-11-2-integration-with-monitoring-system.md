@@ -1,5 +1,5 @@
 ---
-title: 与监控系统集成: 故障自愈与作业触发
+title: "与监控系统集成: 故障自愈与作业触发"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

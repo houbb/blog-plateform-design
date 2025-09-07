@@ -1,5 +1,5 @@
 ---
-title: 微服务化设计: 构建灵活、可扩展的统一通知平台
+title: "微服务化设计: 构建灵活、可扩展的统一通知平台"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, microservices-design]

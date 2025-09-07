@@ -1,5 +1,5 @@
 ---
-title: 结构化与非结构化日志: 数据格式对日志处理的影响
+title: "结构化与非结构化日志: 数据格式对日志处理的影响"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

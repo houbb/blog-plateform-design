@@ -1,5 +1,5 @@
 ---
-title: 度量指标: 部署频率、变更前置时间、变更失败率、平均恢复时间（MTTR）
+title: "度量指标: 部署频率、变更前置时间、变更失败率、平均恢复时间（MTTR）"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

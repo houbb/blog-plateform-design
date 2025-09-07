@@ -1,5 +1,5 @@
 ---
-title: BPM核心理论与标准: 构建企业流程管理的理论基础
+title: "BPM核心理论与标准: 构建企业流程管理的理论基础"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

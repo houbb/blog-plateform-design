@@ -1,5 +1,5 @@
 ---
-title: 图数据建模: 点、边、属性的设计
+title: "图数据建模: 点、边、属性的设计"
 date: 2025-09-07
 categories: [RiskControl]
 tags: [rsik-control]

@@ -1,5 +1,5 @@
 ---
-title: 核心抽象: 统一测试用例模型、测试任务模型、资源管理模型
+title: "核心抽象: 统一测试用例模型、测试任务模型、资源管理模型"
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]

@@ -1,5 +1,5 @@
 ---
-title: 指标分级管理: L1 战略指标 -> L2 团队/产品指标 -> L3 个人/执行指标
+title: "指标分级管理: L1 战略指标 -> L2 团队/产品指标 -> L3 个人/执行指标"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 1.3 典型应用场景: 数据处理管道、微服务批处理、AI训练任务、周期性作业
+title: "1.3 典型应用场景: 数据处理管道、微服务批处理、AI训练任务、周期性作业"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, distributed, application, scenarios]

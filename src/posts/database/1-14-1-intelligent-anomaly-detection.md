@@ -1,5 +1,5 @@
 ---
-title: 数据库平台智能化异常检测: 自动发现性能毛刺与异常访问模式
+title: "数据库平台智能化异常检测: 自动发现性能毛刺与异常访问模式"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

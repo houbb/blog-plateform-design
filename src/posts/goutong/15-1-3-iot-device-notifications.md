@@ -1,5 +1,5 @@
 ---
-title: 物联网（IoT）设备通知: 构建万物互联的通知生态
+title: "物联网（IoT）设备通知: 构建万物互联的通知生态"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, iot, device-notifications]

@@ -1,5 +1,5 @@
 ---
-title: 知识库与剧本: 沉淀调查步骤、处置方案、应急预案
+title: "知识库与剧本: 沉淀调查步骤、处置方案、应急预案"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

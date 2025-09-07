@@ -1,5 +1,5 @@
 ---
-title: ABAC模型初探: 策略语言（如Rego）与策略执行点（PEP）/决策点（PDP）架构
+title: "ABAC模型初探: 策略语言（如Rego）与策略执行点（PEP）/决策点（PDP）架构"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

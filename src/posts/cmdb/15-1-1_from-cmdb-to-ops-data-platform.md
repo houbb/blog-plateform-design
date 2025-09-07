@@ -1,5 +1,5 @@
 ---
-title: 从CMDB到运维数据中台: 汇聚所有运维数据
+title: "从CMDB到运维数据中台: 汇聚所有运维数据"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb, dataops, data-platform,运维数据中台]

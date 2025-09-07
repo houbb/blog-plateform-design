@@ -1,5 +1,5 @@
 ---
-title: 从"人肉DBA"到平台化服务: 数据库管理的演进之路
+title: "从\"人肉DBA\"到平台化服务: 数据库管理的演进之路"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

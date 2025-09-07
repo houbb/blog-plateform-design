@@ -1,5 +1,5 @@
 ---
-title: 日志分类与特性概述: 理解不同类型日志的价值与应用
+title: "日志分类与特性概述: 理解不同类型日志的价值与应用"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

@@ -1,5 +1,5 @@
 ---
-title: 运营、治理与持续改进: 确保度量平台长期健康发展的关键机制
+title: "运营、治理与持续改进: 确保度量平台长期健康发展的关键机制"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

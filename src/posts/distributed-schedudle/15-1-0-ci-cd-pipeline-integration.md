@@ -1,5 +1,5 @@
 ---
-title: 15.1 与CI/CD流水线集成: 自动部署后触发数据更新任务
+title: "15.1 与CI/CD流水线集成: 自动部署后触发数据更新任务"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, CI/CD, pipeline integration, deployment, data update]

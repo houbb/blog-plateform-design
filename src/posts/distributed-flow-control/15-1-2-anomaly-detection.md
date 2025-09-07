@@ -1,5 +1,5 @@
 ---
-title: 异常流量自动识别与防护: 结合机器学习识别CC攻击等异常模式并自动限流
+title: "异常流量自动识别与防护: 结合机器学习识别CC攻击等异常模式并自动限流"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, aiops, anomaly-detection, security]

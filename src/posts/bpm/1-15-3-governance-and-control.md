@@ -1,5 +1,5 @@
 ---
-title: 治理与管控: 在开放与合规之间取得平衡
+title: "治理与管控: 在开放与合规之间取得平衡"
 date: 2025-09-07
 categories: [BPM]
 tags: [bpm, low-code, governance, control, compliance, security]

@@ -1,5 +1,5 @@
 ---
-title: 附录A: 开源安全工具栈选型指南
+title: "附录A: 开源安全工具栈选型指南"
 date: 2025-09-07
 categories: [Security]
 tags: [security]

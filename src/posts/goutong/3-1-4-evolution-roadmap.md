@@ -1,5 +1,5 @@
 ---
-title: 演进路线图: 从核心发送引擎到全球多活、智能路由
+title: "演进路线图: 从核心发送引擎到全球多活、智能路由"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, evolution-roadmap]

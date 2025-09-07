@@ -1,5 +1,5 @@
 ---
-title: 系统可靠性度量: 可用性、MTTR、MTBF、事故等级与分布
+title: "系统可靠性度量: 可用性、MTTR、MTBF、事故等级与分布"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

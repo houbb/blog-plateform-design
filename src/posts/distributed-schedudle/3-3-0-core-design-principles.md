@@ -1,5 +1,5 @@
 ---
-title: 3.3 核心设计原则: 高可用、可扩展、可观测、用户友好、资源隔离
+title: "3.3 核心设计原则: 高可用、可扩展、可观测、用户友好、资源隔离"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, design principles, high availability, scalability, observability, user experience, resource isolation]

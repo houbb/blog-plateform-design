@@ -1,5 +1,5 @@
 ---
-title: 寻找灯塔项目: 用数据成功解决实际痛点，形成示范效应
+title: "寻找灯塔项目: 用数据成功解决实际痛点，形成示范效应"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

@@ -1,5 +1,5 @@
 ---
-title: 附录B: 经典指标定义手册
+title: "附录B: 经典指标定义手册"
 date: 2025-09-07
 categories: [Measure]
 tags: [measure]

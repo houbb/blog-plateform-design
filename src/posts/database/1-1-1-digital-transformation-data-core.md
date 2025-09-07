@@ -1,5 +1,5 @@
 ---
-title: 数字化转型的数据核心: 为什么企业需要数据库平台？
+title: "数字化转型的数据核心: 为什么企业需要数据库平台？"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

@@ -1,5 +1,5 @@
 ---
-title: 管理员视角: 全局视图、用户管理、权限分配、审计查询
+title: "管理员视角: 全局视图、用户管理、权限分配、审计查询"
 date: 2025-09-07
 categories: [UMS]
 tags: [ums, administrator, management-console]

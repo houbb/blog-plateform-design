@@ -1,5 +1,5 @@
 ---
-title: 监控数据体系: Metrics（指标）、Logs（日志）、Traces（链路）的深度解析
+title: "监控数据体系: Metrics（指标）、Logs（日志）、Traces（链路）的深度解析"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

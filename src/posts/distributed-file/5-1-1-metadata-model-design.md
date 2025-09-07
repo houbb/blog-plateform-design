@@ -1,5 +1,5 @@
 ---
-title: 元数据模型设计: 文件树、命名空间、inode结构
+title: "元数据模型设计: 文件树、命名空间、inode结构"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs]

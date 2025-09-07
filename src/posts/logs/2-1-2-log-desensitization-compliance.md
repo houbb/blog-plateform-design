@@ -1,5 +1,5 @@
 ---
-title: 日志脱敏与合规: 保护敏感信息的企业级实践
+title: "日志脱敏与合规: 保护敏感信息的企业级实践"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

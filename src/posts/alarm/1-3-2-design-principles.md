@@ -1,5 +1,5 @@
 ---
-title: 设计原则: 构建高效智能报警平台的核心理念
+title: "设计原则: 构建高效智能报警平台的核心理念"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

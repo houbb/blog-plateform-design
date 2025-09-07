@@ -1,5 +1,5 @@
 ---
-title: 门禁策略: 硬阻断、软警告、评分制
+title: "门禁策略: 硬阻断、软警告、评分制"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

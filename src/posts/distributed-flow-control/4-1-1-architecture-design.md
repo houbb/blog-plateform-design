@@ -1,5 +1,5 @@
 ---
-title: 分层架构: 控制台（Console）、控制面（Control Plane）、数据面（Data Plane）
+title: "分层架构: 控制台（Console）、控制面（Control Plane）、数据面（Data Plane）"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, architecture, control-plane, data-plane]

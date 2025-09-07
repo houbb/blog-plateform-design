@@ -1,5 +1,5 @@
 ---
-title: 与监控系统（Prometheus）集成: 部署后自动验证
+title: "与监控系统（Prometheus）集成: 部署后自动验证"
 date: 2025-09-07
 categories: [CICD]
 tags: [prometheus, monitoring, integration, post-deployment, validation, devops]

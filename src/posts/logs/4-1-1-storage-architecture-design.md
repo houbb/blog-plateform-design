@@ -1,5 +1,5 @@
 ---
-title: 存储架构设计: 构建高性能、可扩展的日志存储系统
+title: "存储架构设计: 构建高性能、可扩展的日志存储系统"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

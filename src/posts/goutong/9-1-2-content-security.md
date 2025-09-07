@@ -1,5 +1,5 @@
 ---
-title: 内容安全: 构建可靠的消息内容防护体系
+title: "内容安全: 构建可靠的消息内容防护体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, content-security]

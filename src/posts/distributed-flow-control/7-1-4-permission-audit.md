@@ -1,5 +1,5 @@
 ---
-title: 权限与审计: 规则变更的审批流程与操作日志
+title: "权限与审计: 规则变更的审批流程与操作日志"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, security, audit, permission]

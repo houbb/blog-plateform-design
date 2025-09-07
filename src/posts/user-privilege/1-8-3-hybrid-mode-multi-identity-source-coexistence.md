@@ -1,5 +1,5 @@
 ---
-title: 混合模式: 多身份源共存与匹配规则（Just-in-Time Provisioning）
+title: "混合模式: 多身份源共存与匹配规则（Just-in-Time Provisioning）"
 date: 2025-09-06
 categories: [UMS]
 tags: [ums]

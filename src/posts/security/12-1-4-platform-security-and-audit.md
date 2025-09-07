@@ -1,5 +1,5 @@
 ---
-title: 平台自身的安全与审计: 保障平台的可信度
+title: "平台自身的安全与审计: 保障平台的可信度"
 date: 2025-09-07
 categories: [Security]
 tags: [security]

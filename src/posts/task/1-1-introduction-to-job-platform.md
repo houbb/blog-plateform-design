@@ -1,5 +1,5 @@
 ---
-title: 作业平台: 企业自动化的核心引擎
+title: "作业平台: 企业自动化的核心引擎"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

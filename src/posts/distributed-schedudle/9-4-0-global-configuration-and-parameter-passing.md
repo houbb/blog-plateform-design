@@ -1,5 +1,5 @@
 ---
-title: 9.4 全局配置与参数传递: 系统参数、自定义参数
+title: "9.4 全局配置与参数传递: 系统参数、自定义参数"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, global configuration, parameter passing, system parameters, custom parameters]

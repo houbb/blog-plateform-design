@@ -1,5 +1,5 @@
 ---
-title: 流程挖掘与梳理: 从现实业务到BPMN模型的数据驱动方法
+title: "流程挖掘与梳理: 从现实业务到BPMN模型的数据驱动方法"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, process mining, process discovery]

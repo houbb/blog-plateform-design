@@ -1,5 +1,5 @@
 ---
-title: 数据脱敏: 静态脱敏（用于测试）、动态脱敏（用于生产查询）
+title: "数据脱敏: 静态脱敏（用于测试）、动态脱敏（用于生产查询）"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

@@ -1,5 +1,5 @@
 ---
-title: 5.3 负载均衡策略: Worker心跳检测、资源感知调度、故障转移
+title: "5.3 负载均衡策略: Worker心跳检测、资源感知调度、故障转移"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, load balancing, worker, heartbeat, resource-aware scheduling, failover]

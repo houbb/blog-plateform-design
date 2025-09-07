@@ -1,5 +1,5 @@
 ---
-title: 度量的核心价值: 看清现状、发现问题、评估改进、预测未来
+title: "度量的核心价值: 看清现状、发现问题、评估改进、预测未来"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

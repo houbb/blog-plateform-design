@@ -1,5 +1,5 @@
 ---
-title: 典型应用场景: 身份验证、监控告警、工单处理、营销推广、系统公告
+title: "典型应用场景: 身份验证、监控告警、工单处理、营销推广、系统公告"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, platform, use-cases]

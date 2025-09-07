@@ -1,5 +1,5 @@
 ---
-title: 自动化部署方案: 基于Ansible/Helm/K8s的现代部署实践
+title: "自动化部署方案: 基于Ansible/Helm/K8s的现代部署实践"
 date: 2025-09-06
 categories: [Task]
 tags: [task]

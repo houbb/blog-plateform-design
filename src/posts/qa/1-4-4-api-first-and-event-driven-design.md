@@ -1,5 +1,5 @@
 ---
-title: API-first 与 事件驱动设计: 无缝集成CI/CD与IDE
+title: "API-first 与 事件驱动设计: 无缝集成CI/CD与IDE"
 date: 2025-09-06
 categories: [QA]
 tags: [qa]

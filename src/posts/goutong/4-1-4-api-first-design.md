@@ -1,5 +1,5 @@
 ---
-title: API-first设计: 构建标准化、版本化的统一通知平台接口
+title: "API-first设计: 构建标准化、版本化的统一通知平台接口"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, api-design]

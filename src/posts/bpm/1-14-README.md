@@ -1,3 +1,10 @@
+---
+title: ""
+date: 2025-09-07
+categories: ["Alarm"]
+tags: ["alarm"]
+published: true
+---
 # 第十四章：智能BPM（iBPM）与RPA融合
 
 随着人工智能和机器人流程自动化技术的发展，BPM正朝着智能化方向演进。本章将深入探讨人工智能在BPM中的应用、与RPA的集成以及智能决策等关键技术。

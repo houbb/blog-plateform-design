@@ -1,5 +1,5 @@
 ---
-title: 自动化部署: 基于Ansible/K8s Operator的集群部署方案
+title: "自动化部署: 基于Ansible/K8s Operator的集群部署方案"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, deployment, automation, ansible, kubernetes, operator]

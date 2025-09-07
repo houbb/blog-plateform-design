@@ -1,5 +1,5 @@
 ---
-title: 避免指标歧义: 建立企业级指标字典（Glossary）
+title: "避免指标歧义: 建立企业级指标字典（Glossary）"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

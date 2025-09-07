@@ -1,5 +1,5 @@
 ---
-title: 即时消息（IM）技术原理与限制: 钉钉、企业微信、飞书、Slack、Webhook的API差异
+title: "即时消息（IM）技术原理与限制: 钉钉、企业微信、飞书、Slack、Webhook的API差异"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, im, technology]

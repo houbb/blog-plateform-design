@@ -1,5 +1,5 @@
 ---
-title: 附录C: 通道状态码大全与错误处理建议
+title: "附录C: 通道状态码大全与错误处理建议"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, status-codes, error-handling]

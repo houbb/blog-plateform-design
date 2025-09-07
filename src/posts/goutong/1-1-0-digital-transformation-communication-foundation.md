@@ -1,5 +1,5 @@
 ---
-title: 无处不在的通知: 数字化转型的沟通基石
+title: "无处不在的通知: 数字化转型的沟通基石"
 date: 2025-08-30
 categories: [通知通道平台]
 tags: [notification, platform, digital-transformation]

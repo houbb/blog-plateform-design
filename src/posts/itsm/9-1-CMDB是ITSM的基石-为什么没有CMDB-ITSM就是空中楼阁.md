@@ -1,5 +1,5 @@
 ---
-title: CMDB是ITSM的基石: 为什么没有CMDB，ITSM就是空中楼阁
+title: "CMDB是ITSM的基石: 为什么没有CMDB，ITSM就是空中楼阁"
 date: 2025-09-06
 categories: [ITSM]
 tags: [itsm]

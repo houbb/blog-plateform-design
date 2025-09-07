@@ -1,5 +1,5 @@
 ---
-title: 日志传输管道: 构建高可靠、高吞吐量的日志传输系统
+title: "日志传输管道: 构建高可靠、高吞吐量的日志传输系统"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

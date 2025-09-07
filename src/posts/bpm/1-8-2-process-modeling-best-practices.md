@@ -1,5 +1,5 @@
 ---
-title: 流程建模最佳实践: 保持模型简洁、可读、可维护
+title: "流程建模最佳实践: 保持模型简洁、可读、可维护"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, process modeling, bpmn, best practices]

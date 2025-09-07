@@ -1,5 +1,5 @@
 ---
-title: 数据均衡与迁移: 热点调度、容量均衡、坏盘处理
+title: "数据均衡与迁移: 热点调度、容量均衡、坏盘处理"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs, data-balancing, migration]

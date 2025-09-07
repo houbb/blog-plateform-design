@@ -1,5 +1,5 @@
 ---
-title: 任务分配策略: 基于角色、部门、岗位的智能分配机制
+title: "任务分配策略: 基于角色、部门、岗位的智能分配机制"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, task assignment, role-based, organization-based]

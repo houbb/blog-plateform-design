@@ -1,5 +1,5 @@
 ---
-title: 代码扫描与质量门禁: SonarQube集成、代码规范检查
+title: "代码扫描与质量门禁: SonarQube集成、代码规范检查"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

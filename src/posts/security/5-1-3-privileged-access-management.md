@@ -1,5 +1,5 @@
 ---
-title: 特权访问管理（PAM）: 管理服务器、数据库、网络设备等高权限账号
+title: "特权访问管理（PAM）: 管理服务器、数据库、网络设备等高权限账号"
 date: 2025-09-06
 categories: [Security]
 tags: [security]

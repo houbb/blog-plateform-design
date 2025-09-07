@@ -1,5 +1,5 @@
 ---
-title: 核心架构模式: 中心化（如GFS） vs. 去中心化（如IPFS）
+title: "核心架构模式: 中心化（如GFS） vs. 去中心化（如IPFS）"
 date: 2025-09-07
 categories: [DFS]
 tags: [dfs]

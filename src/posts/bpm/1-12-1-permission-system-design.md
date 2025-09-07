@@ -1,5 +1,5 @@
 ---
-title: 权限体系设计: 基于角色的访问控制（RBAC）模型
+title: "权限体系设计: 基于角色的访问控制（RBAC）模型"
 date: 2025-09-06
 categories: [BPM]
 tags: [bpm, security, rbac, permission, access control]

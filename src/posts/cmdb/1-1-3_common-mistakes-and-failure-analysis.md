@@ -1,5 +1,5 @@
 ---
-title: 常见误区与失败原因分析: 为什么你的CMDB成了"僵尸系统"？
+title: "常见误区与失败原因分析: 为什么你的CMDB成了\"僵尸系统\"？"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

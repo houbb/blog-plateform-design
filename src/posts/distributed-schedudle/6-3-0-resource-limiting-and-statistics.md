@@ -1,5 +1,5 @@
 ---
-title: 6.3 资源限制与统计: 基于Cgroups的实现
+title: "6.3 资源限制与统计: 基于Cgroups的实现"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, resource management, cgroups, resource limiting, resource statistics]

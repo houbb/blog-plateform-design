@@ -1,5 +1,5 @@
 ---
-title: 富媒体消息: 构建下一代交互式通知体验
+title: "富媒体消息: 构建下一代交互式通知体验"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, rich-media, future-trends]

@@ -1,5 +1,5 @@
 ---
-title: 流水线核心模型: 阶段（Stage）、任务（Job）、步骤（Step）
+title: "流水线核心模型: 阶段（Stage）、任务（Job）、步骤（Step）"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

@@ -1,5 +1,5 @@
 ---
-title: 与熔断器的协同: 异常比例触发熔断后再恢复的实现机制
+title: "与熔断器的协同: 异常比例触发熔断后再恢复的实现机制"
 date: 2025-09-07
 categories: [DistributedFlowControl]
 tags: [flow-control, distributed, circuit-breaker, resilience, hystrix, resilience4j]

@@ -1,5 +1,5 @@
 ---
-title: 数据持久化: 消息发送记录的存储与查询优化
+title: "数据持久化: 消息发送记录的存储与查询优化"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, data-persistence]

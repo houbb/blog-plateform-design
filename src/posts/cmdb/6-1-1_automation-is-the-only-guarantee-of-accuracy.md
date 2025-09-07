@@ -1,5 +1,5 @@
 ---
-title: 自动化是准确性的唯一保障: 摒弃手动录入
+title: "自动化是准确性的唯一保障: 摒弃手动录入"
 date: 2025-09-07
 categories: [CMDB]
 tags: [cmdb]

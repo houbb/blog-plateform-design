@@ -1,5 +1,5 @@
 ---
-title: 需求分析与现状评估: 构建智能报警平台的起点
+title: "需求分析与现状评估: 构建智能报警平台的起点"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

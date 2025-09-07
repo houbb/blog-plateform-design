@@ -1,5 +1,5 @@
 ---
-title: 多语言构建支持: Java, Go, Python, Node.js, .NET的标准化构建环境
+title: "多语言构建支持: Java, Go, Python, Node.js, .NET的标准化构建环境"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd]

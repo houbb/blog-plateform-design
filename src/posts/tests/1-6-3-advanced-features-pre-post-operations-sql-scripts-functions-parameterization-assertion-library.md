@@ -1,5 +1,5 @@
 ---
-title: 高级功能: 前后置操作（SQL、脚本、函数）、参数化、断言库
+title: "高级功能: 前后置操作（SQL、脚本、函数）、参数化、断言库"
 date: 2025-09-06
 categories: [TestPlateform]
 tags: [test, test-plateform]

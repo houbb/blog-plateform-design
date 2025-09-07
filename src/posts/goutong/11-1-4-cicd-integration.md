@@ -1,5 +1,5 @@
 ---
-title: 与CI/CD集成: 构建自动化的部署与测试体系
+title: "与CI/CD集成: 构建自动化的部署与测试体系"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, cicd, devops]

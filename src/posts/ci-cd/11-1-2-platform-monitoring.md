@@ -1,5 +1,5 @@
 ---
-title: 日志收集与分析: 统一日志平台建设
+title: "日志收集与分析: 统一日志平台建设"
 date: 2025-08-30
 categories: [CICD]
 tags: [ci,cd,logs,elk,fluentd,logging,devops]

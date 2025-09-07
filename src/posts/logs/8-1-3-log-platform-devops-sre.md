@@ -1,5 +1,5 @@
 ---
-title: 日志平台与 DevOps/SRE: 构建可观测性的核心支柱
+title: "日志平台与 DevOps/SRE: 构建可观测性的核心支柱"
 date: 2025-09-07
 categories: [Log-Plateform]
 tags: [log, log-plateform]

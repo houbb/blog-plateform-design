@@ -1,5 +1,5 @@
 ---
-title: 数据库平台数据血缘与影响分析: 追踪表级别的数据流向与依赖关系
+title: "数据库平台数据血缘与影响分析: 追踪表级别的数据流向与依赖关系"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

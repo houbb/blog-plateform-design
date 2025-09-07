@@ -1,5 +1,5 @@
 ---
-title: 14.2 管理控制台功能: 系统看板、任务管理、报警配置、用户管理
+title: "14.2 管理控制台功能: 系统看板、任务管理、报警配置、用户管理"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, admin console, dashboard, task management, alert configuration, user management]

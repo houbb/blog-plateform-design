@@ -1,5 +1,5 @@
 ---
-title: 智能基线与异常检测: 基于机器学习动态发现异常波动
+title: "智能基线与异常检测: 基于机器学习动态发现异常波动"
 date: 2025-08-30
 categories: [Measure]
 tags: [measure]

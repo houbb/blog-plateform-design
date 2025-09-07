@@ -1,5 +1,5 @@
 ---
-title: 告警的生命周期管理（Part 2: 通知与响应）——构建高效的告警响应体系
+title: "告警的生命周期管理（Part 2: 通知与响应）——构建高效的告警响应体系"
 date: 2025-08-30
 categories: [Alarm]
 tags: [alarm]

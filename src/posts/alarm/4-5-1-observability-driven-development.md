@@ -1,5 +1,5 @@
 ---
-title: 可观测性驱动开发（ODD）: 报警左移，在开发阶段定义SLO
+title: "可观测性驱动开发（ODD）: 报警左移，在开发阶段定义SLO"
 date: 2025-09-07
 categories: [Alarm]
 tags: [alarm, observability-driven-development, sre, devops]

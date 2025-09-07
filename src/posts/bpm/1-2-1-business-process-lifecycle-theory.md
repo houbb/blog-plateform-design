@@ -1,5 +1,5 @@
 ---
-title: 业务流程生命周期: 从识别到优化的完整闭环
+title: "业务流程生命周期: 从识别到优化的完整闭环"
 date: 2025-08-30
 categories: [BPM]
 tags: [bpm]

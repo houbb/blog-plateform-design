@@ -1,5 +1,5 @@
 ---
-title: 7.1 数据库选型: MySQL/PostgreSQL vs NewSQL（TiDB）
+title: "7.1 数据库选型: MySQL/PostgreSQL vs NewSQL（TiDB）"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, database, mysql, postgresql, tidb, newsql]

@@ -1,5 +1,5 @@
 ---
-title: 数据库平台智能优化技术: 基于AI的索引推荐与SQL重写
+title: "数据库平台智能优化技术: 基于AI的索引推荐与SQL重写"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

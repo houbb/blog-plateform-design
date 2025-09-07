@@ -1,5 +1,5 @@
 ---
-title: 数据库平台数据网格理念: 去中心化数据架构下的平台定位与演进
+title: "数据库平台数据网格理念: 去中心化数据架构下的平台定位与演进"
 date: 2025-08-30
 categories: [Database]
 tags: [database]

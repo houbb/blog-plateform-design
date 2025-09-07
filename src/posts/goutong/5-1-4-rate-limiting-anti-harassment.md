@@ -1,5 +1,5 @@
 ---
-title: 频率控制与防骚扰: 基于用户、IP、业务类型的限流策略
+title: "频率控制与防骚扰: 基于用户、IP、业务类型的限流策略"
 date: 2025-09-06
 categories: [GouTong]
 tags: [goutong, notification-platform, rate-limiting]

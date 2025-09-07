@@ -1,5 +1,5 @@
 ---
-title: 9.1 任务触发方式: 定时、手动、API事件驱动
+title: "9.1 任务触发方式: 定时、手动、API事件驱动"
 date: 2025-09-06
 categories: [Schedule]
 tags: [schedule, task trigger, cron, manual trigger, API trigger, event-driven]

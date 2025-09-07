@@ -1,5 +1,5 @@
 ---
-title: 日志解析与处理概述: 构建智能化的日志数据处理管道
+title: "日志解析与处理概述: 构建智能化的日志数据处理管道"
 date: 2025-09-06
 categories: [Log-Plateform]
 tags: [log, log-plateform]

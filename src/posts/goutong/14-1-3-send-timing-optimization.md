@@ -1,5 +1,5 @@
 ---
-title: 发送时机优化: 基于用户行为预测的智能发送策略
+title: "发送时机优化: 基于用户行为预测的智能发送策略"
 date: 2025-09-07
 categories: [GouTong]
 tags: [goutong, notification-platform, send-timing, optimization]
