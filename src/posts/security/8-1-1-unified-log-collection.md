@@ -5,6 +5,7 @@ categories: [Security]
 tags: [Security]
 published: true
 ---
+
 ## 引言
 
 在现代企业IT环境中，日志数据已成为安全监控、故障排查和合规审计的重要信息源。随着系统架构的日益复杂化，从传统的单体应用到微服务架构，从物理服务器到容器化部署，从本地数据中心到混合云环境，日志数据的来源变得极其多样化和分散化。统一日志采集作为全栈可观测性与安全审计体系的基础，承担着汇集来自操作系统、网络设备、数据库、应用程序等各个层面日志数据的重要职责。
@@ -250,7 +251,7 @@ published: true
    - **fluentd**：将日志发送到Fluentd日志收集器
 
 2. **日志文件位置**：
-   - **默认路径**：/var/lib/docker/containers/<container-id>/
+   - **默认路径**：`/var/lib/docker/containers/<container-id>/`
    - **文件命名**：容器ID-json.log格式的文件
    - **文件轮转**：Docker自动进行日志文件轮转
    - **大小限制**：可配置日志文件的最大大小
