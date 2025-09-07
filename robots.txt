@@ -1,4 +1,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://houbb.github.io/blog-middleware/sitemap.xml
+Sitemap: https://houbb.github.io/blog-plateform-design/sitemap.xml
