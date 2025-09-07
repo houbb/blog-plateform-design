@@ -2,7 +2,7 @@
 title: "Runbook管理: 文档化、版本化、可执行化"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, runbook, documentation, versioning, execution]
+tags: [Alarm]
 published: true
 ---
 # Runbook管理：文档化、版本化、可执行化

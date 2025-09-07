@@ -2,7 +2,7 @@
 title: "API-first设计: 构建标准化、版本化的统一通知平台接口"
 date: 2025-09-06
 categories: [GouTong]
-tags: [goutong, notification-platform, api-design]
+tags: [GouTong]
 published: true
 ---
 在构建统一通知通道平台的过程中，API-first设计是确保平台易用性、可扩展性和可维护性的关键策略。通过以API为核心的设计理念，我们可以构建出标准化、版本化、易于集成的平台接口，为业务方提供优质的接入体验。本文将深入探讨统一通知平台的API-first设计策略，为平台建设提供清晰的接口设计指导。

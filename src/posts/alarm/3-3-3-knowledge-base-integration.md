@@ -2,7 +2,7 @@
 title: "与知识库联动: 自动生成/关联故障报告，沉淀解决方案"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 # 与知识库联动：自动生成/关联故障报告，沉淀解决方案

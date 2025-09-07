@@ -2,7 +2,7 @@
 title: "自动止损（Auto-Remediation）: 设计安全可靠的自动恢复流程"
 date: 2025-08-30
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 # 自动止损（Auto-Remediation）：设计安全可靠的自动恢复流程

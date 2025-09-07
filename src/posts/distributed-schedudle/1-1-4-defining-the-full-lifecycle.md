@@ -1,8 +1,8 @@
 ---
 title: "1.4 定义\"可落地的全生命周期\": 设计、开发、部署、监控、治理、下线"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, distributed, lifecycle, governance]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在构建分布式调度平台的过程中，"可落地的全生命周期"是一个核心概念。它不仅涵盖了从设计到下线的完整过程，更重要的是确保每个阶段都能够实际落地执行，形成闭环管理。本文将深入探讨分布式调度平台全生命周期的各个阶段，分析每个阶段的关键要素和最佳实践。

@@ -1,8 +1,8 @@
 ---
 title: "统一用例模型: 管理API、Web UI、Mobile、性能用例"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 5.1 统一用例模型：管理API、Web UI、Mobile、性能用例

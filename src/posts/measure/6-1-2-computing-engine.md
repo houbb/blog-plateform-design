@@ -2,7 +2,7 @@
 title: "计算引擎: 批处理（Spark, Flink）与流处理（Flink, Storm）"
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 在企业级统一度量平台中，计算引擎是处理和分析海量数据的核心组件。随着业务需求的多样化，既需要处理历史数据的批处理计算，也需要实时处理数据流的流处理计算。本节将深入探讨主流计算引擎的特点、优势、适用场景以及选型策略，帮助架构师和工程师构建高效的数据处理体系。

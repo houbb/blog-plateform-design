@@ -1,8 +1,8 @@
 ---
 title: "高性能缓存设计: 客户端缓存、元数据缓存、数据缓存（一致性保证）"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, cache, performance, metadata, consistency]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储平台中，缓存是提升系统性能的关键组件。通过合理设计和实现多层缓存架构，可以显著减少网络延迟、降低存储系统负载，并提高整体响应速度。本章将深入探讨高性能缓存设计，包括客户端缓存、元数据缓存和数据缓存的实现原理与一致性保证机制。

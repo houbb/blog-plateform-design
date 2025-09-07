@@ -1,8 +1,8 @@
 ---
 title: "前端技术选型: Vue/React/Angular与现代UI框架"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 3.2 前端技术选型：Vue/React/Angular与现代UI框架

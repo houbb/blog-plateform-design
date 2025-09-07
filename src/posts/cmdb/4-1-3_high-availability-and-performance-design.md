@@ -1,8 +1,8 @@
 ---
 title: "高可用与高性能设计: 数据库选型（MySQL/PostgreSQL/NewSQL）、缓存策略、水平扩展"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在现代企业级配置管理数据库（CMDB）系统的设计中，高可用性和高性能是两个至关重要的非功能性需求。随着企业IT环境的日益复杂化和规模化，CMDB系统必须能够处理海量的配置数据、支持高并发的访问请求，并保证7×24小时的稳定运行。本文将深入探讨CMDB系统的高可用与高性能设计策略，包括数据库选型、缓存策略和水平扩展等关键技术。

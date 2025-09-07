@@ -1,8 +1,8 @@
 ---
 title: 现代软件测试的挑战与测试平台的演进
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

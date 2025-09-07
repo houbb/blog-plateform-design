@@ -2,7 +2,7 @@
 title: 构建与制品管理
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 

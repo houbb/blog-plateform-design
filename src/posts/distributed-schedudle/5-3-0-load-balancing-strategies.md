@@ -1,8 +1,8 @@
 ---
 title: "5.3 负载均衡策略: Worker心跳检测、资源感知调度、故障转移"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, load balancing, worker, heartbeat, resource-aware scheduling, failover]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 负载均衡是分布式调度平台确保任务高效执行和系统稳定运行的关键机制。通过合理的负载均衡策略，可以将任务均匀分配到各个执行节点，避免某些节点过载而其他节点空闲的情况。本文将深入探讨分布式调度平台中的负载均衡策略，重点分析Worker心跳检测、资源感知调度和故障转移等关键技术的实现原理和最佳实践。

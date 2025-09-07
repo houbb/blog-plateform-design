@@ -1,8 +1,8 @@
 ---
 title: "流程设计与开发: 从现实业务到BPMN模型的转化艺术"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, process design, bpmn]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在企业级BPM平台建设中，流程设计与开发是连接业务需求与技术实现的关键桥梁。这一阶段的工作质量直接影响着后续流程执行的效果和业务价值的实现。优秀的流程设计不仅要准确反映业务需求，还要兼顾技术可行性和用户体验，是一项融合了业务理解、技术实现和创新思维的综合艺术。

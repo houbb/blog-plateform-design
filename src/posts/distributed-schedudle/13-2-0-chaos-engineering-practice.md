@@ -1,8 +1,8 @@
 ---
 title: "13.2 混沌工程（Chaos Engineering）实践: 模拟Master宕机、网络分区、Worker失联"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, chaos engineering, resilience, fault tolerance, master failure, network partition, worker disconnection]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的高可用设计中，混沌工程作为一种主动验证系统韧性的方法论，正变得越来越重要。通过在生产环境中进行受控的故障注入实验，混沌工程能够帮助我们发现系统中的潜在脆弱点，验证容错机制的有效性，并持续提升系统的稳定性和可靠性。对于分布式调度平台而言，模拟Master宕机、网络分区、Worker失联等典型故障场景，可以有效验证平台的高可用设计是否真正可靠。本文将深入探讨混沌工程在分布式调度平台中的应用实践，包括核心理念、实施方法以及最佳实践。

@@ -1,8 +1,8 @@
 ---
 title: 13.1 容量规划与性能压测
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, capacity planning, performance testing, scalability]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "核心设计原则: 最小权限原则、安全默认、可扩展性、用户体验"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在设计统一身份治理平台时，遵循核心设计原则是确保系统成功的关键。这些原则不仅指导技术实现，还影响用户体验和系统长期发展。本文将深入探讨最小权限原则、安全默认、可扩展性和用户体验等核心设计原则，为平台设计提供指导。

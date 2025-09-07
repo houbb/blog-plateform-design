@@ -2,7 +2,7 @@
 title: "SLO/SLI与错误预算: 基于业务目标的精准报警实践"
 date: 2025-08-30
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 SLO（Service Level Objective）和SLI（Service Level Indicator）是现代服务质量管理的重要概念，错误预算是基于SLO的一种管理机制。本文将深入探讨SLO/SLI的设计原则、错误预算的计算方法以及如何基于这些概念实现精准报警，从而确保服务质量与业务目标的一致性。

@@ -1,8 +1,8 @@
 ---
 title: "第11章: 与企业生态系统集成概述"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, integration, enterprise ecosystem, ldap, erp]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第11章：与企业生态系统集成

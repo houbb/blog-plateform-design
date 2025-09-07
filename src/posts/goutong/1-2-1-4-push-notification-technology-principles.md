@@ -1,8 +1,8 @@
 ---
 title: "App推送（Push Notification）技术原理与限制: 苹果APNs、谷歌FCM、厂商通道"
 date: 2025-08-30
-categories: [通知通道平台]
-tags: [notification, push, technology]
+categories: [GouTong]
+tags: [GouTong]
 published: true
 ---
 App推送通知（Push Notification）作为移动互联网时代最重要的用户触达方式之一，在企业级通知系统中发挥着越来越重要的作用。相比于传统的短信和邮件通知，推送通知具有无需用户主动查看、即时性强、交互丰富等显著优势。然而，推送通知的实现机制复杂，涉及多个平台厂商的专有技术和服务，如苹果的APNs（Apple Push Notification service）、谷歌的FCM（Firebase Cloud Messaging）以及各Android厂商的推送通道。本文将深入探讨App推送的技术原理、核心限制以及在企业级通知平台中的应用策略。

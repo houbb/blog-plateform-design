@@ -1,8 +1,8 @@
 ---
 title: "合规性支持: GDPR、等保2.0、SOC2中的身份要求"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，合规性支持是确保系统满足各种法规和标准要求的关键功能。随着全球数据保护法规的日益严格，如GDPR、等保2.0、SOC2等，企业需要确保其身份治理平台能够满足这些合规要求。本文将深入探讨主要合规标准中的身份管理要求，以及如何在统一身份治理平台中实现这些合规功能。

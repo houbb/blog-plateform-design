@@ -1,8 +1,8 @@
 ---
 title: "与监控系统（Prometheus、SkyWalking）的联动: 生产数据反馈测试"
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 与监控系统（Prometheus、SkyWalking）的联动：生产数据反馈测试

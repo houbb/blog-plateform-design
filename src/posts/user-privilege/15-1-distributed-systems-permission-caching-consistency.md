@@ -1,8 +1,8 @@
 ---
 title: 大规模分布式系统下的权限缓存与一致性
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, distributed-systems, caching, consistency]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

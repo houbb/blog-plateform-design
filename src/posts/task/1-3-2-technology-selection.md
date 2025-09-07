@@ -2,7 +2,7 @@
 title: "技术选型: 自研 vs 开源（如Ansible Tower/AWX、SaltStack、Rundeck）"
 date: 2025-09-06
 categories: [Task]
-tags: [task]
+tags: [Task]
 published: true
 ---
 在构建企业级作业平台时，技术选型是一个至关重要的决策环节。选择合适的技术方案不仅影响开发成本和周期，还关系到平台的长期维护和发展。本章将深入探讨自研与开源方案的权衡，并详细分析主流开源平台的特点，为企业选择最适合的技术方案提供参考。

@@ -1,8 +1,8 @@
 ---
 title: 基于全域运维数据的分析与决策
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb, data-analysis, decision-making,运维数据分析]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 

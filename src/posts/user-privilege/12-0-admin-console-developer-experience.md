@@ -1,8 +1,8 @@
 ---
 title: 管理控制台与开发者体验（概述）
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, admin-console, developer-experience]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

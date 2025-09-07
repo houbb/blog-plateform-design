@@ -2,7 +2,7 @@
 title: "链路追踪集成: 在调用链上标记被限流的请求"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, tracing, opentracing, opentelemetry, observability]
+tags: [DistributedFlowControl]
 published: true
 ---
 在现代分布式系统中，链路追踪已成为理解和诊断系统行为的重要工具。通过在调用链上标记被限流的请求，我们可以清晰地看到限流策略在系统中的实际效果，分析限流对用户体验的影响，并快速定位性能瓶颈。本章将深入探讨如何将分布式限流系统与链路追踪技术集成，在调用链上准确标记被限流的请求，为系统优化和故障排查提供有力支持。

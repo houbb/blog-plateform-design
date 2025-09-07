@@ -1,8 +1,8 @@
 ---
 title: "日志平台与 DevOps/SRE: 构建可观测性的核心支柱"
 date: 2025-09-07
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在现代软件开发和运维实践中，日志平台与DevOps和SRE（Site Reliability Engineering）的深度融合已成为提升系统可靠性、加速问题定位和优化用户体验的关键因素。日志作为可观测性的三大支柱之一（日志、指标、链路追踪），不仅为开发团队提供系统行为的详细洞察，更为运维团队构建了主动监控和智能告警的基础。本文将深入探讨日志平台如何与DevOps和SRE实践紧密结合，构建高效的可观测性体系。

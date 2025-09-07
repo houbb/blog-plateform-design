@@ -2,7 +2,7 @@
 title: "风控的\"全生命周期\"内涵: 涵盖数据接入、特征计算、决策执行、模型迭代、运营分析的完整闭环"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 风控的"全生命周期"内涵：涵盖数据接入、特征计算、决策执行、模型迭代、运营分析的完整闭环

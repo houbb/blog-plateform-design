@@ -2,7 +2,7 @@
 title: "指标下钻（Drill-Down）: 联动仪表盘，一键下钻分析"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 # 指标下钻（Drill-Down）：联动仪表盘，一键下钻分析

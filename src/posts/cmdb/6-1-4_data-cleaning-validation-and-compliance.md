@@ -1,8 +1,8 @@
 ---
 title: 数据清洗、校验与合规检查
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb, data-cleaning, data-validation, compliance, data-quality]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 

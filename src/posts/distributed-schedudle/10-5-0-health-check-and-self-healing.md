@@ -1,8 +1,8 @@
 ---
 title: 10.5 健康检查与自愈能力
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, health check, self-healing, resilience, fault tolerance, proactive monitoring]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

@@ -2,7 +2,7 @@
 title: "事件（Incident）与告警（Alert）: 概念辨析与管理实践"
 date: 2025-08-30
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 在报警系统中，事件（Incident）和告警（Alert）是两个既相关又有区别的概念。正确理解和区分这两个概念，对于构建高效的报警平台和优化故障处理流程具有重要意义。本文将深入探讨事件与告警的区别与联系，以及如何有效管理它们。

@@ -1,8 +1,8 @@
 ---
 title: 登出与全局登出（Single Logout）
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

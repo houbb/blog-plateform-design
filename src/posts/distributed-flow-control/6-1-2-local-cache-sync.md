@@ -2,7 +2,7 @@
 title: "高性能本地缓存+低频同步: 降低Redis压力，保证最终一致性"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, caching, redis, consistency, performance]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式限流系统中，频繁访问Redis等共享存储会导致性能瓶颈和网络开销。为了提高系统的响应速度和降低Redis压力，本地缓存成为必不可少的优化手段。然而，本地缓存的引入也带来了数据一致性的问题。本章将深入探讨如何通过高性能本地缓存与低频同步机制，在保证最终一致性的同时显著提升系统性能。

@@ -1,8 +1,8 @@
 ---
 title: 组织培训与建立社区，收集用户反馈
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

@@ -2,7 +2,7 @@
 title: "报警治理规范制定: 命名规范、等级定义、响应SLA"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, governance, naming, sla, standardization]
+tags: [Alarm]
 published: true
 ---
 # 报警治理规范制定：命名规范、等级定义、响应SLA

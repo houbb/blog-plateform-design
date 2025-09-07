@@ -2,7 +2,7 @@
 title: "核心组件设计: 事件接收服务、特征平台、规则引擎、模型服务、名单服务"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 核心组件设计：事件接收服务、特征平台、规则引擎、模型服务、名单服务

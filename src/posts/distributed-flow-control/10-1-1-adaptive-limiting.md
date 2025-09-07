@@ -2,7 +2,7 @@
 title: "基于系统负载的动态限流: 根据CPU、Load、P99延迟自动调整阈值"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, adaptive, system-metrics, auto-scaling]
+tags: [DistributedFlowControl]
 published: true
 ---
 在传统的分布式限流系统中，限流阈值通常是静态配置的，无法根据系统的实时状态进行动态调整。这种固定阈值的方式在面对复杂多变的业务场景时存在明显不足：在系统负载较低时可能过度限制流量，在系统负载较高时又可能无法有效保护系统。基于系统负载的动态限流通过实时监控CPU使用率、系统负载、P99延迟等关键指标，能够智能地调整限流阈值，在保障系统稳定性的同时最大化资源利用率。本章将深入探讨动态限流的实现原理、核心算法以及最佳实践。

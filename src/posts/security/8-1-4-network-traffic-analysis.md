@@ -2,7 +2,7 @@
 title: "网络流量分析（NTA）: 检测横向移动与未知威胁"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

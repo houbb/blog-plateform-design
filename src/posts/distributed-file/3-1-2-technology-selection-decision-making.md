@@ -1,8 +1,8 @@
 ---
 title: "技术选型决策: 自研 vs. 基于开源（如Ceph, JuiceFS, Alluxio, MinIO）二次开发"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在构建分布式文件存储平台时，技术选型是一个至关重要的决策环节。团队通常面临两种主要选择：完全自研或基于现有开源解决方案进行二次开发。每种选择都有其独特的优势和挑战，需要根据组织的具体需求、资源状况和技术能力进行综合评估。本章将深入分析这两种技术路径，对比主流开源存储系统的特性，并提供一套科学的决策框架，帮助团队做出最适合的技术选型。

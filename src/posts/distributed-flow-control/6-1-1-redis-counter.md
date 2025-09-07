@@ -2,7 +2,7 @@
 title: "基于Redis的分布式计数器: Lua脚本保证原子性、集群模式下的同步问题"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, redis, lua, atomicity, clustering]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式限流系统中，计数器的实现是核心组件之一。由于需要在多个节点间共享状态，传统的单机计数器无法满足需求。Redis作为一个高性能的内存数据库，因其原子性操作和高并发处理能力，成为实现分布式计数器的首选方案。本章将深入探讨如何基于Redis实现高效的分布式计数器，并解决Lua脚本原子性和集群模式同步等关键问题。

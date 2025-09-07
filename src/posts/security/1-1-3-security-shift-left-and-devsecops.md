@@ -2,7 +2,7 @@
 title: "安全左移与DevSecOps: 将安全能力嵌入到研发运维全生命周期（Day 0）"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

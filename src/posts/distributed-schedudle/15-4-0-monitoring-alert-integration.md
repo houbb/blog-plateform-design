@@ -1,8 +1,8 @@
 ---
 title: "15.4 与监控报警系统集成: 聚合所有任务报警"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, monitoring, alerting, integration, Prometheus, Grafana]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的运维管理中，监控和报警系统是确保系统稳定运行、及时发现和处理问题的关键基础设施。通过与主流监控报警系统的深度集成，调度平台能够将任务执行过程中的各种异常情况、性能指标、资源使用等信息统一聚合和展示，形成完整的监控告警闭环。这种集成不仅提升了问题发现的及时性和准确性，还为运维人员提供了统一的告警管理和处理入口，显著提高了运维效率和系统可靠性。本文将深入探讨分布式调度平台与监控报警系统集成的核心理念、技术实现以及最佳实践。

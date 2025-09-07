@@ -2,7 +2,7 @@
 title: "容器安全: 镜像扫描、运行时安全、Kubernetes安全加固"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

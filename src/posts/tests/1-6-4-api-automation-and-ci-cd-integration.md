@@ -1,8 +1,8 @@
 ---
 title: 接口自动化与CI/CD的集成
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

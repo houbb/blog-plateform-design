@@ -2,7 +2,7 @@
 title: "安全度量与报告: 自动生成合规报告、向上汇报材料"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

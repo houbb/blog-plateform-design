@@ -1,8 +1,8 @@
 ---
 title: "4.1 分层架构: 客户端、接入层、调度核心、执行器、元数据存储"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, architecture, layered architecture, client, gateway, scheduler, executor, metadata]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 分布式调度平台的架构设计是确保系统高性能、高可用和可扩展性的关键。分层架构作为一种经典的软件架构模式，在分布式调度平台中发挥着重要作用。通过将系统划分为不同的层次，每一层都有明确的职责和边界，从而降低了系统的复杂性，提高了可维护性和可扩展性。本文将深入探讨分布式调度平台的分层架构设计，包括客户端、接入层、调度核心、执行器和元数据存储等关键组件。

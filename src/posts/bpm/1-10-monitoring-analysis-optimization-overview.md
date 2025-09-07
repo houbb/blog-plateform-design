@@ -1,8 +1,8 @@
 ---
 title: "第10章: 监控、分析与持续优化概述"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, monitoring, analysis, continuous improvement]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第10章：监控、分析与持续优化

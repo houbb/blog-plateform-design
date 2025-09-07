@@ -1,8 +1,8 @@
 ---
 title: 身份联合与外部身份源
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "第14章: 智能BPM与RPA融合概述"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, rpa, artificial intelligence, automation, integration]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第十四章：智能BPM与RPA融合

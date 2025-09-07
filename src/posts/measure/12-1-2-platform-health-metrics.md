@@ -2,7 +2,7 @@
 title: "平台自身健康度度量: 构建度量平台的\"健康体检\"体系"
 date: 2025-09-07
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 ## 引言

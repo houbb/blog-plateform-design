@@ -1,8 +1,8 @@
 ---
 title: "权限模型基石: 自主访问控制（DAC）、强制访问控制（MAC）、基于角色的访问控制（RBAC）、基于属性的访问控制（ABAC）"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 权限管理是统一身份治理平台的核心功能之一，它决定了谁可以访问什么资源以及可以执行什么操作。不同的权限模型适用于不同的应用场景，各有其优势和局限性。本文将深入探讨四种主要的权限模型：自主访问控制（DAC）、强制访问控制（MAC）、基于角色的访问控制（RBAC）和基于属性的访问控制（ABAC），帮助您全面理解权限管理的核心理论。

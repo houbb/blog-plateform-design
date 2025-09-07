@@ -1,8 +1,8 @@
 ---
 title: 用户权限管理（RBAC）与操作审计
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

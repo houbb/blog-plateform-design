@@ -2,7 +2,7 @@
 title: "版本管理与灰度发布: 新规则的灰度下发与回滚机制"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, version-control, canary-release, rollback]
+tags: [DistributedFlowControl]
 published: true
 ---
 在企业级分布式限流平台中，版本管理和灰度发布是确保系统稳定性和业务连续性的关键机制。通过精细化的版本控制和渐进式的规则发布，我们可以在不影响整体业务的情况下安全地部署新规则，并在出现问题时快速回滚。本章将深入探讨如何设计和实现高效的版本管理与灰度发布机制。

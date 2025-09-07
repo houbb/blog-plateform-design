@@ -1,8 +1,8 @@
 ---
 title: "10.3 指标 Metrics: 调度延迟、任务成功率、资源利用率（Prometheus/Grafana）"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, metrics, Prometheus, Grafana, scheduling latency, task success rate, resource utilization]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，指标监控是衡量系统性能、识别瓶颈和保障服务质量的核心手段。通过收集和分析关键指标，如调度延迟、任务成功率、资源利用率等，运维团队可以全面了解系统运行状态，及时发现潜在问题并进行优化。本文将深入探讨指标监控体系的设计与实现，重点分析基于Prometheus和Grafana的监控解决方案，为构建高效可靠的指标监控体系提供指导。

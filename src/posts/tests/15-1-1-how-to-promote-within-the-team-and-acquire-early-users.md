@@ -1,8 +1,8 @@
 ---
 title: 如何在团队内推广并获取早期用户？
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

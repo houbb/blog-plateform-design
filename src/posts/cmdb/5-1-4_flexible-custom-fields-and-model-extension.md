@@ -1,8 +1,8 @@
 ---
 title: 灵活的自定义字段与模型扩展能力
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 

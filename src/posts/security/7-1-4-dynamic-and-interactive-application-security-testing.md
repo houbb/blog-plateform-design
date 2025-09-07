@@ -2,7 +2,7 @@
 title: "动态应用安全测试（DAST）与交互式安全测试（IAST）: 运行时安全检测与深度分析"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

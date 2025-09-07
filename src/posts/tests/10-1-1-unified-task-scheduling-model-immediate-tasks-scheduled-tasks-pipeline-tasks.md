@@ -1,8 +1,8 @@
 ---
 title: "统一任务调度模型: 即时任务、定时任务、流水线任务"
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 统一任务调度模型：即时任务、定时任务、流水线任务

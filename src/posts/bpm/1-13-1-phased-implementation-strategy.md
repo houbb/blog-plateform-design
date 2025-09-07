@@ -1,8 +1,8 @@
 ---
 title: "分阶段实施策略: 从试点部门到全企业推广"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, implementation, phased rollout, pilot, enterprise-wide]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 分阶段实施策略：从试点部门到全企业推广

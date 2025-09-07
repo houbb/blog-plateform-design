@@ -1,8 +1,8 @@
 ---
 title: "高可用与灾难恢复架构: 数据库多活、无状态服务、异地容灾"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, high-availability, disaster-recovery, database]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，高可用性和灾难恢复能力是确保业务连续性和数据安全的关键要求。随着企业对身份服务依赖程度的不断提高，任何服务中断都可能导致严重的业务影响。本文将深入探讨如何设计和实现高可用与灾难恢复架构，包括数据库多活、无状态服务和异地容灾等关键技术。

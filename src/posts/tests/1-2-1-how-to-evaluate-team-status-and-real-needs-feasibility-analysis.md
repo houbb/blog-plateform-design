@@ -1,8 +1,8 @@
 ---
 title: 如何评估团队现状与真实需求？（可行性分析）
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

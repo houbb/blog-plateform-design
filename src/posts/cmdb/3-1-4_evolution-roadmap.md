@@ -1,8 +1,8 @@
 ---
 title: "演进路线图: 从核心CI管理到全链路拓扑与赋能"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 配置管理数据库（CMDB）的建设不是一蹴而就的过程，而是一个循序渐进、持续演进的长期工程。一个成功的CMDB项目需要制定清晰的演进路线图，从基础的核心CI管理开始，逐步扩展到全链路拓扑展示，最终实现对整个运维体系的深度赋能。本文将详细阐述CMDB的演进路线图，为企业的CMDB建设提供指导。

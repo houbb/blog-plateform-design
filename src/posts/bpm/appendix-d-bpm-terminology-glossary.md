@@ -1,8 +1,8 @@
 ---
 title: 附录D：BPM术语表
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 

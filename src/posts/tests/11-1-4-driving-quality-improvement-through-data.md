@@ -1,8 +1,8 @@
 ---
 title: 通过数据驱动质量改进
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

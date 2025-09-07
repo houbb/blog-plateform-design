@@ -1,8 +1,8 @@
 ---
 title: ""
 date: 2025-09-07
-categories: ["Alarm"]
-tags: ["alarm"]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第十六章：未来展望与技术演进

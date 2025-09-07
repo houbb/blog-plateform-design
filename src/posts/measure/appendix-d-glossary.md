@@ -2,7 +2,7 @@
 title: "附录D: 术语表"
 date: 2025-09-07
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 ## 引言

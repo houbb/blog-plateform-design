@@ -2,7 +2,7 @@
 title: "全栈可观测性与安全审计: 构建全面的安全监控与分析体系"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

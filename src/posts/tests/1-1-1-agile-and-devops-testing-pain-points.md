@@ -1,8 +1,8 @@
 ---
 title: 敏捷与DevOps模式下的测试之痛
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "数字化转型下的身份管理之痛: 烟囱系统、权限混乱、效率低下"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业数字化转型的过程中，身份管理成为了一个日益突出的痛点。传统的烟囱式系统架构、混乱的权限管理体系以及低下的运营效率，正在严重制约企业的发展。本文将深入分析这些痛点，并探讨其对业务的影响。

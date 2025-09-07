@@ -1,8 +1,8 @@
 ---
 title: 与HDFS、S3等标准协议的兼容与网关构建
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, hdfs, s3, compatibility, gateway]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

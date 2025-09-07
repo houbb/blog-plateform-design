@@ -1,8 +1,8 @@
 ---
 title: 测试即服务（TaaS）的思考
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

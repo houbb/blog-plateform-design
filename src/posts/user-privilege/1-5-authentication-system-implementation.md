@@ -1,8 +1,8 @@
 ---
 title: 认证体系实现（AuthN）
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

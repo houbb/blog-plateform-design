@@ -1,8 +1,8 @@
 ---
 title: 调度核心（Master）的设计与实现
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

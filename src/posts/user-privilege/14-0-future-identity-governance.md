@@ -1,8 +1,8 @@
 ---
 title: 面向未来的身份治理（概述）
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, future-identity, governance]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

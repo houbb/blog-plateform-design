@@ -1,8 +1,8 @@
 ---
 title: "收集反馈与度量成功: 用量指标、用户满意度"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, feedback, metrics, user-satisfaction]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台的持续运营中，收集用户反馈和度量成功指标是优化产品、提升用户体验和证明投资价值的关键环节。本文将深入探讨如何建立有效的反馈收集机制和科学的度量体系，为平台的持续改进提供数据支撑。

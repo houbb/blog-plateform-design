@@ -1,8 +1,8 @@
 ---
 title: "身份认证集成: 与AD/LDAP/统一身份认证平台对接"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, identity, authentication, ldap, sso, active directory]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 身份认证集成：与AD/LDAP/统一身份认证平台对接

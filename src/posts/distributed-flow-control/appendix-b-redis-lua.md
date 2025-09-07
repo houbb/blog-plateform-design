@@ -2,7 +2,7 @@
 title: "附录B: Redis Lua脚本示例"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, redis, lua, scripting]
+tags: [DistributedFlowControl]
 published: true
 ---
 Redis Lua脚本在分布式限流系统中扮演着至关重要的角色，它能够保证限流操作的原子性，避免竞态条件，提高系统性能。本附录将提供一系列实用的Redis Lua脚本示例，涵盖固定窗口计数器、滑动窗口计数器、令牌桶算法、漏桶算法等常见的限流算法实现，以及一些高级特性和最佳实践。

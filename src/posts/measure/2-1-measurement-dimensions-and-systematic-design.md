@@ -2,7 +2,7 @@
 title: 度量的维度与体系化设计
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

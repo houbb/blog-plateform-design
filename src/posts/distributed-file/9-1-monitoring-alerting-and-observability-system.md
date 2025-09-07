@@ -1,8 +1,8 @@
 ---
 title: 监控、告警与可观测性体系
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, monitoring, alerting, observability, metrics, logging, tracing]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

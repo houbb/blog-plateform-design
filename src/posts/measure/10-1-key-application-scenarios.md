@@ -2,7 +2,7 @@
 title: 核心应用场景详解
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

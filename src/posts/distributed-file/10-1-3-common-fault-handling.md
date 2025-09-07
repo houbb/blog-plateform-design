@@ -1,8 +1,8 @@
 ---
 title: "常见故障处理手册:磁盘故障、节点宕机、网络分区"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, fault-handling, disk-failure, node-failure, network-partition, troubleshooting]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

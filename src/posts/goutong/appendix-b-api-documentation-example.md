@@ -2,7 +2,7 @@
 title: "附录B: API接口文档示例"
 date: 2025-09-07
 categories: [GouTong]
-tags: [goutong, notification-platform, api, documentation]
+tags: [GouTong]
 published: true
 ---
 在企业级统一通知通道平台的建设中，标准化的API接口设计是确保平台易用性、可扩展性和可维护性的关键。本文档提供了统一通知平台核心API接口的详细说明，包括接口规范、请求参数、响应格式、错误处理等，为开发者提供清晰的接入指导。

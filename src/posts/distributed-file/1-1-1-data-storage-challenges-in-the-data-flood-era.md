@@ -1,8 +1,8 @@
 ---
 title: 数据洪流时代的存储挑战
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

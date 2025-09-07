@@ -1,8 +1,8 @@
 ---
 title: "业务模式创新: 平台化、生态化与个性化服务"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, business model, platform, ecosystem, personalization, digital transformation]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 业务模式创新：平台化、生态化与个性化服务

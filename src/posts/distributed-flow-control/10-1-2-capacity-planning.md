@@ -2,7 +2,7 @@
 title: "压测与容量规划: 通过限流平台模拟流量，进行全链路压测，找出系统瓶颈"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, load-testing, capacity-planning, performance-testing]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式系统中，容量规划是确保系统稳定性和性能的关键环节。通过限流平台进行压测和容量规划，可以帮助我们准确评估系统的处理能力，识别性能瓶颈，优化资源配置，并为限流策略的制定提供科学依据。本章将深入探讨如何利用限流平台进行全链路压测，分析压测结果，制定合理的容量规划策略。

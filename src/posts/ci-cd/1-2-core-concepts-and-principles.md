@@ -2,7 +2,7 @@
 title: 核心概念与原则
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 

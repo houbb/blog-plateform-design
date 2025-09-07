@@ -1,8 +1,8 @@
 ---
 title: 16.3 平台运营数据驱动决策
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, data-driven, platform operation, decision making, analytics, KPI, metrics]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

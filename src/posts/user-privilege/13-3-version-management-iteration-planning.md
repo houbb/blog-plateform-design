@@ -1,8 +1,8 @@
 ---
 title: 版本管理与迭代规划
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, version-management, iteration-planning]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

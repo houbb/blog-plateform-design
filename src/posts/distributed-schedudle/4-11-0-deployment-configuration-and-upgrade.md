@@ -1,8 +1,8 @@
 ---
 title: 部署、配置与升级
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

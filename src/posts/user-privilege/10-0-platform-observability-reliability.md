@@ -1,8 +1,8 @@
 ---
 title: 平台的可观测性与可靠性（概述）
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, observability, reliability]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

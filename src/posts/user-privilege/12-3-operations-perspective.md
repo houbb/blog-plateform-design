@@ -1,8 +1,8 @@
 ---
 title: "运维视角: 配置管理、系统监控、日志查询"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, operations, monitoring, configuration]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，运维团队负责确保系统的稳定性、安全性和高性能。一个优秀的运维体验需要完善的配置管理、实时的系统监控和高效的日志查询能力。本文将深入探讨如何为运维人员提供强大的工具和功能，确保平台的可靠运行。

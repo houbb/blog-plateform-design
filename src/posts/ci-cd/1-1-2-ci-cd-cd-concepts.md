@@ -2,7 +2,7 @@
 title: "CI、CD、CD: 厘清持续集成、持续交付与持续部署"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 在DevOps和现代软件工程实践中，CI/CD已成为核心概念。然而，对于这三个缩写词的具体含义和相互关系，很多人仍然存在混淆。本文将深入解析持续集成（Continuous Integration）、持续交付（Continuous Delivery）和持续部署（Continuous Deployment）的概念、区别与联系。

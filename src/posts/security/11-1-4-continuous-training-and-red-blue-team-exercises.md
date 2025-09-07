@@ -2,7 +2,7 @@
 title: "持续培训与红蓝对抗: 提升团队能力，检验平台有效性"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

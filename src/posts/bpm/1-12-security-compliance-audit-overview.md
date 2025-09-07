@@ -1,8 +1,8 @@
 ---
 title: "第12章: 安全、合规与审计概述"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, security, compliance, audit, rbac, sox, gdpr]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第12章：安全、合规与审计

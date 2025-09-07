@@ -1,8 +1,8 @@
 ---
 title: "15.2 与数据平台集成: 触发DataX/Spark离线任务、上报数据质量结果"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, data platform, DataX, Spark, data quality, integration]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在现代大数据生态系统中，分布式调度平台作为任务编排和执行的核心引擎，与数据平台的深度集成已成为构建高效数据处理流水线的关键环节。通过与主流数据处理工具如DataX、Spark等的集成，调度平台能够自动化触发各类离线数据处理任务，同时收集和上报数据质量指标，形成完整的数据处理和质量监控闭环。这种集成不仅提升了数据处理的自动化水平，还为数据治理和质量保障提供了有力支撑。本文将深入探讨分布式调度平台与数据平台集成的核心理念、技术实现以及最佳实践。

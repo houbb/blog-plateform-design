@@ -1,8 +1,8 @@
 ---
 title: 任务定义与管理
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

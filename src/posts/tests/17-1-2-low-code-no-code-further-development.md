@@ -1,8 +1,8 @@
 ---
 title: 无代码/低代码测试平台的进一步发展
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

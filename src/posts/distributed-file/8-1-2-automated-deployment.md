@@ -1,8 +1,8 @@
 ---
 title: "自动化部署: 基于Ansible/K8s Operator的集群部署方案"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, deployment, automation, ansible, kubernetes, operator]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在现代分布式系统运维中，自动化部署已成为确保系统稳定性和提高运维效率的关键实践。对于分布式文件存储平台而言，手动部署不仅耗时耗力，还容易出错，难以保证环境的一致性。本章将深入探讨基于Ansible和Kubernetes Operator的自动化部署方案，帮助您构建高效、可靠的部署流程。

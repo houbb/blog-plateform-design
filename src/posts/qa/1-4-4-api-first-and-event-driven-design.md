@@ -1,8 +1,8 @@
 ---
 title: "API-first 与 事件驱动设计: 无缝集成CI/CD与IDE"
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 在现代软件开发环境中，工程效能平台需要与各种工具和系统无缝集成，以提供流畅的用户体验和高效的开发流程。API-first设计和事件驱动设计是实现这一目标的两种重要架构模式。本章将深入探讨这两种设计方法，以及如何通过它们实现与CI/CD和IDE的无缝集成。

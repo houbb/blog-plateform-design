@@ -2,7 +2,7 @@
 title: "度量报警平台自身: 告警量、触达率、误报率、MTTR"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, platform-monitoring, metrics, kpi]
+tags: [Alarm]
 published: true
 ---
 # 度量报警平台自身：告警量、触达率、误报率、MTTR

@@ -2,7 +2,7 @@
 title: "附录C: KPI定义与计算公式表"
 date: 2025-09-07
 categories: [ITSM]
-tags: [itsm]
+tags: [ITSM]
 published: true
 ---
 在IT服务管理（ITSM）的实施和运营过程中，关键绩效指标（Key Performance Indicators, KPI）是衡量服务质量和运营效率的重要工具。科学合理的KPI体系不仅能够帮助组织客观评估IT服务管理水平，还能为持续改进提供数据支撑。本文将详细介绍ITSM中常用的关键绩效指标定义、计算公式和评估标准，为组织建立有效的KPI体系提供参考。

@@ -2,7 +2,7 @@
 title: "规则引擎 vs. 机器学习模型: 适用场景与优劣对比"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 规则引擎 vs. 机器学习模型：适用场景与优劣对比

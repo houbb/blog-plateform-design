@@ -2,7 +2,7 @@
 title: "将SOP数字化: 为常见事件类型预置处理流程"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, sop, digitalization, incident-management]
+tags: [Alarm]
 published: true
 ---
 # 将SOP数字化：为常见事件类型预置处理流程

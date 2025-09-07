@@ -1,8 +1,8 @@
 ---
 title: "App性能监控: CPU、内存、帧率、流量采集与分析"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 8.2 App性能监控：CPU、内存、帧率、流量采集与分析

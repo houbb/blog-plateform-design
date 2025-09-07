@@ -2,7 +2,7 @@
 title: 配置管理数据库（CMDB）建设
 date: 2025-09-06
 categories: [ITSM]
-tags: [itsm]
+tags: [ITSM]
 published: true
 ---
 

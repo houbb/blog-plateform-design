@@ -1,8 +1,8 @@
 ---
 title: "第15章: 低代码与全民开发者概述"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, low-code, citizen development, no-code, platform]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第十五章：低代码与全民开发者

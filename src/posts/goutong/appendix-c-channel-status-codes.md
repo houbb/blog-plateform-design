@@ -2,7 +2,7 @@
 title: "附录C: 通道状态码大全与错误处理建议"
 date: 2025-09-07
 categories: [GouTong]
-tags: [goutong, notification-platform, status-codes, error-handling]
+tags: [GouTong]
 published: true
 ---
 在企业级统一通知通道平台中，准确的状态码定义和合理的错误处理机制是确保平台稳定运行、快速定位问题、提升用户体验的关键。本文档详细定义了统一通知平台中各类通道的状态码体系，并提供了针对性的错误处理建议和最佳实践。

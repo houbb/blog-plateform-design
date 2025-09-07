@@ -1,8 +1,8 @@
 ---
 title: "附录B: BPM平台技术选型指南"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, technology selection, evaluation, comparison, digital transformation]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 附录B：BPM平台技术选型指南

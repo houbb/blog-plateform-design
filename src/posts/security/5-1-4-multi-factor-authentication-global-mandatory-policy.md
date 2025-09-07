@@ -2,7 +2,7 @@
 title: 多因子认证（MFA）全局强制策略
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 

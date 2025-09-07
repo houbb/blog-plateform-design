@@ -1,8 +1,8 @@
 ---
 title: 进阶话题与最佳实践汇编
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, advanced-topics, best-practices]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

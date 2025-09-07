@@ -2,7 +2,7 @@
 title: "附录C: 全球分布式限流架构探讨"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, global, architecture, multi-region]
+tags: [DistributedFlowControl]
 published: true
 ---
 在全球化业务日益普及的今天，许多企业都需要在全球多个地区部署服务，为不同地区的用户提供就近访问。这种全球分布式架构在带来用户体验提升的同时，也给限流系统带来了新的挑战。如何在全球范围内实现统一、高效、可靠的限流控制，成为了一个重要的技术课题。本附录将深入探讨全球分布式限流架构的设计思路、技术挑战和实现方案。

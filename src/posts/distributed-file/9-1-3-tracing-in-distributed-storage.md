@@ -1,8 +1,8 @@
 ---
 title: 链路追踪（Tracing）在分布式存储中的应用
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, tracing, distributed-tracing, observability, performance, debugging]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

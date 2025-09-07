@@ -1,8 +1,8 @@
 ---
 title: "日志生命周期模型概述: 从产生到消亡的完整旅程"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在当今复杂的分布式系统中，日志已成为我们理解和管理系统的不可或缺的工具。然而，许多开发者和运维人员对日志的理解往往停留在"打印信息"这一简单层面，忽略了日志作为一个完整生命周期的复杂性和重要性。

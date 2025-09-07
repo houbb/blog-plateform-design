@@ -2,7 +2,7 @@
 title: 人性化设计与运维关怀概述
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, user-experience, human-centered-design,运维关怀]
+tags: [Alarm]
 published: true
 ---
 

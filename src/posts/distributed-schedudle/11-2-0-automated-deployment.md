@@ -1,8 +1,8 @@
 ---
 title: "11.2 自动化部署: 基于Ansible/Helm/K8s Operator的部署方案"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, automated deployment, Ansible, Helm, Kubernetes Operator, CI/CD]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在现代分布式调度平台的运维实践中，自动化部署已成为提高部署效率、保障部署质量、降低运维成本的核心技术。随着系统复杂度的不断提升和部署频率的持续增加，传统手工部署方式已无法满足快速迭代和高可靠性的要求。通过采用Ansible、Helm、Kubernetes Operator等现代化部署工具和技术，可以实现从基础设施配置到应用部署的全自动化流程，显著提升部署的效率和可靠性。本文将深入探讨自动化部署的核心概念、技术实现以及最佳实践。

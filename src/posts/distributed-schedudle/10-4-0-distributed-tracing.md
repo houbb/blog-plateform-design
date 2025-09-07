@@ -1,8 +1,8 @@
 ---
 title: "10.4 链路追踪（Tracing）: 复杂工作流的全链路跟踪"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, distributed tracing, workflow tracking, Jaeger, Zipkin, OpenTelemetry]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在现代分布式调度平台中，任务执行往往涉及多个服务和组件的协同工作，特别是在处理复杂工作流时，任务可能跨越多个执行节点、依赖多个外部系统。当出现性能问题或执行失败时，传统的日志和指标监控往往难以快速定位问题的根本原因。链路追踪（Distributed Tracing）作为一种先进的可观测性技术，能够提供跨服务、跨组件的全链路调用跟踪，为复杂工作流的诊断和优化提供强有力的支持。本文将深入探讨链路追踪在分布式调度平台中的应用，分析其实现原理、技术选型和最佳实践。

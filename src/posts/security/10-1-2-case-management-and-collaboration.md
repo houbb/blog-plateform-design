@@ -2,7 +2,7 @@
 title: "案件管理与协同: 安全事件的线上化分派、调查、闭环"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

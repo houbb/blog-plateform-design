@@ -1,8 +1,8 @@
 ---
 title: 接口测试平台建设
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

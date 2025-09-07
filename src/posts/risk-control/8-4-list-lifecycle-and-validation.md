@@ -2,7 +2,7 @@
 title: 名单生命周期与有效性验证
 date: 2025-09-07
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 

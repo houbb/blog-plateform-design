@@ -2,7 +2,7 @@
 title: 指标定义与服务中心
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

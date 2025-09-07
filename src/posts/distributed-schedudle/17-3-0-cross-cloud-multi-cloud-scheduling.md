@@ -1,8 +1,8 @@
 ---
 title: 17.3 跨云多云调度
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, multi-cloud, cross-cloud, cloud-native, hybrid-cloud, resource orchestration]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "作为服务提供者（SP）: 集成外部IdP（如企业微信、AD）"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，作为服务提供者（Service Provider, SP）集成外部身份提供商（Identity Provider, IdP）是实现身份联合的关键能力。通过集成外部IdP，企业可以让用户使用已有的身份凭证（如企业微信、Active Directory账户）访问内部应用，提升用户体验并简化身份管理。本文将深入探讨作为SP集成外部IdP的技术实现细节、安全考量以及最佳实践。

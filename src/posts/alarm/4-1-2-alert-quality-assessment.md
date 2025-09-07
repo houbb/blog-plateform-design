@@ -2,7 +2,7 @@
 title: "报警质量评估与优化: 定期评审、清理无效报警"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, quality-assessment, optimization, review]
+tags: [Alarm]
 published: true
 ---
 # 报警质量评估与优化：定期评审、清理无效报警

@@ -1,8 +1,8 @@
 ---
 title: 分布式调度核心理论
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

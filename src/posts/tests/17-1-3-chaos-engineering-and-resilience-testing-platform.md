@@ -1,8 +1,8 @@
 ---
 title: 混沌工程与韧性测试平台
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

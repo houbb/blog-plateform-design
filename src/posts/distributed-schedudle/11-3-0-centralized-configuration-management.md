@@ -1,8 +1,8 @@
 ---
 title: "11.3 配置中心化管理: Apollo/Nacos的集成"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, configuration management, Apollo, Nacos, centralized configuration, dynamic configuration]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的运维管理中，配置管理是确保系统稳定运行和灵活调整的关键环节。随着系统规模的不断扩大和业务复杂度的持续提升，传统的文件配置方式已无法满足现代分布式系统对配置管理的需求。配置中心化管理通过将配置信息集中存储和管理，提供动态配置更新、版本控制、权限管理等高级功能，显著提升了配置管理的效率和可靠性。本文将深入探讨配置中心化管理的核心概念、技术实现以及最佳实践，重点分析Apollo和Nacos两种主流配置中心的集成方案。

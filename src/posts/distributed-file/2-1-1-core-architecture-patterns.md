@@ -1,8 +1,8 @@
 ---
 title: "核心架构模式: 中心化（如GFS） vs. 去中心化（如IPFS）"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 分布式文件系统的架构模式是决定系统特性和性能的关键因素。在众多架构模式中，中心化和去中心化是最具代表性的两种模式。本章将深入分析这两种架构模式的特点、优缺点以及适用场景，并以Google File System（GFS）和InterPlanetary File System（IPFS）为例，详细探讨它们的设计理念和实现机制。

@@ -1,8 +1,8 @@
 ---
 title: 平台建设前的战略规划与设计原则
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

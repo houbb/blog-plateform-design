@@ -1,8 +1,8 @@
 ---
 title: "变更流程与CMDB的联动: 一切变更皆记录"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb, change-management, integration, audit-trail]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在现代IT运维环境中，变更管理是确保系统稳定性和服务质量的关键环节。配置管理数据库（CMDB）作为IT环境的"事实来源"，与变更管理流程的深度联动能够显著提升变更的可控性和可追溯性。本文将深入探讨如何实现变更流程与CMDB的有效联动，确保"一切变更皆记录"。

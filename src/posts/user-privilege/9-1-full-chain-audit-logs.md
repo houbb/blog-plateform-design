@@ -1,8 +1,8 @@
 ---
 title: "全链路审计日志: 记录所有认证、授权、管理操作"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, audit]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，全链路审计日志是确保系统安全性和合规性的关键组件。通过记录所有与身份相关的操作，包括认证、授权和管理活动，审计日志为安全事件调查、合规性审计和行为分析提供了重要的数据基础。

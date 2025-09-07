@@ -2,7 +2,7 @@
 title: 事件复盘（Postmortem）与知识沉淀
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 

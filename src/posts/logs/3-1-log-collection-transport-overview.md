@@ -1,8 +1,8 @@
 ---
 title: "日志采集与传输概述: 构建高效可靠的日志管道"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在企业级日志平台建设中，日志采集与传输是连接日志产生和日志处理的关键环节。一个高效、可靠的日志采集与传输系统不仅能够确保日志数据的完整性和实时性，还能为后续的日志分析和监控提供坚实的基础。本文将全面介绍日志采集与传输的核心概念、技术架构和最佳实践。

@@ -1,8 +1,8 @@
 ---
 title: 来自一线实战的 坑 与 填坑 经验分享
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, best-practices, lessons-learned, real-world-experience]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

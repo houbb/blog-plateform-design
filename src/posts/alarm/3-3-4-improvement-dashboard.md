@@ -1,8 +1,8 @@
 ---
 title: "生成改进看板: 量化分析故障，驱动系统性优化"
 date: 2025-09-07
-categories: ["Alarm"]
-tags: ["alarm", "dashboard", "analytics"]
+categories: [Alarm]
+tags: [Alarm]
 published: true
 ---
 

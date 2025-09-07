@@ -1,8 +1,8 @@
 ---
 title: "多种数据构造策略: 预置、按需生成、污损、脱敏"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 4.3 多种数据构造策略：预置、按需生成、污损、脱敏

@@ -2,7 +2,7 @@
 title: 可观测性与效能度量
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,observability,metrics,monitoring,devops]
+tags: [CICD]
 published: true
 ---
 

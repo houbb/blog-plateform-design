@@ -1,8 +1,8 @@
 ---
 title: 元数据服务的设计与实现
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

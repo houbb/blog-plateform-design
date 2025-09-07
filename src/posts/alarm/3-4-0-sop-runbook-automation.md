@@ -2,7 +2,7 @@
 title: SOP（标准作业程序）与 Runbook 自动化概述
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, sop, runbook, automation]
+tags: [Alarm]
 published: true
 ---
 

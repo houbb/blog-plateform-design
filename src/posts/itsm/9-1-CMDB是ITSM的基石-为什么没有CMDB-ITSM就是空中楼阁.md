@@ -2,7 +2,7 @@
 title: "CMDB是ITSM的基石: 为什么没有CMDB，ITSM就是空中楼阁"
 date: 2025-09-06
 categories: [ITSM]
-tags: [itsm]
+tags: [ITSM]
 published: true
 ---
 在企业级IT服务管理（ITSM）平台建设中，配置管理数据库（Configuration Management Database，简称CMDB）常被誉为ITSM的基石。这一比喻并非空穴来风，而是基于CMDB在ITSM体系中的核心作用和不可替代的价值。然而，令人遗憾的是，许多企业在ITSM实施过程中忽视了CMDB的重要性，或者在CMDB建设上投入不足，最终导致ITSM平台成为"空中楼阁"——看似宏伟却缺乏坚实基础，难以发挥应有的作用。

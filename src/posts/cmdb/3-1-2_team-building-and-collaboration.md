@@ -1,8 +1,8 @@
 ---
 title: "团队组建与协作: 运维、开发、DBA的角色"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 配置管理数据库（CMDB）项目的成功实施不仅依赖于先进的技术和合理的架构设计，更需要一个跨职能、高协作的团队来推动。CMDB作为连接IT各个领域的核心平台，其建设和运营需要运维、开发、DBA等多个角色的紧密协作。本文将深入探讨CMDB项目团队的组建策略、各角色的职责分工以及高效的协作机制。

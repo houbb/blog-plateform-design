@@ -2,7 +2,7 @@
 title: "未来趋势与展望: 企业安全的下一个十年"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

@@ -2,7 +2,7 @@
 title: "附录A: 主流CI/CD工具对比"
 date: 2025-09-07
 categories: [CICD]
-tags: [tools, comparison, jenkins, gitlab, github-actions, tekton, argo-cd]
+tags: [CICD]
 published: true
 ---
 在选择CI/CD工具时，了解各种工具的特点、优势和适用场景至关重要。不同的工具在易用性、功能丰富度、扩展性、社区支持等方面各有特色。本文将对主流的CI/CD工具进行全面对比分析，帮助读者根据自身需求选择最合适的工具。

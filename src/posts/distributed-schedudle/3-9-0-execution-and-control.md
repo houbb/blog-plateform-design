@@ -1,8 +1,8 @@
 ---
 title: 执行与控制
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

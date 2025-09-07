@@ -2,7 +2,7 @@
 title: "合规性即代码: 自动化审计与合规检查"
 date: 2025-09-07
 categories: [CICD]
-tags: [compliance, policy-as-code, audit, devsecops, automation]
+tags: [CICD]
 published: true
 ---
 合规性即代码（Compliance as Code）是DevSecOps实践中的重要组成部分，它将传统的合规性检查和审计流程转化为可执行的代码，实现合规性检查的自动化和持续化。通过将合规性要求编码化，组织能够在软件开发生命周期的早期识别和修复合规性问题，降低合规风险并提高审计效率。本文将深入探讨合规性即代码的核心概念、实施方法和最佳实践。

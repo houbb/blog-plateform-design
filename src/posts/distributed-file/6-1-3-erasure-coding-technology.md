@@ -1,8 +1,8 @@
 ---
 title: 纠删码（Erasure Coding）技术详解与工程实践
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, erasure-coding, redundancy]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

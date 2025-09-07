@@ -1,8 +1,8 @@
 ---
 title: "常用协议栈: POSIX、FUSE、S3、HDFS、NFS"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储系统中，协议栈是连接应用层和存储层的重要桥梁，它决定了系统如何与外部世界交互。不同的协议栈具有不同的特点和适用场景，选择合适的协议栈对于系统的成功至关重要。本章将深入探讨分布式文件存储系统中常用的协议栈，包括POSIX、FUSE、S3、HDFS和NFS，分析它们的特点、实现方式、优缺点以及在不同场景下的应用。

@@ -2,7 +2,7 @@
 title: "应急预案与灾难恢复: 构建高可靠的容灾保障体系"
 date: 2025-09-07
 categories: [GouTong]
-tags: [goutong, notification-platform, disaster-recovery, emergency-response]
+tags: [GouTong]
 published: true
 ---
 在企业级统一通知通道平台中，应急预案与灾难恢复是确保平台在面临各种故障和灾难时能够快速恢复、保障业务连续性的关键保障机制。随着平台复杂度的不断提升和业务重要性的日益增强，如何构建完善的应急预案体系、实现高效的灾难恢复能力，成为平台高可用架构设计的重要组成部分。本文将深入探讨应急预案与灾难恢复的核心价值、设计原则、技术实现和最佳实践。

@@ -1,8 +1,8 @@
 ---
 title: 可视化编排与脚本生成的结合
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

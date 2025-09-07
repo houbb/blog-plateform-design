@@ -2,7 +2,7 @@
 title: "供应链安全与SBOM: 构建可信软件供应链的基石"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

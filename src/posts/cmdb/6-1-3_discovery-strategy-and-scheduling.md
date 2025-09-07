@@ -1,8 +1,8 @@
 ---
 title: "发现策略与调度: 全量发现与增量发现"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb, discovery-strategy, scheduling, full-discovery, incremental-discovery]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在配置管理数据库（CMDB）的自动发现体系中，发现策略与调度机制是确保数据准确性和时效性的核心组件。合理的发现策略能够平衡系统资源消耗与数据新鲜度，而高效的调度机制则能确保发现任务按时执行并适应动态变化的IT环境。本文将深入探讨全量发现与增量发现两种核心策略，以及如何设计高效的发现调度体系。

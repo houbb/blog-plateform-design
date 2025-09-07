@@ -1,8 +1,8 @@
 ---
 title: BPM与OA、Workflow、RPA的辨析与融合
 date: 2025-08-30
-categories: [BPM]
-tags: [bpm]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 

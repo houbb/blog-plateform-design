@@ -2,7 +2,7 @@
 title: "高可用设计: 控制面无状态、数据面本地降级、存储多活"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, high-availability, fault-tolerance]
+tags: [DistributedFlowControl]
 published: true
 ---
 在构建企业级分布式限流平台时，高可用性是确保系统稳定运行的关键要求。面对复杂的分布式环境和各种潜在的故障场景，我们需要从控制面、数据面和存储层三个维度进行全面的高可用设计。本章将深入探讨如何通过控制面无状态、数据面本地降级和存储多活等策略来构建高可用的分布式限流平台。

@@ -1,8 +1,8 @@
 ---
 title: "17.2 基于AI的智能调度: 预测任务运行时间、智能资源推荐、故障预测"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, AI, machine learning, intelligent scheduling, prediction, resource recommendation, fault prediction]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的发展历程中，从最初的简单定时调度到复杂的分布式任务编排，调度算法和策略不断演进。随着人工智能技术的快速发展，将AI能力深度集成到调度平台中，实现预测任务运行时间、智能资源推荐、故障预测等智能化功能，已成为下一代调度系统的重要特征。基于AI的智能调度不仅能够提升调度效率和资源利用率，还能显著改善用户体验和系统稳定性。本文将深入探讨基于AI的智能调度的核心理念、关键技术实现以及最佳实践。

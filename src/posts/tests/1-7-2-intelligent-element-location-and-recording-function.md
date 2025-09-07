@@ -1,8 +1,8 @@
 ---
 title: 智能元素定位与录制功能
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

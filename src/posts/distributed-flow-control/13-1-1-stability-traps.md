@@ -2,7 +2,7 @@
 title: "稳定性陷阱: 分布式锁的使用、缓存穿透与雪崩"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, stability, cache, locking]
+tags: [DistributedFlowControl]
 published: true
 ---
 在构建分布式限流平台的过程中，稳定性是首要考虑的因素。然而，在实际实施过程中，开发团队往往会遇到各种稳定性陷阱，这些陷阱如果不加以重视和妥善处理，可能会导致系统在关键时刻出现故障，甚至引发雪崩效应。本章将深入探讨分布式限流平台中最常见的稳定性陷阱，包括分布式锁的误用、缓存穿透与雪崩等问题，并提供相应的解决方案和最佳实践。

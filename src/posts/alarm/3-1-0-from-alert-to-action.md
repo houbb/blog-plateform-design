@@ -2,7 +2,7 @@
 title: "从报警到行动: 闭环与自愈"
 date: 2025-08-30
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 # 从报警到行动：闭环与自愈

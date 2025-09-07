@@ -2,7 +2,7 @@
 title: "安全预测与狩猎: 主动发现潜伏的高级持续性威胁（APT）"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

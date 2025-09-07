@@ -2,7 +2,7 @@
 title: 疲劳度监测与体验优化
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, alert-fatigue, user-experience, optimization]
+tags: [Alarm]
 published: true
 ---
 

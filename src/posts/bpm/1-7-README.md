@@ -1,8 +1,8 @@
 ---
 title: ""
 date: 2025-09-07
-categories: ["Alarm"]
-tags: ["alarm"]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第七章：业务规则与集成能力

@@ -2,7 +2,7 @@
 title: 企业安全架构与合规框架
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 

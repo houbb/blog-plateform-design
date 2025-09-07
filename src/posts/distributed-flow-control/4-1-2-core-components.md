@@ -2,7 +2,7 @@
 title: "核心组件设计: 控制面、数据面与存储层的详细实现"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, components, control-plane, data-plane, storage]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式限流平台的分层架构中，控制面、数据面和存储层是三个核心组成部分。每个组件都有其特定的职责和实现方式，它们协同工作以确保整个系统的高效运行。本章将深入探讨这三个核心组件的详细设计和实现方案。

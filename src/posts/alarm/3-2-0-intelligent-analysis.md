@@ -2,7 +2,7 @@
 title: "智能分析: 根因定位（RCA）加速"
 date: 2025-08-30
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 # 智能分析：根因定位（RCA）加速

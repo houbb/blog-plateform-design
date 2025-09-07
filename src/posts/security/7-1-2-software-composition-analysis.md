@@ -2,7 +2,7 @@
 title: "组件软件成分分析（SCA）: 管理第三方库漏洞与许可证风险"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

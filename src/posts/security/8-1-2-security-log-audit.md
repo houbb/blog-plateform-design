@@ -2,7 +2,7 @@
 title: "安全日志审计: 标准化（CEE）、关联分析、异常检测"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

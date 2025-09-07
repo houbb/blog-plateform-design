@@ -1,8 +1,8 @@
 ---
 title: "核心设计原则: 可扩展性、可维护性、用户体验"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 2.3 核心设计原则：可扩展性、可维护性、用户体验

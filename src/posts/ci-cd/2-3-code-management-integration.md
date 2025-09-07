@@ -2,7 +2,7 @@
 title: 代码管理与集成
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 

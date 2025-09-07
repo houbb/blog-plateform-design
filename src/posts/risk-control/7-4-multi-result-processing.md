@@ -2,7 +2,7 @@
 title: "多结果处理: 评分、标签、拦截、挑战（发送验证码）、人工审核"
 date: 2025-09-07
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 多结果处理：评分、标签、拦截、挑战（发送验证码）、人工审核

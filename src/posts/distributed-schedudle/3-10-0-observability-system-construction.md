@@ -1,8 +1,8 @@
 ---
 title: 可观测性体系构建
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

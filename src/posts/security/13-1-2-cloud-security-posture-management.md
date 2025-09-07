@@ -2,7 +2,7 @@
 title: "云安全态势管理（CSPM）: 自动化检测云平台错误配置"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

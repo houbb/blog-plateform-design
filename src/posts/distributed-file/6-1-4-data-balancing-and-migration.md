@@ -1,8 +1,8 @@
 ---
 title: "数据均衡与迁移: 热点调度、容量均衡、坏盘处理"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, data-balancing, migration]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储平台中，数据均衡与迁移是确保系统高性能、高可用性和资源有效利用的关键机制。随着数据的不断增长和访问模式的变化，系统需要动态调整数据分布，以避免热点节点、容量不均和硬件故障等问题。本章将深入探讨数据均衡与迁移的核心技术，包括热点调度策略、容量均衡算法以及坏盘处理机制。

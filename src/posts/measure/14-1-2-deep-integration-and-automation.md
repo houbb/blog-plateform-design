@@ -2,7 +2,7 @@
 title: "深度集成与自动化: 与运维、研发系统深度集成，自动触发优化动作"
 date: 2025-09-07
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 ## 引言

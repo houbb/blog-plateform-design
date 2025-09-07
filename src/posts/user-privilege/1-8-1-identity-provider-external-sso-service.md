@@ -1,8 +1,8 @@
 ---
 title: "作为身份提供者（IdP）: 对外提供SSO服务"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，作为身份提供者（Identity Provider, IdP）对外提供SSO服务是一项关键能力。当企业需要向合作伙伴、客户或其他外部系统提供身份认证服务时，就需要将自身的身份治理平台配置为IdP。本文将深入探讨作为IdP的技术实现细节、安全考量以及最佳实践。

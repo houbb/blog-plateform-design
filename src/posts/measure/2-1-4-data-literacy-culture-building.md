@@ -2,7 +2,7 @@
 title: 数据素养（Data Literacy）文化建设
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

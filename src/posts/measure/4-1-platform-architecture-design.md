@@ -2,7 +2,7 @@
 title: 平台总体架构设计
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "新兴技术融合: 区块链、物联网与BPM的协同创新"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, blockchain, iot, integration, digital transformation, innovation]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 新兴技术融合：区块链、物联网与BPM的协同创新

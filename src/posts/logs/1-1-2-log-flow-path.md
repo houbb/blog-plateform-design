@@ -1,8 +1,8 @@
 ---
 title: "日志的流转路径: 从产生到消费的全链路追踪"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 理解日志的流转路径对于构建高效、可靠的日志平台至关重要。日志从产生到最终被消费和分析，需要经过多个环节的处理和传输。每个环节都有其特定的功能和挑战，需要我们精心设计和管理。

@@ -1,8 +1,8 @@
 ---
 title: 测试数据的痛点与解决方案
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

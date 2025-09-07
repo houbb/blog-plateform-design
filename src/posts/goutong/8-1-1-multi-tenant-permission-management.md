@@ -2,7 +2,7 @@
 title: "多租户与权限管理: 构建安全可靠的统一通知平台"
 date: 2025-09-07
 categories: [GouTong]
-tags: [goutong, notification-platform, multi-tenant, rbac]
+tags: [GouTong]
 published: true
 ---
 在企业级统一通知通道平台中，多租户与权限管理是确保平台安全可靠运行的关键基础设施。随着平台服务的业务方越来越多，如何在保证数据隔离和安全的前提下，为不同团队、不同项目提供独立的使用空间和计费体系，成为平台设计的重要考量。本文将深入探讨多租户架构设计、RBAC权限模型实现以及计费管理方案。

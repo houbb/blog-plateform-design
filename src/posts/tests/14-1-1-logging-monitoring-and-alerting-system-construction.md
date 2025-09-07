@@ -1,8 +1,8 @@
 ---
 title: 日志、监控与告警体系建设
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

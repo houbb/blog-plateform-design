@@ -1,8 +1,8 @@
 ---
 title: "RBAC模型实现: 角色、权限、用户组的关联与设计"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 基于角色的访问控制（Role-Based Access Control，RBAC）是目前最广泛使用的授权模型之一。它通过将权限分配给角色，再将角色分配给用户，实现了权限管理的简化和规范化。本文将深入探讨RBAC模型的核心概念、设计原则以及具体实现细节。

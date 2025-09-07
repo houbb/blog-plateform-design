@@ -1,8 +1,8 @@
 ---
 title: "目标设定与范围界定: 从哪里开始？（MVP原则）"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在配置管理数据库（CMDB）项目的启动阶段，正确的目标设定和范围界定是决定项目成败的关键因素。许多CMDB项目失败的根本原因在于目标不明确、范围过大或缺乏实际价值导向。本文将深入探讨如何科学地设定CMDB项目目标，合理界定实施范围，并遵循MVP（Minimum Viable Product）原则，确保项目能够成功落地并产生实际价值。

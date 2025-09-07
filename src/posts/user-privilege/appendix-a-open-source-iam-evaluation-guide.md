@@ -1,8 +1,8 @@
 ---
 title: "附录A: 开源IAM系统评估指南"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, open-source, iam, evaluation]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在构建企业级统一身份治理平台时，选择合适的技术栈是一个关键决策。开源IAM系统因其成本效益、灵活性和社区支持而受到广泛关注。然而，面对众多的开源选项，如何评估和选择最适合企业需求的系统成为一大挑战。本指南将提供一个系统性的评估框架，帮助架构师和决策者做出明智的选择。

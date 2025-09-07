@@ -2,7 +2,7 @@
 title: "告警降噪核心算法: 分组、抑制、静默、降频等关键技术详解"
 date: 2025-08-30
 categories: [Alarm]
-tags: [alarm]
+tags: [Alarm]
 published: true
 ---
 告警降噪是现代智能报警平台的核心功能之一，旨在减少无效告警，提高告警质量，避免告警风暴对运维人员造成干扰。本文将深入探讨告警降噪的核心算法，包括分组（Grouping）、抑制（Inhibition）、静默（Silence）、降频（Throttling）等关键技术，为构建高效的告警系统提供理论指导和实践参考。

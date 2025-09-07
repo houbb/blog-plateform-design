@@ -1,8 +1,8 @@
 ---
 title: "统一身份治理平台的核心价值: 安全、效率、合规、体验"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在数字化转型的浪潮中，企业对身份管理的需求日益增长。统一身份治理平台作为现代企业IT架构的重要组成部分，其核心价值体现在安全、效率、合规和用户体验等多个维度。本文将深入探讨统一身份治理平台如何为企业带来显著的价值收益。

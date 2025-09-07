@@ -2,7 +2,7 @@
 title: "密钥管理与应用集成: 通过KMS（密钥管理服务）为应用提供透明加密"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

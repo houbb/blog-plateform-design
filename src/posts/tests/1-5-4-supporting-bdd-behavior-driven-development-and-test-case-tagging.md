@@ -1,8 +1,8 @@
 ---
 title: 支持BDD（行为驱动开发）与用例标签化
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

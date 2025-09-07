@@ -2,7 +2,7 @@
 title: "消息模板引擎: 实现变量替换、内容审核与多语言支持"
 date: 2025-09-06
 categories: [GouTong]
-tags: [goutong, notification-platform, template-engine]
+tags: [GouTong]
 published: true
 ---
 在构建统一通知通道平台的过程中，消息模板引擎是实现内容个性化、标准化和高效管理的核心组件。通过强大的模板引擎，我们可以实现动态变量替换、内容安全审核和多语言支持等功能，为用户提供丰富而安全的通知服务。本文将深入探讨消息模板引擎的设计原理和实现策略。

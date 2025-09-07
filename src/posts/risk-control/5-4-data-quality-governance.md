@@ -2,7 +2,7 @@
 title: "数据质量治理: 完整性、准确性、及时性校验"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 数据质量治理：完整性、准确性、及时性校验

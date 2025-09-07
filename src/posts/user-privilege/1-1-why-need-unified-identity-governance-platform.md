@@ -1,8 +1,8 @@
 ---
 title: 为什么需要统一的身份治理平台？
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

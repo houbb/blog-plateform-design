@@ -1,8 +1,8 @@
 ---
 title: CIAM（客户身份管理）与员工身份的融合与差异
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, ciam, employee-identity, identity-federation]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "2.4 高可用与一致性: 基于Raft/Paxos的选主、状态同步与脑裂避免"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, high availability, consistency, raft, paxos, consensus]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，高可用性和数据一致性是确保系统稳定运行的核心要求。由于分布式系统的复杂性，节点故障、网络分区等问题时有发生，如何在这些异常情况下保证系统的可用性和数据的一致性成为设计的关键挑战。本文将深入探讨基于Raft/Paxos算法的选主机制、状态同步技术和脑裂避免策略，为构建高可用的分布式调度平台提供理论基础和实践指导。

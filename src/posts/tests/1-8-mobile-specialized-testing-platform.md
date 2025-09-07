@@ -1,8 +1,8 @@
 ---
 title: 移动端专项测试平台
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

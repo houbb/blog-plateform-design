@@ -1,8 +1,8 @@
 ---
 title: "低代码平台中的BPM: 简化流程应用开发与部署"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, low-code, process design, deployment, visualization]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 低代码平台中的BPM：简化流程应用开发与部署

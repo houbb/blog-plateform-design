@@ -1,8 +1,8 @@
 ---
 title: 分步实施与迁移策略（概述）
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, implementation, migration]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

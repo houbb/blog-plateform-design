@@ -2,7 +2,7 @@
 title: "安全事件管理（SIEM）: 作为安全事件的中枢"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

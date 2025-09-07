@@ -1,8 +1,8 @@
 ---
 title: "服务调用与集成: 连接BPM平台与外部系统的桥梁"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, integration, service calls]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在企业级BPM平台建设中，服务调用与集成能力是实现业务流程端到端自动化的核心要素。现代企业的业务流程往往需要与多个外部系统进行交互，包括ERP系统、CRM系统、财务系统、人力资源系统等。通过高效、可靠的服务调用与集成机制，BPM平台能够打通这些系统间的数据壁垒，实现业务流程的无缝衔接和自动化执行。

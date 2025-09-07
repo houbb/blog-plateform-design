@@ -1,8 +1,8 @@
 ---
 title: "配置项（CI）: 识别与管理一切需要管理的对象"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在配置管理数据库（CMDB）的核心概念中，配置项（Configuration Item，简称CI）是最基础也是最重要的元素。理解CI的本质、识别方法和管理策略，是成功实施CMDB的关键。本文将深入探讨CI的概念、分类、识别原则以及管理方法。

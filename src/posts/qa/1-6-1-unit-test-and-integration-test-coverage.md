@@ -1,8 +1,8 @@
 ---
 title: 单元测试与集成测试覆盖率收集与统计（JaCoCo等）
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

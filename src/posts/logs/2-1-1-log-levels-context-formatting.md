@@ -1,8 +1,8 @@
 ---
 title: "日志级别、上下文信息与格式化输出: 构建高质量日志的基础要素"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在构建企业级日志平台的过程中，日志级别、上下文信息和格式化输出是三个核心要素，它们直接决定了日志的质量、可用性和分析价值。本文将深入探讨这三个要素的设计原则、实现方法和最佳实践。

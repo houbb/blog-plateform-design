@@ -1,8 +1,8 @@
 ---
 title: "第9章: 人工任务处理与协作概述"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, human tasks, collaboration, task management]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第9章：人工任务处理与协作

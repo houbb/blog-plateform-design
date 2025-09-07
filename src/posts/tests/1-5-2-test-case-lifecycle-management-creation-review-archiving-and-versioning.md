@@ -1,8 +1,8 @@
 ---
 title: "用例生命周期管理: 创建、评审、归档、版本化"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 5.2 用例生命周期管理：创建、评审、归档、版本化

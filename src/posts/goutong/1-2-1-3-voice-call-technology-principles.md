@@ -1,8 +1,8 @@
 ---
 title: "语音电话（Voice Call）技术原理与限制: IVR、文本转语音（TTS）、接通率"
 date: 2025-08-30
-categories: [通知通道平台]
-tags: [notification, voice, technology]
+categories: [GouTong]
+tags: [GouTong]
 published: true
 ---
 语音电话（Voice Call）作为最直接、最人性化的通信方式，在企业级通知系统中占据着独特的地位。特别是在紧急通知、身份验证、重要提醒等关键场景中，语音通知凭借其高优先级、高关注度和强到达性的特点，成为不可或缺的通知通道。随着交互式语音应答（IVR）技术和文本转语音（TTS）技术的不断发展，语音通知已经从简单的语音播报发展为智能化的交互式服务。本文将深入探讨语音电话的技术原理、核心限制以及在企业级通知平台中的应用策略。

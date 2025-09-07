@@ -1,8 +1,8 @@
 ---
 title: "日志脱敏与合规: 保护敏感信息的企业级实践"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在当今数据驱动的时代，日志系统不仅承载着系统运维和问题排查的重要职责，还面临着日益严格的数据保护法规和隐私合规要求。日志脱敏与合规管理已成为企业级日志平台建设中不可忽视的关键环节。本文将深入探讨日志脱敏的技术实现、合规要求以及最佳实践。

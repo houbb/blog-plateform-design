@@ -2,7 +2,7 @@
 title: "常用风控模型: GBDT（XGBoost/LightGBM）、深度学习、异常检测（Isolation Forest）"
 date: 2025-09-07
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 常用风控模型：GBDT（XGBoost/LightGBM）、深度学习、异常检测（Isolation Forest）

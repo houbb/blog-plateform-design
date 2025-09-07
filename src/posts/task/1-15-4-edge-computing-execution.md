@@ -2,7 +2,7 @@
 title: 边缘计算场景下的作业执行
 date: 2025-09-06
 categories: [Task]
-tags: [task]
+tags: [Task]
 published: true
 ---
 

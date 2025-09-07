@@ -1,8 +1,8 @@
 ---
 title: "核心引擎集成: JMeter的实现与分布式改造"
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 核心引擎集成：JMeter的实现与分布式改造

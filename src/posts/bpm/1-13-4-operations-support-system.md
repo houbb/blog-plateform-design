@@ -1,8 +1,8 @@
 ---
 title: "运营支持体系: 建立流程治理团队，保障平台持续运行"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, operations, support, governance, maintenance, sla]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 运营支持体系：建立流程治理团队，保障平台持续运行

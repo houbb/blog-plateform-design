@@ -1,8 +1,8 @@
 ---
 title: "12.2 认证与授权（RBAC）: 与公司统一登录系统集成"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, authentication, authorization, RBAC, SSO, LDAP, OAuth2]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在企业级分布式调度平台的安全体系中，认证与授权是保障系统安全、保护用户隐私、控制访问权限的核心机制。随着企业数字化转型的深入和安全合规要求的提升，分布式调度平台必须与企业统一的身份管理系统深度集成，实现单点登录（SSO）、统一认证和细粒度的权限控制。本文将深入探讨认证与授权的核心概念、RBAC权限模型的设计实现，以及与企业统一登录系统的集成方案。

@@ -1,8 +1,8 @@
 ---
 title: "多维度测试报告: 实时报告、阶段报告、对比报告"
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 多维度测试报告：实时报告、阶段报告、对比报告

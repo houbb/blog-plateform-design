@@ -2,7 +2,7 @@
 title: "合规性要求: 等保2.0、GDPR、ISO 27001、PCI DSS中的平台能力要求"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

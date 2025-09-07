@@ -1,8 +1,8 @@
 ---
 title: 权限、安全与多租户隔离
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

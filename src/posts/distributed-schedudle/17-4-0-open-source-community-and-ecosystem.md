@@ -1,8 +1,8 @@
 ---
 title: 17.4 开源社区与生态建设
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, open source, community, ecosystem, collaboration, contribution]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "附录A: BPM平台建设路线图"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, roadmap, implementation, planning, digital transformation]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 附录A：BPM平台建设路线图

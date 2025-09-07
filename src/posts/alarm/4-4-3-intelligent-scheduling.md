@@ -2,7 +2,7 @@
 title: 智能排班与人力优化
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, aiops, scheduling, workforce-optimization]
+tags: [Alarm]
 published: true
 ---
 

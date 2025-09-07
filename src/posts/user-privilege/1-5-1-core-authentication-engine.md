@@ -1,8 +1,8 @@
 ---
 title: "核心认证引擎: 密码认证、短信/邮箱验证码、第三方社交登录"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 核心认证引擎是统一身份治理平台中最基础也是最重要的组件之一。它负责处理各种认证方式的验证逻辑，确保只有合法用户才能访问系统资源。本文将深入探讨密码认证、短信/邮箱验证码以及第三方社交登录的实现细节。

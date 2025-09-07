@@ -1,8 +1,8 @@
 ---
 title: "项目启动与总体规划: BPM平台建设的成功基石"
 date: 2025-08-30
-categories: [BPM]
-tags: [bpm]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在企业级BPM平台建设中，项目启动与总体规划是决定项目成败的关键阶段。这一阶段的工作质量直接影响后续设计、开发、实施等环节的顺利进行，是整个BPM平台建设项目成功的重要基石。

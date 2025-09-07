@@ -2,7 +2,7 @@
 title: 使用Argo CD/FluxCD实现GitOps部署模式
 date: 2025-09-07
 categories: [CICD]
-tags: [gitops, kubernetes, argocd, fluxcd, deployment, devops]
+tags: [CICD]
 published: true
 ---
 

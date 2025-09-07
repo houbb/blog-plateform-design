@@ -1,8 +1,8 @@
 ---
 title: "现代安全最佳实践: 多因子认证（MFA）、无密码认证、风险感知认证"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在当今网络安全威胁日益严峻的环境下，传统的用户名密码认证方式已无法提供足够的安全保障。现代身份治理平台需要采用更加先进的安全技术，包括多因子认证（MFA）、无密码认证和风险感知认证等。本文将深入探讨这些现代安全最佳实践的原理、实现方式和应用策略。

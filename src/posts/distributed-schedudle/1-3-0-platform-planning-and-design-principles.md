@@ -1,8 +1,8 @@
 ---
 title: 平台总体规划与设计原则
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

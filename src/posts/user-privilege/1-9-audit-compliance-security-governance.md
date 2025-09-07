@@ -1,8 +1,8 @@
 ---
 title: 审计、合规与安全治理
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

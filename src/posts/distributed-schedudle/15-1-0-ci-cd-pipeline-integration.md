@@ -1,8 +1,8 @@
 ---
 title: "15.1 与CI/CD流水线集成: 自动部署后触发数据更新任务"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, CI/CD, pipeline integration, deployment, data update]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在现代软件开发和运维实践中，CI/CD（持续集成/持续部署）流水线已成为提高交付效率和质量的关键工具。对于分布式调度平台而言，与CI/CD流水线的深度集成不仅能够实现部署过程的自动化，还能在应用部署完成后自动触发相关的数据更新任务，确保系统数据的一致性和完整性。通过这种集成，可以构建从代码提交到应用部署再到数据更新的端到端自动化流程，显著提升运维效率和系统可靠性。本文将深入探讨分布式调度平台与CI/CD流水线集成的核心理念、技术实现以及最佳实践。

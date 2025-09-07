@@ -2,7 +2,7 @@
 title: "从单机限流到分布式限流: 微服务架构下的必然选择"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed]
+tags: [DistributedFlowControl]
 published: true
 ---
 在传统的单体应用时代，限流通常只需要在应用的入口处进行控制即可。然而，随着微服务架构的普及和云原生技术的发展，系统被拆分成多个独立的服务，每个服务可能部署在多个实例上，这使得单机限流已经无法满足现代分布式系统的需求。

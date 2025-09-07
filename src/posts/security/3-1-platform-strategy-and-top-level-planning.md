@@ -2,7 +2,7 @@
 title: 平台战略与顶层规划
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 

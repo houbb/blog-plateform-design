@@ -2,7 +2,7 @@
 title: "基于时间序列预测的弹性限流: 预测流量洪峰，提前调整阈值"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, aiops, time-series, prediction]
+tags: [DistributedFlowControl]
 published: true
 ---
 在现代分布式系统中，流量模式往往具有明显的周期性和趋势性特征。传统的静态限流策略难以适应这种动态变化的流量模式，可能导致在流量高峰期资源不足，在流量低谷期资源浪费。基于时间序列预测的弹性限流通过分析历史流量数据，预测未来的流量趋势，提前调整限流阈值，实现更加智能和高效的流量控制。本章将深入探讨基于时间序列预测的弹性限流实现原理、核心算法以及最佳实践。

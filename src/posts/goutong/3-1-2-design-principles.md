@@ -2,7 +2,7 @@
 title: "设计原则: 构建高可用统一通知平台的指导方针"
 date: 2025-09-06
 categories: [GouTong]
-tags: [goutong, notification-platform, design-principles]
+tags: [GouTong]
 published: true
 ---
 在构建统一通知通道平台的过程中，设计原则是指导整个架构设计和实现的核心方针。良好的设计原则不仅能够确保平台的稳定性和可靠性，还能为未来的扩展和维护提供坚实的基础。本文将深入探讨构建高可用统一通知平台的关键设计原则，为平台建设提供明确的指导方向。

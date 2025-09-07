@@ -2,7 +2,7 @@
 title: "流水线模板库: 促进最佳实践复用，降低使用门槛"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,pipeline,template,library,devops,best-practices]
+tags: [CICD]
 published: true
 ---
 流水线模板库是CI/CD平台中促进最佳实践复用、降低使用门槛的关键组件。通过提供标准化的流水线模板，平台能够帮助用户快速创建符合组织规范和最佳实践的流水线，同时确保不同团队和项目之间的一致性。本文将深入探讨流水线模板库的设计原则、实现方式以及最佳实践。

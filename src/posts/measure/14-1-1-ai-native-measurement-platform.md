@@ -2,7 +2,7 @@
 title: "AI原生度量平台: AI驱动从数据接入到洞察的全过程"
 date: 2025-09-07
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 ## 引言

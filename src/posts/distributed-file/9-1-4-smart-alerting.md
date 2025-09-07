@@ -1,8 +1,8 @@
 ---
 title: "智能告警:阈值设定、告警收敛、根因分析"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, alerting, smart-alerting, root-cause-analysis, observability]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储平台中，随着系统规模的扩大和复杂性的增加，传统的基于固定阈值的简单告警机制已经无法满足现代运维的需求。大量的告警信息不仅会造成"告警疲劳"，还可能掩盖真正重要的问题。因此，构建一个智能的告警系统成为保障系统稳定性和提升运维效率的关键。

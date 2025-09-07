@@ -2,7 +2,7 @@
 title: "权限与审计: 规则变更的审批流程与操作日志"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, security, audit, permission]
+tags: [DistributedFlowControl]
 published: true
 ---
 在企业级分布式限流平台中，权限管理和审计追踪是确保系统安全性和合规性的关键组成部分。通过建立完善的权限控制机制和详细的操作审计日志，我们能够有效防止未授权的配置变更，追踪所有关键操作，并满足企业内部的安全审计要求。本章将深入探讨如何设计和实现安全可靠的权限与审计机制。

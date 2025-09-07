@@ -1,8 +1,8 @@
 ---
 title: ""
 date: 2025-09-07
-categories: ["Alarm"]
-tags: ["alarm"]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第十二章：安全、合规与审计

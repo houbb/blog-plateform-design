@@ -2,7 +2,7 @@
 title: "与Serverless/FaaS平台集成: 函数即服务的持续交付"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,serverless,faas,aws-lambda,azure-functions,devops,cloud]
+tags: [CICD]
 published: true
 ---
 随着云计算技术的发展，Serverless架构和函数即服务（Function as a Service, FaaS）平台正变得越来越流行。这些平台允许开发者专注于业务逻辑的实现，而无需管理底层基础设施。然而，这也带来了新的挑战：如何在Serverless环境中实现高效的持续集成和持续交付（CI/CD）。通过将CI/CD平台与主流的Serverless/FaaS平台集成，团队能够实现函数的自动化构建、测试、部署和监控。本文将深入探讨如何实现CI/CD平台与AWS Lambda、Azure Functions、Google Cloud Functions等主流Serverless平台的深度集成。

@@ -2,7 +2,7 @@
 title: "限流算法深度剖析: 固定窗口、滑动窗口、漏桶与令牌桶"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, algorithms]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式限流系统中，选择合适的限流算法是实现有效流量控制的关键。不同的算法有各自的优缺点和适用场景，理解这些算法的原理和特性对于设计高效的限流系统至关重要。本章将深入剖析几种主流的限流算法，包括固定窗口计数器、滑动窗口计数器、漏桶算法和令牌桶算法。

@@ -1,8 +1,8 @@
 ---
 title: "12.3 任务安全: 沙箱环境、密钥管理、网络策略"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, task security, sandbox, secret management, network policy, container security]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，任务安全是保障系统稳定运行和数据安全的关键环节。随着任务类型的多样化和执行环境的复杂化，任务在执行过程中可能面临代码注入、数据泄露、资源滥用等安全风险。通过构建安全的沙箱环境、完善的密钥管理体系以及严格的网络访问控制策略，可以有效防范各类安全威胁，确保任务执行的安全性和可靠性。本文将深入探讨任务安全的核心概念、技术实现以及最佳实践。

@@ -1,8 +1,8 @@
 ---
 title: 编写友好的用户文档与操作手册
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

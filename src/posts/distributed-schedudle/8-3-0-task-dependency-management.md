@@ -1,8 +1,8 @@
 ---
 title: "8.3 任务依赖管理: 跨任务依赖、文件/数据依赖"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, task dependency, cross-task dependency, data dependency, file dependency]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，任务依赖管理是实现复杂业务流程和确保数据一致性的核心机制。现实业务场景中，任务之间往往存在复杂的依赖关系，包括时间上的先后顺序、数据上的依赖关系以及文件状态的依赖等。本文将深入探讨任务依赖管理的核心概念、实现机制以及最佳实践，分析跨任务依赖和文件/数据依赖的技术实现方案。

@@ -1,8 +1,8 @@
 ---
 title: 代码静态分析与质量守护（SAST）
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 用户平台与控制台
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

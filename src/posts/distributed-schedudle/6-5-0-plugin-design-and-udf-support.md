@@ -1,8 +1,8 @@
 ---
 title: 6.5 插件化设计与用户自定义任务（UDF）的支持
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, plugin architecture, udf, user defined function, extensibility]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

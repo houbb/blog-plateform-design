@@ -1,8 +1,8 @@
 ---
 title: 与上下游系统的集成
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

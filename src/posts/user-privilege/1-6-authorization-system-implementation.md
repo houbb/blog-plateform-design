@@ -1,8 +1,8 @@
 ---
 title: 授权体系实现（AuthZ）
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

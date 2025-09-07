@@ -2,7 +2,7 @@
 title: 数据采集与集成（The Plumbing）
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

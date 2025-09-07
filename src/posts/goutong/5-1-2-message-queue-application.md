@@ -2,7 +2,7 @@
 title: "消息队列应用: 实现流量削峰、异步化与最终一致性"
 date: 2025-09-06
 categories: [GouTong]
-tags: [goutong, notification-platform, message-queue]
+tags: [GouTong]
 published: true
 ---
 在构建统一通知通道平台的过程中，消息队列的应用是实现高并发处理、系统解耦和数据一致性的重要技术手段。通过合理应用消息队列，我们可以有效应对流量高峰、实现系统间的异步通信，并保障分布式环境下的数据最终一致性。本文将深入探讨消息队列在统一通知平台中的应用策略和最佳实践。

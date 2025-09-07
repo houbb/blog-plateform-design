@@ -1,8 +1,8 @@
 ---
 title: "日志的产生: 应用、系统与设备的全方位日志源"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 日志的产生是整个日志生命周期的起点，也是构建有效日志系统的基础。在现代复杂的IT环境中，日志来源多种多样，包括应用程序、操作系统、中间件、网络设备以及安全设备等。理解这些不同的日志来源及其特点，对于设计一个全面的日志收集策略至关重要。

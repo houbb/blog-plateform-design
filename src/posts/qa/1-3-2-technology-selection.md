@@ -1,8 +1,8 @@
 ---
 title: "技术选型: 自研 vs 集成开源（SonarQube, Checkstyle, FindBugs, OWASP ZAP） vs 商用SaaS"
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 在构建企业级工程效能平台的过程中，技术选型是一个至关重要的决策环节。选择合适的技术方案不仅关系到平台建设的成本和周期，更直接影响到平台的功能完整性、可维护性和长期发展。本章将深入探讨三种主要的技术选型方案：自研、集成开源工具和商用SaaS，并分析它们各自的优劣势和适用场景。

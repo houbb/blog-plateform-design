@@ -1,8 +1,8 @@
 ---
 title: SAML 2.0 与企业IdP的集成
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

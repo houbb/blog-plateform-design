@@ -2,7 +2,7 @@
 title: 数据存储与计算
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

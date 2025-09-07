@@ -1,8 +1,8 @@
 ---
 title: "数据库设计: 关系型（MySQL/PostgreSQL）与NoSQL（MongoDB/Redis）的应用场景"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 3.3 数据库设计：关系型（MySQL/PostgreSQL）与NoSQL（MongoDB/Redis）的应用场景

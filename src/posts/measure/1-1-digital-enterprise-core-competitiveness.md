@@ -2,7 +2,7 @@
 title: "数字化企业的核心竞争力: 数据驱动"
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 在当今快速变化的商业环境中，数据已成为企业最重要的资产之一。本书的第一章将探讨为什么数据驱动是数字化企业的核心竞争力，以及如何通过度量来重塑企业决策模式。

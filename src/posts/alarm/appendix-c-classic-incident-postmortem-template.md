@@ -2,7 +2,7 @@
 title: "附录C: 经典故障复盘报告模板"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, incident, postmortem, template, blameless]
+tags: [Alarm]
 published: true
 ---
 # 附录C：经典故障复盘报告模板

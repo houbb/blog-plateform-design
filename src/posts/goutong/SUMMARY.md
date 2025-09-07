@@ -1,8 +1,8 @@
 ---
 title: README
 date: 2025-09-07
-categories: [Alarm]
-tags: [alarm]
+categories: [GouTong]
+tags: [GouTong]
 published: true
 ---
 

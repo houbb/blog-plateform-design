@@ -1,8 +1,8 @@
 ---
 title: "数据模型设计: 经典模型与自定义扩展"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在配置管理数据库（CMDB）的建设中，数据模型设计是核心环节之一。一个合理的数据模型不仅决定了CMDB的功能范围和性能表现，更直接影响到其在实际运维场景中的应用效果。本文将深入探讨CMDB数据模型设计的原则、经典模型架构以及自定义扩展的方法。

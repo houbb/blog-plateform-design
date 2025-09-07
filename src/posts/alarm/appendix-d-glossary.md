@@ -2,7 +2,7 @@
 title: "附录D: 术语表"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, glossary, terminology, dictionary]
+tags: [Alarm]
 published: true
 ---
 # 附录D：术语表

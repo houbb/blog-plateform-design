@@ -1,8 +1,8 @@
 ---
 title: "附录B: 常见问题解答（FAQ）"
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 附录B：常见问题解答（FAQ）

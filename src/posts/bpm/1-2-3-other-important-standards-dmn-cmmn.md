@@ -1,8 +1,8 @@
 ---
 title: "其他重要标准: DMN与CMMN在BPM中的应用"
 date: 2025-08-30
-categories: [BPM]
-tags: [bpm]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在BPM（业务流程管理）的生态系统中，除了广为人知的BPMN（业务流程模型与符号）标准外，还有其他两个同样重要的标准：DMN（决策模型与符号）和CMMN（案例管理模型与符号）。这三个标准共同构成了现代BPM平台的核心技术栈，分别解决流程建模、决策管理和案例处理等不同层面的问题。

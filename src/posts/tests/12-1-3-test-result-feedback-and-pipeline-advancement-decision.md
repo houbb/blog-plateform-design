@@ -1,8 +1,8 @@
 ---
 title: 测试结果反馈与流水线推进决策
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 12.1 多租户模型与资源配额管理
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, multi-tenancy, resource quota, tenant isolation, resource management]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

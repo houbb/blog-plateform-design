@@ -2,7 +2,7 @@
 title: "演进路线图: 从网关单点限流到全链路精准限流"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, evolution, roadmap]
+tags: [DistributedFlowControl]
 published: true
 ---
 构建企业级分布式限流平台是一个循序渐进的过程，需要根据业务发展和技术成熟度制定合理的演进路线图。从最初的网关单点限流到最终的全链路精准限流，每个阶段都有其特定的目标和挑战。本章将详细介绍分布式限流平台的演进路径，帮助团队制定合理的发展规划。

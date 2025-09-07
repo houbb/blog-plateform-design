@@ -2,7 +2,7 @@
 title: "内部开发者平台（IDP）与CI/CD: 构建开发者友好的一体化交付平台"
 date: 2025-09-07
 categories: [CICD]
-tags: [platform-engineering, idp, developer-experience, self-service, devops, automation]
+tags: [CICD]
 published: true
 ---
 内部开发者平台（Internal Developer Platform, IDP）代表了现代软件工程组织在平台工程实践中的重要演进。它不仅仅是技术工具的集合，更是一种全新的组织能力，旨在为开发者提供自助式、一致且可靠的开发体验。通过将CI/CD能力深度集成到IDP中，组织能够显著提升开发效率、标准化最佳实践并加速价值交付。本文将深入探讨IDP的核心概念、架构设计以及与CI/CD的深度融合实践。

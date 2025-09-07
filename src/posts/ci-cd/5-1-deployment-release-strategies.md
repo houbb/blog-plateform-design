@@ -2,7 +2,7 @@
 title: 部署与发布策略
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,deployment,release]
+tags: [CICD]
 published: true
 ---
 

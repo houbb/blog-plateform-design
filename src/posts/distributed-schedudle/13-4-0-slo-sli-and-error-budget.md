@@ -1,8 +1,8 @@
 ---
 title: 13.4 SLO/SLI定义与误差预算管理
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, SLO, SLI, error budget, service level objective, service level indicator]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 建立效能基线与benchmarking
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 基础技术栈与核心组件设计
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

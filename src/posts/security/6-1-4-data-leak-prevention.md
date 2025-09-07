@@ -2,7 +2,7 @@
 title: "数据泄露防护（DLP）: 监控与阻断敏感数据外传"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

@@ -1,8 +1,8 @@
 ---
 title: "第一章:数字化转型的流程引擎"
 date: 2025-09-07
-categories: ["BPM"]
-tags: ["bpm", "digital-transformation"]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 第一章：数字化转型的流程引擎

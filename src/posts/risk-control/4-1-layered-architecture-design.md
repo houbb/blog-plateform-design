@@ -2,7 +2,7 @@
 title: "分层架构: 数据采集层、实时计算层、决策引擎层、数据存储层、运营层"
 date: 2025-09-07
 categories: [RiskControl]
-tags: [risk-control]
+tags: [RiskControl]
 published: true
 ---
 

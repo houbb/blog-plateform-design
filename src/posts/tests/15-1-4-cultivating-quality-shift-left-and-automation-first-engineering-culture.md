@@ -1,8 +1,8 @@
 ---
 title: 培育"质量左移"和"自动化优先"的工程文化
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

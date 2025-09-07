@@ -2,7 +2,7 @@
 title: "应用与架构安全（安全左移）: 从设计到部署的全周期安全防护"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

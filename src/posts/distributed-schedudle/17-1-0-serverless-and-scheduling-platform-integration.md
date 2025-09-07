@@ -1,8 +1,8 @@
 ---
 title: 17.1 Serverless与调度平台的融合
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, serverless, FaaS, cloud-native, integration, event-driven]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

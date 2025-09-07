@@ -2,7 +2,7 @@
 title: "特征体系规划: 基础特征、统计特征、交叉特征、图特征、文本特征"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 特征体系规划：基础特征、统计特征、交叉特征、图特征、文本特征

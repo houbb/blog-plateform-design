@@ -1,8 +1,8 @@
 ---
 title: 部署与配置管理
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, deployment, configuration,运维]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

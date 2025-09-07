@@ -2,7 +2,7 @@
 title: 趋势分析、对比分析、相关性分析
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

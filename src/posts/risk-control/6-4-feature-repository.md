@@ -2,7 +2,7 @@
 title: "特征仓库: 特征注册、共享、版本管理和一键上线"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 特征仓库：特征注册、共享、版本管理和一键上线

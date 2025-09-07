@@ -2,7 +2,7 @@
 title: "响应流程编排: 自动化处理低复杂度告警（如封禁IP、下线主机）"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

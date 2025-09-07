@@ -2,7 +2,7 @@
 title: "服务网格安全: 零信任在微服务间的实践"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

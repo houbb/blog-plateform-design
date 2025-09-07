@@ -1,8 +1,8 @@
 ---
 title: "8.1 任务描述语言: UI表单、JSON/YAML、SQL、SDK"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, task description, UI form, JSON, YAML, SQL, SDK]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，任务描述语言是用户定义和配置任务的核心方式。不同的用户群体和技术背景需要多样化的任务描述方式，从直观的图形界面到灵活的代码定义。本文将深入探讨任务描述语言的多种实现形式，包括UI表单、JSON/YAML配置、SQL语句以及SDK编程接口，分析各自的特点和适用场景。

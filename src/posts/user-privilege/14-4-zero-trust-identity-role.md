@@ -1,8 +1,8 @@
 ---
 title: "零信任（Zero Trust）架构中的身份新角色: 永不信任，始终验证"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, zero-trust, identity, security]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在网络安全威胁日益复杂的今天，传统的边界安全模型已经无法有效应对新型攻击手段。零信任（Zero Trust）安全架构作为一种新兴的安全理念，正在重塑企业安全防护体系。在零信任模型中，身份不再仅仅是访问控制的凭证，而是成为安全防护的核心要素。本文将深入探讨零信任架构中身份的新角色，以及如何构建适应零信任要求的现代化身份治理平台。

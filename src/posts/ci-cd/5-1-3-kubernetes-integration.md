@@ -2,7 +2,7 @@
 title: "与Kubernetes的深度集成: Helm/Manifest的自动化部署"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,kubernetes,helm,manifest,automation]
+tags: [CICD]
 published: true
 ---
 随着云原生技术的快速发展，Kubernetes已成为容器编排的事实标准。在现代CI/CD平台中，与Kubernetes的深度集成是实现高效、可靠自动化部署的关键。通过Helm、Kustomize等工具以及原生Manifest管理，团队能够实现复杂应用的标准化部署和管理。本文将深入探讨如何通过CI/CD流水线与Kubernetes进行深度集成，包括Helm Chart开发、Manifest管理、部署策略以及最佳实践。

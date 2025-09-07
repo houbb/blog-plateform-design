@@ -1,8 +1,8 @@
 ---
 title: "数据加密与脱敏: 保护流程中的敏感信息"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, data encryption, data masking, security, privacy]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 数据加密与脱敏：保护流程中的敏感信息

@@ -1,8 +1,8 @@
 ---
 title: 数据读写流程与并发控制
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, data-io, concurrency]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

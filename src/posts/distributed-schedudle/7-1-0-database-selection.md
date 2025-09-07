@@ -1,8 +1,8 @@
 ---
 title: "7.1 数据库选型: MySQL/PostgreSQL vs NewSQL（TiDB）"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, database, mysql, postgresql, tidb, newsql]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的设计与实现中，数据库选型是一个至关重要的决策环节。作为系统的核心数据存储组件，数据库的选择直接影响到平台的性能、可靠性、可扩展性和维护成本。随着业务规模的不断增长和数据量的持续增加，传统的单体关系型数据库已难以满足大规模分布式调度平台的需求。本文将深入探讨分布式调度平台的数据库选型问题，重点分析传统关系型数据库（MySQL/PostgreSQL）与新兴NewSQL数据库（TiDB）的对比分析，为构建高性能、高可用的调度平台提供选型指导。

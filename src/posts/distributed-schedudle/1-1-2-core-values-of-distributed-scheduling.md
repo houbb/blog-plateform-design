@@ -1,8 +1,8 @@
 ---
 title: "1.2 分布式调度的核心价值: 资源效率、任务编排、故障隔离与自动化"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, distributed, efficiency, automation]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 分布式调度系统作为现代软件基础设施的重要组成部分，其核心价值体现在多个方面。本文将深入探讨分布式调度在资源效率、任务编排、故障隔离和自动化等方面的核心价值，并分析这些价值如何为现代企业带来实际的业务收益。

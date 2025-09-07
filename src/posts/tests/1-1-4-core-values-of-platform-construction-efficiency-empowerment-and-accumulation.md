@@ -1,8 +1,8 @@
 ---
 title: "平台化建设的核心价值: 提效、赋能、沉淀"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 1.4 平台化建设的核心价值：提效、赋能、沉淀

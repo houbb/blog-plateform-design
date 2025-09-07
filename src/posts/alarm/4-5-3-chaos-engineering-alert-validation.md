@@ -2,7 +2,7 @@
 title: "混沌工程与报警验证: 通过故障注入测试报警有效性"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, chaos-engineering, alert-validation, reliability]
+tags: [Alarm]
 published: true
 ---
 # 混沌工程与报警验证：通过故障注入测试报警有效性

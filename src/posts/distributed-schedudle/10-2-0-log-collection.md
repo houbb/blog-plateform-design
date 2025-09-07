@@ -1,8 +1,8 @@
 ---
 title: "10.2 日志收集: 任务执行日志的实时采集、存储与检索（ELK/Loki）"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, log collection, ELK, Loki, real-time collection, log storage, log retrieval]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，任务执行日志是问题诊断、性能分析和系统监控的重要信息源。随着任务数量的快速增长和执行环境的日益复杂，如何高效地收集、存储和检索海量任务执行日志成为平台运维的关键挑战。本文将深入探讨任务执行日志收集的核心机制，分析基于ELK（Elasticsearch、Logstash、Kibana）和Loki等现代日志解决方案的实现方案，为构建高效可靠的日志管理体系提供指导。

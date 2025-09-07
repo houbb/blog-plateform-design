@@ -2,7 +2,7 @@
 title: "与监控系统（Prometheus）集成: 部署后自动验证"
 date: 2025-09-07
 categories: [CICD]
-tags: [prometheus, monitoring, integration, post-deployment, validation, devops]
+tags: [CICD]
 published: true
 ---
 部署后的自动验证是确保软件交付质量的关键环节。通过将CI/CD平台与Prometheus等监控系统集成，可以在部署完成后自动验证系统状态，确保新版本的部署没有引入性能问题或功能异常。这种自动化的验证机制不仅提高了部署的可靠性，还能够在问题发生时快速回滚，保障系统的稳定性。

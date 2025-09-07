@@ -1,8 +1,8 @@
 ---
 title: 什么是"全生命周期"测试平台？
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

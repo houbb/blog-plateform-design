@@ -1,8 +1,8 @@
 ---
 title: 微信小程序、H5混合应用测试支持
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "核心引擎: 基于HTTP/GRPC等协议的请求发起与验证"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 6.1 核心引擎：基于HTTP/GRPC等协议的请求发起与验证

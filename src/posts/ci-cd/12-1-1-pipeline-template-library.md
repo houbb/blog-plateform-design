@@ -2,7 +2,7 @@
 title: "流水线模板库与共享库: 促进最佳实践复用，降低使用门槛"
 date: 2025-09-07
 categories: [CICD]
-tags: [pipeline-template, shared-library, best-practices, reuse, devops, automation]
+tags: [CICD]
 published: true
 ---
 流水线模板库和共享库是CI/CD平台运营中的重要组成部分，它们通过标准化和复用机制显著降低平台使用门槛，提升开发效率。模板库提供预定义的流水线模板，让团队能够快速创建符合组织标准的流水线；共享库则封装通用的功能和工具，避免重复开发。通过建立完善的模板和共享库体系，组织能够确保CI/CD实践的一致性，推广最佳实践，并加速新项目的交付流程。

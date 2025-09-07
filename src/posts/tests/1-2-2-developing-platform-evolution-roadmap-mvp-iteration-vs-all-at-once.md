@@ -1,8 +1,8 @@
 ---
 title: "制定平台演进路线图: MVP迭代 vs 一步到位"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 2.2 制定平台演进路线图：MVP迭代 vs 一步到位

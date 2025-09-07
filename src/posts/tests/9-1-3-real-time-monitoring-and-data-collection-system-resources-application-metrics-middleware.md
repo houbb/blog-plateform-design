@@ -1,8 +1,8 @@
 ---
 title: "实时监控与数据采集: 系统资源、应用指标、中间件"
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 实时监控与数据采集：系统资源、应用指标、中间件

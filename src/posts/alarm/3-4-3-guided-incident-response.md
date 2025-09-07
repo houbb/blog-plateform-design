@@ -2,7 +2,7 @@
 title: "引导式处置: 在告警详情页提供处理步骤和快速操作入口"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, incident-response, guided-resolution, ui-ux]
+tags: [Alarm]
 published: true
 ---
 # 引导式处置：在告警详情页提供处理步骤和快速操作入口

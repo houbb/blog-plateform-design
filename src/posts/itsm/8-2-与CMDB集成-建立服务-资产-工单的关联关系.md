@@ -2,7 +2,7 @@
 title: "与CMDB集成: 建立服务、资产、工单的关联关系"
 date: 2025-09-06
 categories: [ITSM]
-tags: [itsm]
+tags: [ITSM]
 published: true
 ---
 在企业级IT服务管理（ITSM）平台建设中，配置管理数据库（CMDB）被誉为ITSM的基石。CMDB不仅存储着IT环境中所有配置项（CI）的信息，更重要的是它建立了服务、资产和工单之间的关联关系，为IT服务管理提供了全局视角和深度洞察。通过与CMDB的深度集成，ITSM平台能够实现更加精准的问题定位、影响分析和变更管理，从而显著提升IT服务的质量和效率。

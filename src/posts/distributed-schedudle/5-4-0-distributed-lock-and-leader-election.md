@@ -1,8 +1,8 @@
 ---
 title: "5.4 分布式锁与选主机制: 基于ZooKeeper/Etcd的实现"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, distributed lock, leader election, zookeeper, etcd]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，多个Master节点的部署是提高系统可用性和扩展性的常见做法。然而，为了避免多个Master节点同时工作导致的数据不一致和冲突问题，需要实现分布式锁和选主机制。本文将深入探讨分布式锁与选主机制的核心原理，重点分析基于ZooKeeper和Etcd两种主流协调服务的实现方案。

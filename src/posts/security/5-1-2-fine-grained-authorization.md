@@ -2,7 +2,7 @@
 title: "细粒度授权（RBAC/ABAC）: 实现基于角色和属性的访问控制"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

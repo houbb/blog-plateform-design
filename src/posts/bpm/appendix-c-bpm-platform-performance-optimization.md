@@ -1,8 +1,8 @@
 ---
 title: "附录C: BPM平台性能优化指南"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, performance optimization, tuning, scalability, efficiency]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 附录C：BPM平台性能优化指南

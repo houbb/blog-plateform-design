@@ -1,8 +1,8 @@
 ---
 title: "数据存储引擎: 对象存储（OSS/S3） vs. 块设备 vs. 本地磁盘"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, storage-engine]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储平台中，数据存储引擎是核心组件之一，它直接决定了平台的性能、可靠性和成本效益。不同的存储介质和存储方式各有优劣，适用于不同的应用场景。本章将深入探讨对象存储、块设备和本地磁盘这三种主要的存储方式，分析它们的特点、适用场景以及在分布式文件存储平台中的实现方式。

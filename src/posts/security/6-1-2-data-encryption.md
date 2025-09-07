@@ -2,7 +2,7 @@
 title: "数据加密: 透明加密（TDE）、应用层加密、字段级加密"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

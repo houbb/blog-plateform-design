@@ -2,7 +2,7 @@
 title: 数据安全与隐私保护
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 

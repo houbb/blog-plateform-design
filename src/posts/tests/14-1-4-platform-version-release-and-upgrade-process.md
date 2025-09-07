@@ -1,8 +1,8 @@
 ---
 title: 平台自身的版本发布与升级流程
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

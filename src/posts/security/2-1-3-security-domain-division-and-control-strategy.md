@@ -2,7 +2,7 @@
 title: "安全域划分与管控策略: 网络、主机、应用、数据安全"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

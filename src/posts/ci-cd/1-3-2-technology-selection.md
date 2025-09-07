@@ -2,7 +2,7 @@
 title: "技术选型决策: 自研 vs 基于开源（Jenkins, GitLab CI, Drone, Argo CD）二次开发"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 在CI/CD平台建设过程中，技术选型是一个至关重要的决策环节。选择合适的技术方案不仅影响平台的功能和性能，还关系到实施成本、维护难度和长期发展。本文将深入探讨自研与基于开源工具二次开发的优劣，并详细分析主流CI/CD工具的特点和适用场景，为技术选型提供决策依据。

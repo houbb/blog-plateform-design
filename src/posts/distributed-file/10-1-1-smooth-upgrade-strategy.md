@@ -1,8 +1,8 @@
 ---
 title: "平滑升级策略:滚动升级、兼容性设计"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, upgrade, rolling-upgrade, compatibility, high-availability]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储平台的生命周期中，系统升级是不可避免的。随着业务的发展和需求的变化，我们需要不断更新系统以修复bug、添加新功能或提升性能。然而，传统的停机升级方式对于需要7x24小时运行的存储系统来说是不可接受的。因此，实现平滑升级策略，确保在升级过程中业务不受影响，成为分布式存储系统设计的重要课题。

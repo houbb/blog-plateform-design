@@ -1,8 +1,8 @@
 ---
 title: 数据治理在运维领域的实践
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb, data-governance, data-quality,数据治理]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 

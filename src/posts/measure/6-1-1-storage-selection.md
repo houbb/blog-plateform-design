@@ -2,7 +2,7 @@
 title: "存储选型: 时序数据库（TDengine, InfluxDB, Prometheus）、数据湖（Iceberg/Hudi）、数据仓库（ClickHouse, BigQuery）"
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 在企业级统一度量平台中，数据存储是支撑整个系统运行的基础。随着数据量的爆炸式增长和业务需求的多样化，选择合适的存储方案成为平台建设的关键决策。本节将深入探讨时序数据库、数据湖和数据仓库的特点、优势、适用场景以及选型策略，帮助架构师和工程师做出明智的技术选择。

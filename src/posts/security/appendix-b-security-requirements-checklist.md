@@ -2,7 +2,7 @@
 title: "附录B: 安全需求 checklist"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

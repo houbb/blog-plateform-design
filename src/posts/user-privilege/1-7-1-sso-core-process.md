@@ -1,8 +1,8 @@
 ---
 title: "SSO核心流程: 基于票据的交换过程"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 单点登录（SSO）的核心在于基于票据的交换过程，这一机制使得用户只需登录一次即可访问多个相关系统。理解SSO的核心流程对于设计和实现高效的SSO系统至关重要。本文将深入探讨SSO的核心流程，包括票据的生成、传递、验证以及生命周期管理等关键技术细节。

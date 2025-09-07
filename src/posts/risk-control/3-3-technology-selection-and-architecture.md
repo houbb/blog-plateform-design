@@ -2,7 +2,7 @@
 title: "技术选型与架构抉择: 自研 vs. 采购， 批处理 vs. 流处理"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 技术选型与架构抉择：自研 vs. 采购， 批处理 vs. 流处理

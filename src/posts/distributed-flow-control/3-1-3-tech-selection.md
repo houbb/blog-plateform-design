@@ -2,7 +2,7 @@
 title: "技术选型: 自研 vs. 集成开源（如 Sentinel, Redis-cell, Envoy RateLimit）"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, tech-selection, sentinel, redis-cell, envoy]
+tags: [DistributedFlowControl]
 published: true
 ---
 在构建企业级分布式限流平台时，技术选型是一个至关重要的决策环节。选择合适的技术方案不仅影响系统的功能实现，还关系到开发成本、维护难度、性能表现和长期发展。本章将深入分析自研方案与集成开源方案的优劣，并详细介绍几种主流开源限流组件的特点和适用场景。

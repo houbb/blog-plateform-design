@@ -2,7 +2,7 @@
 title: "自动化部署方案: 基于Ansible/Helm/K8s的现代部署实践"
 date: 2025-09-06
 categories: [Task]
-tags: [task]
+tags: [Task]
 published: true
 ---
 在现代软件交付流程中，自动化部署已成为提高交付效率、降低人为错误、确保部署一致性的核心实践。随着基础设施即代码（Infrastructure as Code）理念的普及，企业越来越多地采用Ansible、Helm、Kubernetes等工具来实现部署过程的自动化。本章将深入探讨这些主流自动化部署工具的原理、实践和最佳实践，帮助企业构建高效可靠的自动化部署体系。

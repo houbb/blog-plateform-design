@@ -1,8 +1,8 @@
 ---
 title: 11.4 平滑升级与数据迁移方案
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, smooth upgrade, data migration, blue-green deployment, rolling update, database migration]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

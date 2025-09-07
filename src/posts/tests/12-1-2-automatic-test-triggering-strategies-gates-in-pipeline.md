@@ -1,8 +1,8 @@
 ---
 title: 流水线中自动触发测试的策略（门禁）
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

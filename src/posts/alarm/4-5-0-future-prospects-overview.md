@@ -2,7 +2,7 @@
 title: 未来展望概述
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, future, observability-driven-development, cross-team-collaboration]
+tags: [Alarm]
 published: true
 ---
 

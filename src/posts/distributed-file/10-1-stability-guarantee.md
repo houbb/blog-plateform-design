@@ -1,8 +1,8 @@
 ---
 title: "稳定性保障:升级、扩缩容与故障处理"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, stability, upgrade, scaling, fault-handling, high-availability]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 # 稳定性保障：升级、扩缩容与故障处理

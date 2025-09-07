@@ -1,8 +1,8 @@
 ---
 title: "流程挖掘技术: 基于历史数据还原实际流程，发现偏差与优化点"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, process mining, process discovery, conformance checking]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 流程挖掘技术是现代BPM平台中的一项重要技术，它通过分析系统中留存的事件日志数据，能够客观、准确地还原实际业务流程的执行情况。与传统的基于业务人员主观描述的流程设计不同，流程挖掘技术提供了一种数据驱动的方法来发现、监控和改进业务流程。本章将深入探讨流程挖掘技术的原理、实现和应用。

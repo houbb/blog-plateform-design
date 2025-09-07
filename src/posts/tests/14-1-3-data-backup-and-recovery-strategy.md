@@ -1,8 +1,8 @@
 ---
 title: 数据备份与恢复策略
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

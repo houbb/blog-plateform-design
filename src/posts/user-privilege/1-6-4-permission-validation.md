@@ -1,8 +1,8 @@
 ---
 title: "权限的效验: 中央化API网关与Sidecar模式"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 权限验证是授权体系的最后一道防线，确保用户只能访问其被授权的资源。在现代微服务架构中，权限验证通常通过中央化API网关或Sidecar模式来实现。本文将深入探讨这两种模式的实现细节、优缺点以及最佳实践。

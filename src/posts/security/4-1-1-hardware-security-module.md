@@ -2,7 +2,7 @@
 title: "硬件安全模块（HSM/加密机）: 原理、选型与部署，保障密钥安全"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

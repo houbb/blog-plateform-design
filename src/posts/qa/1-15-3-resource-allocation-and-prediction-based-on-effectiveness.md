@@ -1,8 +1,8 @@
 ---
 title: 基于效能的资源分配与预测
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

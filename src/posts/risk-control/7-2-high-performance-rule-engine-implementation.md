@@ -2,7 +2,7 @@
 title: "高性能规则引擎实现: Rete算法原理与优化"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 高性能规则引擎实现：Rete算法原理与优化

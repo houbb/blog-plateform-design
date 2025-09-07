@@ -1,8 +1,8 @@
 ---
 title: 9.3 超时控制、重试策略与失败告警
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, timeout control, retry strategy, failure alert, reliability]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

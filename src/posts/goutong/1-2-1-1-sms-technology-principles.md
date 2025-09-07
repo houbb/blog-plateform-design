@@ -1,8 +1,8 @@
 ---
 title: "短信（SMS）技术原理与限制: 协议、长度、并发、运营商限制"
 date: 2025-08-30
-categories: [通知通道平台]
-tags: [notification, sms, technology]
+categories: [GouTong]
+tags: [GouTong]
 published: true
 ---
 短信服务（Short Message Service，SMS）作为最古老且最普及的移动通信服务之一，至今仍然是企业通知系统中不可或缺的重要通道。尽管新兴的推送通知和即时通讯应用不断涌现，SMS凭借其无需应用安装、几乎100%的设备兼容性和较高的送达率，依然在身份验证、紧急通知等关键场景中发挥着重要作用。本文将深入探讨SMS的技术原理、核心限制以及在企业级通知平台中的应用策略。

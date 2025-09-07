@@ -2,7 +2,7 @@
 title: "频率控制与防骚扰: 基于用户、IP、业务类型的限流策略"
 date: 2025-09-06
 categories: [GouTong]
-tags: [goutong, notification-platform, rate-limiting]
+tags: [GouTong]
 published: true
 ---
 在构建统一通知通道平台的过程中，频率控制与防骚扰机制是保障平台稳定运行、提升用户体验和防止滥用的重要手段。通过合理的限流策略，我们可以有效控制通知发送频率，防止恶意刷量和骚扰行为，同时确保正常业务需求得到满足。本文将深入探讨基于用户、IP、业务类型的限流策略设计与实现。

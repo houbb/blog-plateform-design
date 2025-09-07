@@ -1,8 +1,8 @@
 ---
 title: "设定改进目标: 使用North Star Metric（北极星指标）引领方向"
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 在工程效能管理中，设定科学合理的改进目标是推动持续优化的关键环节。没有明确目标的改进工作往往缺乏方向性和持续性，难以取得实质性的成果。本章将深入探讨如何设定有效的改进目标，特别是如何运用North Star Metric（北极星指标）来引领改进方向。

@@ -2,7 +2,7 @@
 title: 构建AIOps能力概述
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, aiops, artificial-intelligence, automation]
+tags: [Alarm]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 7.4 数据归档与清理策略
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, data archiving, data cleanup, retention policy, storage optimization]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

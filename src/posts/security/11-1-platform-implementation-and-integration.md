@@ -2,7 +2,7 @@
 title: "平台实施与集成: 构建企业级统一安全能力平台的实施路径与集成策略"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

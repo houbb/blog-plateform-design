@@ -2,7 +2,7 @@
 title: 可观测性与持续优化概述
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, observability, continuous-optimization, metrics]
+tags: [Alarm]
 published: true
 ---
 

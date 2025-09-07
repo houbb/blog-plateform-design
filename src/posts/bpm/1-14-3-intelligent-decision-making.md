@@ -1,8 +1,8 @@
 ---
 title: "智能决策: 利用机器学习模型辅助流程中的关键决策"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, machine learning, decision support, predictive analytics, automation]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 智能决策：利用机器学习模型辅助流程中的关键决策

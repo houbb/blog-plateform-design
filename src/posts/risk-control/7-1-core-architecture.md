@@ -2,7 +2,7 @@
 title: "核心架构: 事实、规则、规则集、决策流"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 核心架构：事实、规则、规则集、决策流

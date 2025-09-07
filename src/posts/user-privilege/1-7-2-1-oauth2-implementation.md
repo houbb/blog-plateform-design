@@ -1,8 +1,8 @@
 ---
 title: OAuth 2.0 四种模式与最佳实践
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

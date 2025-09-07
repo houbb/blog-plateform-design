@@ -2,7 +2,7 @@
 title: "密钥与凭据管理: 与Vault等 secrets manager 集成"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,security,secrets,vault,devsecops]
+tags: [CICD]
 published: true
 ---
 在现代软件开发和部署过程中，密钥与凭据管理是安全防护体系中的关键环节。不当的密钥管理可能导致严重的安全漏洞，包括数据泄露、系统入侵和合规性违规。通过与HashiCorp Vault等专业的secrets manager集成，CI/CD平台能够实现安全、动态、可审计的密钥管理。本文将深入探讨密钥管理的重要性、Vault集成实践以及最佳安全策略。

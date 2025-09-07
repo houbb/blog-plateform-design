@@ -1,8 +1,8 @@
 ---
 title: 国际化和本地化的特殊考量
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, internationalization, localization, globalization]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 平台战略与总体规划
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

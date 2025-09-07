@@ -1,8 +1,8 @@
 ---
 title: 密钥、证书安全管理与轮换策略
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, security, keys, certificates]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

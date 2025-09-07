@@ -1,8 +1,8 @@
 ---
 title: "14.2 管理控制台功能: 系统看板、任务管理、报警配置、用户管理"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, admin console, dashboard, task management, alert configuration, user management]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的运维管理中，一个功能完善、界面友好的管理控制台是确保系统稳定运行和高效管理的关键工具。管理控制台不仅为运维人员提供了全面的系统监控视图，还集成了任务管理、报警配置、用户管理等核心功能模块。通过统一的管理界面，运维团队可以快速了解系统状态、及时响应异常情况、高效管理任务资源、合理配置报警策略以及精确控制用户权限。本文将深入探讨分布式调度平台管理控制台的核心功能设计、实现要点以及最佳实践。

@@ -1,8 +1,8 @@
 ---
 title: 集群扩缩容：弹性扩缩容流程与数据迁移影响控制
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, scaling, cluster-scaling, data-migration, elasticity]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

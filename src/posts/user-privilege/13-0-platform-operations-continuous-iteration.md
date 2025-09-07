@@ -1,8 +1,8 @@
 ---
 title: 平台运营与持续迭代（概述）
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, operations, continuous-iteration]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

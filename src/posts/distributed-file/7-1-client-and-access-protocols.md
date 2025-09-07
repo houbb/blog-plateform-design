@@ -1,8 +1,8 @@
 ---
 title: 客户端与接入协议
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, client, protocols]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

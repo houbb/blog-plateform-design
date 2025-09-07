@@ -2,7 +2,7 @@
 title: "应急响应与预案管理: 线上化演练与执行"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

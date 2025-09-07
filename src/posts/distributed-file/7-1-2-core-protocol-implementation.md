@@ -1,8 +1,8 @@
 ---
 title: "核心协议实现: POSIX兼容性挑战与解决方案"
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs, posix, protocol, compatibility]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 在分布式文件存储平台中，协议兼容性是确保系统能够广泛适配各种应用场景的关键因素。POSIX（Portable Operating System Interface）作为类Unix系统上文件系统操作的标准接口，其兼容性实现对于分布式文件存储平台的成功至关重要。本章将深入探讨核心协议实现中的POSIX兼容性挑战与解决方案。

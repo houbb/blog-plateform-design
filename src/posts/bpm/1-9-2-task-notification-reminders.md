@@ -1,8 +1,8 @@
 ---
 title: "任务通知与催办: 多渠道消息触达与自动催办机制"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, task notification, reminders, messaging]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在企业级BPM平台中，及时有效的任务通知与催办机制是确保业务流程顺畅运行的关键因素。无论任务分配得多么合理，如果任务处理者不能及时收到通知，或者在任务逾期时没有适当的催办机制，都会严重影响业务流程的效率和质量。本章将深入探讨多渠道消息触达机制和自动催办策略的实现。

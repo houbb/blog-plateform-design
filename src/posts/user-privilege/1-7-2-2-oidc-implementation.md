@@ -1,8 +1,8 @@
 ---
 title: OpenID Connect (OIDC) 实现用户认证
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

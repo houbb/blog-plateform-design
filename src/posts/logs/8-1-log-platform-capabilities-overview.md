@@ -1,8 +1,8 @@
 ---
 title: "日志平台化能力概述: 构建企业级日志管理的核心能力"
 date: 2025-09-07
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 随着企业IT系统的复杂化和规模化，日志平台不再仅仅是日志数据的收集和存储工具，而是演进为支撑企业运维、安全、合规和业务分析的综合性平台。第八章将深入探讨日志平台化的核心能力，包括多租户与权限管理、成本管理以及与DevOps/SRE的集成等关键主题。本文将全面介绍这些平台化能力的重要性和实现方式。

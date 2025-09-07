@@ -2,7 +2,7 @@
 title: "DevOps文化与CI/CD: 相辅相成的双翼"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 DevOps作为一种文化和实践的结合，已经深刻改变了现代软件开发和运维的方式。CI/CD作为DevOps的核心技术实践，与DevOps文化相互促进，共同推动着组织的数字化转型。本文将深入探讨DevOps文化与CI/CD之间的关系，以及如何通过两者的结合实现更高的软件交付效率和质量。

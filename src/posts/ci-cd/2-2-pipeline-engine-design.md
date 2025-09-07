@@ -2,7 +2,7 @@
 title: 流水线引擎设计与实现
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 

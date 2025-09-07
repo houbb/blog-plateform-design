@@ -1,8 +1,8 @@
 ---
 title: "代码安全分析（SAST）: OWASP Top 10漏洞、潜在安全风险"
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 在现代软件开发中，安全性已成为与功能性、性能同样重要的考量因素。随着网络安全威胁的不断增加和攻击手段的日益复杂化，仅仅依靠传统的安全测试方法已无法满足现代应用的安全需求。静态应用安全测试（Static Application Security Testing, SAST）作为一种在代码编写阶段就能发现安全漏洞的技术，能够在软件开发生命周期的早期识别和修复安全问题，显著降低安全风险和修复成本。

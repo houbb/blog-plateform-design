@@ -1,8 +1,8 @@
 ---
 title: "附录A: 开源分布式调度系统对比"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, open source, comparison, Airflow, DolphinScheduler, Kubernetes, CronJob]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的选型过程中，了解和对比主流的开源调度系统是至关重要的。不同的调度系统在架构设计、功能特性、适用场景等方面各有特色，选择合适的系统能够显著影响项目的成功与否。本文将对当前主流的开源分布式调度系统进行全面对比分析，包括Apache Airflow、Apache DolphinScheduler、Kubernetes CronJob等，帮助读者更好地理解各系统的优劣势，为技术选型提供参考依据。

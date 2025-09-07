@@ -2,7 +2,7 @@
 title: "业务现状与风险态势评估: 识别主要风险类型与业务痛点"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 业务现状与风险态势评估：识别主要风险类型与业务痛点

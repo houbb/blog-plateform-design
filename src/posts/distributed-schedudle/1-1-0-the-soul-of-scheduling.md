@@ -1,8 +1,8 @@
 ---
 title: "调度之魂: 无处不在的任务调度"
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在当今这个数据驱动的时代，任务调度已成为现代软件系统不可或缺的核心组件。从简单的定时备份到复杂的AI模型训练，从电商系统的订单处理到金融行业的风险计算，任务调度无处不在，默默地支撑着我们数字生活的方方面面。

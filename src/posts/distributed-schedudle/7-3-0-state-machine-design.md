@@ -1,8 +1,8 @@
 ---
 title: "7.3 状态机设计: 任务生命周期的状态流转（Pending、Running、Success、Failed）"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, state machine, task lifecycle, state transition, pending, running, success, failed]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，任务的状态管理是确保任务正确执行和系统稳定运行的关键机制。通过合理的状态机设计，可以清晰地定义任务在其生命周期中的各种状态及其转换关系，为任务调度、执行监控和故障处理提供可靠的理论基础。状态机作为一种数学模型，能够有效地描述系统的状态变化规律，帮助开发者构建更加健壮和可维护的调度系统。本文将深入探讨分布式调度平台中的状态机设计，重点分析任务生命周期的状态流转机制及其在实际应用中的实现方案。

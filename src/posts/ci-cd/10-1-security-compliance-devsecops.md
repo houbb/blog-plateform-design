@@ -2,7 +2,7 @@
 title: 安全与合规（DevSecOps）
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,security,compliance,devsecops]
+tags: [CICD]
 published: true
 ---
 

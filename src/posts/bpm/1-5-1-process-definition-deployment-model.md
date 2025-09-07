@@ -1,8 +1,8 @@
 ---
 title: "流程定义部署模型: 解析与执行BPMN 2.0 XML"
 date: 2025-08-30
-categories: [BPM]
-tags: [bpm]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在企业级BPM平台中，流程定义部署模型是流程引擎的核心组件之一，负责解析和管理BPMN 2.0 XML格式的流程定义。一个优秀的流程定义部署模型不仅要能够准确解析复杂的BPMN 2.0规范，还需要提供高效的存储、版本管理和部署机制。本文将深入探讨流程定义部署模型的设计与实现。

@@ -1,8 +1,8 @@
 ---
 title: "用户模型抽象: 个人用户、设备、应用、API账号"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在构建统一身份治理平台时，用户模型的抽象设计是至关重要的第一步。不同的用户类型具有不同的特征和需求，需要采用不同的管理策略和安全机制。本文将深入探讨如何对个人用户、设备、应用和API账号进行抽象建模，为统一用户中心的设计提供理论基础和实践指导。

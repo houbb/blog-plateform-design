@@ -1,8 +1,8 @@
 ---
 title: "变革管理: 应对阻力，推动流程文化转型"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, change management, resistance, culture transformation, organizational change]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 变革管理：应对阻力，推动流程文化转型

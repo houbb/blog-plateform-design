@@ -2,7 +2,7 @@
 title: "附录C: 数据驱动决策的经典案例集"
 date: 2025-09-07
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 ## 引言

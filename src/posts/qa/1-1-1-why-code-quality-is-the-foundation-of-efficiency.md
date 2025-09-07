@@ -1,8 +1,8 @@
 ---
 title: 为什么代码质量是效能的基石？——修复成本与架构腐蚀
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

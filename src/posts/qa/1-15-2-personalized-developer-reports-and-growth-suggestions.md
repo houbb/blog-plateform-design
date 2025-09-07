@@ -1,8 +1,8 @@
 ---
 title: 个性化开发者报告与成长建议
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

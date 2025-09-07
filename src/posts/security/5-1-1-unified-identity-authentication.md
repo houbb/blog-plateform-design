@@ -2,7 +2,7 @@
 title: "统一身份认证（SSO）: 集成AD/LDAP、OAUTH 2.0、OIDC、SAML 2.0"
 date: 2025-09-06
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

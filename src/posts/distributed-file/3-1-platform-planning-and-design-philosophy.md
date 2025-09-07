@@ -1,8 +1,8 @@
 ---
 title: 平台总体规划与设计哲学
 date: 2025-09-07
-categories: [DFS]
-tags: [dfs]
+categories: [DistributedFile]
+tags: [DistributedFile]
 published: true
 ---
 

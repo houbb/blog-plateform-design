@@ -2,7 +2,7 @@
 title: 部署、治理与推广概述
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, deployment, governance, promotion]
+tags: [Alarm]
 published: true
 ---
 

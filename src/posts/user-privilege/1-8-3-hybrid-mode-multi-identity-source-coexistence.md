@@ -1,8 +1,8 @@
 ---
 title: "混合模式: 多身份源共存与匹配规则（Just-in-Time Provisioning）"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，混合模式（Hybrid Mode）是指同时作为身份提供者（IdP）和服务提供者（SP）的架构模式。这种模式允许企业既向外提供身份认证服务，又集成外部身份源，实现多身份源的共存与协同工作。本文将深入探讨混合模式的技术实现、多身份源共存策略、匹配规则设计以及Just-in-Time Provisioning（JIT预配）机制。

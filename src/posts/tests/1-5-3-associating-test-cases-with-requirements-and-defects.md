@@ -1,8 +1,8 @@
 ---
 title: 用例与需求、缺陷的关联
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

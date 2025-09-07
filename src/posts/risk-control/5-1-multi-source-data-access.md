@@ -2,7 +2,7 @@
 title: "多源数据接入: 业务日志、前端埋点、第三方数据（征信、黑产库）、网络流量"
 date: 2025-09-06
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 多源数据接入：业务日志、前端埋点、第三方数据（征信、黑产库）、网络流量

@@ -1,88 +1,65 @@
-# Markdown文件校验和修复工具
+# 博客平台维护工具
 
-这个目录包含了一系列用于校验和修复Markdown文件YAML头部格式的工具。
+这个目录包含了用于维护和修复博客平台 Markdown 文件的各种工具。
 
 ## 工具列表
 
-### 1. validFormat.cjs
-- **功能**: 校验并修复所有Markdown文件的YAML头部格式
-- **使用方法**: 
-  ```bash
-  node validFormat.cjs [--fix]
-  ```
-- **参数**:
-  - 无参数: 仅校验文件格式
-  - `--fix`: 校验并自动修复不合法的文件
+### 1. categories 和 tags 格式修复工具
 
-### 2. check-file.cjs
-- **功能**: 使用js-yaml库精确检查每个文件的YAML格式
-- **使用方法**: 
-  ```bash
-  node check-file.cjs
-  ```
+**文件**: [fix_categories_tags_format.cjs](file:///D:/github/blog-plateform-design/fix_categories_tags_format.cjs)
 
-### 3. debug-gray-matter.cjs
-- **功能**: 使用gray-matter库（VuePress使用的库）检查文件解析问题
-- **使用方法**: 
-  ```bash
-  node debug-gray-matter.cjs
-  ```
+**功能**: 修复 Markdown 文件中的 categories 和 tags 格式，确保符合 VuePress 规范。
 
-### 4. debug-specific-file.cjs
-- **功能**: 详细调试特定文件的解析过程
-- **使用方法**: 
-  ```bash
-  node debug-specific-file.cjs
-  ```
+**使用方法**:
+```bash
+node fix_categories_tags_format.cjs
+```
 
-### 5. debug-yaml-parse.cjs
-- **功能**: 专门调试YAML解析问题
-- **使用方法**: 
-  ```bash
-  node debug-yaml-parse.cjs
-  ```
+**处理规则**:
+1. `categories` 字段使用目录名的正确格式（首字母大写）
+2. `tags` 字段使用文件名（小写，不带引号）
+3. 特殊目录名处理：
+   - `ci-cd` → `CICD`
+   - `user-privilege` → `UserPrivilege`
+   - `distributed-schedudle` → `DistributedSchedule`
+   - `distributed-flow-control` → `DistributedFlowControl`
+   - `distributed-file` → `DistributedFile`
+   - `risk-control` → `RiskControl`
+   - `itsm` → `ITSM`
+   - `goutong` → `GouTong`
 
-### 6. fix-line-endings.cjs
-- **功能**: 修正文件的换行符问题
-- **使用方法**: 
-  ```bash
-  node fix-line-endings.cjs
-  ```
+**示例**:
+```markdown
+# 修复前
+categories: ["DistributedSchedudle"]
+tags: ["1-1-0-the-soul-of-scheduling"]
 
-### 7. fix-all-line-endings.cjs
-- **功能**: 全面修正文件的所有换行符问题
-- **使用方法**: 
-  ```bash
-  node fix-all-line-endings.cjs
-  ```
+# 修复后
+categories: [DistributedSchedule]
+tags: [1-1-0-the-soul-of-scheduling]
+```
 
-### 8. fix-yaml-title.cjs
-- **功能**: 修正YAML头部中的title字段
-- **使用方法**: 
-  ```bash
-  node fix-yaml-title.cjs
-  ```
+### 2. 布局设置修复工具
 
-## 使用流程
+**文件**: [src/README.md](file:///D:/github/blog-plateform-design/src/README.md)
 
-1. **初步检查**: 运行 `node validFormat.cjs` 检查所有文件格式
-2. **详细调试**: 如果发现有问题的文件，使用 `node debug-gray-matter.cjs` 找出具体文件
-3. **问题分析**: 使用 `node debug-yaml-parse.cjs` 或 `node debug-specific-file.cjs` 分析具体问题
-4. **修复问题**: 根据问题类型使用相应的修复工具
-5. **验证修复**: 再次运行检查工具确认问题已解决
+**功能**: 修复 VuePress 主页布局设置，将 `layout: BlogHome` 更新为 `layout: Blog`。
 
-## 常见问题及解决方案
+**处理规则**:
+- 将 `layout: BlogHome` 替换为 `layout: Blog`
+- 保持其他配置不变
 
-### YAML解析错误
-- **原因**: title字段中的特殊字符未正确转义
-- **解决方案**: 使用 `fix-yaml-title.cjs` 修复
+## 使用说明
 
-### 换行符问题
-- **原因**: Windows和Unix换行符混用
-- **解决方案**: 使用 `fix-all-line-endings.cjs` 修复
+1. 确保在项目根目录下运行工具
+2. 运行前建议备份重要文件
+3. 工具会直接修改原文件，请谨慎操作
 
-## 注意事项
+## 验证方法
 
-- 运行这些工具前请确保已安装所有依赖包
-- 修复工具会直接修改原文件，请在运行前备份重要文件
-- 如果遇到新的问题，请先使用检查工具定位问题，再选择合适的修复工具
+运行工具后，可以检查任意 Markdown 文件的 frontmatter 部分，确认 categories 和 tags 格式是否正确。
+
+```bash
+# 检查示例文件
+head -7 src/posts/alarm/1-1-0-alarm-pain-and-paradigm-shift.md
+```

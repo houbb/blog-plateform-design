@@ -1,8 +1,8 @@
 ---
 title: 实时日志收集与推送
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

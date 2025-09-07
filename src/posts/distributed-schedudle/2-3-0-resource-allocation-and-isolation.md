@@ -1,8 +1,8 @@
 ---
 title: "2.3 资源分配与隔离: CPU、内存、磁盘、GPU"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, resource isolation, cpu, memory, disk, gpu]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台中，资源分配与隔离是确保任务稳定执行和系统整体性能的关键机制。随着业务复杂度的增加和资源需求的多样化，如何有效地管理CPU、内存、磁盘和GPU等资源，同时实现任务间的资源隔离，成为平台设计的核心挑战之一。本文将深入探讨分布式调度平台中的资源分配与隔离机制，分析各种资源的管理策略和实现技术。

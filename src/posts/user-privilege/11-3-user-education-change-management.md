@@ -1,8 +1,8 @@
 ---
 title: "用户教育与变革管理: 如何推广平台，改变用户习惯"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, user-education, change-management]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在统一身份治理平台的实施过程中，技术实现只是成功的一部分。用户教育和变革管理同样重要，甚至更为关键。即使平台功能再强大，如果用户不理解、不接受或不会使用，项目也难以取得预期效果。本文将深入探讨如何通过有效的用户教育和变革管理策略，确保平台的成功推广和用户习惯的顺利转变。

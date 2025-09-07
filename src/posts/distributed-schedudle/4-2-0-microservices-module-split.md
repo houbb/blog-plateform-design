@@ -1,8 +1,8 @@
 ---
 title: "4.2 微服务模块拆分: Master（调度器）、Worker（执行器）、Alarm、API Server"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, microservices, module split, master, worker, alarm, api server]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的架构设计中，微服务模块拆分是实现系统高内聚、低耦合的关键策略。通过将复杂的单体应用拆分为多个独立的微服务，每个服务专注于特定的业务功能，可以显著提升系统的可维护性、可扩展性和可靠性。本文将深入探讨分布式调度平台的微服务模块拆分策略，重点分析Master（调度器）、Worker（执行器）、Alarm和API Server等核心模块的设计与实现。

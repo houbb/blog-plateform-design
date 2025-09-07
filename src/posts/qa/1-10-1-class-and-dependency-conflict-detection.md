@@ -1,8 +1,8 @@
 ---
 title: "类冲突与依赖冲突检测: 在编译前发现 Jar Hell / Dependency Hell"
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 在现代软件开发中，依赖管理已成为一项复杂而关键的任务。随着项目规模的扩大和第三方库的广泛使用，类冲突（Class Conflict）和依赖冲突（Dependency Conflict）问题日益突出，常被称为"Jar Hell"或"Dependency Hell"。这些问题可能导致运行时错误、性能下降甚至系统崩溃。本章将深入探讨类冲突与依赖冲突的检测原理、技术实现以及预防策略。

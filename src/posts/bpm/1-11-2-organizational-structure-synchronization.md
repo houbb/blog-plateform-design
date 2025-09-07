@@ -1,8 +1,8 @@
 ---
 title: "组织架构同步: 实时获取最新的部门、人员、角色信息"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, organization, synchronization, ldap, active directory]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 组织架构同步：实时获取最新的部门、人员、角色信息

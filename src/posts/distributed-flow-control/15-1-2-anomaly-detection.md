@@ -2,7 +2,7 @@
 title: "异常流量自动识别与防护: 结合机器学习识别CC攻击等异常模式并自动限流"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, aiops, anomaly-detection, security]
+tags: [DistributedFlowControl]
 published: true
 ---
 在现代分布式系统中，异常流量（如DDoS攻击、CC攻击、爬虫等）已成为系统稳定性的重大威胁。传统的基于阈值的限流策略难以有效识别和防护这些复杂的异常流量模式。通过引入机器学习技术，我们可以构建智能化的异常流量识别与防护系统，自动检测并阻止异常请求，保障系统的正常运行。本章将深入探讨如何结合机器学习技术实现异常流量的自动识别与防护。

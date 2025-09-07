@@ -2,7 +2,7 @@
 title: "通用API设计: 构建灵活高效的通知平台接入接口"
 date: 2025-09-06
 categories: [GouTong]
-tags: [goutong, notification-platform, api-design]
+tags: [GouTong]
 published: true
 ---
 在构建统一通知通道平台的过程中，通用API设计是确保平台易用性、灵活性和可扩展性的关键环节。通过设计一套完整、一致且功能丰富的API接口，我们可以为业务方提供简单、高效的接入体验，同时满足各种复杂的通知场景需求。本文将深入探讨统一通知平台的通用API设计策略，为平台建设提供清晰的接口设计指导。

@@ -1,8 +1,8 @@
 ---
 title: "结构化与非结构化日志: 数据格式对日志处理的影响"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在日志处理领域，结构化与非结构化日志的区分是一个核心概念。这两种日志格式在数据处理、存储、查询和分析方面有着显著的差异，直接影响着日志平台的设计和实现。理解这两种格式的特点和应用场景，对于构建高效的日志处理系统至关重要。

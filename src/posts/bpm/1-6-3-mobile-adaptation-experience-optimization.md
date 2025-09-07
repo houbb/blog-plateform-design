@@ -1,8 +1,8 @@
 ---
 title: "移动端适配与体验优化: 原生App与H5的权衡"
 date: 2025-09-06
-categories: [BPM]
-tags: [bpm, mobile, ux]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 在当今移动办公日益普及的时代，BPM平台必须提供优秀的移动端体验才能满足用户随时随地处理业务流程的需求。移动端适配与体验优化是BPM平台建设中不可忽视的重要环节，需要在原生App与H5技术方案之间做出合理权衡。

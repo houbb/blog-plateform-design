@@ -1,6 +1,6 @@
 ---
 home: true
-layout: BlogHome
+layout: Blog
 icon: house
 title: 老马啸西风
 heroImage: /assets/images/SIGN.png

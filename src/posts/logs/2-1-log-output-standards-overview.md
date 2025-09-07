@@ -1,8 +1,8 @@
 ---
 title: "日志输出规范概述: 构建统一、高效、可管理的日志体系"
 date: 2025-09-06
-categories: [Log-Plateform]
-tags: [log, log-plateform]
+categories: [Logs]
+tags: [Logs]
 published: true
 ---
 在企业级系统中，日志输出规范是构建统一、高效、可管理的日志体系的基础。良好的日志输出规范不仅能够提升日志的可读性和可分析性，还能显著降低日志处理和分析的成本。本文将全面介绍日志输出规范的重要性、核心要素和最佳实践。

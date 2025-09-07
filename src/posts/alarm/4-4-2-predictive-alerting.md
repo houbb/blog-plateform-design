@@ -2,7 +2,7 @@
 title: "告警预测: 预测潜在故障，变被动为主动"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, aiops, predictive-maintenance, forecasting]
+tags: [Alarm]
 published: true
 ---
 # 告警预测：预测潜在故障，变被动为主动

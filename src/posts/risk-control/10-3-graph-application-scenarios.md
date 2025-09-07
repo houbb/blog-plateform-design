@@ -2,7 +2,7 @@
 title: "图计算应用场景: 挖掘欺诈团伙、识别中介、发现传销结构"
 date: 2025-09-07
 categories: [RiskControl]
-tags: [rsik-control]
+tags: [RiskControl]
 published: true
 ---
 # 图计算应用场景：挖掘欺诈团伙、识别中介、发现传销结构

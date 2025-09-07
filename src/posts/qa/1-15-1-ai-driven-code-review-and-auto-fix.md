@@ -1,8 +1,8 @@
 ---
 title: AI驱动的代码评审与自动修复
 date: 2025-09-06
-categories: [QA]
-tags: [qa]
+categories: [Qa]
+tags: [Qa]
 published: true
 ---
 

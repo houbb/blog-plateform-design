@@ -1,8 +1,8 @@
 ---
 title: "监控告警体系: 认证成功率、延迟、MFA使用率、异常行为"
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, monitoring, alerting, mfa]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 在企业级统一身份治理平台中，建立完善的监控告警体系是确保系统稳定运行和及时发现潜在问题的关键。通过实时监控认证成功率、延迟、MFA使用率以及异常行为等关键指标，运维团队可以快速响应系统异常，保障用户体验和系统安全。

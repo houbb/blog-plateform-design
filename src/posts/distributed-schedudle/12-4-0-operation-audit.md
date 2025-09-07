@@ -1,8 +1,8 @@
 ---
 title: "12.4 操作审计: 关键操作的记录与查询"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, operation audit, audit log, compliance, security audit, log management]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在企业级分布式调度平台的运维管理中，操作审计是保障系统安全、满足合规要求、追溯问题根源的重要机制。随着平台规模的不断扩大和用户数量的持续增长，系统中产生的操作日志呈指数级增长，如何高效地记录、存储、查询和分析这些关键操作日志，成为平台运营管理的核心挑战。通过构建完善的操作审计体系，不仅可以满足企业内部的审计需求和外部的合规要求，还能为安全事件调查、问题诊断和系统优化提供有力支撑。本文将深入探讨操作审计的核心概念、技术实现以及最佳实践。

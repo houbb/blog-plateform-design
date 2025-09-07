@@ -1,8 +1,8 @@
 ---
 title: "4.3 状态管理: 无状态服务与有状态服务的设计（如调度状态、任务状态）"
 date: 2025-09-06
-categories: [Schedule]
-tags: [schedule, state management, stateless, stateful, scheduling state, task state]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 在分布式调度平台的设计中，状态管理是一个核心且复杂的课题。合理设计无状态服务与有状态服务，不仅影响系统的可扩展性和可靠性，还直接关系到平台的性能和维护成本。本文将深入探讨分布式调度平台中的状态管理策略，重点分析无状态服务与有状态服务的设计原则，以及调度状态、任务状态等关键状态的管理方法。

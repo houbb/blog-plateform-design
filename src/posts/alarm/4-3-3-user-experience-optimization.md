@@ -2,7 +2,7 @@
 title: "用户体验（UX）至关重要: 清晰的信息呈现与快捷的操作"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, user-experience, ux-design, information-presentation]
+tags: [Alarm]
 published: true
 ---
 # 用户体验（UX）至关重要：清晰的信息呈现与快捷的操作

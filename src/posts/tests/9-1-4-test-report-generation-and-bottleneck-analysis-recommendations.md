@@ -1,8 +1,8 @@
 ---
 title: 测试报告生成与瓶颈分析建议
 date: 2025-09-07
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

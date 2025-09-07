@@ -1,8 +1,8 @@
 ---
 title: "会话管理: 分布式Session、JWT令牌的生命周期与安全"
 date: 2025-09-06
-categories: [UMS]
-tags: [ums]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 会话管理是认证体系中的关键组件，负责维护用户认证状态并确保用户在认证后能够持续访问受保护资源。在现代分布式系统中，会话管理面临着跨节点共享、安全性保障、性能优化等多重挑战。本文将深入探讨分布式Session和JWT令牌两种主流会话管理方案的实现细节。

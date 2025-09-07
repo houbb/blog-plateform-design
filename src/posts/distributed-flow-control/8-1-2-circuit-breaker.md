@@ -2,7 +2,7 @@
 title: "与熔断器的协同: 异常比例触发熔断后再恢复的实现机制"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, circuit-breaker, resilience, hystrix, resilience4j]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式系统中，限流和熔断是保障系统稳定性的重要手段。限流通过控制流量来保护系统不被过载，而熔断则通过快速失败来防止故障扩散。两者的协同工作能够构建更加健壮的系统防护体系。本章将深入探讨如何实现限流与熔断器（如Hystrix、Resilience4j）的协同工作，特别是在异常比例触发熔断后再恢复的机制。

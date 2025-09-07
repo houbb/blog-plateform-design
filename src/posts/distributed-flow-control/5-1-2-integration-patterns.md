@@ -2,7 +2,7 @@
 title: "网关集成模式: 内置、Sidecar、外部服务模式详解"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, gateway, integration-patterns]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式限流平台的设计中，与API网关的集成是一个关键环节。不同的集成模式各有优劣，适用于不同的场景和需求。本章将深入探讨三种主流的网关集成模式：内置模式、Sidecar模式和外部服务模式，分析它们的实现原理、优缺点以及适用场景。

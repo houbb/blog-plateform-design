@@ -2,7 +2,7 @@
 title: "心理安全文化: blame-free的复盘文化"
 date: 2025-09-07
 categories: [Alarm]
-tags: [alarm, psychological-safety, blameless-postmortem, culture]
+tags: [Alarm]
 published: true
 ---
 # 心理安全文化：blame-free的复盘文化

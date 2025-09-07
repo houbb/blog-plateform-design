@@ -2,7 +2,7 @@
 title: "实时仪表盘: 全局流量态势、限流热点图、规则效果可视化"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, dashboard, visualization, grafana, monitoring]
+tags: [DistributedFlowControl]
 published: true
 ---
 在分布式限流系统中，实时仪表盘是运维人员了解系统状态、快速定位问题和做出决策的重要工具。一个设计良好的仪表盘能够将复杂的监控数据以直观、易懂的方式呈现出来，帮助运维人员快速掌握全局流量态势、识别限流热点、评估规则效果。本章将深入探讨如何设计和实现一个功能完善的分布式限流实时仪表盘，包括全局流量态势展示、限流热点图绘制、规则效果可视化等核心功能。

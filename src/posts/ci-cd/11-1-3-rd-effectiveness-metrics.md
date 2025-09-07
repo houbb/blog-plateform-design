@@ -2,7 +2,7 @@
 title: "链路追踪: 分布式系统的调用链分析"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd,tracing,opentelemetry,jaeger,devops,distributed]
+tags: [CICD]
 published: true
 ---
 在现代CI/CD平台中，随着微服务架构的广泛应用和系统复杂性的不断增加，传统的监控和日志分析手段已难以满足对系统行为的全面理解需求。链路追踪（Distributed Tracing）作为一种重要的可观测性手段，能够提供请求在分布式系统中的完整调用路径，帮助开发者和运维人员快速定位性能瓶颈、诊断错误根源并优化系统架构。本文将深入探讨链路追踪的核心概念、技术实现、在CI/CD平台中的应用实践以及最佳实施策略。

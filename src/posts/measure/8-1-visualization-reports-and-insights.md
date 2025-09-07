@@ -2,7 +2,7 @@
 title: 可视化、报表与洞察（The Dashboard）
 date: 2025-08-30
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 

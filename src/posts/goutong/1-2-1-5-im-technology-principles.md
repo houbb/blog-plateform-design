@@ -1,8 +1,8 @@
 ---
 title: "即时消息（IM）技术原理与限制: 钉钉、企业微信、飞书、Slack、Webhook的API差异"
 date: 2025-08-30
-categories: [通知通道平台]
-tags: [notification, im, technology]
+categories: [GouTong]
+tags: [GouTong]
 published: true
 ---
 即时消息（Instant Messaging，IM）作为现代企业协作和沟通的核心工具，在企业级通知系统中占据着越来越重要的地位。从早期的QQ、MSN到如今的企业级协作平台如钉钉、企业微信、飞书、Slack等，IM已经从简单的文本聊天工具发展为集消息、语音、视频、文档、应用于一体的综合性协作平台。特别是在企业内部通知、团队协作、客户服务等场景中，IM通知凭借其高互动性、强到达性和丰富的媒体支持，成为不可或缺的通知通道。本文将深入探讨主流IM平台的技术原理、API差异以及在企业级通知平台中的应用策略。

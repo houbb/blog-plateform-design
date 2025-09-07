@@ -1,8 +1,8 @@
 ---
 title: 处理海量权限数据时的性能优化
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, performance-optimization, massive-data, scaling]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

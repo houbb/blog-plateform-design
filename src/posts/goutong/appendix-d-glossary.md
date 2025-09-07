@@ -2,7 +2,7 @@
 title: "附录D: 术语表"
 date: 2025-09-07
 categories: [GouTong]
-tags: [goutong, notification-platform, glossary, terminology]
+tags: [GouTong]
 published: true
 ---
 在企业级统一通知通道平台的建设和使用过程中，涉及大量专业术语和概念。为了确保团队成员、开发者和业务方对相关概念有一致的理解，本文档提供了统一通知平台相关的术语定义和解释。

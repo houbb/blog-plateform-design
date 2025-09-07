@@ -2,7 +2,7 @@
 title: "链路追踪: 精准定位消息全链路路径"
 date: 2025-09-07
 categories: [GouTong]
-tags: [goutong, notification-platform, traceability, distributed-tracing]
+tags: [GouTong]
 published: true
 ---
 在企业级统一通知通道平台中，链路追踪是实现故障快速定位、性能瓶颈分析、服务质量评估的重要技术手段。随着平台架构的日益复杂化和微服务化，单条消息可能经过多个服务节点和处理环节，如何精准追踪消息的全链路路径，快速定位问题根源，成为平台可观测性建设的关键环节。本文将深入探讨链路追踪的核心价值、技术实现和最佳实践。

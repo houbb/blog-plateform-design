@@ -2,7 +2,7 @@
 title: "核心价值: 防止系统雪崩、保障服务可用性、实现公平调度、成本控制"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed]
+tags: [DistributedFlowControl]
 published: true
 ---
 分布式限流作为现代分布式系统中的重要组件，其核心价值不仅体现在技术层面，更在于它能够为业务系统提供稳定可靠的运行保障。通过合理的限流策略，我们可以有效防止系统雪崩、保障服务可用性、实现公平调度，并进行有效的成本控制。

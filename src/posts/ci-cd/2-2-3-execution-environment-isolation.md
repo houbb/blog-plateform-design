@@ -2,7 +2,7 @@
 title: "执行环境隔离: 容器化（Docker/Kubernetes Pod）作为标准执行单元"
 date: 2025-08-30
 categories: [CICD]
-tags: [ci,cd]
+tags: [CICD]
 published: true
 ---
 执行环境隔离是CI/CD平台设计中的关键要素，它确保每个流水线任务都在独立、一致且安全的环境中执行。通过环境隔离，可以避免不同任务间的相互干扰，确保执行环境的一致性和可重复性，提高构建和部署的可靠性。随着容器化技术的成熟和普及，Docker和Kubernetes已成为现代CI/CD平台的标准执行单元。本文将深入探讨执行环境隔离的重要性、容器化技术的优势、Kubernetes集成策略以及环境管理的最佳实践。

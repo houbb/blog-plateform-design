@@ -1,8 +1,8 @@
 ---
 title: "人工智能在BPM中的应用: 智能录入、路由与预测性监控"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, artificial intelligence, machine learning, nlp, computer vision, predictive analytics]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 人工智能在BPM中的应用：智能录入、路由与预测性监控

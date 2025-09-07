@@ -1,8 +1,8 @@
 ---
 title: 数据管理与回收机制
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 

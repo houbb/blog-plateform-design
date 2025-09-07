@@ -2,7 +2,7 @@
 title: "滑动窗口的精确实现: 基于Redis Sorted Set或ZSET"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, sliding-window, redis, zset, precision]
+tags: [DistributedFlowControl]
 published: true
 ---
 滑动窗口算法是分布式限流系统中最为精确和灵活的限流算法之一。相比于固定窗口算法，滑动窗口能够提供更平滑的流量控制，避免临界点问题。在分布式环境中，基于Redis的Sorted Set（ZSET）数据结构可以实现高效的滑动窗口限流。本章将深入探讨滑动窗口算法的原理，并详细介绍如何基于Redis ZSET实现精确的分布式滑动窗口限流。

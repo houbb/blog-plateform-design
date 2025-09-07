@@ -2,7 +2,7 @@
 title: "网关作为限流的第一道防线: 全局流量管控"
 date: 2025-09-07
 categories: [DistributedFlowControl]
-tags: [flow-control, distributed, gateway, api-gateway, traffic-control]
+tags: [DistributedFlowControl]
 published: true
 ---
 在现代微服务架构中，API网关作为系统的入口，承担着流量管控的重要职责。将分布式限流能力集成到API网关中，可以构建起系统的第一道防线，有效防止恶意流量、突发流量和异常流量对后端服务的冲击。本章将深入探讨如何将限流能力集成到API网关中，实现全局流量管控。

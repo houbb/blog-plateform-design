@@ -1,8 +1,8 @@
 ---
 title: "数据保鲜策略: 定期扫描、变更事件触发更新"
 date: 2025-09-07
-categories: [CMDB]
-tags: [cmdb, data-freshness, data-update,数据保鲜]
+categories: [Cmdb]
+tags: [Cmdb]
 published: true
 ---
 在配置管理数据库（CMDB）的运维实践中，数据保鲜是确保配置信息准确性和时效性的关键环节。随着时间推移，IT环境中的配置项会不断发生变化，如果不能及时更新这些变化，CMDB中的数据就会逐渐失去准确性，最终导致基于这些数据做出的决策出现偏差。本文将深入探讨数据保鲜策略，包括定期扫描和变更事件触发更新两种核心机制。

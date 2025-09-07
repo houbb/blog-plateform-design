@@ -1,8 +1,8 @@
 ---
 title: 平台总体架构设计
 date: 2025-09-06
-categories: [Schdedule]
-tags: [schedule]
+categories: [DistributedSchedule]
+tags: [DistributedSchedule]
 published: true
 ---
 

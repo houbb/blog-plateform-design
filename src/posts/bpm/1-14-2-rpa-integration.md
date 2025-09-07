@@ -1,8 +1,8 @@
 ---
 title: "与RPA集成: 处理无API的遗留系统操作"
 date: 2025-09-07
-categories: [BPM]
-tags: [bpm, rpa, integration, legacy systems, automation, orchestration]
+categories: [Bpm]
+tags: [Bpm]
 published: true
 ---
 # 与RPA集成：处理无API的遗留系统操作

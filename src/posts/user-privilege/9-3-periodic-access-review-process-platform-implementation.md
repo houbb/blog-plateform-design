@@ -1,8 +1,8 @@
 ---
 title: 定期权限审阅（Access Review）流程的平台化实现
 date: 2025-09-07
-categories: [UMS]
-tags: [ums, access-review, governance]
+categories: [UserPrivilege]
+tags: [UserPrivilege]
 published: true
 ---
 

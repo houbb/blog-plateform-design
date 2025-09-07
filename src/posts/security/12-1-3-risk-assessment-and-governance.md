@@ -2,7 +2,7 @@
 title: "风险评估与治理: 定期进行风险评估，驱动安全预算投入"
 date: 2025-09-07
 categories: [Security]
-tags: [security]
+tags: [Security]
 published: true
 ---
 ## 引言

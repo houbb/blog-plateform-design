@@ -1,8 +1,8 @@
 ---
 title: "兼容性测试: 与云真机平台的集成"
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 # 8.3 兼容性测试：与云真机平台的集成

@@ -2,7 +2,7 @@
 title: "附录A: 开源度量与可视化工具栈选型指南"
 date: 2025-09-07
 categories: [Measure]
-tags: [measure]
+tags: [Measure]
 published: true
 ---
 ## 引言

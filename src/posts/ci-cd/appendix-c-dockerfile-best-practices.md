@@ -2,7 +2,7 @@
 title: "附录C: Dockerfile 最佳实践"
 date: 2025-09-07
 categories: [CICD]
-tags: [docker, dockerfile, best-practices, container, security]
+tags: [CICD]
 published: true
 ---
 Dockerfile是构建Docker镜像的蓝图，其质量直接影响到镜像的安全性、性能和可维护性。编写高质量的Dockerfile需要遵循一系列最佳实践，从基础镜像选择到多阶段构建，从安全加固到性能优化。本文将详细介绍Dockerfile编写的核心原则和最佳实践，帮助开发者构建出更加安全、高效、可维护的容器镜像。

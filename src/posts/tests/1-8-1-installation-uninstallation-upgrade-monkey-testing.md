@@ -1,8 +1,8 @@
 ---
 title: 安装、卸载、升级、Monkey测试
 date: 2025-09-06
-categories: [TestPlateform]
-tags: [test, test-plateform]
+categories: [Tests]
+tags: [Tests]
 published: true
 ---
 
